@@ -3,30 +3,139 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sophira – Team</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Our Team – Sophira</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #2c3e50;
+    }
+
+    .overlay {
+      background-color: rgba(255, 255, 255, 0.92);
+      min-height: 100vh;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2rem;
+      background-color: #ffffffee;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .navbar .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar img {
+      height: 55px;
+      margin-right: 12px;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #1a202c;
+    }
+
+    nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #2c3e50;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: #1e88e5;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .team-section {
+      background-color: #ffffffdd;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .team-section h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .member {
+      margin-bottom: 2rem;
+    }
+
+    .member h3 {
+      margin: 0;
+      font-size: 1.4rem;
+      color: #1a202c;
+    }
+
+    .member p {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      color: #4a5568;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      margin-top: 4rem;
+      font-size: 0.9rem;
+      color: #4a4a4a;
+      background-color: #ffffffdd;
+    }
+  </style>
 </head>
+
 <body>
-  <header>
-    <h1>Meet the Team</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="team.html">Team</a>
-    </nav>
-  </header>
+  <div class="overlay">
+    <header class="navbar">
+      <div class="logo-container">
+        <img src="Logo_sophira.png" alt="Sophira logo">
+        <h1 class="logo">Sophira</h1>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="team.html">Team</a>
+      </nav>
+    </header>
 
-  <main>
-    <section>
-      <h2>President – Arijanit Idrizi</h2>
-      <p>Passionate about education, social justice, and data. Arijanit leads the Sophira initiative with vision and empathy.</p>
+    <main class="container">
+      <section class="team-section">
+        <h2>Meet Our Team</h2>
 
-      <h2>Co-President – Selma Fictiva</h2>
-      <p>Expert in community engagement and strategy, Selma brings strong coordination and heart to the team.</p>
-    </section>
-  </main>
+        <div class="member">
+          <h3>Arijanit Idrizi – President</h3>
+          <p>Social innovator and data science student, Arijanit founded Sophira to empower adults in professional transition through education and purpose-driven analytics.</p>
+        </div>
 
-  <footer>
-    <p>&copy; 2025 Sophira Association</p>
-  </footer>
+        <div class="member">
+          <h3>Lina Aebischer – Co-President</h3>
+          <p>With a background in education and digital learning, Lina brings coordination skills and compassion to support the strategic direction of Sophira.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Sophira Association | Basel, Switzerland</p>
+    </footer>
+  </div>
 </body>
 </html>
