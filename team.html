@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Our Team – Sophira</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team – Sophira</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
@@ -13,12 +13,10 @@
       background-size: cover;
       color: #2c3e50;
     }
-
     .overlay {
       background-color: rgba(255, 255, 255, 0.92);
       min-height: 100vh;
     }
-
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -26,73 +24,64 @@
       padding: 1.2rem 2rem;
       background-color: #ffffffee;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 10;
     }
-
     .navbar .logo-container {
       display: flex;
       align-items: center;
     }
-
     .navbar img {
-      height: 55px;
+      height: 60px;
       margin-right: 12px;
     }
-
     .logo {
       font-size: 1.6rem;
       font-weight: 600;
       color: #1a202c;
     }
-
     nav a {
       margin-left: 1.5rem;
       text-decoration: none;
       color: #2c3e50;
       font-weight: 500;
     }
-
     nav a:hover {
       color: #1e88e5;
     }
-
     .container {
       max-width: 960px;
       margin: 2rem auto;
       padding: 0 1rem;
     }
-
-    .team-section {
+    .profile {
       background-color: #ffffffdd;
       padding: 2rem;
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    }
-
-    .team-section h2 {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .member {
       margin-bottom: 2rem;
     }
-
-    .member h3 {
-      margin: 0;
-      font-size: 1.4rem;
-      color: #1a202c;
+    .profile h3 {
+      margin-top: 0;
     }
-
-    .member p {
-      margin-top: 0.5rem;
-      font-size: 1rem;
-      color: #4a5568;
+    .cta {
+      text-align: center;
+      margin-top: 3rem;
+      background-color: #1a73e8;
+      color: white;
+      padding: 2rem;
+      border-radius: 12px;
     }
-
+    .cta h3 {
+      margin-bottom: 1rem;
+    }
+    .cta a {
+      display: inline-block;
+      padding: 0.7rem 1.5rem;
+      background-color: white;
+      color: #1a73e8;
+      font-weight: bold;
+      border-radius: 6px;
+      text-decoration: none;
+    }
     footer {
       text-align: center;
       padding: 1rem;
@@ -103,7 +92,6 @@
     }
   </style>
 </head>
-
 <body>
   <div class="overlay">
     <header class="navbar">
@@ -114,22 +102,33 @@
       <nav>
         <a href="index.html">Home</a>
         <a href="team.html">Team</a>
+        <a href="project.html">Social Project</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="blog.html">Blog</a>
+        <a href="donate.html">Donate</a>
+        <a href="contact.html">Contact</a>
       </nav>
     </header>
 
     <main class="container">
-      <section class="team-section">
-        <h2>Meet Our Team</h2>
+      <section class="profile">
+        <h2>Our Founders</h2>
 
-        <div class="member">
+        <div>
           <h3>Arijanit Idrizi – President</h3>
-          <p>Social innovator and data science student, Arijanit founded Sophira to empower adults in professional transition through education and purpose-driven analytics.</p>
+          <p>With a background in business administration and a strong experience in the social field, Arijanit is currently retraining as a data scientist. He is also a Conflict Prevention Officer at a federal refugee center in Switzerland. His motivation stems from lived experience: helping those who are underestimated to rise through education and dignity.</p>
         </div>
 
-        <div class="member">
-          <h3>Lina Aebischer – Co-President</h3>
-          <p>With a background in education and digital learning, Lina brings coordination skills and compassion to support the strategic direction of Sophira.</p>
+        <div>
+          <h3>Quôc-Bao Nguyên – Co-President</h3>
+          <p>Quôc-Bao brings a multicultural background, a passion for inclusive innovation, and a strong sense of civic engagement. Together with Arijanit, he co-leads Sophira with a spirit of community and long-term vision for social impact.</p>
         </div>
+      </section>
+
+      <section class="cta">
+        <h3>Support Our Vision</h3>
+        <p>Help us build a fairer future by empowering new talents through solidarity and data literacy.</p>
+        <a href="donate.html">Donate Now</a>
       </section>
     </main>
 
