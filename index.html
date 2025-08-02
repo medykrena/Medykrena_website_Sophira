@@ -19,17 +19,26 @@
       min-height: 100vh;
     }
 
-    <header class="navbar">
-  <div style="display: flex; align-items: center;">
-    <img src="Logo_sophira.png" alt="Sophira logo" style="height: 40px; margin-right: 10px;">
-    <h1 class="logo">Sophira</h1>
-  </div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="team.html">Team</a>
-  </nav>
-</header>
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2rem;
+      background-color: #ffffffee;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
 
+    .navbar .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar img {
+      height: 40px;
+      margin-right: 10px;
     }
 
     .logo {
@@ -100,7 +109,10 @@
 <body>
   <div class="overlay">
     <header class="navbar">
-      <h1 class="logo">Sophira</h1>
+      <div class="logo-container">
+        <img src="Logo_sophira.png" alt="Sophira logo">
+        <h1 class="logo">Sophira</h1>
+      </div>
       <nav>
         <a href="index.html">Home</a>
         <a href="team.html">Team</a>
