@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog – Sophira</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #2c3e50;
+    }
+
+    .overlay {
+      background-color: rgba(255, 255, 255, 0.92);
+      min-height: 100vh;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2rem;
+      background-color: #ffffffee;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar img {
+      height: 55px;
+      margin-right: 12px;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #1a202c;
+    }
+
+    nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #2c3e50;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: #1e88e5;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .blog-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .post {
+      background-color: #ffffffdd;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .post h3 {
+      margin-top: 0;
+    }
+
+    .post p.date {
+      font-size: 0.9rem;
+      color: #888;
+      margin-top: -0.5rem;
+    }
+
+    .post p.preview {
+      color: #4a4a4a;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      margin-top: 4rem;
+      font-size: 0.9rem;
+      color: #4a4a4a;
+      background-color: #ffffffdd;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <header class="navbar">
+      <div class="logo-container">
+        <img src="Logo_sophira.png" alt="Sophira logo">
+        <h1 class="logo">Sophira</h1>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="team.html">Team</a>
+        <a href="blog.html">Blog</a>
+        <a href="project.html">Social Project</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="blog-header">
+        <h2>Blog Posts & Stories</h2>
+        <p>Updates, reflections and behind-the-scenes of the Sophira journey</p>
+      </section>
+
+      <article class="post">
+        <h3>Launching the Sophira Initiative</h3>
+        <p class="date">Posted on August 2, 2025</p>
+        <p class="preview">Today marks the beginning of a new chapter — where education, dignity and community come together to support professional reconversion...</p>
+      </article>
+
+      <article class="post">
+        <h3>Why Data Science for Adults in Transition?</h3>
+        <p class="date">Posted on July 25, 2025</p>
+        <p class="preview">We believe data skills are not just for tech insiders — they're for every motivated adult seeking relevance and renewal in today's digital world...</p>
+      </article>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Sophira Association | Basel, Switzerland</p>
+    </footer>
+  </div>
+</body>
+</html>
