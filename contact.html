@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact – Sophira</title>
+  <title>Sophira</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
@@ -30,7 +30,7 @@
       align-items: center;
     }
     .navbar img {
-      height: 55px;
+      height: 60px;
       margin-right: 12px;
     }
     .logo {
@@ -52,41 +52,51 @@
       margin: 2rem auto;
       padding: 0 1rem;
     }
-    .form-section, .map-section {
+    .hero {
+      background-color: #edf2f7cc;
+      padding: 3rem 2rem;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .hero h2 {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+    }
+    .subtitle {
+      font-size: 1.1rem;
+      color: #4a5568;
+    }
+    .content {
+      margin-top: 2rem;
       background-color: #ffffffdd;
       padding: 2rem;
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      margin-bottom: 2rem;
     }
-    label {
-      display: block;
-      margin-top: 1rem;
+    .content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
     }
-    input, textarea {
-      width: 100%;
-      padding: 0.6rem;
-      margin-top: 0.3rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-family: 'Inter', sans-serif;
-    }
-    button {
-      margin-top: 1rem;
-      padding: 0.7rem 1.5rem;
+    .cta {
+      text-align: center;
+      margin-top: 3rem;
       background-color: #1a73e8;
       color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: 600;
+      padding: 2rem;
+      border-radius: 12px;
     }
-    iframe {
-      width: 100%;
-      height: 400px;
-      border: none;
-      border-radius: 8px;
-      margin-top: 1rem;
+    .cta h3 {
+      margin-bottom: 1rem;
+    }
+    .cta a {
+      display: inline-block;
+      padding: 0.7rem 1.5rem;
+      background-color: white;
+      color: #1a73e8;
+      font-weight: bold;
+      border-radius: 6px;
+      text-decoration: none;
     }
     footer {
       text-align: center;
@@ -108,33 +118,37 @@
       <nav>
         <a href="index.html">Home</a>
         <a href="team.html">Team</a>
-        <a href="blog.html">Blog</a>
         <a href="project.html">Social Project</a>
         <a href="dashboard.html">Dashboard</a>
+        <a href="blog.html">Blog</a>
+        <a href="donate.html">Donate</a>
         <a href="contact.html">Contact</a>
       </nav>
     </header>
 
     <main class="container">
-      <section class="form-section">
-        <h2>Contact Us</h2>
-        <form action="#" method="post">
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name" required>
-
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required>
-
-          <label for="message">Message:</label>
-          <textarea id="message" name="message" rows="4" required></textarea>
-
-          <button type="submit">Send Message</button>
-        </form>
+      <section class="hero">
+        <h2>Empowering Transitions with Purpose</h2>
+        <p class="subtitle">
+          Sophira is a non-profit initiative supporting career transitions through data science education, community, and solidarity.
+        </p>
       </section>
 
-      <section class="map-section">
-        <h2>Our Location – Basel</h2>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10784.597231781264!2d7.583934755322684!3d47.55959898632288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4791b9d264cbb1a5%3A0xd45255f771ed1a0e!2sBasel!5e0!3m2!1sfr!2sch!4v1691234567890!5m2!1sfr!2sch" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <section class="content">
+        <h3>The Challenge</h3>
+        <p>Automation is disrupting the job market. Thousands of adults in Switzerland face unemployment or underemployment while lacking access to upskilling opportunities.</p>
+
+        <h3>Our Mission</h3>
+        <p>Sophira empowers these adults to transition into meaningful careers by providing access to high-quality training, mentorship, and hands-on data projects — all rooted in human dignity and social justice.</p>
+
+        <h3>Our Vision</h3>
+        <p>We envision a Switzerland where no one is left behind by digital transformation, and where career reinvention is possible at any age or background.</p>
+      </section>
+
+      <section class="cta">
+        <h3>Join the Movement</h3>
+        <p>Support our mission and help build a more inclusive future through data and solidarity.</p>
+        <a href="donate.html">Make a Donation</a>
       </section>
     </main>
 
