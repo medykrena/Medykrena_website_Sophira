@@ -3,14 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sophira - Team</title>
+  <title>Sophira</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background-color: #f9f9f9;
+      background: url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center center fixed;
+      background-size: cover;
       color: #2c3e50;
+    }
+
+    .overlay {
+      background-color: rgba(255, 255, 255, 0.9);
+      min-height: 100vh;
     }
 
     header.navbar {
@@ -56,31 +62,48 @@
       padding: 0 1rem;
     }
 
-    h2 {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .profile div {
-      margin-bottom: 2.5rem;
-      background-color: #fff;
-      padding: 1.5rem;
+    .hero {
+      background-color: #edf2f7cc;
+      padding: 3rem 2rem;
       border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
 
-    .profile h3 {
-      margin-top: 0;
-      font-size: 1.3rem;
+    .hero h2 {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #4a5568;
+    }
+
+    .content {
+      margin-top: 2rem;
+      background-color: #ffffffdd;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
     }
 
     .cta {
-      background-color: #f1f5f9;
+      margin-top: 3rem;
+      background-color: #f7fafc;
       padding: 2rem;
       text-align: center;
       border-radius: 10px;
-      margin-top: 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .cta h3 {
+      margin-bottom: 0.8rem;
     }
 
     .cta a {
@@ -97,63 +120,63 @@
     .cta a:hover {
       background-color: #155ab6;
     }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      margin-top: 4rem;
+      font-size: 0.9rem;
+      color: #4a4a4a;
+      background-color: #ffffffdd;
+    }
   </style>
 </head>
 
 <body>
-  <header class="navbar">
-    <div class="logo">
-      <img src="Logo_sophira.png" alt="Sophira logo">
-      <h1>Sophira</h1>
-    </div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="team.html">Team</a>
-      <a href="projects.html">Projects</a>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="blog.html">Blog</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-
-  <main class="container">
-    <section class="profile">
-      <h2>Our Founders</h2>
-
-      <div>
-        <h3>Arijanit Idrizi – President</h3>
-        <p>
-          Arijanit brings over 8 years of solid experience in the field of migration and socio-professional support.
-          With a first training in business, he has successfully leveraged his skills in communication, behavioral analysis and problem-solving to thrive in the migration sector and as a freelance data analyst.
-          Drawing on this human-centered and strategic experience, he began a professional transition into the field of data science, with the aim of combining his social expertise and analytical skills to deliver innovative, data-driven solutions.
-          Having faced several challenges during his own career change, he came up with the idea of creating an association to support others encountering similar obstacles.
-        </p>
+  <div class="overlay">
+    <header class="navbar">
+      <div class="logo">
+        <img src="Logo_sophira.png" alt="Sophira logo">
+        <h1>Sophira</h1>
       </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="team.html">Team</a>
+        <a href="projects.html">Projects</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
 
-      <div>
-        <h3>Quôc-Bao Nguyên – Co-President</h3>
-        <p>
-          With over ten years of frontline experience as a social educator, Quôc-Bao brings deep field knowledge and a strong commitment to social justice.
-          His journey led him through roles in child protection, refugee support, and emergency housing, as well as project leadership at the Swiss Federal Department of Foreign Affairs and AdO.
-          A graduate in Social Work and Public Policy, he merges empirical knowledge with strategic, ethical, and analytical thinking to shape fairer public policy.
-          His hybrid vision reinforces Sophira’s mission to enable inclusive and transformative career transitions.
+    <main class="container">
+      <section class="hero">
+        <h2>Empowering Transitions for Tomorrow’s Jobs</h2>
+        <p class="subtitle">
+          Sophira is a Swiss nonprofit supporting professional reconversion towards the jobs of the future, from data to green tech, for adults facing systemic barriers.
         </p>
-      </div>
+      </section>
 
-      <div>
-        <h3>Join the Team</h3>
+      <section class="content">
+        <h3>Why Sophira?</h3>
         <p>
-          Sophira is currently seeking new voluntary team members to strengthen our impact.
-          We welcome expressions of interest, especially from individuals with experience in social support or educational coaching, and from candidates ready to take on the role of Treasurer/accountant to help manage our growing activities.
+          Sophira was born from a simple conviction: the digital and ecological transitions are disrupting today’s job market. Millions of adults, especially those with vulnerable paths, are at risk of exclusion.
         </p>
-      </div>
-    </section>
+        <p>
+          Switzerland already faces a growing need for skilled professionals in these fields. That’s why we provide help for education, human support, and career guidance — helping people access new, meaningful jobs by equipping them with digital, analytical, and future-proof skills.
+        </p>
+      </section>
 
-    <section class="cta">
-      <h3>Support Our Vision</h3>
-      <p>Help us build a fairer future by empowering new talents through solidarity and lifelong learning.</p>
-      <a href="donate.html">Donate Now</a>
-    </section>
-  </main>
+      <section class="cta">
+        <h3>Support Our Vision</h3>
+        <p>Help us build a fairer future by empowering new talents through solidarity and lifelong learning.</p>
+        <a href="donate.html">Donate Now</a>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Sophira Association | Basel, Switzerland</p>
+    </footer>
+  </div>
 </body>
 </html>
