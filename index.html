@@ -2,12 +2,11 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sophira – Association pour la reconversion professionnelle</title>
 
   <!-- SEO -->
-  <meta name="description" content="Sophira est une association suisse à but non lucratif qui accompagne les adultes en difficulté financière dans leur reconversion professionnelle vers les métiers d’avenir : data, technologies vertes, santé digitale, IA.">
-
+  <meta name="description" content="Sophira accompagne les adultes en difficulté financière dans leur reconversion vers les métiers d’avenir (data, technologies vertes, santé digitale, IA) en Suisse.">
   <!-- Open Graph -->
   <meta property="og:title" content="Sophira – Association pour la reconversion professionnelle" />
   <meta property="og:description" content="Lutter contre le chômage lié à l’automatisation et ouvrir des opportunités dans les métiers d’avenir." />
@@ -15,142 +14,130 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sophira.org/" />
 
-  <!-- Google Fonts -->
+  <!-- Police -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #2c3e50;
+    :root{
+      --text:#2c3e50;
+      --muted:#4a5568;
+      --brand:#1a73e8;
+      --brand-hover:#155ab6;
+      --whiteglass:#ffffffdd;
+      --panel:#edf2f7cc;
+      --radius:12px;
+      --shadow-sm:0 2px 8px rgba(0,0,0,.05);
+      --shadow-md:0 4px 12px rgba(0,0,0,.08);
+      --container: 980px;
     }
-
-    .overlay {
-      background-color: rgba(255, 255, 255, 0.9);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:'Inter',sans-serif;
+      background:url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center center fixed;
+      background-size:cover;
+      color:var(--text);
+    }
+    .overlay{
+      min-height:100vh;
+      background:rgba(255,255,255,.9);
+      display:flex;
+      flex-direction:column;
     }
 
     /* NAVBAR */
-    header.navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background-color: #ffffffdd;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      position: sticky;
-      top: 0;
-      z-index: 10;
+    header.navbar{
+      position:sticky; top:0; z-index:20;
+      display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+      padding: .8rem 1rem;
+      background:var(--whiteglass);
+      box-shadow:var(--shadow-sm);
+      backdrop-filter: blur(6px);
+    }
+    .brand{
+      display:flex; align-items:center; gap:.6rem; min-width:0;
+    }
+    .brand img{
+      height:55px; /* logo agrandi */
+      width:auto;
+    }
+    .brand h1{
+      margin:0; font-size:1.7rem; font-weight:600; color:#1a202c; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     }
 
-    header .logo {
-      display: flex;
-      align-items: center;
+    /* Liens de nav (desktop) */
+    nav.primary{
+      display:flex; align-items:center; gap:1.1rem;
+    }
+    nav.primary a{
+      text-decoration:none; color:var(--text); font-weight:500;
+    }
+    nav.primary a:hover, nav.primary a:focus{ color:#1e88e5 }
+
+    /* Burger (mobile) */
+    .burger{
+      display:none;
+      background:none; border:none; padding:.4rem .6rem; border-radius:8px;
+    }
+    .burger:focus{ outline:2px solid var(--brand) }
+    .burger svg{ width:28px; height:28px; }
+
+    /* Menu mobile (panneau) */
+    .mobile-panel{
+      display:none;
+      position:fixed; inset:64px 0 0 0; /* sous la barre */
+      background:var(--whiteglass);
+      backdrop-filter: blur(6px);
+      box-shadow:var(--shadow-md) inset 0 1px 0 rgba(255,255,255,.4);
+      padding:1rem;
+    }
+    .mobile-links{
+      display:flex; flex-direction:column; gap:.8rem; max-width:var(--container); margin:0 auto;
+    }
+    .mobile-links a{
+      text-decoration:none; color:var(--text); font-weight:600; padding:.7rem 0; border-bottom:1px solid rgba(0,0,0,.06);
+    }
+    .mobile-links a:last-child{ border-bottom:none; }
+    .hidden{ display:none !important; }
+
+    /* CONTENU */
+    .container{ flex:1; max-width:var(--container); margin:2rem auto; padding:0 1rem; }
+    .hero{
+      background:var(--panel);
+      padding: 2.6rem 1.4rem;
+      border-radius:var(--radius);
+      text-align:center;
+      box-shadow:var(--shadow-md);
+    }
+    .hero h2{ font-size:2.1rem; margin:.2rem 0 .7rem; }
+    .subtitle{ font-size:1.08rem; color:var(--muted); margin:0 auto; max-width:800px; }
+
+    .content{
+      margin-top:2rem; background:var(--whiteglass); padding:2rem; border-radius:var(--radius); box-shadow:var(--shadow-sm);
+    }
+    .content h3{ font-size:1.55rem; margin:.2rem 0 .6rem; }
+
+    .cta{
+      margin-top:2rem; background:#f7fafc; padding:2rem; text-align:center; border-radius:var(--radius); box-shadow:var(--shadow-sm);
+    }
+    .cta a{
+      display:inline-block; margin-top:1rem; background:var(--brand); color:#fff; text-decoration:none; padding:.7rem 1.4rem; border-radius:10px; font-weight:700;
+    }
+    .cta a:hover{ background:var(--brand-hover); }
+
+    footer{
+      text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:var(--whiteglass);
+      border-top-left-radius:var(--radius); border-top-right-radius:var(--radius);
     }
 
-    header .logo img {
-      height: 55px; /* LOGO AGRANDI */
-      margin-right: 12px;
+    /* RESPONSIVE */
+    @media (max-width: 880px){
+      /* cache la nav desktop, affiche le burger */
+      nav.primary{ display:none; }
+      .burger{ display:inline-flex; align-items:center; justify-content:center; }
     }
-
-    .logo h1 {
-      font-size: 1.7rem;
-      font-weight: 600;
-      color: #1a202c;
-      margin: 0;
-    }
-
-    nav a {
-      margin-left: 1.5rem;
-      text-decoration: none;
-      color: #2c3e50;
-      font-weight: 500;
-      transition: color 0.2s ease;
-    }
-
-    nav a:hover {
-      color: #1e88e5;
-    }
-
-    /* CONTENT */
-    .container {
-      flex: 1;
-      max-width: 960px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-
-    .hero {
-      background-color: #edf2f7cc;
-      padding: 3rem 2rem;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-
-    .hero h2 {
-      font-size: 2.2rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .subtitle {
-      font-size: 1.15rem;
-      color: #4a5568;
-    }
-
-    .content {
-      margin-top: 2rem;
-      background-color: #ffffffdd;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    }
-
-    .content h3 {
-      font-size: 1.6rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .cta {
-      margin-top: 3rem;
-      background-color: #f7fafc;
-      padding: 2rem;
-      text-align: center;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
-
-    .cta h3 {
-      margin-bottom: 0.8rem;
-    }
-
-    .cta a {
-      display: inline-block;
-      margin-top: 1rem;
-      background-color: #1a73e8;
-      color: white;
-      text-decoration: none;
-      padding: 0.7rem 1.4rem;
-      border-radius: 6px;
-      font-weight: 600;
-      transition: background-color 0.2s ease;
-    }
-
-    .cta a:hover {
-      background-color: #155ab6;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      margin-top: 4rem;
-      font-size: 0.9rem;
-      color: #4a4a4a;
-      background-color: #ffffffdd;
+    @media (prefers-reduced-motion: reduce){
+      *{ scroll-behavior:auto; transition:none !important; }
     }
   </style>
 </head>
@@ -158,37 +145,64 @@
 <body>
   <div class="overlay">
     <!-- NAVIGATION -->
-    <header class="navbar">
-      <div class="logo">
-        <img src="Logo_sophira.png" alt="Logo Sophira">
+    <header class="navbar" role="navigation" aria-label="Navigation principale">
+      <a class="brand" href="index.html">
+        <img src="Logo_sophira.png" alt="Logo Sophira" />
         <h1>Sophira</h1>
-      </div>
-      <nav>
-        <a href="index.html">Accueil</a>
+      </a>
+
+      <!-- NAV DESKTOP -->
+      <nav class="primary" aria-label="Liens principaux">
+        <a href="index.html" aria-current="page">Accueil</a>
         <a href="team.html">Équipe</a>
         <a href="project.html">Projet social</a>
         <a href="dashboard.html">Tableau de bord</a>
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
       </nav>
+
+      <!-- BOUTON BURGER (visible mobile) -->
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-controls="menu-mobile" aria-expanded="false">
+        <!-- Icône burger -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
     </header>
+
+    <!-- PANNEAU MOBILE -->
+    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Menu mobile">
+      <div class="mobile-links">
+        <a href="index.html">Accueil</a>
+        <a href="team.html">Équipe</a>
+        <a href="project.html">Projet social</a>
+        <a href="dashboard.html">Tableau de bord</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
 
     <!-- CONTENU -->
     <main class="container">
       <section class="hero">
         <h2>Révéler les talents de demain</h2>
         <p class="subtitle">
-          Sophira est une association suisse à but non lucratif qui accompagne les adultes confrontés à des obstacles systémiques dans leur reconversion professionnelle vers les métiers d’avenir, de la data aux technologies vertes.
+          Sophira est une association suisse à but non lucratif qui accompagne les adultes confrontés à des obstacles systémiques
+          dans leur reconversion professionnelle vers les métiers d’avenir, de la data aux technologies vertes.
         </p>
       </section>
 
       <section class="content">
         <h3>Pourquoi Sophira ?</h3>
         <p>
-          Sophira est née d'une conviction : les transitions numérique et écologique transforment le marché du travail, excluant souvent les adultes en situation de précarité. Pourtant, la Suisse a un besoin croissant de professionnels qualifiés dans ces secteurs.
+          Sophira est née d'une conviction : les transitions numérique et écologique transforment le marché du travail,
+          excluant souvent les adultes en situation de précarité. Pourtant, la Suisse a un besoin croissant de
+          professionnels qualifiés dans ces secteurs.
         </p>
         <p>
-           Nous agissons pour briser les barrières et offrir des opportunités concrètes. Sophira accompagne les adultes en reconversion vers des métiers porteurs de sens, en leur donnant les compétences numériques et analytiques nécessaires pour réussir, grâce à un soutien financier et humain.
+          Nous agissons pour briser les barrières et offrir des opportunités concrètes. Sophira accompagne les adultes en reconversion
+          vers des métiers porteurs de sens, en leur donnant les compétences numériques et analytiques nécessaires pour réussir,
+          grâce à un soutien financier et humain.
         </p>
       </section>
 
@@ -203,5 +217,31 @@
       <p>&copy; 2025 Sophira Association | Basel, Suisse</p>
     </footer>
   </div>
+
+  <!-- JS ultra-léger pour le menu mobile -->
+  <script>
+    (function(){
+      const burger = document.getElementById('burger');
+      const panel  = document.getElementById('menu-mobile');
+      if(!burger || !panel) return;
+
+      function toggleMenu(){
+        const open = panel.classList.toggle('hidden') === false;
+        burger.setAttribute('aria-expanded', String(open));
+        burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+      }
+
+      burger.addEventListener('click', toggleMenu);
+      // Ferme le menu si on clique en dehors du panneau
+      document.addEventListener('click', (e)=>{
+        if(panel.classList.contains('hidden')) return;
+        const withinPanel = panel.contains(e.target);
+        const withinBurger = burger.contains(e.target);
+        if(!withinPanel && !withinBurger){ toggleMenu(); }
+      });
+      // Fermer avec la touche Échap
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && !panel.classList.contains('hidden')) toggleMenu(); });
+    })();
+  </script>
 </body>
 </html>
