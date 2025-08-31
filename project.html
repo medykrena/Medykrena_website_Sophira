@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" itemscope itemtype="https://schema.org/AboutPage">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Projet social – Sophira</title>
 
-  <!-- SEO de base -->
+  <!-- SEO -->
   <link rel="canonical" href="https://sophira.org/project.html" />
   <meta name="robots" content="index,follow" />
-  <meta name="description" content="Sophira aide les adultes en Suisse à se reconvertir vers les métiers d’avenir. Découvrez notre projet social et comment contribuer." />
+  <meta name="description" content="Sophira aide les adultes en Suisse à se reconvertir vers les métiers d’avenir grâce à une bourse de reconversion professionnelle inclusive et durable." />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Projet social – Sophira" />
-  <meta property="og:description" content="Sophira accompagne la reconversion des adultes vers les compétences numériques et les métiers d’avenir en Suisse." />
+  <meta property="og:description" content="Découvrez comment Sophira accompagne les adultes en Suisse dans leur reconversion professionnelle vers les métiers d’avenir." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sophira.org/project.html" />
   <meta property="og:image" content="https://sophira.org/Logo_sophira.png" />
@@ -20,7 +20,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Projet social – Sophira" />
-  <meta name="twitter:description" content="Bourse de reconversion pour adultes en Suisse." />
+  <meta name="twitter:description" content="Une bourse pour la reconversion professionnelle en Suisse vers les métiers de demain." />
   <meta name="twitter:image" content="https://sophira.org/Logo_sophira.png" />
 
   <!-- Police -->
@@ -39,16 +39,14 @@
       --radius: 12px;
       --container: 1100px;
     }
-    body{
-      margin:0; font-family:'Inter',sans-serif;
+    body{ margin:0; font-family:'Inter',sans-serif;
       background:url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center center fixed;
       background-size:cover; color:var(--text);
     }
     .overlay{ background-color:var(--bg-overlay); min-height:100vh; display:flex; flex-direction:column; }
 
     /* NAVBAR */
-    header.navbar{
-      position:sticky; top:0; z-index:20;
+    header.navbar{ position:sticky; top:0; z-index:20;
       display:flex; align-items:center; justify-content:space-between; gap:.75rem;
       padding:.8rem 1rem; background:#ffffffdd; box-shadow:var(--shadow-sm); backdrop-filter:blur(6px);
     }
@@ -97,12 +95,12 @@
 <body>
   <div class="overlay">
     <!-- NAVBAR -->
-    <header class="navbar">
+    <header class="navbar" role="navigation" aria-label="Navigation principale">
       <a class="brand" href="index.html">
         <img src="Logo_sophira.png" alt="Logo Sophira" />
         <h1>Sophira</h1>
       </a>
-      <nav class="primary">
+      <nav class="primary" aria-label="Liens principaux">
         <a href="index.html">Accueil</a>
         <a href="team.html">Équipe</a>
         <a href="project.html" aria-current="page">Projet social</a>
@@ -116,7 +114,7 @@
     </header>
 
     <!-- MENU MOBILE -->
-    <div id="menu-mobile" class="mobile-panel hidden">
+    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Menu mobile">
       <div class="mobile-links">
         <a href="index.html">Accueil</a>
         <a href="team.html">Équipe</a>
@@ -138,14 +136,14 @@
 
     <!-- CONTENU -->
     <main class="container">
-      <section class="hero">
+      <section class="hero" itemprop="mainEntity">
         <h2>Notre projet social</h2>
         <p class="subtitle">Une bourse pour permettre aux adultes en Suisse de se reconvertir dans les métiers d’avenir, avec dignité, inclusion et impact durable.</p>
       </section>
 
       <section class="section">
         <h3>Notre mission</h3>
-        <p>Sophira s’engage à aider les adultes en situation de vulnérabilité à accéder à de nouvelles carrières.</p>
+        <p>Sophira s’engage à aider les adultes en situation de vulnérabilité à accéder à de nouvelles carrières dans des secteurs porteurs.</p>
         <ul>
           <li>🌱 L’apprentissage tout au long de la vie comme un droit</li>
           <li>🤝 Un accompagnement digne et inclusif</li>
@@ -156,7 +154,7 @@
 
       <section class="section">
         <h3>Comment ça marche</h3>
-        <p>Notre projet pilote offre aux participants sélectionnés un accès à&nbsp;:</p>
+        <p>Notre projet pilote offre aux participants sélectionnés un accès à :</p>
         <ul>
           <li>🎓 Des formations en compétences numériques (Python, statistiques, Excel…)</li>
           <li>👨‍🏫 Du mentorat et un accompagnement communautaire</li>
