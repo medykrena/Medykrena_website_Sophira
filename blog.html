@@ -1,169 +1,328 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr" itemscope itemtype="https://schema.org/Blog">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Blog – Sophira</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog – Sophira</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Le blog de Sophira : actualités, analyses et coulisses de notre initiative de reconversion professionnelle en Suisse." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Blog – Sophira" />
+  <meta property="og:description" content="Updates, analyses et coulisses du projet Sophira." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sophira.org/blog.html" />
+  <meta property="og:image" content="Logo_sophira.png" />
+
+  <!-- Police -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #2c3e50;
+    :root{
+      --bg-overlay: rgba(255,255,255,0.92);
+      --card-bg: rgba(255,255,255,0.88);
+      --text: #2c3e50;
+      --muted: #4a5568;
+      --brand: #1a73e8;
+      --brand-hover: #155ab6;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --radius: 12px;
+      --radius-sm: 8px;
+      --container: 1100px;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family:'Inter',sans-serif;
+      background:url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center center fixed;
+      background-size:cover;
+      color:var(--text);
+    }
+    .overlay{
+      background-color:var(--bg-overlay);
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
     }
 
-    .overlay {
-      background-color: rgba(255, 255, 255, 0.92);
-      min-height: 100vh;
+    /* NAVBAR (identique aux autres pages) */
+    header.navbar{
+      position:sticky; top:0; z-index:20;
+      display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+      padding:.8rem 1rem;
+      background:#ffffffdd;
+      box-shadow:var(--shadow-sm);
+      backdrop-filter:blur(6px);
+    }
+    .brand{ display:flex; align-items:center; gap:.6rem; min-width:0; }
+    .brand img{ height:55px; width:auto; }
+    .brand h1{ margin:0; font-size:1.7rem; font-weight:600; color:#1a202c; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+    /* Liens de nav (desktop) */
+    nav.primary{ display:flex; align-items:center; gap:1.1rem; }
+    nav.primary a{
+      text-decoration:none; color:var(--text); font-weight:500; transition:color .2s ease;
+    }
+    nav.primary a:hover, nav.primary a:focus{ color:#1e88e5; }
+
+    /* Burger (mobile) */
+    .burger{
+      display:none; background:none; border:none; padding:.4rem .6rem; border-radius:8px;
+    }
+    .burger:focus{ outline:2px solid var(--brand); outline-offset:2px; }
+    .burger svg{ width:28px; height:28px; }
+
+    /* Menu mobile (panneau) */
+    .mobile-panel{
+      display:none;
+      position:fixed; inset:64px 0 0 0; /* sous la barre */
+      background:#ffffffdd;
+      backdrop-filter:blur(6px);
+      box-shadow:var(--shadow-md) inset 0 1px 0 rgba(255,255,255,.4);
+      padding:1rem;
+    }
+    .mobile-links{
+      display:flex; flex-direction:column; gap:.8rem; max-width:var(--container); margin:0 auto;
+    }
+    .mobile-links a{
+      text-decoration:none; color:var(--text); font-weight:600; padding:.7rem 0; border-bottom:1px solid rgba(0,0,0,.06);
+    }
+    .mobile-links a:last-child{ border-bottom:none; }
+    .hidden{ display:none !important; }
+
+    /* LAYOUT */
+    .container{ flex:1; max-width:var(--container); margin:2rem auto; padding:0 1rem; }
+
+    /* HERO */
+    .hero{
+      background:#edf2f7cc;
+      padding:2.4rem 1.4rem;
+      border-radius:var(--radius);
+      text-align:center;
+      box-shadow:var(--shadow-md);
+    }
+    .hero h2{ font-size:2.1rem; margin:.2rem 0 .6rem; }
+    .subtitle{ font-size:1.08rem; color:var(--muted); margin:0 auto; max-width:800px; }
+
+    /* POSTS GRID */
+    .posts{
+      margin-top:2rem;
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:1.2rem;
+    }
+    .post{
+      grid-column:span 12;
+      background:var(--card-bg);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-sm);
+      padding:1.2rem;
+    }
+    .post h3{ margin:.1rem 0 .35rem; font-size:1.25rem; }
+    .meta{ font-size:.92rem; color:var(--muted); margin-bottom:.6rem; }
+    .excerpt{ color:#374151; line-height:1.55; margin:.4rem 0 .8rem; }
+    .readmore{
+      display:inline-block; font-weight:600; text-decoration:none;
+      color:#fff; background:var(--brand); padding:.5rem .9rem; border-radius:var(--radius-sm);
+    }
+    .readmore:hover,.readmore:focus{ background:var(--brand-hover); }
+    .post footer{ margin-top:.8rem; }
+
+    /* FOOTER */
+    footer.site{
+      text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:#ffffffdd;
+      border-top-left-radius:var(--radius); border-top-right-radius:var(--radius);
     }
 
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 2rem;
-      background-color: #ffffffee;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* RESPONSIVE */
+    @media (min-width: 680px){
+      .post{ grid-column: span 6; }
     }
-
-    .navbar .logo-container {
-      display: flex;
-      align-items: center;
+    @media (min-width: 1000px){
+      .post{ grid-column: span 4; }
     }
-
-    .navbar img {
-      height: 55px;
-      margin-right: 12px;
+    @media (max-width: 880px){
+      nav.primary{ display:none; }
+      .burger{ display:inline-flex; align-items:center; justify-content:center; }
     }
-
-    .logo {
-      font-size: 1.6rem;
-      font-weight: 600;
-      color: #1a202c;
-    }
-
-    nav a {
-      margin-left: 1.5rem;
-      text-decoration: none;
-      color: #2c3e50;
-      font-weight: 500;
-    }
-
-    nav a:hover {
-      color: #1e88e5;
-    }
-
-    .container {
-      max-width: 960px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-
-    .blog-header {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .post {
-      background-color: #ffffffdd;
-      padding: 1.5rem;
-      border-radius: 10px;
-      margin-bottom: 2rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-
-    .post h3 {
-      margin-top: 0;
-    }
-
-    .post p.date {
-      font-size: 0.9rem;
-      color: #888;
-      margin-top: -0.5rem;
-    }
-
-    .post p.preview {
-      color: #4a4a4a;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      margin-top: 4rem;
-      font-size: 0.9rem;
-      color: #4a4a4a;
-      background-color: #ffffffdd;
+    @media (prefers-reduced-motion: reduce){
+      *{ scroll-behavior:auto; transition:none !important; }
     }
   </style>
 </head>
+
 <body>
   <div class="overlay">
-    <header class="navbar">
-      <div class="logo-container">
-        <img src="Logo_sophira.png" alt="Sophira logo">
-        <h1 class="logo">Sophira</h1>
-      </div>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="team.html">Team</a>
-        <a href="project.html">Social Project</a>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="blog.html">Blog</a>
+    <!-- NAVIGATION -->
+    <header class="navbar" role="navigation" aria-label="Navigation principale">
+      <a class="brand" href="index.html">
+        <img src="Logo_sophira.png" alt="Logo Sophira" />
+        <h1>Sophira</h1>
+      </a>
+
+      <!-- NAV DESKTOP -->
+      <nav class="primary" aria-label="Liens principaux">
+        <a href="index.html">Accueil</a>
+        <a href="team.html">Équipe</a>
+        <a href="project.html">Projet social</a>
+        <a href="dashboard.html">Tableau de bord</a>
+        <a href="blog.html" aria-current="page">Blog</a>
         <a href="contact.html">Contact</a>
       </nav>
+
+      <!-- BOUTON BURGER -->
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-controls="menu-mobile" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
     </header>
+
+    <!-- PANNEAU MOBILE -->
+    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Menu mobile">
+      <div class="mobile-links">
+        <a href="index.html">Accueil</a>
+        <a href="team.html">Équipe</a>
+        <a href="project.html">Projet social</a>
+        <a href="dashboard.html">Tableau de bord</a>
+        <a href="blog.html" aria-current="page">Blog</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+
+    <!-- CONTENU -->
     <main class="container">
-      <section class="blog-header">
-        <h2>Blog Posts &amp; Stories</h2>
-        <p>Updates, reflections and behind‑the‑scenes of the Sophira journey</p>
+      <section class="hero">
+        <h2 itemprop="name">Le blog Sophira</h2>
+        <p class="subtitle" itemprop="description">
+          Actualités, analyses, et coulisses de notre mission : créer des ponts vers les métiers d’avenir.
+        </p>
       </section>
 
-      <!-- Existing posts -->
-      <article class="post">
-        <h3>Lancement de l'initiative Sophira</h3>
-        <p class="date">Posted on August 2, 2025</p>
-        <p class="preview">Sophira voit le jour pour accompagner les adultes dans leur reconversion professionnelle, en réponse aux pénuries de talents en Suisse et aux transitions numérique et écologique.
-        <a href="article6.html">Read more</a>
-          
-</article>
+      <!-- Grille d'articles -->
+      <section class="posts" aria-label="Articles du blog">
+        <!-- Post 1 -->
+        <article class="post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+          <header>
+            <h3 itemprop="headline">Lancement de l’initiative Sophira</h3>
+            <p class="meta">
+              Publié le
+              <time datetime="2025-08-02" itemprop="datePublished">2 août 2025</time>
+            </p>
+          </header>
+          <p class="excerpt" itemprop="description">
+            Sophira voit le jour pour accompagner les adultes dans leur reconversion professionnelle, en réponse aux pénuries de talents en Suisse et aux transitions numérique et écologique.
+          </p>
+          <footer>
+            <a class="readmore" href="article6.html" itemprop="url">Lire la suite</a>
+          </footer>
+        </article>
 
-      <article class="post">
-        <h3>Pourquoi les métiers de la Data pour des adultes en transition professionelle?</h3>
-        <p class="date">Posted on July 25, 2025</p>
-  <p class="preview">Les compétences en data science sont très demandées dans la santé, la finance et les énergies renouvelables. Elles ouvrent aux adultes en reconversion des emplois attractifs et facilitent leur adaptation au monde numérique.</p>
-<a href="article7.html">Read more</a>
-          
-      </article>
+        <!-- Post 2 -->
+        <article class="post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+          <header>
+            <h3 itemprop="headline">Pourquoi les métiers de la data pour des adultes en transition professionnelle&nbsp;?</h3>
+            <p class="meta">
+              Publié le
+              <time datetime="2025-07-25" itemprop="datePublished">25 juillet 2025</time>
+            </p>
+          </header>
+          <p class="excerpt" itemprop="description">
+            Les compétences en data science sont très demandées dans la santé, la finance et les énergies renouvelables. Elles ouvrent aux adultes en reconversion des emplois attractifs et facilitent leur adaptation au monde numérique.
+          </p>
+          <footer>
+            <a class="readmore" href="article7.html" itemprop="url">Lire la suite</a>
+          </footer>
+        </article>
 
-      <!-- New posts -->
-      <article class="post">
-        <h3>Pourquoi la reconversion professionnelle est essentielle en Suisse</h3>
-        <p class="date">Posted on August 30, 2025</p>
-        <p class="preview">La reconversion professionnelle est devenue incontournable en Suisse&nbsp;, elle s’inscrit dans des carrières non linéaires et requiert un accompagnement durable...</p>
-        <!-- Optionally link to full article when deployed -->
-        <a href="article1.html">Read more</a>
-      </article>
+        <!-- Post 3 -->
+        <article class="post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+          <header>
+            <h3 itemprop="headline">Pourquoi la reconversion professionnelle est essentielle en Suisse</h3>
+            <p class="meta">
+              Publié le
+              <time datetime="2025-08-30" itemprop="datePublished">30 août 2025</time>
+            </p>
+          </header>
+          <p class="excerpt" itemprop="description">
+            La reconversion professionnelle est devenue incontournable en Suisse&nbsp;: elle s’inscrit dans des carrières non linéaires et requiert un accompagnement durable…
+          </p>
+          <footer>
+            <a class="readmore" href="article1.html" itemprop="url">Lire la suite</a>
+          </footer>
+        </article>
 
-      <article class="post">
-        <h3>Secteurs porteurs et métiers d’avenir en Suisse en 2025</h3>
-        <p class="date">Posted on August 30, 2025</p>
-        <p class="preview">Le marché du travail suisse connaît une pénurie de talents dans la santé, l’IT et l’énergie&nbsp;; découvrez les opportunités et salaires de ces métiers d’avenir...</p>
-        <a href="article2.html">Read more</a>
-      </article>
+        <!-- Post 4 -->
+        <article class="post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+          <header>
+            <h3 itemprop="headline">Secteurs porteurs et métiers d’avenir en Suisse en 2025</h3>
+            <p class="meta">
+              Publié le
+              <time datetime="2025-08-30" itemprop="datePublished">30 août 2025</time>
+            </p>
+          </header>
+          <p class="excerpt" itemprop="description">
+            Le marché du travail suisse connaît une pénurie de talents dans la santé, l’IT et l’énergie&nbsp;; découvrez les opportunités et salaires de ces métiers d’avenir…
+          </p>
+          <footer>
+            <a class="readmore" href="article2.html" itemprop="url">Lire la suite</a>
+          </footer>
+        </article>
 
-      <article class="post">
-        <h3>Formations et programmes pour se reconvertir dans l’IT et l’innovation</h3>
-        <p class="date">Posted on August 30, 2025</p>
-        <p class="preview">Devenez Assistant·e ICT, Digital Collaboration Specialist ou spécialiste en cybersécurité grâce à des programmes accessibles aux adultes en reconversion...</p>
-        <a href="article3.html">Read more</a>
-      </article>
-
+        <!-- Post 5 -->
+        <article class="post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+          <header>
+            <h3 itemprop="headline">Formations et programmes pour se reconvertir dans l’IT et l’innovation</h3>
+            <p class="meta">
+              Publié le
+              <time datetime="2025-08-30" itemprop="datePublished">30 août 2025</time>
+            </p>
+          </header>
+          <p class="excerpt" itemprop="description">
+            Devenez Assistant·e ICT, Digital Collaboration Specialist ou spécialiste en cybersécurité grâce à des programmes accessibles aux adultes en reconversion…
+          </p>
+          <footer>
+            <a class="readmore" href="article3.html" itemprop="url">Lire la suite</a>
+          </footer>
+        </article>
+      </section>
     </main>
-    <footer>
-      <p>&copy; 2025 Sophira Association | Basel, Switzerland</p>
+
+    <footer class="site">
+      <p>&copy; 2025 Sophira Association | Basel, Suisse</p>
     </footer>
   </div>
+
+  <!-- JS léger pour le menu mobile (identique aux autres pages) -->
+  <script>
+    (function(){
+      const burger = document.getElementById('burger');
+      const panel  = document.getElementById('menu-mobile');
+      if(!burger || !panel) return;
+
+      function toggleMenu(){
+        const open = panel.classList.toggle('hidden') === false;
+        burger.setAttribute('aria-expanded', String(open));
+        burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+      }
+
+      burger.addEventListener('click', toggleMenu);
+
+      // Fermer en cliquant à l’extérieur
+      document.addEventListener('click', (e)=>{
+        if(panel.classList.contains('hidden')) return;
+        const withinPanel = panel.contains(e.target);
+        const withinBurger = burger.contains(e.target);
+        if(!withinPanel && !withinBurger){ toggleMenu(); }
+      });
+
+      // Fermer avec Échap
+      document.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape' && !panel.classList.contains('hidden')) toggleMenu();
+      });
+    })();
+  </script>
 </body>
 </html>
