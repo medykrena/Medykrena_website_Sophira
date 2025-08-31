@@ -8,11 +8,11 @@
   <!-- SEO -->
   <link rel="canonical" href="https://sophira.org/dashboard.html" />
   <meta name="robots" content="index,follow" />
-  <meta name="description" content="Découvrez le tableau de bord interactif de Sophira : visualisations de données sur la reconversion, l’intégration et l’éducation en Suisse." />
+  <meta name="description" content="Découvrez le tableau de bord interactif de Sophira : visualisations de données sur l’emploi, la croissance et les secteurs en Europe et en Suisse." />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Tableau de bord – Sophira" />
-  <meta property="og:description" content="Visualisations interactives sur la reconversion professionnelle et l’intégration sociale en Suisse." />
+  <meta property="og:description" content="Visualisations interactives sur l’emploi, la croissance et les secteurs économiques." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sophira.org/dashboard.html" />
   <meta property="og:image" content="https://sophira.org/Logo_sophira.png" />
@@ -20,7 +20,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Tableau de bord – Sophira" />
-  <meta name="twitter:description" content="Explorez nos dashboards interactifs sur la reconversion en Suisse." />
+  <meta name="twitter:description" content="Explorez nos dashboards interactifs basés sur des sources publiques." />
   <meta name="twitter:image" content="https://sophira.org/Logo_sophira.png" />
 
   <!-- Police -->
@@ -50,8 +50,7 @@
     header.navbar{
       position:sticky; top:0; z-index:20;
       display:flex; align-items:center; justify-content:space-between; gap:.75rem;
-      padding:.8rem 1rem;
-      background:#ffffffdd; box-shadow:var(--shadow-sm); backdrop-filter:blur(6px);
+      padding:.8rem 1rem; background:#ffffffdd; box-shadow:var(--shadow-sm); backdrop-filter:blur(6px);
     }
     .brand{ display:flex; align-items:center; gap:.6rem; }
     .brand img{ height:55px; }
@@ -78,20 +77,23 @@
     nav.breadcrumbs li{ color:var(--muted); }
     nav.breadcrumbs a{ text-decoration:none; color:var(--brand); }
 
-    /* SECTION DASHBOARD */
+    /* Sections */
     .section{ background:var(--card-bg); padding:2rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); margin-bottom:2rem; }
     .section h2{ text-align:center; font-size:1.8rem; margin-bottom:1rem; }
     .section p{ font-size:1rem; line-height:1.6; color:#374151; text-align:center; }
 
-    /* Liste indicateurs */
-    ul.indicators{ margin-top:1rem; padding-left:1.2rem; }
-    ul.indicators li{ margin:.4rem 0; }
-
-    /* Responsive iframe */
-    .iframe-container{ position:relative; padding-top:56.25%; overflow:hidden; border-radius:var(--radius); margin-top:1.5rem; }
-    .iframe-container iframe{
-      position:absolute; top:0; left:0; width:100%; height:100%; border:none;
+    /* Grid des viz */
+    .viz-grid{
+      display:grid; grid-template-columns:repeat(12,1fr); gap:1.2rem; margin-top:1.5rem;
     }
+    .viz-card{
+      grid-column:span 12; background:#fff; border-radius:var(--radius); box-shadow:var(--shadow-sm);
+      padding:1rem;
+    }
+    .viz-card h3{ margin:0 0 .3rem 0; font-size:1.15rem; }
+    .viz-meta{ font-size:.92rem; color:var(--muted); margin-bottom:.6rem; }
+    .iframe-container{ position:relative; padding-top:56.25%; overflow:hidden; border-radius:10px; box-shadow:var(--shadow-sm); }
+    .iframe-container iframe{ position:absolute; top:0; left:0; width:100%; height:100%; border:none; }
 
     /* CTA */
     .cta{ text-align:center; background:#f7fafc; padding:2rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
@@ -101,6 +103,8 @@
 
     footer.site{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:#ffffffdd; border-top-left-radius:var(--radius); border-top-right-radius:var(--radius); }
 
+    @media (min-width:680px){ .viz-card{ grid-column:span 6; } }
+    @media (min-width:1100px){ .viz-card{ grid-column:span 6; } }
     @media (max-width:880px){ nav.primary{ display:none; } .burger{ display:inline-flex; } }
   </style>
 </head>
@@ -150,25 +154,72 @@
     <main class="container">
       <section class="section">
         <h2>Tableau de bord interactif</h2>
-        <p itemprop="description">Découvrez des visualisations de données liées à l’intégration, la reconversion et l’éducation en Suisse. Ce tableau de bord est un outil de transparence et de sensibilisation.</p>
+        <p itemprop="description">Visualisations sélectionnées (sources publiques Tableau) pour éclairer l’emploi, la croissance et la structure sectorielle. Utilisez les filtres directement dans chaque graphique.</p>
 
-        <ul class="indicators">
-          <li>📊 Taux d’emploi après reconversion</li>
-          <li>🎓 Accès aux formations numériques et durables</li>
-          <li>🌍 Diversité et inclusion des bénéficiaires</li>
-          <li>💡 Innovations et projets sociaux soutenus</li>
-        </ul>
+        <div class="viz-grid" aria-label="Visualisations intégrées">
+          <!-- Viz 1 -->
+          <article class="viz-card">
+            <h3>Demandeurs d’emploi – Catégorie 2</h3>
+            <div class="viz-meta">Source : RTS Info · Tableau Public</div>
+            <div class="iframe-container">
+              <iframe
+                src="https://public.tableau.com/views/DemandeursemploiCat2/Dashboard1?:showVizHome=no&embed=true"
+                title="RTS – Demandeurs d'emploi Catégorie 2"
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+              ></iframe>
+            </div>
+          </article>
 
-        <div class="iframe-container">
-          <iframe src="https://public.tableau.com/views/WorldIndicators/GDPpercapita" title="Exemple de tableau de bord interactif" loading="lazy"></iframe>
+          <!-- Viz 2 -->
+          <article class="viz-card">
+            <h3>Croissance européenne</h3>
+            <div class="viz-meta">Source : RTS Info · Tableau Public</div>
+            <div class="iframe-container">
+              <iframe
+                src="https://public.tableau.com/views/croissance_europenne/Dashboard1?:showVizHome=no&embed=true"
+                title="RTS – Croissance européenne"
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+              ></iframe>
+            </div>
+          </article>
+
+          <!-- Viz 3 -->
+          <article class="viz-card">
+            <h3>Prospective emploi – Secteurs & salaires</h3>
+            <div class="viz-meta">Source : Vincent Laporte · Tableau Public</div>
+            <div class="iframe-container">
+              <iframe
+                src="https://public.tableau.com/views/Prospectiveemploi/Secteurssalaris?:showVizHome=no&embed=true"
+                title="Prospective emploi – Secteurs et salaires"
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+              ></iframe>
+            </div>
+          </article>
+
+          <!-- Viz 4 -->
+          <article class="viz-card">
+            <h3>Poids de l’industrie dans l’emploi</h3>
+            <div class="viz-meta">Source : Grégoire3273 · Tableau Public</div>
+            <div class="iframe-container">
+              <iframe
+                src="https://public.tableau.com/views/poidsdelindustriedanslemploi/Dashboard1?:showVizHome=no&embed=true"
+                title="Poids de l’industrie dans l’emploi"
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+              ></iframe>
+            </div>
+          </article>
         </div>
       </section>
 
       <!-- CTA -->
       <section class="cta" aria-label="Appel à l’action">
-        <h3>Partagez et soutenez Sophira</h3>
-        <p>Chaque visualisation aide à mieux comprendre les défis et solutions de la reconversion. Ensemble, faisons grandir l’impact social.</p>
-        <a href="donate.html">Faire un don</a>
+        <h3>Vous avez une donnée à partager&nbsp;?</h3>
+        <p>Contribuez à enrichir ce tableau de bord (partenariats, jeux de données, idées de visualisations).</p>
+        <a href="contact.html">Nous contacter</a>
       </section>
     </main>
 
