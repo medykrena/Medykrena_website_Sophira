@@ -1,138 +1,188 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact | Sophira</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact – Sophira</title>
+
+  <!-- SEO -->
+  <link rel="canonical" href="https://sophira.org/contact.html" />
+  <meta name="robots" content="index,follow" />
+  <meta name="description" content="Contactez l'association Sophira : adresse, email, téléphone et formulaire de contact pour rejoindre notre initiative de reconversion en Suisse." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Contact – Sophira" />
+  <meta property="og:description" content="Adresse, email, téléphone et formulaire de contact de Sophira, association pour la reconversion en Suisse." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sophira.org/contact.html" />
+  <meta property="og:image" content="https://sophira.org/Logo_sophira.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Contact – Sophira" />
+  <meta name="twitter:description" content="Écrivez à Sophira et découvrez comment participer à la reconversion des adultes en Suisse." />
+  <meta name="twitter:image" content="https://sophira.org/Logo_sophira.png" />
+
+  <!-- Police -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #2c3e50;
+    :root{
+      --text:#2c3e50;
+      --muted:#4a5568;
+      --brand:#1a73e8;
+      --brand-hover:#155ab6;
+      --bg-overlay:rgba(255,255,255,0.95);
+      --whiteglass:#ffffffdd;
+      --radius:12px;
+      --shadow-sm:0 2px 8px rgba(0,0,0,0.05);
+      --shadow-md:0 4px 12px rgba(0,0,0,0.08);
+      --container:960px;
     }
+    body{
+      margin:0; font-family:'Inter',sans-serif;
+      background:url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center center fixed;
+      background-size:cover; color:var(--text);
+    }
+    .overlay{ background-color:var(--bg-overlay); min-height:100vh; display:flex; flex-direction:column; }
 
-    .overlay {
-      background-color: rgba(255, 255, 255, 0.95);
-      min-height: 100vh;
+    /* NAVBAR */
+    header.navbar{
+      position:sticky; top:0; z-index:20;
+      display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+      padding:.8rem 1rem; background:var(--whiteglass); box-shadow:var(--shadow-sm); backdrop-filter:blur(6px);
     }
+    .brand{ display:flex; align-items:center; gap:.6rem; }
+    .brand img{ height:55px; }
+    .brand h1{ margin:0; font-size:1.7rem; font-weight:600; color:#1a202c; }
 
-    header.navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background-color: #ffffffdd;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    }
+    nav.primary{ display:flex; gap:1.1rem; }
+    nav.primary a{ text-decoration:none; color:var(--text); font-weight:500; }
+    nav.primary a:hover{ color:#1e88e5; }
 
-    header .logo {
-      display: flex;
-      align-items: center;
-    }
+    .burger{ display:none; background:none; border:none; padding:.4rem .6rem; }
+    .burger svg{ width:28px; height:28px; }
 
-    header .logo img {
-      height: 40px;
-      margin-right: 10px;
-    }
+    .mobile-panel{ display:none; position:fixed; inset:64px 0 0 0; background:#ffffffdd; backdrop-filter:blur(6px); padding:1rem; }
+    .mobile-links{ display:flex; flex-direction:column; gap:.8rem; }
+    .mobile-links a{ text-decoration:none; color:var(--text); font-weight:600; padding:.7rem 0; border-bottom:1px solid #ddd; }
+    .mobile-links a:last-child{ border-bottom:none; }
+    .hidden{ display:none !important; }
 
-    .logo h1 {
-      font-size: 1.6rem;
-      font-weight: 600;
-      color: #1a202c;
-      margin: 0;
-    }
+    /* LAYOUT */
+    .container{ flex:1; max-width:var(--container); margin:2rem auto; padding:0 1rem; }
+    .content{ background:#ffffffdd; padding:2rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
+    .content h2{ text-align:center; margin-top:0; }
 
-    nav a {
-      margin-left: 1.5rem;
-      text-decoration: none;
-      color: #2c3e50;
-      font-weight: 500;
-    }
+    .contact-info{ margin-top:1.5rem; font-size:1rem; }
 
-    nav a:hover {
-      color: #1e88e5;
+    form{ margin-top:2rem; display:grid; gap:1rem; }
+    label{ font-weight:600; }
+    input,textarea{
+      width:100%; padding:.7rem; border:1px solid #ccc; border-radius:8px;
+      font-family:inherit; font-size:1rem;
     }
+    textarea{ resize:vertical; min-height:120px; }
+    button{
+      background:var(--brand); color:#fff; border:none;
+      padding:.8rem 1.2rem; border-radius:8px; font-size:1rem; font-weight:600;
+      cursor:pointer;
+    }
+    button:hover{ background:var(--brand-hover); }
 
-    .container {
-      max-width: 960px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
+    iframe{ width:100%; height:350px; border:none; border-radius:var(--radius); margin-top:2rem; }
 
-    .content {
-      background-color: #ffffffdd;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    }
+    footer{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:var(--whiteglass); border-top-left-radius:var(--radius); border-top-right-radius:var(--radius); }
 
-    h2 {
-      text-align: center;
-    }
-
-    .contact-info {
-      margin-top: 1.5rem;
-      font-size: 1rem;
-    }
-
-    iframe {
-      width: 100%;
-      height: 350px;
-      border: none;
-      border-radius: 10px;
-      margin-top: 2rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      margin-top: 4rem;
-      font-size: 0.9rem;
-      color: #4a4a4a;
-      background-color: #ffffffdd;
-    }
+    @media(max-width:880px){ nav.primary{ display:none; } .burger{ display:inline-flex; } }
   </style>
 </head>
 <body>
   <div class="overlay">
+    <!-- NAVIGATION -->
     <header class="navbar">
-      <div class="logo">
-        <img src="Logo_sophira.png" alt="Sophira logo">
+      <a class="brand" href="index.html">
+        <img src="Logo_sophira.png" alt="Logo Sophira" />
         <h1>Sophira</h1>
-      </div>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="team.html">Team</a>
-        <a href="projects.html">Projects</a>
-        <a href="dashboard.html">Dashboard</a>
+      </a>
+      <nav class="primary">
+        <a href="index.html">Accueil</a>
+        <a href="team.html">Équipe</a>
+        <a href="project.html">Projet social</a>
+        <a href="dashboard.html">Tableau de bord</a>
         <a href="blog.html">Blog</a>
-        <a href="contact.html">Contact</a>
+        <a href="contact.html" aria-current="page">Contact</a>
       </nav>
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-controls="menu-mobile" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
     </header>
 
+    <!-- MENU MOBILE -->
+    <div id="menu-mobile" class="mobile-panel hidden">
+      <div class="mobile-links">
+        <a href="index.html">Accueil</a>
+        <a href="team.html">Équipe</a>
+        <a href="project.html">Projet social</a>
+        <a href="dashboard.html">Tableau de bord</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+      </div>
+    </div>
+
+    <!-- CONTENU -->
     <main class="container">
       <div class="content">
-        <h2>Contact Us</h2>
+        <h2>Contactez-nous</h2>
+
         <div class="contact-info">
-          <p><strong>Address:</strong> Rue de l'Innovation 10, 4051 Basel, Switzerland</p>
-          <p><strong>Email:</strong> info@sophira.org</p>
-          <p><strong>Phone:</strong> +41 79 123 45 67</p>
+          <p><strong>Adresse :</strong> Rue de l'Innovation 10, 4051 Bâle, Suisse</p>
+          <p><strong>Email :</strong> info@sophira.org</p>
+          <p><strong>Téléphone :</strong> +41 79 123 45 67</p>
         </div>
+
+        <!-- Formulaire de contact -->
+        <form action="mailto:info@sophira.org" method="post" enctype="text/plain">
+          <label for="name">Nom</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+
+          <button type="submit">Envoyer</button>
+        </form>
+
+        <!-- Google Maps -->
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2752.415159526313!2d7.588576115595142!3d47.55959817918171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4791b9a6f3e10ff7%3A0xdea0a2f76e49767f!2sBasel%2C%20Switzerland!5e0!3m2!1sen!2sch!4v1691010100000"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2752.415159526313!2d7.588576115595142!3d47.55959817918171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4791b9a6f3e10ff7%3A0xdea0a2f76e49767f!2sBasel%2C%20Switzerland!5e0!3m2!1sfr!2sch!4v1691010100000"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </main>
 
     <footer>
-      <p>&copy; 2025 Sophira Association | Basel, Switzerland</p>
+      <p>&copy; 2025 Sophira Association | Basel, Suisse</p>
     </footer>
   </div>
+
+  <!-- JS menu mobile -->
+  <script>
+    (function(){
+      const burger=document.getElementById('burger');
+      const panel=document.getElementById('menu-mobile');
+      if(!burger||!panel) return;
+      function toggleMenu(){
+        const open=panel.classList.toggle('hidden')===false;
+        burger.setAttribute('aria-expanded',String(open));
+      }
+      burger.addEventListener('click',toggleMenu);
+      document.addEventListener('click',(e)=>{
+        if(!panel.classList.contains('hidden') && !panel.contains(e.target) && !burger.contains(e.target)){toggleMenu();}
+      });
+      document.addEventListener('keydown',(e)=>{if(e.key==='Escape' && !panel.classList.contains('hidden')) toggleMenu();});
+    })();
+  </script>
 </body>
 </html>
