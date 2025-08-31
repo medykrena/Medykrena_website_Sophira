@@ -131,6 +131,8 @@
     }
     .card img.avatar{
       width:96px; height:96px; border-radius:50%; object-fit:cover; background:#e2e8f0;
+      /* AJOUT pour un cadrage parfait */
+      aspect-ratio: 1 / 1;
     }
     .card h3{ margin:0 0 .3rem 0; font-size:1.25rem; }
     .role{ font-weight:600; color:var(--brand); margin-bottom:.5rem; }
@@ -234,7 +236,17 @@
       <section class="team" aria-label="Membres de l'équipe">
         <!-- Président -->
         <article class="card" itemscope itemtype="https://schema.org/Person">
-          <img class="avatar" src="ari.jpg" alt="Portrait d’Arijanit Idrizi" itemprop="image" />
+          <!-- REMPLACÉ: fichier réel de votre dépôt -->
+          <img
+            class="avatar"
+            src="photo%20CV.JPG"
+            alt="Portrait d’Arijanit Idrizi"
+            width="96" height="96"
+            loading="lazy"
+            decoding="async"
+            fetchpriority="high"
+            itemprop="image"
+          />
           <div>
             <h3 itemprop="name">Arijanit Idrizi</h3>
             <div class="role" itemprop="jobTitle">Président</div>
@@ -254,7 +266,17 @@
 
         <!-- Co-président -->
         <article class="card" itemscope itemtype="https://schema.org/Person">
-          <img class="avatar" src="bao.jpg" alt="Portrait de Quôc-Bao Nguyên" itemprop="image" />
+          <!-- REMPLACÉ: fichier réel de votre dépôt -->
+          <img
+            class="avatar"
+            src="PHOTO-BAO.jpg"
+            alt="Portrait de Quôc-Bao Nguyên"
+            width="96" height="96"
+            loading="lazy"
+            decoding="async"
+            fetchpriority="high"
+            itemprop="image"
+          />
           <div>
             <h3 itemprop="name">Quôc-Bao Nguyên</h3>
             <div class="role" itemprop="jobTitle">Co-président</div>
