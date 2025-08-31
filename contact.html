@@ -78,6 +78,15 @@
 
     iframe{ width:100%; height:350px; border:none; border-radius:var(--radius); margin-top:2rem; }
 
+    /* CTA */
+    .cta{ margin-top:2.2rem; background:#f7fafc; padding:2rem; text-align:center; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
+    .cta h3{ margin:0 0 .8rem 0; }
+    .cta .actions{ display:flex; flex-wrap:wrap; gap:.8rem; justify-content:center; margin-top:.6rem; }
+    .btn{ display:inline-block; background:var(--brand); color:#fff; text-decoration:none; padding:.6rem 1.1rem; border-radius:8px; font-weight:600; }
+    .btn:hover{ background:var(--brand-hover); }
+    .btn.outline{ background:transparent; color:var(--brand); border:2px solid var(--brand); }
+    .btn.outline:hover{ background:#e8f0fe; }
+
     footer{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:var(--whiteglass); border-top-left-radius:var(--radius); border-top-right-radius:var(--radius); }
 
     @media(max-width:880px){ nav.primary{ display:none; } .burger{ display:inline-flex; } }
@@ -132,6 +141,16 @@
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2752.415159526313!2d7.588576115595142!3d47.55959817918171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4791b9a6f3e10ff7%3A0xdea0a2f76e49767f!2sBasel%2C%20Switzerland!5e0!3m2!1sfr!2sch!4v1691010100000"
           allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
+
+      <!-- CTA ajoutée -->
+      <section class="cta" aria-label="Appel à l’action">
+        <h3>Envie de contribuer&nbsp;?</h3>
+        <p>Rejoignez notre équipe, soutenez notre mission ou faites un don pour accélérer la reconversion des adultes en Suisse.</p>
+        <div class="actions">
+          <a class="btn" href="donate.html">Faire un don</a>
+          <a class="btn outline" href="team.html">Rejoindre l’équipe</a>
+        </div>
+      </section>
     </main>
 
     <footer>
