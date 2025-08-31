@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sophira</title>
+  <title>Sophira – Association pour la reconversion professionnelle</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Sophira est une association suisse à but non lucratif qui accompagne les adultes en difficulté financière dans leur reconversion professionnelle vers les métiers d’avenir : data, technologies vertes, santé digitale, IA.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Sophira – Association pour la reconversion professionnelle" />
+  <meta property="og:description" content="Lutter contre le chômage lié à l’automatisation et ouvrir des opportunités dans les métiers d’avenir." />
+  <meta property="og:image" content="Logo_sophira.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sophira.org/" />
+
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
@@ -17,8 +30,11 @@
     .overlay {
       background-color: rgba(255, 255, 255, 0.9);
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
+    /* NAVBAR */
     header.navbar {
       display: flex;
       justify-content: space-between;
@@ -26,6 +42,9 @@
       padding: 1rem 2rem;
       background-color: #ffffffdd;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
     header .logo {
@@ -34,12 +53,12 @@
     }
 
     header .logo img {
-      height: 40px;
-      margin-right: 10px;
+      height: 55px; /* LOGO AGRANDI */
+      margin-right: 12px;
     }
 
     .logo h1 {
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       font-weight: 600;
       color: #1a202c;
       margin: 0;
@@ -50,13 +69,16 @@
       text-decoration: none;
       color: #2c3e50;
       font-weight: 500;
+      transition: color 0.2s ease;
     }
 
     nav a:hover {
       color: #1e88e5;
     }
 
+    /* CONTENT */
     .container {
+      flex: 1;
       max-width: 960px;
       margin: 2rem auto;
       padding: 0 1rem;
@@ -65,18 +87,18 @@
     .hero {
       background-color: #edf2f7cc;
       padding: 3rem 2rem;
-      border-radius: 10px;
+      border-radius: 12px;
       text-align: center;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
 
     .hero h2 {
-      font-size: 2rem;
+      font-size: 2.2rem;
       margin-bottom: 0.8rem;
     }
 
     .subtitle {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       color: #4a5568;
     }
 
@@ -84,13 +106,13 @@
       margin-top: 2rem;
       background-color: #ffffffdd;
       padding: 2rem;
-      border-radius: 10px;
+      border-radius: 12px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
 
     .content h3 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
+      font-size: 1.6rem;
+      margin-bottom: 0.6rem;
     }
 
     .cta {
@@ -98,7 +120,7 @@
       background-color: #f7fafc;
       padding: 2rem;
       text-align: center;
-      border-radius: 10px;
+      border-radius: 12px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
 
@@ -112,9 +134,10 @@
       background-color: #1a73e8;
       color: white;
       text-decoration: none;
-      padding: 0.6rem 1.2rem;
+      padding: 0.7rem 1.4rem;
       border-radius: 6px;
       font-weight: 600;
+      transition: background-color 0.2s ease;
     }
 
     .cta a:hover {
@@ -134,48 +157,50 @@
 
 <body>
   <div class="overlay">
+    <!-- NAVIGATION -->
     <header class="navbar">
       <div class="logo">
-        <img src="Logo_sophira.png" alt="Sophira logo">
+        <img src="Logo_sophira.png" alt="Logo Sophira">
         <h1>Sophira</h1>
       </div>
       <nav>
-        <a href="index.html">Home</a>
-        <a href="team.html">Team</a>
-        <a href="projects.html">Projects</a>
-        <a href="dashboard.html">Dashboard</a>
+        <a href="index.html">Accueil</a>
+        <a href="team.html">Équipe</a>
+        <a href="project.html">Projet social</a>
+        <a href="dashboard.html">Tableau de bord</a>
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
       </nav>
     </header>
 
+    <!-- CONTENU -->
     <main class="container">
       <section class="hero">
-        <h2>Empowering Transitions for Tomorrow’s Jobs</h2>
+        <h2>Révéler les talents de demain</h2>
         <p class="subtitle">
           Sophira est une association suisse à but non lucratif qui accompagne les adultes confrontés à des obstacles systémiques dans leur reconversion professionnelle vers les métiers d’avenir, de la data aux technologies vertes.
         </p>
       </section>
 
       <section class="content">
-        <h3>Pourquoi Sophira?</h3>
+        <h3>Pourquoi Sophira ?</h3>
         <p>
-          Sophira est née d'une conviction : les transitions numérique et écologique transforment le marché du travail, excluant souvent les adultes en situation de précarité. Pourtant, la Suisse a un besoin croissant de professionnels qualifiés dans ces secteurs. Nous agissons pour briser les barrières et offrir des opportunités dans les métiers de demain.
+          Sophira est née d'une conviction : les transitions numérique et écologique transforment le marché du travail, excluant souvent les adultes en situation de précarité. Pourtant, la Suisse a un besoin croissant de professionnels qualifiés dans ces secteurs.
         </p>
         <p>
-           Sophira accompagne les adultes en reconversion vers des métiers porteurs de sens. Nous leur donnons les compétences numériques et analytiques nécessaires pour réussir, grâce à un soutien financier et humain.
+           Nous agissons pour briser les barrières et offrir des opportunités concrètes. Sophira accompagne les adultes en reconversion vers des métiers porteurs de sens, en leur donnant les compétences numériques et analytiques nécessaires pour réussir, grâce à un soutien financier et humain.
         </p>
       </section>
 
       <section class="cta">
-        <h3>Support Our Vision</h3>
-        <p>Soutenez-nous pour un avenir plus juste : révélons ensemble de nouveaux talents par la solidarité et l'apprentissage continu.</p>
-        <a href="donate.html">Donate Now</a>
+        <h3>Soutenez notre vision</h3>
+        <p>Construisons ensemble un avenir plus juste en révélant de nouveaux talents grâce à la solidarité et l'apprentissage continu.</p>
+        <a href="donate.html">Faire un don</a>
       </section>
     </main>
 
     <footer>
-      <p>&copy; 2025 Sophira Association | Basel, Switzerland</p>
+      <p>&copy; 2025 Sophira Association | Basel, Suisse</p>
     </footer>
   </div>
 </body>
