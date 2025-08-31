@@ -44,8 +44,7 @@
       margin:0;
       font-family:'Inter',sans-serif;
       background:url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center center fixed;
-      background-size:cover;
-      color:var(--text);
+      background-size:cover; color:var(--text);
     }
     .overlay{ background-color:var(--bg-overlay); min-height:100vh; display:flex; flex-direction:column; }
 
@@ -75,6 +74,12 @@
 
     .container{ flex:1; max-width:var(--container); margin:2rem auto; padding:0 1rem; }
 
+    /* Fil d’Ariane */
+    nav.breadcrumbs{ font-size:.9rem; margin:1rem 0; }
+    nav.breadcrumbs ol{ list-style:none; display:flex; gap:.5rem; padding:0; margin:0; }
+    nav.breadcrumbs li{ color:var(--muted); }
+    nav.breadcrumbs a{ text-decoration:none; color:var(--brand); }
+
     /* HERO */
     .hero{ background:#edf2f7cc; padding:2.4rem 1.4rem; border-radius:var(--radius); text-align:center; box-shadow:var(--shadow-md); }
     .hero h2{ font-size:2.1rem; margin:.2rem 0 .6rem; }
@@ -82,13 +87,7 @@
 
     /* POSTS */
     .posts{ margin-top:2rem; display:grid; grid-template-columns:repeat(12,1fr); gap:1.2rem; }
-    .post{
-      grid-column:span 12;
-      background:var(--card-bg);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow-sm);
-      padding:1.2rem;
-    }
+    .post{ grid-column:span 12; background:var(--card-bg); border-radius:var(--radius); box-shadow:var(--shadow-sm); padding:1.2rem; }
     .post h3{ margin:.1rem 0 .35rem; font-size:1.25rem; }
     .meta{ font-size:.92rem; color:var(--muted); margin-bottom:.6rem; }
     .excerpt{ color:#374151; line-height:1.55; margin:.4rem 0 .8rem; }
@@ -105,12 +104,12 @@
 <body>
   <div class="overlay">
     <!-- NAVIGATION -->
-    <header class="navbar">
+    <header class="navbar" role="navigation" aria-label="Navigation principale">
       <a class="brand" href="index.html">
         <img src="Logo_sophira.png" alt="Logo Sophira" />
         <h1>Sophira</h1>
       </a>
-      <nav class="primary">
+      <nav class="primary" aria-label="Liens principaux">
         <a href="index.html">Accueil</a>
         <a href="team.html">Équipe</a>
         <a href="project.html">Projet social</a>
@@ -124,7 +123,7 @@
     </header>
 
     <!-- MENU MOBILE -->
-    <div id="menu-mobile" class="mobile-panel hidden">
+    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Menu mobile">
       <div class="mobile-links">
         <a href="index.html">Accueil</a>
         <a href="team.html">Équipe</a>
@@ -135,15 +134,24 @@
       </div>
     </div>
 
+    <!-- FIL D’ARIANE -->
+    <nav class="breadcrumbs container" aria-label="Fil d’Ariane">
+      <ol>
+        <li><a href="index.html">Accueil</a></li>
+        <li>›</li>
+        <li>Blog</li>
+      </ol>
+    </nav>
+
     <!-- CONTENU -->
     <main class="container">
       <section class="hero">
         <h2>Le blog Sophira</h2>
-        <p class="subtitle">Actualités, analyses, et coulisses de notre mission : créer des ponts vers les métiers d’avenir.</p>
+        <p class="subtitle">Actualités, analyses et coulisses de notre mission : créer des ponts vers les métiers d’avenir.</p>
       </section>
 
       <!-- Grille d'articles -->
-      <section class="posts">
+      <section class="posts" aria-label="Articles du blog">
         <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
           <h3 itemprop="headline">Lancement de l’initiative Sophira</h3>
           <p class="meta">Publié le <time datetime="2025-08-02" itemprop="datePublished">2 août 2025</time></p>
@@ -197,9 +205,7 @@
         burger.setAttribute('aria-expanded', String(open));
       }
       burger.addEventListener('click', toggleMenu);
-      document.addEventListener('click', (e)=>{
-        if(!panel.classList.contains('hidden') && !panel.contains(e.target) && !burger.contains(e.target)){ toggleMenu(); }
-      });
+      document.addEventListener('click', (e)=>{ if(!panel.classList.contains('hidden') && !panel.contains(e.target) && !burger.contains(e.target)){ toggleMenu(); }});
       document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && !panel.classList.contains('hidden')) toggleMenu(); });
     })();
   </script>
