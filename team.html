@@ -6,14 +6,22 @@
   <title>Équipe – Sophira</title>
 
   <!-- SEO -->
-  <meta name="description" content="Rencontrez l'équipe Sophira : Arijanit Idrizi (président) et Quôc-Bao Nguyên (co-président). Un poste de trésorier·ère est à pourvoir pour renforcer la gouvernance." />
+  <link rel="canonical" href="https://sophira.org/team.html" />
+  <meta name="robots" content="index,follow" />
+  <meta name="description" content="Rencontrez l'équipe Sophira : Arijanit Idrizi (président), Quôc-Bao Nguyên (co-président). Un poste de trésorier·ère est à pourvoir pour renforcer la gouvernance." />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Équipe – Sophira" />
   <meta property="og:description" content="L'association Sophira accompagne la reconversion des adultes en Suisse. Découvrez l'équipe dirigeante et rejoignez-nous." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sophira.org/team.html" />
-  <meta property="og:image" content="Logo_sophira.png" />
+  <meta property="og:image" content="https://sophira.org/Logo_sophira.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Équipe – Sophira" />
+  <meta name="twitter:description" content="Découvrez l'équipe dirigeante de Sophira : Arijanit Idrizi et Quôc-Bao Nguyên." />
+  <meta name="twitter:image" content="https://sophira.org/Logo_sophira.png" />
 
   <!-- Police -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -56,68 +64,30 @@
       box-shadow:var(--shadow-sm);
       backdrop-filter:blur(6px);
     }
-    .brand{
-      display:flex; align-items:center; gap:.6rem; min-width:0;
-    }
-    .brand img{
-      height:55px; /* LOGO AGRANDI */
-      width:auto;
-    }
-    .brand h1{
-      margin:0; font-size:1.7rem; font-weight:600; color:#1a202c; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-    }
+    .brand{ display:flex; align-items:center; gap:.6rem; min-width:0; }
+    .brand img{ height:55px; width:auto; }
+    .brand h1{ margin:0; font-size:1.7rem; font-weight:600; color:#1a202c; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
-    /* Liens de nav (desktop) */
-    nav.primary{ display:flex; align-items:center; gap:1.1rem; }
-    nav.primary a{
-      text-decoration:none; color:var(--text); font-weight:500; transition:color .2s ease;
-    }
-    nav.primary a:hover, nav.primary a:focus{ color:#1e88e5; }
+    nav.primary{ display:flex; gap:1.1rem; }
+    nav.primary a{ text-decoration:none; color:var(--text); font-weight:500; }
+    nav.primary a:hover{ color:#1e88e5; }
 
-    /* Burger (mobile) */
-    .burger{
-      display:none; background:none; border:none; padding:.4rem .6rem; border-radius:8px;
-    }
-    .burger:focus{ outline:2px solid var(--brand); outline-offset:2px; }
+    .burger{ display:none; background:none; border:none; padding:.4rem .6rem; }
     .burger svg{ width:28px; height:28px; }
 
-    /* Menu mobile (panneau) */
-    .mobile-panel{
-      display:none;
-      position:fixed; inset:64px 0 0 0; /* sous la barre */
-      background:#ffffffdd;
-      backdrop-filter:blur(6px);
-      box-shadow:var(--shadow-md) inset 0 1px 0 rgba(255,255,255,.4);
-      padding:1rem;
-    }
-    .mobile-links{
-      display:flex; flex-direction:column; gap:.8rem; max-width:var(--container); margin:0 auto;
-    }
-    .mobile-links a{
-      text-decoration:none; color:var(--text); font-weight:600; padding:.7rem 0; border-bottom:1px solid rgba(0,0,0,.06);
-    }
+    .mobile-panel{ display:none; position:fixed; inset:64px 0 0 0; background:#ffffffdd; backdrop-filter:blur(6px); padding:1rem; }
+    .mobile-links{ display:flex; flex-direction:column; gap:.8rem; }
+    .mobile-links a{ text-decoration:none; color:var(--text); font-weight:600; padding:.7rem 0; border-bottom:1px solid #ddd; }
     .mobile-links a:last-child{ border-bottom:none; }
     .hidden{ display:none !important; }
 
     /* LAYOUT */
     .container{ flex:1; max-width:var(--container); margin:2rem auto; padding:0 1rem; }
-    .hero{
-      background:#edf2f7cc;
-      padding:2.6rem 1.4rem;
-      border-radius:var(--radius);
-      text-align:center;
-      box-shadow:var(--shadow-md);
-    }
+    .hero{ background:#edf2f7cc; padding:2.6rem 1.4rem; border-radius:var(--radius); text-align:center; box-shadow:var(--shadow-md); }
     .hero h2{ font-size:2.1rem; margin:.2rem 0 .7rem; }
     .subtitle{ font-size:1.08rem; color:var(--muted); margin:0 auto; max-width:800px; }
 
-    /* TEAM GRID */
-    .team{
-      margin-top:2rem;
-      display:grid;
-      grid-template-columns:repeat(12,1fr);
-      gap:1.2rem;
-    }
+    .team{ margin-top:2rem; display:grid; grid-template-columns:repeat(12,1fr); gap:1.2rem; }
     .card{
       grid-column:span 12;
       background:var(--card-bg);
@@ -131,70 +101,38 @@
     }
     .card img.avatar{
       width:96px; height:96px; border-radius:50%; object-fit:cover; background:#e2e8f0;
-      /* AJOUT pour un cadrage parfait */
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 1/1;
     }
     .card h3{ margin:0 0 .3rem 0; font-size:1.25rem; }
     .role{ font-weight:600; color:var(--brand); margin-bottom:.5rem; }
     .bio{ margin:.25rem 0 .6rem 0; color:var(--text); line-height:1.55; }
     .meta{ font-size:.95rem; color:var(--muted); }
-    .pill{
-      display:inline-block; padding:.25rem .6rem; border-radius:999px; background:#e8f0fe; color:#174ea6; font-size:.85rem; font-weight:600;
-    }
+    .pill{ display:inline-block; padding:.25rem .6rem; border-radius:999px; background:#e8f0fe; color:#174ea6; font-size:.85rem; font-weight:600; }
 
-    /* CTA */
-    .cta{
-      margin-top:2.2rem; background:#f7fafc; padding:2rem; text-align:center; border-radius:var(--radius); box-shadow:var(--shadow-sm);
-    }
+    .cta{ margin-top:2.2rem; background:#f7fafc; padding:2rem; text-align:center; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
     .cta h3{ margin:0 0 .8rem 0; }
-    .cta .actions{
-      display:flex; flex-wrap:wrap; gap:.8rem; justify-content:center; margin-top:.6rem;
-    }
-    .btn{
-      display:inline-block; background:var(--brand); color:#fff; text-decoration:none; padding:.6rem 1.1rem; border-radius:var(--radius-sm); font-weight:600;
-    }
-    .btn:hover,.btn:focus{ background:var(--brand-hover); }
-    .btn.outline{
-      background:transparent; color:var(--brand); border:2px solid var(--brand);
-    }
-    .btn.outline:hover,.btn.outline:focus{ background:#e8f0fe; }
+    .cta .actions{ display:flex; flex-wrap:wrap; gap:.8rem; justify-content:center; margin-top:.6rem; }
+    .btn{ display:inline-block; background:var(--brand); color:#fff; text-decoration:none; padding:.6rem 1.1rem; border-radius:var(--radius-sm); font-weight:600; }
+    .btn:hover{ background:var(--brand-hover); }
+    .btn.outline{ background:transparent; color:var(--brand); border:2px solid var(--brand); }
+    .btn.outline:hover{ background:#e8f0fe; }
 
-    /* FOOTER */
-    footer{
-      text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:#ffffffdd;
-      border-top-left-radius:var(--radius); border-top-right-radius:var(--radius);
-    }
+    footer{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:#ffffffdd; border-top-left-radius:var(--radius); border-top-right-radius:var(--radius); }
 
-    /* RESPONSIVE */
-    @media (min-width: 680px){
-      .card{ grid-column: span 6; }
-      .card--full{ grid-column: span 12; }
-    }
-    @media (min-width: 1000px){
-      .card{ grid-column: span 4; }
-      .card--full{ grid-column: span 12; }
-    }
-    @media (max-width: 880px){
-      nav.primary{ display:none; }
-      .burger{ display:inline-flex; align-items:center; justify-content:center; }
-    }
-    @media (prefers-reduced-motion: reduce){
-      *{ scroll-behavior:auto; transition:none !important; }
-    }
+    @media (min-width:680px){ .card{ grid-column:span 6; } }
+    @media (min-width:1000px){ .card{ grid-column:span 4; } }
+    @media (max-width:880px){ nav.primary{ display:none; } .burger{ display:inline-flex; } }
   </style>
 </head>
-
 <body>
   <div class="overlay">
     <!-- NAVIGATION -->
-    <header class="navbar" role="navigation" aria-label="Navigation principale">
+    <header class="navbar">
       <a class="brand" href="index.html">
         <img src="Logo_sophira.png" alt="Logo Sophira" />
         <h1>Sophira</h1>
       </a>
-
-      <!-- NAV DESKTOP -->
-      <nav class="primary" aria-label="Liens principaux">
+      <nav class="primary">
         <a href="index.html">Accueil</a>
         <a href="team.html" aria-current="page">Équipe</a>
         <a href="project.html">Projet social</a>
@@ -202,17 +140,13 @@
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
       </nav>
-
-      <!-- BOUTON BURGER -->
       <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-controls="menu-mobile" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-          <path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
     </header>
 
-    <!-- PANNEAU MOBILE -->
-    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Menu mobile">
+    <!-- MENU MOBILE -->
+    <div id="menu-mobile" class="mobile-panel hidden">
       <div class="mobile-links">
         <a href="index.html">Accueil</a>
         <a href="team.html" aria-current="page">Équipe</a>
@@ -227,63 +161,28 @@
     <main class="container">
       <section class="hero">
         <h2>Notre équipe</h2>
-        <p class="subtitle">
-          Des personnes engagées pour une reconversion <em>digne</em>, <em>inclusive</em> et <em>durable</em>.
-          Nous créons des ponts entre les talents et les métiers d’avenir.
-        </p>
+        <p class="subtitle">Des personnes engagées pour une reconversion <em>digne</em>, <em>inclusive</em> et <em>durable</em>. Nous créons des ponts entre les talents et les métiers d’avenir.</p>
       </section>
 
-      <section class="team" aria-label="Membres de l'équipe">
+      <section class="team">
         <!-- Président -->
         <article class="card" itemscope itemtype="https://schema.org/Person">
-          <!-- REMPLACÉ: fichier réel de votre dépôt -->
-          <img
-            class="avatar"
-            src="photo%20CV.JPG"
-            alt="Portrait d’Arijanit Idrizi"
-            width="96" height="96"
-            loading="lazy"
-            decoding="async"
-            fetchpriority="high"
-            itemprop="image"
-          />
+          <img class="avatar" src="photo%20CV.JPG" alt="Portrait d’Arijanit Idrizi" width="96" height="96" loading="lazy" decoding="async" fetchpriority="high" itemprop="image" />
           <div>
             <h3 itemprop="name">Arijanit Idrizi</h3>
             <div class="role" itemprop="jobTitle">Président</div>
-            <p class="bio" itemprop="description">
-              Entrepreneur social et analyste de données, Arijanit pilote la vision de Sophira :
-              ouvrir l’accès aux compétences numériques et aux métiers d’avenir pour les adultes en transition en Suisse.
-            </p>
+            <p class="bio" itemprop="description">Entrepreneur social et analyste de données, Arijanit pilote la vision de Sophira : ouvrir l’accès aux compétences numériques et aux métiers d’avenir pour les adultes en transition en Suisse.</p>
             <div class="meta">Langues : FR, EN, DE, SQ · Bâle, Suisse</div>
-            <!-- Exemples de liens (décommente si tu veux)
-            <div class="meta">
-              <a href="mailto:contact@sophira.org">contact@sophira.org</a> ·
-              <a href="https://www.linkedin.com/in/..." target="_blank" rel="noopener">LinkedIn</a>
-            </div>
-            -->
           </div>
         </article>
 
         <!-- Co-président -->
         <article class="card" itemscope itemtype="https://schema.org/Person">
-          <!-- REMPLACÉ: fichier réel de votre dépôt -->
-          <img
-            class="avatar"
-            src="PHOTO-BAO.jpg"
-            alt="Portrait de Quôc-Bao Nguyên"
-            width="96" height="96"
-            loading="lazy"
-            decoding="async"
-            fetchpriority="high"
-            itemprop="image"
-          />
+          <img class="avatar" src="PHOTO-BAO.jpg" alt="Portrait de Quôc-Bao Nguyên" width="96" height="96" loading="lazy" decoding="async" fetchpriority="high" itemprop="image" />
           <div>
             <h3 itemprop="name">Quôc-Bao Nguyên</h3>
             <div class="role" itemprop="jobTitle">Co-président</div>
-            <p class="bio" itemprop="description">
-              Spécialiste innovation et communauté, Bao coordonne les partenariats académiques et économiques
-              pour créer des passerelles concrètes vers l’emploi.
-            </p>
+            <p class="bio" itemprop="description">Spécialiste innovation et communauté, Bao coordonne les partenariats académiques et économiques pour créer des passerelles concrètes vers l’emploi.</p>
             <div class="meta">Partenariats · Réseau · Communauté</div>
           </div>
         </article>
@@ -294,18 +193,15 @@
           <div>
             <h3>Trésorier·ère – à recruter</h3>
             <div class="role">Gouvernance & Transparence</div>
-            <p class="bio">
-              Nous recherchons un·e trésorier·ère bénévole (ou part-time) pour renforcer la gouvernance
-              financière : budget pilote, suivi des dons, rapports de transparence.
-            </p>
+            <p class="bio">Nous recherchons un·e trésorier·ère bénévole (ou part-time) pour renforcer la gouvernance financière : budget pilote, suivi des dons, rapports de transparence.</p>
             <span class="pill">Candidatures ouvertes</span>
           </div>
         </article>
       </section>
 
       <!-- Appel à l’action -->
-      <section class="cta" aria-label="Appel à l’action">
-        <h3>Envie de contribuer ?</h3>
+      <section class="cta">
+        <h3>Envie de contribuer&nbsp;?</h3>
         <p>Devenez partenaire, bénévole ou mécène pour accélérer la reconversion des adultes en Suisse.</p>
         <div class="actions">
           <a class="btn" href="contact.html">Nous contacter</a>
@@ -320,33 +216,26 @@
     </footer>
   </div>
 
-  <!-- JS léger pour le menu mobile -->
+  <!-- JS menu mobile -->
   <script>
     (function(){
       const burger = document.getElementById('burger');
       const panel  = document.getElementById('menu-mobile');
       if(!burger || !panel) return;
-
       function toggleMenu(){
         const open = panel.classList.toggle('hidden') === false;
         burger.setAttribute('aria-expanded', String(open));
-        burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
       }
-
       burger.addEventListener('click', toggleMenu);
-
-      // Fermer en cliquant à l’extérieur
       document.addEventListener('click', (e)=>{
-        if(panel.classList.contains('hidden')) return;
-        const withinPanel = panel.contains(e.target);
-        const withinBurger = burger.contains(e.target);
-        if(!withinPanel && !withinBurger){ toggleMenu(); }
+        if(!panel.classList.contains('hidden') && !panel.contains(e.target) && !burger.contains(e.target)){ toggleMenu(); }
       });
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && !panel.classList.contains('hidden')) toggleMenu(); });
+    })();
+  </script>
+</body>
+</html>
 
-      // Fermer avec Échap
-      document.addEventListener('keydown', (e)=>{
-        if(e.key === 'Escape' && !panel.classList.contains('hidden')) toggleMenu();
-      });
     })();
   </script>
 </body>
