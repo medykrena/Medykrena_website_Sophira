@@ -1,33 +1,33 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sophira – Association pour la reconversion professionnelle</title>
+  <title>Sophira – Verein für berufliche Neuorientierung</title>
 
   <!-- SEO -->
-  <link rel="canonical" href="https://sophira.org/" />
+  <link rel="canonical" href="https://sophira.org/index-de.html" />
   <meta name="robots" content="index,follow" />
-  <meta name="description" content="Sophira accompagne les adultes en difficulté financière dans leur reconversion vers les métiers d’avenir (data, technologies vertes, santé digitale, IA) en Suisse." />
+  <meta name="description" content="Sophira unterstützt Erwachsene in finanziellen Schwierigkeiten bei ihrer beruflichen Neuorientierung in Zukunftsberufe (Daten, grüne Technologien, digitale Gesundheit, KI) in der Schweiz." />
 
-  <!-- Alternate languages (optionnel si tu ajoutes une version DE) -->
+  <!-- Alternate languages (optional) -->
   <!-- <link rel="alternate" hreflang="fr" href="https://sophira.org/index.html" />
   <link rel="alternate" hreflang="de" href="https://sophira.org/index-de.html" /> -->
 
   <!-- Open Graph / Social -->
-  <meta property="og:title" content="Sophira – Association pour la reconversion professionnelle" />
-  <meta property="og:description" content="Lutter contre le chômage lié à l’automatisation et ouvrir des opportunités dans les métiers d’avenir." />
+  <meta property="og:title" content="Sophira – Verein für berufliche Neuorientierung" />
+  <meta property="og:description" content="Arbeitslosigkeit durch Automatisierung bekämpfen und Chancen in Zukunftsberufen eröffnen." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://sophira.org/" />
+  <meta property="og:url" content="https://sophira.org/index-de.html" />
   <meta property="og:image" content="https://sophira.org/Logo_sophira.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Sophira – Association pour la reconversion professionnelle" />
-  <meta name="twitter:description" content="Sophira aide les adultes à se reconvertir vers les métiers d’avenir en Suisse." />
+  <meta name="twitter:title" content="Sophira – Verein für berufliche Neuorientierung" />
+  <meta name="twitter:description" content="Sophira hilft Erwachsenen, sich in der Schweiz in Zukunftsberufe neu zu orientieren." />
   <meta name="twitter:image" content="https://sophira.org/Logo_sophira.png" />
 
-  <!-- Police -->
+  <!-- Schrift -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -65,7 +65,7 @@
     nav.primary a{ text-decoration:none; color:var(--text); font-weight:500; }
     nav.primary a:hover, nav.primary a:focus{ color:#1e88e5; }
 
-    /* Switch langue minimal (optionnel) */
+    /* Sprachumschalter */
     .lang{ display:inline-flex; gap:.4rem; margin-left:.6rem; font-size:.95rem; }
     .lang a{ color:#5b6b7a; text-decoration:none; }
     .lang a[aria-current="true"]{ font-weight:700; color:#1a202c; }
@@ -86,7 +86,7 @@
     .hero h2{ font-size:2.1rem; margin:.2rem 0 .7rem; }
     .subtitle{ font-size:1.08rem; color:var(--muted); margin:0 auto; max-width:800px; }
 
-    /* EN UN COUP D’ŒIL (3 points clés) */
+    /* AUF EINEN BLICK (3 Kernpunkte) */
     .glance{ margin-top:1rem; display:grid; grid-template-columns:repeat(12,1fr); gap:.8rem; }
     .glance .item{
       grid-column:span 12; background:#fff; border-radius:10px; box-shadow:var(--shadow-sm);
@@ -94,7 +94,7 @@
     }
     .glance .item strong{ display:block; margin-bottom:.25rem; }
 
-    /* LIENS RAPIDES (boutons compacts) */
+    /* SCHNELLE LINKS (kompakte Buttons) */
     .quick{ margin-top:1rem; display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap; }
     .btn{
       display:inline-block; background:var(--brand); color:#fff; text-decoration:none;
@@ -104,11 +104,11 @@
     .btn.outline{ background:transparent; color:var(--brand); border:2px solid var(--brand); }
     .btn.outline:hover{ background:#e8f0fe; }
 
-    /* SECTION TEXTE */
+    /* TEXTSECTION */
     .content{ margin-top:2rem; background:var(--whiteglass); padding:2rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
     .content h3{ font-size:1.55rem; margin:.2rem 0 .6rem; }
 
-    /* TEASER BLOG */
+    /* BLOG-TEASER */
     .teaser{ margin-top:2rem; background:var(--whiteglass); padding:1.2rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
     .teaser h3{ margin:.1rem 0 .6rem; font-size:1.3rem; text-align:center; }
     .posts{ display:grid; grid-template-columns:repeat(12,1fr); gap:.8rem; }
@@ -118,7 +118,7 @@
     .post a{ font-weight:600; color:#fff; background:var(--brand); padding:.4rem .7rem; border-radius:8px; text-decoration:none; }
     .post a:hover{ background:var(--brand-hover); }
 
-    /* CTA final (inchangé) */
+    /* CTA final */
     .cta{ margin-top:2rem; background:#f7fafc; padding:2rem; text-align:center; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
     .cta a{ display:inline-block; margin-top:1rem; background:var(--brand); color:#fff; text-decoration:none; padding:.7rem 1.4rem; border-radius:10px; font-weight:700; }
     .cta a:hover{ background:var(--brand-hover); }
@@ -142,124 +142,122 @@
 <body>
   <div class="overlay">
     <!-- NAVIGATION -->
-    <header class="navbar" role="navigation" aria-label="Navigation principale">
-      <a class="brand" href="index.html">
+    <header class="navbar" role="navigation" aria-label="Hauptnavigation">
+      <a class="brand" href="index-de.html">
         <img src="Logo_sophira.png" alt="Logo Sophira" loading="eager" fetchpriority="high" />
         <h1>Sophira</h1>
       </a>
-      <nav class="primary" aria-label="Liens principaux">
-        <a href="index.html" aria-current="page">Accueil</a>
-        <a href="team.html">Équipe</a>
-        <a href="project.html">Projet social</a>
-        <a href="dashboard.html">Tableau de bord</a>
-        <a href="blog.html">Blog</a>
-        <a href="contact.html">Contact</a>
-      <span class="lang" aria-label="Changer de langue">
-        <a href="index.html" lang="fr" aria-current="true">FR</a> |
-        <a href="index-de.html" lang="de">DE</a>
-      </span>
-
+      <nav class="primary" aria-label="Hauptlinks">
+        <a href="index-de.html" aria-current="page">Startseite</a>
+        <a href="team-de.html">Team</a>
+        <a href="project-de.html">Soziales Projekt</a>
+        <a href="dashboard-de.html">Dashboard</a>
+        <a href="blog-de.html">Blog</a>
+        <a href="contact-de.html">Kontakt</a>
+        <span class="lang" aria-label="Sprache wechseln">
+          <a href="index.html" lang="fr">FR</a> |
+          <a href="index-de.html" lang="de" aria-current="true">DE</a>
+        </span>
       </nav>
-      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-controls="menu-mobile" aria-expanded="false">
+      <button class="burger" id="burger" aria-label="Menü öffnen" aria-controls="menu-mobile" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
           <path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/>
         </svg>
       </button>
     </header>
 
-    <!-- MENU MOBILE -->
-    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Menu mobile">
+    <!-- MOBILES MENÜ -->
+    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Mobiles Menü">
       <div class="mobile-links">
-        <a href="index.html" aria-current="page">Accueil</a>
-        <a href="team.html">Équipe</a>
-        <a href="project.html">Projet social</a>
-        <a href="dashboard.html">Tableau de bord</a>
-        <a href="blog.html">Blog</a>
-        <a href="contact.html">Contact</a>
+        <a href="index-de.html" aria-current="page">Startseite</a>
+        <a href="team-de.html">Team</a>
+        <a href="project-de.html">Soziales Projekt</a>
+        <a href="dashboard-de.html">Dashboard</a>
+        <a href="blog-de.html">Blog</a>
+        <a href="contact-de.html">Kontakt</a>
       </div>
     </div>
 
-    <!-- CONTENU -->
+    <!-- INHALT -->
     <main class="container">
       <!-- HERO -->
       <section class="hero">
-        <h2>Révéler les talents de demain</h2>
+        <h2>Talente von morgen fördern</h2>
         <p class="subtitle">
-          Sophira est une association suisse à but non lucratif qui accompagne les adultes confrontés à des obstacles
-          dans leur reconversion vers les métiers d’avenir, de la data aux technologies vertes.
+          Sophira ist ein gemeinnütziger Schweizer Verein, der Erwachsene unterstützt,
+          die bei ihrer beruflichen Neuorientierung in Zukunftsberufe – von Daten bis zu grünen Technologien – auf Hindernisse stossen.
         </p>
 
-        <!-- En un coup d'œil : rapide, non redondant avec la page Projet -->
-        <div class="glance" aria-label="En un coup d’œil">
+        <!-- Auf einen Blick -->
+        <div class="glance" aria-label="Auf einen Blick">
           <div class="item">
-            <strong>Une bourse ciblée</strong>
-            Couvre une partie des frais de formation et d’équipement essentiels.
+            <strong>Zielgerichtetes Stipendium</strong>
+            Deckt einen Teil der Ausbildungs- und der wichtigsten Ausrüstungskosten ab.
           </div>
           <div class="item">
-            <strong>Mentorat & réseau</strong>
-            Mise en relation, coaching et retours concrets d’experts.
+            <strong>Mentoring & Netzwerk</strong>
+            Vermittlung, Coaching und konkretes Feedback von Fachleuten.
           </div>
           <div class="item">
-            <strong>Projets réels</strong>
-            Cas à impact social pour bâtir un portfolio crédible rapidement.
+            <strong>Reale Projekte</strong>
+            Sozial wirksame Fälle, um schnell ein glaubwürdiges Portfolio aufzubauen.
           </div>
         </div>
 
-        <!-- Liens rapides (sans dupliquer le contenu de project.html) -->
-        <div class="quick" role="group" aria-label="Liens rapides">
-          <a class="btn" href="project.html">Comprendre le projet</a>
-          <a class="btn outline" href="contact.html">Être recontacté·e</a>
-          <a class="btn" href="donate.html">Faire un don</a>
+        <!-- Schnelle Links -->
+        <div class="quick" role="group" aria-label="Schnelle Links">
+          <a class="btn" href="project-de.html">Projekt verstehen</a>
+          <a class="btn outline" href="contact-de.html">Kontaktiert werden</a>
+          <a class="btn" href="donate-de.html">Spenden</a>
         </div>
       </section>
 
-      <!-- SECTION INFO (inchangée, concise) -->
+      <!-- INFO -->
       <section class="content">
-        <h3>Pourquoi Sophira&nbsp;?</h3>
-        <p>Sophira est née d'une conviction : les transitions numérique et écologique transforment le marché du travail,
-          excluant souvent les adultes en situation de précarité. Pourtant, la Suisse a un besoin croissant de
-          professionnels qualifiés dans ces secteurs.</p>
-        <p>Nous agissons pour briser les barrières et offrir des opportunités concrètes. Sophira accompagne les adultes en reconversion
-          vers des métiers porteurs de sens, en leur donnant les compétences numériques et analytiques nécessaires pour réussir,
-          grâce à un soutien financier et humain.</p>
+        <h3>Warum Sophira?</h3>
+        <p>Sophira entstand aus der Überzeugung, dass die digitalen und ökologischen Transformationen den Arbeitsmarkt verändern
+          und dabei oft Erwachsene in prekären Situationen ausschliessen. Gleichzeitig steigt in der Schweiz der Bedarf
+          an qualifizierten Fachkräften in diesen Bereichen.</p>
+        <p>Wir setzen uns dafür ein, Barrieren abzubauen und konkrete Chancen zu schaffen. Sophira begleitet Erwachsene bei der Neuorientierung
+          in sinnstiftende Berufe, vermittelt die nötigen digitalen und analytischen Kompetenzen und bietet finanzielle sowie menschliche Unterstützung.</p>
       </section>
 
-      <!-- Teaser très léger du blog (3 cartes) -->
-      <section class="teaser" aria-label="Derniers articles">
-        <h3>À lire sur le blog</h3>
+      <!-- Blog-Teaser (3 Karten) -->
+      <section class="teaser" aria-label="Neueste Artikel">
+        <h3>Lesenswert im Blog</h3>
         <div class="posts">
           <article class="post">
-            <h4>Lancement de l’initiative Sophira</h4>
-            <p>Notre vision et comment participer.</p>
-            <a href="article6.html">Lire</a>
+            <h4>Start der Sophira-Initiative</h4>
+            <p>Unsere Vision und wie man mitmachen kann.</p>
+            <a href="article6-de.html">Lesen</a>
           </article>
           <article class="post">
-            <h4>Data & reconversion</h4>
-            <p>Des compétences demandées et accessibles.</p>
-            <a href="article7.html">Lire</a>
+            <h4>Daten & Neuorientierung</h4>
+            <p>Gefragte und zugängliche Kompetenzen.</p>
+            <a href="article7-de.html">Lesen</a>
           </article>
           <article class="post">
-            <h4>Secteurs porteurs 2025</h4>
-            <p>Où se situent les opportunités en Suisse.</p>
-            <a href="article2.html">Lire</a>
+            <h4>Zukunftsbranchen 2025</h4>
+            <p>Wo sich Chancen in der Schweiz eröffnen.</p>
+            <a href="article2-de.html">Lesen</a>
           </article>
         </div>
       </section>
 
-      <!-- CTA FINAL (inchangé) -->
-      <section class="cta" aria-label="Soutenir">
-        <h3>Soutenez notre vision</h3>
-        <p>Construisons ensemble un avenir plus juste en révélant de nouveaux talents grâce à la solidarité et l'apprentissage continu.</p>
-        <a href="donate.html">Faire un don</a>
+      <!-- CTA -->
+      <section class="cta" aria-label="Unterstützen">
+        <h3>Unterstützen Sie unsere Vision</h3>
+        <p>Gestalten wir gemeinsam eine gerechtere Zukunft, indem wir neue Talente durch Solidarität und lebenslanges Lernen fördern.</p>
+        <a href="donate-de.html">Spenden</a>
       </section>
     </main>
 
     <footer>
-      <p>&copy; 2025 Sophira Association | Basel, Suisse</p>
+      <p>&copy; 2025 Sophira Verein | Basel, Schweiz</p>
     </footer>
   </div>
 
-  <!-- JS menu mobile -->
+  <!-- JS mobiles Menü -->
   <script>
     (function(){
       const burger = document.getElementById('burger');
@@ -268,7 +266,7 @@
       function toggleMenu(){
         const open = panel.classList.toggle('hidden') === false;
         burger.setAttribute('aria-expanded', String(open));
-        burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+        burger.setAttribute('aria-label', open ? 'Menü schliessen' : 'Menü öffnen');
       }
       burger.addEventListener('click', toggleMenu);
       document.addEventListener('click', (e)=>{
