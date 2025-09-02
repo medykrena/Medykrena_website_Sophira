@@ -6,32 +6,137 @@
   <title>Sophira – Verein für berufliche Neuorientierung</title>
 
   <!-- SEO -->
-  <link rel="canonical" href="https://sophira.org/" />
+  <link rel="canonical" href="https://sophira.org/index-de.html" />
   <meta name="robots" content="index,follow" />
   <meta name="description" content="Sophira unterstützt Erwachsene in finanziellen Schwierigkeiten bei ihrer beruflichen Neuorientierung in Zukunftsberufe (Daten, grüne Technologien, digitale Gesundheit, KI) in der Schweiz." />
 
-  <!-- Alternate languages -->
+  <!-- Alternate languages (optional) -->
   <!-- <link rel="alternate" hreflang="fr" href="https://sophira.org/index.html" />
   <link rel="alternate" hreflang="de" href="https://sophira.org/index-de.html" /> -->
 
   <!-- Open Graph / Social -->
   <meta property="og:title" content="Sophira – Verein für berufliche Neuorientierung" />
-  <meta property="og:description" content="Bekämpfung der Arbeitslosigkeit durch Automatisierung und Eröffnung neuer Chancen in Zukunftsberufen." />
+  <meta property="og:description" content="Arbeitslosigkeit durch Automatisierung bekämpfen und Chancen in Zukunftsberufen eröffnen." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://sophira.org/" />
+  <meta property="og:url" content="https://sophira.org/index-de.html" />
   <meta property="og:image" content="https://sophira.org/Logo_sophira.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Sophira – Verein für berufliche Neuorientierung" />
-  <meta name="twitter:description" content="Sophira hilft Erwachsenen, sich in Zukunftsberufe in der Schweiz neu zu orientieren." />
+  <meta name="twitter:description" content="Sophira hilft Erwachsenen, sich in der Schweiz in Zukunftsberufe neu zu orientieren." />
   <meta name="twitter:image" content="https://sophira.org/Logo_sophira.png" />
 
-  <!-- Schriftart -->
+  <!-- Schrift -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* CSS unverändert */
+    :root{
+      --text:#2c3e50;
+      --muted:#4a5568;
+      --brand:#1a73e8;
+      --brand-hover:#155ab6;
+      --whiteglass:#ffffffdd;
+      --panel:#edf2f7cc;
+      --radius:12px;
+      --shadow-sm:0 2px 8px rgba(0,0,0,.05);
+      --shadow-md:0 4px 12px rgba(0,0,0,.08);
+      --container:980px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:'Inter',sans-serif;
+      background:url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center center fixed;
+      background-size:cover; color:var(--text);
+    }
+    .overlay{ min-height:100vh; background:rgba(255,255,255,.9); display:flex; flex-direction:column; }
+
+    /* NAVBAR */
+    header.navbar{
+      position:sticky; top:0; z-index:20;
+      display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+      padding:.8rem 1rem; background:var(--whiteglass); box-shadow:var(--shadow-sm); backdrop-filter: blur(6px);
+    }
+    .brand{ display:flex; align-items:center; gap:.6rem; }
+    .brand img{ height:55px; width:auto; }
+    .brand h1{ margin:0; font-size:1.7rem; font-weight:600; color:#1a202c; }
+
+    nav.primary{ display:flex; gap:1.1rem; align-items:center; }
+    nav.primary a{ text-decoration:none; color:var(--text); font-weight:500; }
+    nav.primary a:hover, nav.primary a:focus{ color:#1e88e5; }
+
+    /* Sprachumschalter */
+    .lang{ display:inline-flex; gap:.4rem; margin-left:.6rem; font-size:.95rem; }
+    .lang a{ color:#5b6b7a; text-decoration:none; }
+    .lang a[aria-current="true"]{ font-weight:700; color:#1a202c; }
+
+    .burger{ display:none; background:none; border:none; padding:.4rem .6rem; }
+    .burger svg{ width:28px; height:28px; }
+
+    .mobile-panel{ display:none; position:fixed; inset:64px 0 0 0; background:var(--whiteglass); backdrop-filter: blur(6px); padding:1rem; }
+    .mobile-links{ display:flex; flex-direction:column; gap:.8rem; }
+    .mobile-links a{ text-decoration:none; color:var(--text); font-weight:600; padding:.7rem 0; border-bottom:1px solid #ddd; }
+    .mobile-links a:last-child{ border-bottom:none; }
+    .hidden{ display:none !important; }
+
+    .container{ flex:1; max-width:var(--container); margin:2rem auto; padding:0 1rem; }
+
+    /* HERO */
+    .hero{ background:var(--panel); padding:2.4rem 1.4rem; border-radius:var(--radius); text-align:center; box-shadow:var(--shadow-md); }
+    .hero h2{ font-size:2.1rem; margin:.2rem 0 .7rem; }
+    .subtitle{ font-size:1.08rem; color:var(--muted); margin:0 auto; max-width:800px; }
+
+    /* AUF EINEN BLICK (3 Kernpunkte) */
+    .glance{ margin-top:1rem; display:grid; grid-template-columns:repeat(12,1fr); gap:.8rem; }
+    .glance .item{
+      grid-column:span 12; background:#fff; border-radius:10px; box-shadow:var(--shadow-sm);
+      padding:.9rem 1rem; text-align:left;
+    }
+    .glance .item strong{ display:block; margin-bottom:.25rem; }
+
+    /* SCHNELLE LINKS (kompakte Buttons) */
+    .quick{ margin-top:1rem; display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap; }
+    .btn{
+      display:inline-block; background:var(--brand); color:#fff; text-decoration:none;
+      padding:.6rem 1rem; border-radius:10px; font-weight:700;
+    }
+    .btn:hover{ background:var(--brand-hover); }
+    .btn.outline{ background:transparent; color:var(--brand); border:2px solid var(--brand); }
+    .btn.outline:hover{ background:#e8f0fe; }
+
+    /* TEXTSECTION */
+    .content{ margin-top:2rem; background:var(--whiteglass); padding:2rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
+    .content h3{ font-size:1.55rem; margin:.2rem 0 .6rem; }
+
+    /* BLOG-TEASER */
+    .teaser{ margin-top:2rem; background:var(--whiteglass); padding:1.2rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
+    .teaser h3{ margin:.1rem 0 .6rem; font-size:1.3rem; text-align:center; }
+    .posts{ display:grid; grid-template-columns:repeat(12,1fr); gap:.8rem; }
+    .post{ grid-column:span 12; background:#fff; border-radius:10px; padding:.9rem 1rem; box-shadow:var(--shadow-sm); }
+    .post h4{ margin:.2rem 0 .2rem; font-size:1.05rem; }
+    .post p{ margin:.1rem 0 .4rem; color:#374151; }
+    .post a{ font-weight:600; color:#fff; background:var(--brand); padding:.4rem .7rem; border-radius:8px; text-decoration:none; }
+    .post a:hover{ background:var(--brand-hover); }
+
+    /* CTA final */
+    .cta{ margin-top:2rem; background:#f7fafc; padding:2rem; text-align:center; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
+    .cta a{ display:inline-block; margin-top:1rem; background:var(--brand); color:#fff; text-decoration:none; padding:.7rem 1.4rem; border-radius:10px; font-weight:700; }
+    .cta a:hover{ background:var(--brand-hover); }
+
+    footer{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:var(--whiteglass); border-top-left-radius:var(--radius); border-top-right-radius:var(--radius); }
+
+    /* Responsive */
+    @media (min-width: 680px){
+      .glance .item{ grid-column:span 4; }
+      .post{ grid-column:span 4; }
+    }
+    @media (max-width: 880px){
+      nav.primary{ display:none; }
+      .burger{ display:inline-flex; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      *{ scroll-behavior:auto; transition:none !important; }
+    }
   </style>
 </head>
 <body>
@@ -49,10 +154,10 @@
         <a href="dashboard-de.html">Dashboard</a>
         <a href="blog-de.html">Blog</a>
         <a href="contact-de.html">Kontakt</a>
-      <span class="lang" aria-label="Sprache wechseln">
-        <a href="index.html" lang="fr">FR</a> |
-        <a href="index-de.html" lang="de" aria-current="true">DE</a>
-      </span>
+        <span class="lang" aria-label="Sprache wechseln">
+          <a href="index.html" lang="fr">FR</a> |
+          <a href="index-de.html" lang="de" aria-current="true">DE</a>
+        </span>
       </nav>
       <button class="burger" id="burger" aria-label="Menü öffnen" aria-controls="menu-mobile" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
@@ -87,7 +192,7 @@
         <div class="glance" aria-label="Auf einen Blick">
           <div class="item">
             <strong>Zielgerichtetes Stipendium</strong>
-            Deckt einen Teil der Ausbildungs- und wichtigen Ausrüstungskosten ab.
+            Deckt einen Teil der Ausbildungs- und der wichtigsten Ausrüstungskosten ab.
           </div>
           <div class="item">
             <strong>Mentoring & Netzwerk</strong>
@@ -101,7 +206,7 @@
 
         <!-- Schnelle Links -->
         <div class="quick" role="group" aria-label="Schnelle Links">
-          <a class="btn" href="project-de.html">Das Projekt verstehen</a>
+          <a class="btn" href="project-de.html">Projekt verstehen</a>
           <a class="btn outline" href="contact-de.html">Kontaktiert werden</a>
           <a class="btn" href="donate-de.html">Spenden</a>
         </div>
@@ -110,14 +215,14 @@
       <!-- INFO -->
       <section class="content">
         <h3>Warum Sophira?</h3>
-        <p>Sophira entstand aus der Überzeugung, dass die digitalen und ökologischen Übergänge den Arbeitsmarkt verändern
-          und dabei oft Erwachsene in prekären Situationen ausschliessen. Gleichzeitig wächst in der Schweiz der Bedarf
+        <p>Sophira entstand aus der Überzeugung, dass die digitalen und ökologischen Transformationen den Arbeitsmarkt verändern
+          und dabei oft Erwachsene in prekären Situationen ausschliessen. Gleichzeitig steigt in der Schweiz der Bedarf
           an qualifizierten Fachkräften in diesen Bereichen.</p>
-        <p>Wir setzen uns dafür ein, Barrieren zu überwinden und konkrete Chancen zu schaffen. Sophira begleitet Erwachsene bei der Neuorientierung
-          in sinnstiftende Berufe, vermittelt digitale und analytische Kompetenzen und bietet finanzielle wie auch menschliche Unterstützung.</p>
+        <p>Wir setzen uns dafür ein, Barrieren abzubauen und konkrete Chancen zu schaffen. Sophira begleitet Erwachsene bei der Neuorientierung
+          in sinnstiftende Berufe, vermittelt die nötigen digitalen und analytischen Kompetenzen und bietet finanzielle sowie menschliche Unterstützung.</p>
       </section>
 
-      <!-- BLOG-TEASER -->
+      <!-- Blog-Teaser (3 Karten) -->
       <section class="teaser" aria-label="Neueste Artikel">
         <h3>Lesenswert im Blog</h3>
         <div class="posts">
