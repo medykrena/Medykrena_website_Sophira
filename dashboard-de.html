@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="de" itemscope itemtype="https://schema.org/Dataset">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard – Sophira</title>
+
+  <!-- SEO -->
+  <link rel="canonical" href="https://sophira.org/dashboard-de.html" />
+  <meta name="robots" content="index,follow" />
+  <meta name="description" content="Entdecken Sie das interaktive Dashboard von Sophira: Datenvisualisierungen zu Beschäftigung, Wachstum und Branchen in Europa und der Schweiz." />
+
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="fr" href="https://sophira.org/dashboard.html" />
+  <link rel="alternate" hreflang="de" href="https://sophira.org/dashboard-de.html" />
+  <link rel="alternate" hreflang="x-default" href="https://sophira.org/dashboard.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Dashboard – Sophira" />
+  <meta property="og:description" content="Interaktive Visualisierungen zu Beschäftigung, Wachstum und Branchen." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sophira.org/dashboard-de.html" />
+  <meta property="og:image" content="https://sophira.org/Logo_sophira.png" />
+  <meta property="og:site_name" content="Sophira" />
+  <meta property="og:locale" content="de_CH" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dashboard – Sophira" />
+  <meta name="twitter:description" content="Erkunden Sie unsere interaktiven Dashboards auf Basis öffentlicher Quellen." />
+  <meta name="twitter:image" content="https://sophira.org/Logo_sophira.png" />
+
+  <!-- Browser-Farbe & Icons -->
+  <meta name="theme-color" content="#1a73e8" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+  <!-- Schrift -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Strukturierte Daten (Dataset) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "Sophira – Dashboard-Visualisierungen",
+    "description": "Interaktive Visualisierungen zu Beschäftigung, Wachstum und Branchen in Europa und der Schweiz.",
+    "creator": { "@type": "Organization", "name": "Sophira", "url": "https://sophira.org/" },
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "url": "https://sophira.org/dashboard-de.html",
+    "distribution": [
+      { "@type": "DataDownload", "name": "Stellensuchende – Kategorie 2 (RTS Info)", "contentUrl": "https://public.tableau.com/views/DemandeursemploiCat2/Dashboard1?:showVizHome=no&embed=true" },
+      { "@type": "DataDownload", "name": "Europäisches Wachstum (RTS Info)", "contentUrl": "https://public.tableau.com/views/croissance_europenne/Dashboard1?:showVizHome=no&embed=true" },
+      { "@type": "DataDownload", "name": "Arbeitsmarktentwicklung – Branchen & Löhne (Vincent Laporte)", "contentUrl": "https://public.tableau.com/views/Prospectiveemploi/Secteurssalaris?:showVizHome=no&embed=true" },
+      { "@type": "DataDownload", "name": "Industrieanteil an der Beschäftigung (Grégoire3273)", "contentUrl": "https://public.tableau.com/views/poidsdelindustriedanslemploi/Dashboard1?:showVizHome=no&embed=true" }
+    ]
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg-overlay: rgba(255,255,255,0.92);
+      --card-bg: rgba(255,255,255,0.88);
+      --text: #2c3e50;
+      --muted: #4a5568;
+      --brand: #1a73e8;
+      --brand-hover: #155ab6;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --radius: 12px;
+      --container: 1100px;
+      --focus:#0d6efd;
+      --focus-bg:#e8f0fe;
+    }
+    *{ box-sizing:border-box; }
+    html:focus-within{ scroll-behavior:smooth; }
+    body{
+      margin:0; font-family:'Inter',sans-serif;
+      background:url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center center fixed;
+      background-size:cover; color:var(--text);
+    }
+    body.no-scroll{ overflow:hidden; }
+    .overlay{ background-color:var(--bg-overlay); min-height:100vh; display:flex; flex-direction:column; }
+
+    /* Skip-Link */
+    .skip-link{
+      position:absolute; left:1rem; top:.5rem;
+      transform:translateY(-200%);
+      background:#000; color:#fff; padding:.6rem .9rem; border-radius:8px;
+      text-decoration:none; z-index:1000; box-shadow:var(--shadow-sm);
+    }
+    .skip-link:focus, .skip-link:focus-visible{ transform:translateY(0); outline:2px solid #fff; }
+
+    /* NAVBAR */
+    header.navbar{
+      position:sticky; top:0; z-index:20;
+      display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+      padding:.8rem 1rem; background:#ffffffdd; box-shadow:var(--shadow-sm); backdrop-filter:blur(6px);
+    }
+    .brand{ display:flex; align-items:center; gap:.6rem; }
+    .brand img{ height:55px; }
+    .brand h1{ margin:0; font-size:1.7rem; font-weight:600; color:#1a202c; }
+
+    nav.primary{ display:flex; gap:1.1rem; align-items:center; }
+    nav.primary a{ text-decoration:none; color:var(--text); font-weight:500; }
+    nav.primary a:hover, nav.primary a:focus{ color:#1e88e5; }
+
+    /* Sichtbarer Fokus */
+    a:focus-visible, button:focus-visible{
+      outline:3px solid var(--focus);
+      outline-offset:2px;
+      background:linear-gradient(0deg, var(--focus-bg), var(--focus-bg)) no-repeat;
+    }
+
+    /* Sprachumschalter */
+    .lang{ display:inline-flex; gap:.4rem; margin-left:.6rem; font-size:.95rem; }
+    .lang a{ color:#5b6b7a; text-decoration:none; }
+    .lang a[aria-current="true"]{ font-weight:700; color:#1a202c; }
+
+    .burger{ display:none; background:none; border:none; padding:.4rem .6rem; }
+    .burger svg{ width:28px; height:28px; }
+
+    .mobile-panel{
+      display:block; /* Sichtbarkeit via [hidden] */
+      position:fixed; inset:64px 0 0 0; background:#ffffffdd; backdrop-filter:blur(6px); padding:1rem;
+    }
+    [hidden]{ display:none !important; }
+    .mobile-links{ display:flex; flex-direction:column; gap:.8rem; }
+    .mobile-links a{ text-decoration:none; color:var(--text); font-weight:600; padding:.7rem 0; border-bottom:1px solid #ddd; }
+    .mobile-links a:last-child{ border-bottom:none; }
+    .hidden{ display:none !important; }
+
+    .container{ flex:1; max-width:var(--container); margin:2rem auto; padding:0 1rem; }
+
+    /* Brotkrumen */
+    nav.breadcrumbs{ font-size:.9rem; margin:1rem 0; }
+    nav.breadcrumbs ol{ list-style:none; display:flex; gap:.5rem; padding:0; margin:0; }
+    nav.breadcrumbs li{ color:var(--muted); }
+    nav.breadcrumbs a{ text-decoration:none; color:var(--brand); }
+
+    /* Sections */
+    .section{ background:var(--card-bg); padding:2rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); margin-bottom:2rem; }
+    .section h2{ text-align:center; font-size:1.8rem; margin-bottom:1rem; }
+    .section p{ font-size:1rem; line-height:1.6; color:#374151; text-align:center; }
+
+    /* Grid der Visualisierungen */
+    .viz-grid{ display:grid; grid-template-columns:repeat(12,1fr); gap:1.2rem; margin-top:1.5rem; }
+    .viz-card{ grid-column:span 12; background:#fff; border-radius:var(--radius); box-shadow:var(--shadow-sm); padding:1rem; }
+    .viz-card h3{ margin:0 0 .3rem 0; font-size:1.15rem; }
+    .viz-meta{ font-size:.92rem; color:var(--muted); margin-bottom:.6rem; }
+    .iframe-container{ position:relative; padding-top:56.25%; overflow:hidden; border-radius:10px; box-shadow:var(--shadow-sm); }
+    .iframe-container iframe{ position:absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+    /* CTA */
+    .cta{ text-align:center; background:#f7fafc; padding:2rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
+    .cta h3{ margin-top:0; }
+    .cta a{ display:inline-block; margin-top:1rem; background:var(--brand); color:#fff; text-decoration:none; padding:.7rem 1.4rem; border-radius:10px; font-weight:700; }
+    .cta a:hover{ background:var(--brand-hover); }
+
+    footer.site{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:#ffffffdd; border-top-left-radius:var(--radius); border-top-right-radius:var(--radius); }
+
+    @media (min-width:680px){ .viz-card{ grid-column:span 6; } }
+    @media (min-width:1100px){ .viz-card{ grid-column:span 6; } }
+    @media (max-width:880px){ nav.primary{ display:none; } .burger{ display:inline-flex; } }
+  </style>
+</head>
+<body>
+  <!-- Skip-Link -->
+  <a class="skip-link" href="#main">Zum Hauptinhalt springen</a>
+
+  <div class="overlay">
+    <!-- NAVIGATION -->
+    <header class="navbar" role="navigation" aria-label="Hauptnavigation">
+      <a class="brand" href="index-de.html">
+        <img src="Logo_sophira.png" alt="Logo Sophira" />
+        <h1>Sophira</h1>
+      </a>
+      <nav class="primary" aria-label="Hauptlinks">
+        <a href="index-de.html">Startseite</a>
+        <a href="team-de.html">Team</a>
+        <a href="project-de.html">Soziales Projekt</a>
+        <a href="dashboard-de.html" aria-current="page">Dashboard</a>
+        <a href="blog-de.html">Blog</a>
+        <a href="contact-de.html">Kontakt</a>
+        <span class="lang" aria-label="Sprache wechseln">
+          <a href="dashboard.html" lang="fr">FR</a> |
+          <a href="dashboard-de.html" lang="de" aria-current="true">DE</a>
+        </span>
+      </nav>
+      <button class="burger" id="burger" aria-label="Menü öffnen" aria-controls="menu-mobile" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </header>
+
+    <!-- MOBILES MENÜ -->
+    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Mobiles Menü" aria-hidden="true" hidden>
+      <div class="mobile-links">
+        <a href="index-de.html">Startseite</a>
+        <a href="team-de.html">Team</a>
+        <a href="project-de.html">Soziales Projekt</a>
+        <a href="dashboard-de.html" aria-current="page">Dashboard</a>
+        <a href="blog-de.html">Blog</a>
+        <a href="contact-de.html">Kontakt</a>
+      </div>
+    </div>
+
+    <!-- BROTKRUMEN -->
+    <nav class="breadcrumbs container" aria-label="Brotkrumen">
+      <ol>
+        <li><a href="index-de.html">Startseite</a></li>
+        <li>›</li>
+        <li>Dashboard</li>
+      </ol>
+    </nav>
+
+    <!-- INHALT -->
+    <main id="main" class="container">
+      <section class="section">
+        <h2>Interaktives Dashboard</h2>
+        <p itemprop="description">Ausgewählte Visualisierungen (öffentliche Tableau-Quellen) zu Beschäftigung, Wachstum und Branchenstruktur. Nutzen Sie die Filter direkt in jedem Chart.</p>
+
+        <div class="viz-grid" aria-label="Eingebettete Visualisierungen">
+          <!-- Viz 1 -->
+          <article class="viz-card">
+            <h3>Stellensuchende – Kategorie 2</h3>
+            <div class="viz-meta">Quelle: RTS Info · Tableau Public</div>
+            <div class="iframe-container">
+              <iframe
+                src="https://public.tableau.com/views/DemandeursemploiCat2/Dashboard1?:showVizHome=no&embed=true"
+                title="RTS – Stellensuchende Kategorie 2"
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+              ></iframe>
+            </div>
+          </article>
+
+          <!-- Viz 2 -->
+          <article class="viz-card">
+            <h3>Wachstum in Europa</h3>
+            <div class="viz-meta">Quelle: RTS Info · Tableau Public</div>
+            <div class="iframe-container">
+              <iframe
+                src="https://public.tableau.com/views/croissance_europenne/Dashboard1?:showVizHome=no&embed=true"
+                title="RTS – Wachstum in Europa"
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+              ></iframe>
+            </div>
+          </article>
+
+          <!-- Viz 3 -->
+          <article class="viz-card">
+            <h3>Arbeitsmarktentwicklung – Branchen &amp; Löhne</h3>
+            <div class="viz-meta">Quelle: Vincent Laporte · Tableau Public</div>
+            <div class="iframe-container">
+              <iframe
+                src="https://public.tableau.com/views/Prospectiveemploi/Secteurssalaris?:showVizHome=no&embed=true"
+                title="Arbeitsmarktentwicklung – Branchen & Löhne"
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+              ></iframe>
+            </div>
+          </article>
+
+          <!-- Viz 4 -->
+          <article class="viz-card">
+            <h3>Industrieanteil an der Beschäftigung</h3>
+            <div class="viz-meta">Quelle: Grégoire3273 · Tableau Public</div>
+            <div class="iframe-container">
+              <iframe
+                src="https://public.tableau.com/views/poidsdelindustriedanslemploi/Dashboard1?:showVizHome=no&embed=true"
+                title="Industrieanteil an der Beschäftigung"
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+              ></iframe>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta" aria-label="Call to Action">
+        <h3>Sie haben Daten zu teilen?</h3>
+        <p>Tragen Sie zur Erweiterung dieses Dashboards bei (Partnerschaften, Datensätze, Visualisierungsideen).</p>
+        <a href="contact-de.html">Kontakt aufnehmen</a>
+      </section>
+    </main>
+
+    <footer class="site">
+      <p>&copy; 2025 Sophira Verein | Basel, Schweiz</p>
+    </footer>
+  </div>
+
+  <!-- JS mobiles Menü (Focus Trap + ARIA-Updates) -->
+  <script>
+    (function(){
+      const burger = document.getElementById('burger');
+      const panel  = document.getElementById('menu-mobile');
+      const focusableSelector = 'a, button';
+      let lastFocused = null;
+
+      if(!burger || !panel) return;
+
+      function getFocusable(){
+        return panel.querySelectorAll(focusableSelector);
+      }
+
+      function openMenu(){
+        panel.classList.remove('hidden');
+        panel.removeAttribute('hidden');
+        panel.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('no-scroll');
+        burger.setAttribute('aria-expanded', 'true');
+        burger.setAttribute('aria-label', 'Menü schliessen');
+        lastFocused = document.activeElement;
+        const f = getFocusable();
+        if(f.length) f[0].focus();
+      }
+
+      function closeMenu(){
+        panel.classList.add('hidden');
+        panel.setAttribute('hidden', '');
+        panel.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('no-scroll');
+        burger.setAttribute('aria-expanded', 'false');
+        burger.setAttribute('aria-label', 'Menü öffnen');
+        if (lastFocused) lastFocused.focus();
+      }
+
+      function toggleMenu(){
+        if(panel.classList.contains('hidden')) openMenu(); else closeMenu();
+      }
+
+      burger.addEventListener('click', toggleMenu);
+
+      // Klick ausserhalb schliesst
+      document.addEventListener('click', (e)=>{
+        if(panel.classList.contains('hidden')) return;
+        const within = panel.contains(e.target) || burger.contains(e.target);
+        if(!within) closeMenu();
+      });
+
+      // ESC & Focus Trap
+      document.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape' && !panel.classList.contains('hidden')) closeMenu();
+
+        if(e.key === 'Tab' && !panel.classList.contains('hidden')){
+          const f = Array.from(getFocusable());
+          if(!f.length) return;
+          const first = f[0];
+          const last  = f[f.length - 1];
+          if(e.shiftKey && document.activeElement === first){
+            e.preventDefault(); last.focus();
+          } else if(!e.shiftKey && document.activeElement === last){
+            e.preventDefault(); first.focus();
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
