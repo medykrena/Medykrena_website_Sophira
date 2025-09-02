@@ -10,19 +10,12 @@
   <meta name="robots" content="index,follow" />
   <meta name="description" content="Découvrez le tableau de bord interactif de Sophira : visualisations de données sur l’emploi, la croissance et les secteurs en Europe et en Suisse." />
 
-  <!-- Hreflang -->
-  <link rel="alternate" hreflang="fr" href="https://sophira.org/dashboard.html" />
-  <link rel="alternate" hreflang="de" href="https://sophira.org/dashboard-de.html" />
-  <link rel="alternate" hreflang="x-default" href="https://sophira.org/dashboard.html" />
-
   <!-- Open Graph -->
   <meta property="og:title" content="Tableau de bord – Sophira" />
   <meta property="og:description" content="Visualisations interactives sur l’emploi, la croissance et les secteurs économiques." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sophira.org/dashboard.html" />
   <meta property="og:image" content="https://sophira.org/Logo_sophira.png" />
-  <meta property="og:site_name" content="Sophira" />
-  <meta property="og:locale" content="fr_CH" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -30,38 +23,8 @@
   <meta name="twitter:description" content="Explorez nos dashboards interactifs basés sur des sources publiques." />
   <meta name="twitter:image" content="https://sophira.org/Logo_sophira.png" />
 
-  <!-- Navigateur & icônes -->
-  <meta name="theme-color" content="#1a73e8" />
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-
   <!-- Police -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-
-  <!-- Données structurées (Dataset) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Dataset",
-    "name": "Sophira – Visualisations du tableau de bord",
-    "description": "Visualisations interactives sur l’emploi, la croissance et la structure sectorielle en Europe et en Suisse.",
-    "creator": { "@type": "Organization", "name": "Sophira", "url": "https://sophira.org/" },
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "url": "https://sophira.org/dashboard.html",
-    "distribution": [
-      { "@type": "DataDownload", "name": "Automatisation et emplois aux États-Unis (McKinsey Analytics)", "contentUrl": "https://public.tableau.com/views/AutomationandUSjobs/USAutomationlandscape?:showVizHome=no&embed=true" },
-      { "@type": "DataDownload", "name": "Automatisation en Angleterre (Mohammed Hemayed)", "contentUrl": "https://public.tableau.com/views/JobAutomationinEngland/AutomationinEngland?:showVizHome=no&embed=true" },
-      { "@type": "DataDownload", "name": "Demandeurs d’emploi – Catégorie 2 (RTS Info)", "contentUrl": "https://public.tableau.com/views/DemandeursemploiCat2/Dashboard1?:showVizHome=no&embed=true" },
-      { "@type": "DataDownload", "name": "Croissance européenne (RTS Info)", "contentUrl": "https://public.tableau.com/views/croissance_europenne/Dashboard1?:showVizHome=no&embed=true" },
-      { "@type": "DataDownload", "name": "Prospective emploi – Secteurs & salaires (Vincent Laporte)", "contentUrl": "https://public.tableau.com/views/Prospectiveemploi/Secteurssalaris?:showVizHome=no&embed=true" },
-      { "@type": "DataDownload", "name": "Poids de l’industrie dans l’emploi (Grégoire3273)", "contentUrl": "https://public.tableau.com/views/poidsdelindustriedanslemploi/Dashboard1?:showVizHome=no&embed=true" }
-    ]
-  }
-  </script>
 
   <style>
     :root{
@@ -75,27 +38,13 @@
       --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
       --radius: 12px;
       --container: 1100px;
-      --focus:#0d6efd;
-      --focus-bg:#e8f0fe;
     }
-    *{ box-sizing:border-box; }
-    html:focus-within{ scroll-behavior:smooth; }
     body{
       margin:0; font-family:'Inter',sans-serif;
       background:url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center center fixed;
       background-size:cover; color:var(--text);
     }
-    body.no-scroll{ overflow:hidden; }
     .overlay{ background-color:var(--bg-overlay); min-height:100vh; display:flex; flex-direction:column; }
-
-    /* Skip-link */
-    .skip-link{
-      position:absolute; left:1rem; top:.5rem;
-      transform:translateY(-200%);
-      background:#000; color:#fff; padding:.6rem .9rem; border-radius:8px;
-      text-decoration:none; z-index:1000; box-shadow:var(--shadow-sm);
-    }
-    .skip-link:focus, .skip-link:focus-visible{ transform:translateY(0); outline:2px solid #fff; }
 
     /* NAVBAR */
     header.navbar{
@@ -109,16 +58,9 @@
 
     nav.primary{ display:flex; gap:1.1rem; align-items:center; }
     nav.primary a{ text-decoration:none; color:var(--text); font-weight:500; }
-    nav.primary a:hover, nav.primary a:focus{ color:#1e88e5; }
+    nav.primary a:hover{ color:#1e88e5; }
 
-    /* Focus visible */
-    a:focus-visible, button:focus-visible{
-      outline:3px solid var(--focus);
-      outline-offset:2px;
-      background:linear-gradient(0deg, var(--focus-bg), var(--focus-bg)) no-repeat;
-    }
-
-    /* Sélecteur de langue */
+    /* Lang switch */
     .lang{ display:inline-flex; gap:.4rem; margin-left:.6rem; font-size:.95rem; }
     .lang a{ color:#5b6b7a; text-decoration:none; }
     .lang a[aria-current="true"]{ font-weight:700; color:#1a202c; }
@@ -126,11 +68,7 @@
     .burger{ display:none; background:none; border:none; padding:.4rem .6rem; }
     .burger svg{ width:28px; height:28px; }
 
-    .mobile-panel{
-      display:block; /* visibilité gérée par [hidden] */
-      position:fixed; inset:64px 0 0 0; background:#ffffffdd; backdrop-filter:blur(6px); padding:1rem;
-    }
-    [hidden]{ display:none !important; }
+    .mobile-panel{ display:none; position:fixed; inset:64px 0 0 0; background:#ffffffdd; backdrop-filter:blur(6px); padding:1rem; }
     .mobile-links{ display:flex; flex-direction:column; gap:.8rem; }
     .mobile-links a{ text-decoration:none; color:var(--text); font-weight:600; padding:.7rem 0; border-bottom:1px solid #ddd; }
     .mobile-links a:last-child{ border-bottom:none; }
@@ -149,13 +87,19 @@
     .section h2{ text-align:center; font-size:1.8rem; margin-bottom:1rem; }
     .section p{ font-size:1rem; line-height:1.6; color:#374151; text-align:center; }
 
-    /* Grille des viz */
+    /* Grid des viz */
     .viz-grid{ display:grid; grid-template-columns:repeat(12,1fr); gap:1.2rem; margin-top:1.5rem; }
     .viz-card{ grid-column:span 12; background:#fff; border-radius:var(--radius); box-shadow:var(--shadow-sm); padding:1rem; }
     .viz-card h3{ margin:0 0 .3rem 0; font-size:1.15rem; }
     .viz-meta{ font-size:.92rem; color:var(--muted); margin-bottom:.6rem; }
     .iframe-container{ position:relative; padding-top:56.25%; overflow:hidden; border-radius:10px; box-shadow:var(--shadow-sm); }
     .iframe-container iframe{ position:absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+    /* Bouton "Voir sur Tableau Public" */
+    .viz-actions{ margin-top:.6rem; display:flex; justify-content:flex-end; }
+    .btn.small{ padding:.4rem .7rem; font-size:.9rem; border-radius:8px; font-weight:600; }
+    .btn.link{ background:transparent; color:#1a73e8; border:2px solid #1a73e8; text-decoration:none; }
+    .btn.link:hover{ background:#e8f0fe; }
 
     /* CTA */
     .cta{ text-align:center; background:#f7fafc; padding:2rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
@@ -171,11 +115,8 @@
   </style>
 </head>
 <body>
-  <!-- Skip-link -->
-  <a class="skip-link" href="#main">Aller au contenu principal</a>
-
   <div class="overlay">
-    <!-- NAVIGATION -->
+    <!-- NAVBAR -->
     <header class="navbar" role="navigation" aria-label="Navigation principale">
       <a class="brand" href="index.html">
         <img src="Logo_sophira.png" alt="Logo Sophira" />
@@ -194,12 +135,12 @@
         </span>
       </nav>
       <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-controls="menu-mobile" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
     </header>
 
     <!-- MENU MOBILE -->
-    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Menu mobile" aria-hidden="true" hidden>
+    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Menu mobile">
       <div class="mobile-links">
         <a href="index.html">Accueil</a>
         <a href="team.html">Équipe</a>
@@ -220,93 +161,81 @@
     </nav>
 
     <!-- CONTENU -->
-    <main id="main" class="container">
+    <main class="container">
       <section class="section">
         <h2>Tableau de bord interactif</h2>
         <p itemprop="description">Visualisations sélectionnées (sources publiques Tableau) pour éclairer l’emploi, la croissance et la structure sectorielle. Utilisez les filtres directement dans chaque graphique.</p>
 
         <div class="viz-grid" aria-label="Visualisations intégrées">
-          <!-- NOUVEAU : McKinsey – Automation & US Jobs -->
+          <!-- Viz 1 : McKinsey -->
           <article class="viz-card">
             <h3>Automatisation et emplois aux États-Unis</h3>
             <div class="viz-meta">Source : McKinsey Analytics · Tableau Public</div>
             <div class="iframe-container">
-              <iframe
-                src="https://public.tableau.com/views/AutomationandUSjobs/USAutomationlandscape?:showVizHome=no&embed=true"
-                title="McKinsey Analytics – Automation and US jobs"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-              ></iframe>
+              <iframe src="https://public.tableau.com/views/AutomationandUSjobs/USAutomationlandscape?:showVizHome=no&embed=true" title="McKinsey – Automatisation et emplois aux États-Unis" loading="lazy"></iframe>
+            </div>
+            <div class="viz-actions">
+              <a class="btn small link" href="https://public.tableau.com/views/AutomationandUSjobs/USAutomationlandscape" target="_blank" rel="noopener noreferrer">Voir sur Tableau Public</a>
             </div>
           </article>
 
-          <!-- NOUVEAU : Automation in England -->
+          <!-- Viz 2 : Angleterre -->
           <article class="viz-card">
-            <h3>Automatisation en Angleterre</h3>
+            <h3>Automatisation des emplois en Angleterre</h3>
             <div class="viz-meta">Source : Mohammed Hemayed · Tableau Public</div>
             <div class="iframe-container">
-              <iframe
-                src="https://public.tableau.com/views/JobAutomationinEngland/AutomationinEngland?:showVizHome=no&embed=true"
-                title="Job Automation in England – Mohammed Hemayed"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-              ></iframe>
+              <iframe src="https://public.tableau.com/views/JobAutomationinEngland/AutomationinEngland?:showVizHome=no&embed=true" title="Automatisation des emplois en Angleterre" loading="lazy"></iframe>
+            </div>
+            <div class="viz-actions">
+              <a class="btn small link" href="https://public.tableau.com/views/JobAutomationinEngland/AutomationinEngland" target="_blank" rel="noopener noreferrer">Voir sur Tableau Public</a>
             </div>
           </article>
 
-          <!-- Viz existante 1 -->
+          <!-- Viz 3 : Demandeurs d’emploi -->
           <article class="viz-card">
             <h3>Demandeurs d’emploi – Catégorie 2</h3>
             <div class="viz-meta">Source : RTS Info · Tableau Public</div>
             <div class="iframe-container">
-              <iframe
-                src="https://public.tableau.com/views/DemandeursemploiCat2/Dashboard1?:showVizHome=no&embed=true"
-                title="RTS – Demandeurs d'emploi Catégorie 2"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-              ></iframe>
+              <iframe src="https://public.tableau.com/views/DemandeursemploiCat2/Dashboard1?:showVizHome=no&embed=true" title="RTS – Demandeurs d'emploi Catégorie 2" loading="lazy"></iframe>
+            </div>
+            <div class="viz-actions">
+              <a class="btn small link" href="https://public.tableau.com/views/DemandeursemploiCat2/Dashboard1" target="_blank" rel="noopener noreferrer">Voir sur Tableau Public</a>
             </div>
           </article>
 
-          <!-- Viz existante 2 -->
+          <!-- Viz 4 : Croissance -->
           <article class="viz-card">
             <h3>Croissance européenne</h3>
             <div class="viz-meta">Source : RTS Info · Tableau Public</div>
             <div class="iframe-container">
-              <iframe
-                src="https://public.tableau.com/views/croissance_europenne/Dashboard1?:showVizHome=no&embed=true"
-                title="RTS – Croissance européenne"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-              ></iframe>
+              <iframe src="https://public.tableau.com/views/croissance_europenne/Dashboard1?:showVizHome=no&embed=true" title="RTS – Croissance européenne" loading="lazy"></iframe>
+            </div>
+            <div class="viz-actions">
+              <a class="btn small link" href="https://public.tableau.com/views/croissance_europenne/Dashboard1" target="_blank" rel="noopener noreferrer">Voir sur Tableau Public</a>
             </div>
           </article>
 
-          <!-- Viz existante 3 -->
+          <!-- Viz 5 : Prospective emploi -->
           <article class="viz-card">
-            <h3>Prospective emploi – Secteurs &amp; salaires</h3>
+            <h3>Prospective emploi – Secteurs & salaires</h3>
             <div class="viz-meta">Source : Vincent Laporte · Tableau Public</div>
             <div class="iframe-container">
-              <iframe
-                src="https://public.tableau.com/views/Prospectiveemploi/Secteurssalaris?:showVizHome=no&embed=true"
-                title="Prospective emploi – Secteurs et salaires"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-              ></iframe>
+              <iframe src="https://public.tableau.com/views/Prospectiveemploi/Secteurssalaris?:showVizHome=no&embed=true" title="Prospective emploi – Secteurs et salaires" loading="lazy"></iframe>
+            </div>
+            <div class="viz-actions">
+              <a class="btn small link" href="https://public.tableau.com/views/Prospectiveemploi/Secteurssalaris" target="_blank" rel="noopener noreferrer">Voir sur Tableau Public</a>
             </div>
           </article>
 
-          <!-- Viz existante 4 -->
+          <!-- Viz 6 : Industrie -->
           <article class="viz-card">
             <h3>Poids de l’industrie dans l’emploi</h3>
             <div class="viz-meta">Source : Grégoire3273 · Tableau Public</div>
             <div class="iframe-container">
-              <iframe
-                src="https://public.tableau.com/views/poidsdelindustriedanslemploi/Dashboard1?:showVizHome=no&embed=true"
-                title="Poids de l’industrie dans l’emploi"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-              ></iframe>
+              <iframe src="https://public.tableau.com/views/poidsdelindustriedanslemploi/Dashboard1?:showVizHome=no&embed=true" title="Poids de l’industrie dans l’emploi" loading="lazy"></iframe>
+            </div>
+            <div class="viz-actions">
+              <a class="btn small link" href="https://public.tableau.com/views/poidsdelindustriedanslemploi/Dashboard1" target="_blank" rel="noopener noreferrer">Voir sur Tableau Public</a>
             </div>
           </article>
         </div>
@@ -325,57 +254,19 @@
     </footer>
   </div>
 
-  <!-- JS menu mobile (focus trap + ARIA) -->
+  <!-- JS menu mobile -->
   <script>
     (function(){
       const burger = document.getElementById('burger');
       const panel  = document.getElementById('menu-mobile');
-      const focusableSelector = 'a, button';
-      let lastFocused = null;
-
       if(!burger || !panel) return;
-
-      function getFocusable(){ return panel.querySelectorAll(focusableSelector); }
-
-      function openMenu(){
-        panel.classList.remove('hidden');
-        panel.removeAttribute('hidden');
-        panel.setAttribute('aria-hidden', 'false');
-        document.body.classList.add('no-scroll');
-        burger.setAttribute('aria-expanded', 'true');
-        burger.setAttribute('aria-label', 'Fermer le menu');
-        lastFocused = document.activeElement;
-        const f = getFocusable(); if(f.length) f[0].focus();
+      function toggleMenu(){
+        const open = panel.classList.toggle('hidden') === false;
+        burger.setAttribute('aria-expanded', String(open));
       }
-
-      function closeMenu(){
-        panel.classList.add('hidden');
-        panel.setAttribute('hidden', '');
-        panel.setAttribute('aria-hidden', 'true');
-        document.body.classList.remove('no-scroll');
-        burger.setAttribute('aria-expanded', 'false');
-        burger.setAttribute('aria-label', 'Ouvrir le menu');
-        if (lastFocused) lastFocused.focus();
-      }
-
-      function toggleMenu(){ panel.classList.contains('hidden') ? openMenu() : closeMenu(); }
       burger.addEventListener('click', toggleMenu);
-
-      document.addEventListener('click', (e)=>{
-        if(panel.classList.contains('hidden')) return;
-        const within = panel.contains(e.target) || burger.contains(e.target);
-        if(!within) closeMenu();
-      });
-
-      document.addEventListener('keydown', (e)=>{
-        if(e.key === 'Escape' && !panel.classList.contains('hidden')) closeMenu();
-        if(e.key === 'Tab' && !panel.classList.contains('hidden')){
-          const f = Array.from(getFocusable()); if(!f.length) return;
-          const first = f[0], last = f[f.length - 1];
-          if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
-          else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
-        }
-      });
+      document.addEventListener('click', (e)=>{ if(!panel.classList.contains('hidden') && !panel.contains(e.target) && !burger.contains(e.target)){ toggleMenu(); }});
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && !panel.classList.contains('hidden')) toggleMenu(); });
     })();
   </script>
 </body>
