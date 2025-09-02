@@ -42,27 +42,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- Strukturierte Daten (Dataset) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Dataset",
-    "name": "Sophira – Dashboard-Visualisierungen",
-    "description": "Interaktive Visualisierungen zu Beschäftigung, Wachstum und Branchen in Europa und der Schweiz.",
-    "creator": { "@type": "Organization", "name": "Sophira", "url": "https://sophira.org/" },
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "url": "https://sophira.org/dashboard-de.html",
-    "distribution": [
-      { "@type": "DataDownload", "name": "Automatisierung und US-Arbeitsplätze (McKinsey Analytics)", "contentUrl": "https://public.tableau.com/views/AutomationandUSjobs/USAutomationlandscape?:showVizHome=no&embed=true" },
-      { "@type": "DataDownload", "name": "Automatisierung in England (Mohammed Hemayed)", "contentUrl": "https://public.tableau.com/views/JobAutomationinEngland/AutomationinEngland?:showVizHome=no&embed=true" },
-      { "@type": "DataDownload", "name": "Stellensuchende – Kategorie 2 (RTS Info)", "contentUrl": "https://public.tableau.com/views/DemandeursemploiCat2/Dashboard1?:showVizHome=no&embed=true" },
-      { "@type": "DataDownload", "name": "Europäisches Wachstum (RTS Info)", "contentUrl": "https://public.tableau.com/views/croissance_europenne/Dashboard1?:showVizHome=no&embed=true" },
-      { "@type": "DataDownload", "name": "Arbeitsmarktentwicklung – Branchen & Löhne (Vincent Laporte)", "contentUrl": "https://public.tableau.com/views/Prospectiveemploi/Secteurssalaris?:showVizHome=no&embed=true" },
-      { "@type": "DataDownload", "name": "Industrieanteil an der Beschäftigung (Grégoire3273)", "contentUrl": "https://public.tableau.com/views/poidsdelindustriedanslemploi/Dashboard1?:showVizHome=no&embed=true" }
-    ]
-  }
-  </script>
-
   <style>
     :root{
       --bg-overlay: rgba(255,255,255,0.92);
@@ -157,6 +136,12 @@
     .iframe-container{ position:relative; padding-top:56.25%; overflow:hidden; border-radius:10px; box-shadow:var(--shadow-sm); }
     .iframe-container iframe{ position:absolute; top:0; left:0; width:100%; height:100%; border:none; }
 
+    /* Extra Button */
+    .viz-actions{ margin-top:.6rem; display:flex; justify-content:flex-end; }
+    .btn.small{ padding:.4rem .7rem; font-size:.9rem; border-radius:8px; font-weight:600; }
+    .btn.link{ background:transparent; color:#1a73e8; border:2px solid #1a73e8; text-decoration:none; }
+    .btn.link:hover{ background:#e8f0fe; }
+
     /* CTA */
     .cta{ text-align:center; background:#f7fafc; padding:2rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
     .cta h3{ margin-top:0; }
@@ -226,87 +211,75 @@
         <p itemprop="description">Ausgewählte Visualisierungen (öffentliche Tableau-Quellen) zu Beschäftigung, Wachstum und Branchenstruktur. Nutzen Sie die Filter direkt in jedem Chart.</p>
 
         <div class="viz-grid" aria-label="Eingebettete Visualisierungen">
-          <!-- NEU: McKinsey – Automation & US Jobs -->
+          <!-- NEU: McKinsey -->
           <article class="viz-card">
             <h3>Automatisierung und US-Arbeitsplätze</h3>
             <div class="viz-meta">Quelle: McKinsey Analytics · Tableau Public</div>
             <div class="iframe-container">
-              <iframe
-                src="https://public.tableau.com/views/AutomationandUSjobs/USAutomationlandscape?:showVizHome=no&embed=true"
-                title="McKinsey Analytics – Automation and US jobs"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-              ></iframe>
+              <iframe src="https://public.tableau.com/views/AutomationandUSjobs/USAutomationlandscape?:showVizHome=no&embed=true" title="McKinsey Analytics – Automation and US jobs" loading="lazy"></iframe>
+            </div>
+            <div class="viz-actions">
+              <a class="btn small link" href="https://public.tableau.com/views/AutomationandUSjobs/USAutomationlandscape" target="_blank" rel="noopener noreferrer">Auf Tableau Public ansehen</a>
             </div>
           </article>
 
-          <!-- NEU: Automation in England -->
+          <!-- NEU: England -->
           <article class="viz-card">
             <h3>Automatisierung in England</h3>
             <div class="viz-meta">Quelle: Mohammed Hemayed · Tableau Public</div>
             <div class="iframe-container">
-              <iframe
-                src="https://public.tableau.com/views/JobAutomationinEngland/AutomationinEngland?:showVizHome=no&embed=true"
-                title="Job Automation in England – Mohammed Hemayed"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-              ></iframe>
+              <iframe src="https://public.tableau.com/views/JobAutomationinEngland/AutomationinEngland?:showVizHome=no&embed=true" title="Job Automation in England – Mohammed Hemayed" loading="lazy"></iframe>
+            </div>
+            <div class="viz-actions">
+              <a class="btn small link" href="https://public.tableau.com/views/JobAutomationinEngland/AutomationinEngland" target="_blank" rel="noopener noreferrer">Auf Tableau Public ansehen</a>
             </div>
           </article>
 
-          <!-- Bestehend: Viz 1 -->
+          <!-- Bestehend: Kategorie 2 -->
           <article class="viz-card">
             <h3>Stellensuchende – Kategorie 2</h3>
             <div class="viz-meta">Quelle: RTS Info · Tableau Public</div>
             <div class="iframe-container">
-              <iframe
-                src="https://public.tableau.com/views/DemandeursemploiCat2/Dashboard1?:showVizHome=no&embed=true"
-                title="RTS – Stellensuchende Kategorie 2"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-              ></iframe>
+              <iframe src="https://public.tableau.com/views/DemandeursemploiCat2/Dashboard1?:showVizHome=no&embed=true" title="RTS – Stellensuchende Kategorie 2" loading="lazy"></iframe>
+            </div>
+            <div class="viz-actions">
+              <a class="btn small link" href="https://public.tableau.com/views/DemandeursemploiCat2/Dashboard1" target="_blank" rel="noopener noreferrer">Auf Tableau Public ansehen</a>
             </div>
           </article>
 
-          <!-- Bestehend: Viz 2 -->
+          <!-- Bestehend: Wachstum -->
           <article class="viz-card">
             <h3>Wachstum in Europa</h3>
             <div class="viz-meta">Quelle: RTS Info · Tableau Public</div>
             <div class="iframe-container">
-              <iframe
-                src="https://public.tableau.com/views/croissance_europenne/Dashboard1?:showVizHome=no&embed=true"
-                title="RTS – Wachstum in Europa"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-              ></iframe>
+              <iframe src="https://public.tableau.com/views/croissance_europenne/Dashboard1?:showVizHome=no&embed=true" title="RTS – Wachstum in Europa" loading="lazy"></iframe>
+            </div>
+            <div class="viz-actions">
+              <a class="btn small link" href="https://public.tableau.com/views/croissance_europenne/Dashboard1" target="_blank" rel="noopener noreferrer">Auf Tableau Public ansehen</a>
             </div>
           </article>
 
-          <!-- Bestehend: Viz 3 -->
+          <!-- Bestehend: Prospective -->
           <article class="viz-card">
             <h3>Arbeitsmarktentwicklung – Branchen &amp; Löhne</h3>
             <div class="viz-meta">Quelle: Vincent Laporte · Tableau Public</div>
             <div class="iframe-container">
-              <iframe
-                src="https://public.tableau.com/views/Prospectiveemploi/Secteurssalaris?:showVizHome=no&embed=true"
-                title="Arbeitsmarktentwicklung – Branchen & Löhne"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-              ></iframe>
+              <iframe src="https://public.tableau.com/views/Prospectiveemploi/Secteurssalaris?:showVizHome=no&embed=true" title="Arbeitsmarktentwicklung – Branchen & Löhne" loading="lazy"></iframe>
+            </div>
+            <div class="viz-actions">
+              <a class="btn small link" href="https://public.tableau.com/views/Prospectiveemploi/Secteurssalaris" target="_blank" rel="noopener noreferrer">Auf Tableau Public ansehen</a>
             </div>
           </article>
 
-          <!-- Bestehend: Viz 4 -->
+          <!-- Bestehend: Industrie -->
           <article class="viz-card">
             <h3>Industrieanteil an der Beschäftigung</h3>
             <div class="viz-meta">Quelle: Grégoire3273 · Tableau Public</div>
             <div class="iframe-container">
-              <iframe
-                src="https://public.tableau.com/views/poidsdelindustriedanslemploi/Dashboard1?:showVizHome=no&embed=true"
-                title="Industrieanteil an der Beschäftigung"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-              ></iframe>
+              <iframe src="https://public.tableau.com/views/poidsdelindustriedanslemploi/Dashboard1?:showVizHome=no&embed=true" title="Industrieanteil an der Beschäftigung" loading="lazy"></iframe>
+            </div>
+            <div class="viz-actions">
+              <a class="btn small link" href="https://public.tableau.com/views/poidsdelindustriedanslemploi/Dashboard1" target="_blank" rel="noopener noreferrer">Auf Tableau Public ansehen</a>
             </div>
           </article>
         </div>
@@ -325,7 +298,7 @@
     </footer>
   </div>
 
-  <!-- JS mobiles Menü (Focus Trap + ARIA-Updates) -->
+  <!-- JS mobiles Menü -->
   <script>
     (function(){
       const burger = document.getElementById('burger');
@@ -335,9 +308,7 @@
 
       if(!burger || !panel) return;
 
-      function getFocusable(){
-        return panel.querySelectorAll(focusableSelector);
-      }
+      function getFocusable(){ return panel.querySelectorAll(focusableSelector); }
 
       function openMenu(){
         panel.classList.remove('hidden');
@@ -350,7 +321,6 @@
         const f = getFocusable();
         if(f.length) f[0].focus();
       }
-
       function closeMenu(){
         panel.classList.add('hidden');
         panel.setAttribute('hidden', '');
@@ -360,34 +330,17 @@
         burger.setAttribute('aria-label', 'Menü öffnen');
         if (lastFocused) lastFocused.focus();
       }
-
-      function toggleMenu(){
-        if(panel.classList.contains('hidden')) openMenu(); else closeMenu();
-      }
-
+      function toggleMenu(){ if(panel.classList.contains('hidden')) openMenu(); else closeMenu(); }
       burger.addEventListener('click', toggleMenu);
 
-      // Klick ausserhalb schliesst
-      document.addEventListener('click', (e)=>{
-        if(panel.classList.contains('hidden')) return;
-        const within = panel.contains(e.target) || burger.contains(e.target);
-        if(!within) closeMenu();
-      });
-
-      // ESC & Focus Trap
-      document.addEventListener('keydown', (e)=>{
-        if(e.key === 'Escape' && !panel.classList.contains('hidden')) closeMenu();
-
-        if(e.key === 'Tab' && !panel.classList.contains('hidden')){
+      document.addEventListener('click', (e)=>{ if(panel.classList.contains('hidden')) return; if(!(panel.contains(e.target) || burger.contains(e.target))) closeMenu(); });
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && !panel.classList.contains('hidden')) closeMenu();
+        if(e.key==='Tab' && !panel.classList.contains('hidden')){
           const f = Array.from(getFocusable());
           if(!f.length) return;
-          const first = f[0];
-          const last  = f[f.length - 1];
-          if(e.shiftKey && document.activeElement === first){
-            e.preventDefault(); last.focus();
-          } else if(!e.shiftKey && document.activeElement === last){
-            e.preventDefault(); first.focus();
-          }
+          const first = f[0]; const last  = f[f.length - 1];
+          if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+          else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
         }
       });
     })();
