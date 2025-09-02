@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Team – Sophira</title>
+
+  <!-- SEO -->
+  <link rel="canonical" href="https://sophira.org/team-de.html" />
+  <meta name="robots" content="index,follow" />
+  <meta name="description" content="Lernen Sie das Sophira-Team kennen: Arijanit Idrizi (Präsident) und Quôc-Bao Nguyên (Co-Präsident). Zur Stärkung der Governance suchen wir eine/n Kassier/in." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Team – Sophira" />
+  <meta property="og:description" content="Der Verein Sophira begleitet die berufliche Neuorientierung von Erwachsenen in der Schweiz. Lernen Sie das Leitungsteam kennen und machen Sie mit." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sophira.org/team-de.html" />
+  <meta property="og:image" content="https://sophira.org/Logo_sophira.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Team – Sophira" />
+  <meta name="twitter:description" content="Das Leitungsteam von Sophira: Arijanit Idrizi und Quôc-Bao Nguyên." />
+  <meta name="twitter:image" content="https://sophira.org/Logo_sophira.png" />
+
+  <!-- Schrift -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg-overlay: rgba(255,255,255,0.9);
+      --card-bg: rgba(255,255,255,0.88);
+      --text: #2c3e50;
+      --muted: #4a5568;
+      --brand: #1a73e8;
+      --brand-hover: #155ab6;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --radius: 12px;
+      --radius-sm: 8px;
+      --container: 1100px;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family:'Inter',sans-serif;
+      background:url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center center fixed;
+      background-size:cover;
+      color:var(--text);
+    }
+    .overlay{
+      background-color:var(--bg-overlay);
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    /* NAVBAR */
+    header.navbar{
+      position:sticky; top:0; z-index:20;
+      display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+      padding:.8rem 1rem;
+      background:#ffffffdd;
+      box-shadow:var(--shadow-sm);
+      backdrop-filter:blur(6px);
+    }
+    .brand{ display:flex; align-items:center; gap:.6rem; min-width:0; }
+    .brand img{ height:55px; width:auto; }
+    .brand h1{ margin:0; font-size:1.7rem; font-weight:600; color:#1a202c; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+    nav.primary{ display:flex; gap:1.1rem; }
+    nav.primary a{ text-decoration:none; color:var(--text); font-weight:500; }
+    nav.primary a:hover{ color:#1e88e5; }
+
+    .burger{ display:none; background:none; border:none; padding:.4rem .6rem; }
+    .burger svg{ width:28px; height:28px; }
+
+    .mobile-panel{ display:none; position:fixed; inset:64px 0 0 0; background:#ffffffdd; backdrop-filter:blur(6px); padding:1rem; }
+    .mobile-links{ display:flex; flex-direction:column; gap:.8rem; }
+    .mobile-links a{ text-decoration:none; color:var(--text); font-weight:600; padding:.7rem 0; border-bottom:1px solid #ddd; }
+    .mobile-links a:last-child{ border-bottom:none; }
+    .hidden{ display:none !important; }
+
+    /* LAYOUT */
+    .container{ flex:1; max-width:var(--container); margin:2rem auto; padding:0 1rem; }
+    .hero{ background:#edf2f7cc; padding:2.6rem 1.4rem; border-radius:var(--radius); text-align:center; box-shadow:var(--shadow-md); }
+    .hero h2{ font-size:2.1rem; margin:.2rem 0 .7rem; }
+    .subtitle{ font-size:1.08rem; color:var(--muted); margin:0 auto; max-width:800px; }
+
+    .team{ margin-top:2rem; display:grid; grid-template-columns:repeat(12,1fr); gap:1.2rem; }
+    .card{
+      grid-column:span 12;
+      background:var(--card-bg);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-sm);
+      padding:1.2rem;
+      display:grid;
+      grid-template-columns:96px 1fr;
+      gap:1rem;
+      align-items:start;
+    }
+    .card img.avatar{
+      width:96px; height:96px; border-radius:50%; object-fit:cover; background:#e2e8f0;
+      aspect-ratio: 1/1;
+    }
+    .card h3{ margin:0 0 .3rem 0; font-size:1.25rem; }
+    .role{ font-weight:600; color:var(--brand); margin-bottom:.5rem; }
+    .bio{ margin:.25rem 0 .6rem 0; color:var(--text); line-height:1.55; }
+    .meta{ font-size:.95rem; color:var(--muted); }
+    .pill{ display:inline-block; padding:.25rem .6rem; border-radius:999px; background:#e8f0fe; color:#174ea6; font-size:.85rem; font-weight:600; }
+
+    .cta{ margin-top:2.2rem; background:#f7fafc; padding:2rem; text-align:center; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
+    .cta h3{ margin:0 0 .8rem 0; }
+    .cta .actions{ display:flex; flex-wrap:wrap; gap:.8rem; justify-content:center; margin-top:.6rem; }
+    .btn{ display:inline-block; background:var(--brand); color:#fff; text-decoration:none; padding:.6rem 1.1rem; border-radius:var(--radius-sm); font-weight:600; }
+    .btn:hover{ background:var(--brand-hover); }
+    .btn.outline{ background:transparent; color:var(--brand); border:2px solid var(--brand); }
+    .btn.outline:hover{ background:#e8f0fe; }
+
+    footer{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:#ffffffdd; border-top-left-radius:var(--radius); border-top-right-radius:var(--radius); }
+
+    @media (min-width:680px){ .card{ grid-column:span 6; } }
+    @media (min-width:1000px){ .card{ grid-column:span 4; } }
+    @media (max-width:880px){ nav.primary{ display:none; } .burger{ display:inline-flex; } }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <!-- NAVIGATION -->
+    <header class="navbar" role="navigation" aria-label="Hauptnavigation">
+      <a class="brand" href="index-de.html">
+        <img src="Logo_sophira.png" alt="Logo Sophira" />
+        <h1>Sophira</h1>
+      </a>
+      <nav class="primary" aria-label="Hauptlinks">
+        <a href="index-de.html">Startseite</a>
+        <a href="team-de.html" aria-current="page">Team</a>
+        <a href="project-de.html">Soziales Projekt</a>
+        <a href="dashboard-de.html">Dashboard</a>
+        <a href="blog-de.html">Blog</a>
+        <a href="contact-de.html">Kontakt</a>
+      </nav>
+      <button class="burger" id="burger" aria-label="Menü öffnen" aria-controls="menu-mobile" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </header>
+
+    <!-- MOBILES MENÜ -->
+    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Mobiles Menü">
+      <div class="mobile-links">
+        <a href="index-de.html">Startseite</a>
+        <a href="team-de.html" aria-current="page">Team</a>
+        <a href="project-de.html">Soziales Projekt</a>
+        <a href="dashboard-de.html">Dashboard</a>
+        <a href="blog-de.html">Blog</a>
+        <a href="contact-de.html">Kontakt</a>
+      </div>
+    </div>
+
+    <!-- INHALT -->
+    <main class="container">
+      <section class="hero">
+        <h2>Unser Team</h2>
+        <p class="subtitle">Engagierte Menschen für eine <em>würdige</em>, <em>inklusive</em> und <em>nachhaltige</em> Neuorientierung. Wir bauen Brücken zwischen Talenten und Zukunftsberufen.</p>
+      </section>
+
+      <section class="team">
+        <!-- Präsident -->
+        <article class="card" itemscope itemtype="https://schema.org/Person">
+          <img class="avatar" src="photo%20CV.JPG" alt="Porträt von Arijanit Idrizi" width="96" height="96" loading="lazy" decoding="async" fetchpriority="high" itemprop="image" />
+          <div>
+            <h3 itemprop="name">Arijanit Idrizi</h3>
+            <div class="role" itemprop="jobTitle">Präsident</div>
+            <p class="bio" itemprop="description">Sozialunternehmer und Data Analyst. Arijanit prägt die Vision von Sophira: Erwachsenen in der Schweiz den Zugang zu digitalen Kompetenzen und Zukunftsberufen zu öffnen.</p>
+            <div class="meta">Sprachen: FR, EN, DE, SQ · Basel, Schweiz</div>
+          </div>
+        </article>
+
+        <!-- Co-Präsident -->
+        <article class="card" itemscope itemtype="https://schema.org/Person">
+          <img class="avatar" src="PHOTO-BAO.jpg" alt="Porträt von Quôc-Bao Nguyên" width="96" height="96" loading="lazy" decoding="async" fetchpriority="high" itemprop="image" />
+          <div>
+            <h3 itemprop="name">Quôc-Bao Nguyên</h3>
+            <div class="role" itemprop="jobTitle">Co-Präsident</div>
+            <p class="bio" itemprop="description">Spezialist für Innovation und Community. Bao koordiniert akademische und wirtschaftliche Partnerschaften und schafft konkrete Brücken in den Arbeitsmarkt.</p>
+            <div class="meta">Partnerschaften · Netzwerk · Community</div>
+          </div>
+        </article>
+
+        <!-- Kassier/in gesucht -->
+        <article class="card" itemscope itemtype="https://schema.org/Person">
+          <img class="avatar" src="img_1.jpg" alt="Porträt der Position Kassier/in (Beispielfoto)" />
+          <div>
+            <h3>Kassier/in – gesucht</h3>
+            <div class="role">Governance & Transparenz</div>
+            <p class="bio">Wir suchen eine/n ehrenamtliche/n (oder Teilzeit-) Kassier/in zur Stärkung der Finanz-Governance: Pilotbudget, Spenden-Tracking, Transparenzberichte.</p>
+            <span class="pill">Bewerbungen willkommen</span>
+          </div>
+        </article>
+      </section>
+
+      <!-- Call to Action -->
+      <section class="cta">
+        <h3>Möchten Sie mitwirken?</h3>
+        <p>Werden Sie Partner/in, Freiwillige/r oder Mäzen/in, um die Neuorientierung von Erwachsenen in der Schweiz zu beschleunigen.</p>
+        <div class="actions">
+          <a class="btn" href="contact-de.html">Kontakt aufnehmen</a>
+          <a class="btn outline" href="project-de.html">Projekt entdecken</a>
+          <a class="btn" href="donate-de.html">Spenden</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Sophira Verein | Basel, Schweiz</p>
+    </footer>
+  </div>
+
+  <!-- JS mobiles Menü -->
+  <script>
+    (function(){
+      const burger = document.getElementById('burger');
+      const panel  = document.getElementById('menu-mobile');
+      if(!burger || !panel) return;
+      function toggleMenu(){
+        const open = panel.classList.toggle('hidden') === false;
+        burger.setAttribute('aria-expanded', String(open));
+        burger.setAttribute('aria-label', open ? 'Menü schliessen' : 'Menü öffnen');
+      }
+      burger.addEventListener('click', toggleMenu);
+      document.addEventListener('click', (e)=>{
+        if(!panel.classList.contains('hidden') && !panel.contains(e.target) && !burger.contains(e.target)){ toggleMenu(); }
+      });
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && !panel.classList.contains('hidden')) toggleMenu(); });
+    })();
+  </script>
+</body>
+</html>
