@@ -10,9 +10,10 @@
   <meta name="robots" content="index,follow" />
   <meta name="description" content="Sophira unterstützt Erwachsene in finanziellen Schwierigkeiten bei ihrer beruflichen Neuorientierung in Zukunftsberufe (Daten, grüne Technologien, digitale Gesundheit, KI) in der Schweiz." />
 
-  <!-- Alternate languages (optional) -->
-  <!-- <link rel="alternate" hreflang="fr" href="https://sophira.org/index.html" />
-  <link rel="alternate" hreflang="de" href="https://sophira.org/index-de.html" /> -->
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="fr" href="https://sophira.org/index.html" />
+  <link rel="alternate" hreflang="de" href="https://sophira.org/index-de.html" />
+  <link rel="alternate" hreflang="x-default" href="https://sophira.org/index.html" />
 
   <!-- Open Graph / Social -->
   <meta property="og:title" content="Sophira – Verein für berufliche Neuorientierung" />
@@ -20,6 +21,8 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sophira.org/index-de.html" />
   <meta property="og:image" content="https://sophira.org/Logo_sophira.png" />
+  <meta property="og:site_name" content="Sophira" />
+  <meta property="og:locale" content="de_CH" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -27,8 +30,36 @@
   <meta name="twitter:description" content="Sophira hilft Erwachsenen, sich in der Schweiz in Zukunftsberufe neu zu orientieren." />
   <meta name="twitter:image" content="https://sophira.org/Logo_sophira.png" />
 
+  <!-- Browser-Farbe & Icons -->
+  <meta name="theme-color" content="#1a73e8" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
   <!-- Schrift -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Strukturierte Daten (Organisation) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NonprofitOrganization",
+    "name": "Sophira",
+    "url": "https://sophira.org/",
+    "logo": "https://sophira.org/Logo_sophira.png",
+    "foundingLocation": "Basel, Schweiz",
+    "areaServed": "CH",
+    "sameAs": [],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Basel",
+      "addressCountry": "CH"
+    }
+  }
+  </script>
 
   <style>
     :root{
@@ -42,13 +73,27 @@
       --shadow-sm:0 2px 8px rgba(0,0,0,.05);
       --shadow-md:0 4px 12px rgba(0,0,0,.08);
       --container:980px;
+      --focus:#0d6efd;
+      --focus-bg:#e8f0fe;
     }
     *{box-sizing:border-box}
+    html:focus-within{ scroll-behavior:smooth; }
     body{
       margin:0; font-family:'Inter',sans-serif;
       background:url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center center fixed;
       background-size:cover; color:var(--text);
     }
+    body.no-scroll{ overflow:hidden; }
+
+    /* Skip-Link (A11y) */
+    .skip-link{
+      position:absolute; left:1rem; top:.5rem;
+      transform:translateY(-200%);
+      background:#000; color:#fff; padding:.6rem .9rem; border-radius:8px;
+      text-decoration:none; z-index:1000; box-shadow:var(--shadow-sm);
+    }
+    .skip-link:focus, .skip-link:focus-visible{ transform:translateY(0); outline:2px solid #fff; }
+
     .overlay{ min-height:100vh; background:rgba(255,255,255,.9); display:flex; flex-direction:column; }
 
     /* NAVBAR */
@@ -65,6 +110,13 @@
     nav.primary a{ text-decoration:none; color:var(--text); font-weight:500; }
     nav.primary a:hover, nav.primary a:focus{ color:#1e88e5; }
 
+    /* Sichtbarer Fokus */
+    a:focus-visible, button:focus-visible{
+      outline:3px solid var(--focus);
+      outline-offset:2px;
+      background:linear-gradient(0deg, var(--focus-bg), var(--focus-bg)) no-repeat;
+    }
+
     /* Sprachumschalter */
     .lang{ display:inline-flex; gap:.4rem; margin-left:.6rem; font-size:.95rem; }
     .lang a{ color:#5b6b7a; text-decoration:none; }
@@ -73,7 +125,12 @@
     .burger{ display:none; background:none; border:none; padding:.4rem .6rem; }
     .burger svg{ width:28px; height:28px; }
 
-    .mobile-panel{ display:none; position:fixed; inset:64px 0 0 0; background:var(--whiteglass); backdrop-filter: blur(6px); padding:1rem; }
+    .mobile-panel{
+      display:block; /* Sichtbarkeit via [hidden] */
+      position:fixed; inset:64px 0 0 0; background:var(--whiteglass);
+      backdrop-filter: blur(6px); padding:1rem;
+    }
+    [hidden]{ display:none !important; }
     .mobile-links{ display:flex; flex-direction:column; gap:.8rem; }
     .mobile-links a{ text-decoration:none; color:var(--text); font-weight:600; padding:.7rem 0; border-bottom:1px solid #ddd; }
     .mobile-links a:last-child{ border-bottom:none; }
@@ -86,7 +143,7 @@
     .hero h2{ font-size:2.1rem; margin:.2rem 0 .7rem; }
     .subtitle{ font-size:1.08rem; color:var(--muted); margin:0 auto; max-width:800px; }
 
-    /* AUF EINEN BLICK (3 Kernpunkte) */
+    /* AUF EINEN BLICK */
     .glance{ margin-top:1rem; display:grid; grid-template-columns:repeat(12,1fr); gap:.8rem; }
     .glance .item{
       grid-column:span 12; background:#fff; border-radius:10px; box-shadow:var(--shadow-sm);
@@ -94,13 +151,14 @@
     }
     .glance .item strong{ display:block; margin-bottom:.25rem; }
 
-    /* SCHNELLE LINKS (kompakte Buttons) */
+    /* SCHNELLE LINKS */
     .quick{ margin-top:1rem; display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap; }
     .btn{
       display:inline-block; background:var(--brand); color:#fff; text-decoration:none;
-      padding:.6rem 1rem; border-radius:10px; font-weight:700;
+      padding:.6rem 1rem; border-radius:10px; font-weight:700; transition:transform .06s ease;
     }
-    .btn:hover{ background:var(--brand-hover); }
+    .btn:hover{ background:var(--brand-hover); transform:translateY(-1px); }
+    .btn:active{ transform:translateY(0); }
     .btn.outline{ background:transparent; color:var(--brand); border:2px solid var(--brand); }
     .btn.outline:hover{ background:#e8f0fe; }
 
@@ -118,7 +176,7 @@
     .post a{ font-weight:600; color:#fff; background:var(--brand); padding:.4rem .7rem; border-radius:8px; text-decoration:none; }
     .post a:hover{ background:var(--brand-hover); }
 
-    /* CTA final */
+    /* CTA */
     .cta{ margin-top:2rem; background:#f7fafc; padding:2rem; text-align:center; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
     .cta a{ display:inline-block; margin-top:1rem; background:var(--brand); color:#fff; text-decoration:none; padding:.7rem 1.4rem; border-radius:10px; font-weight:700; }
     .cta a:hover{ background:var(--brand-hover); }
@@ -140,6 +198,9 @@
   </style>
 </head>
 <body>
+  <!-- Skip-Link -->
+  <a class="skip-link" href="#main">Zum Hauptinhalt springen</a>
+
   <div class="overlay">
     <!-- NAVIGATION -->
     <header class="navbar" role="navigation" aria-label="Hauptnavigation">
@@ -167,7 +228,7 @@
     </header>
 
     <!-- MOBILES MENÜ -->
-    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Mobiles Menü">
+    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Mobiles Menü" aria-hidden="true" hidden>
       <div class="mobile-links">
         <a href="index-de.html" aria-current="page">Startseite</a>
         <a href="team-de.html">Team</a>
@@ -179,7 +240,7 @@
     </div>
 
     <!-- INHALT -->
-    <main class="container">
+    <main id="main" class="container">
       <!-- HERO -->
       <section class="hero">
         <h2>Talente von morgen fördern</h2>
@@ -257,24 +318,71 @@
     </footer>
   </div>
 
-  <!-- JS mobiles Menü -->
+  <!-- JS mobiles Menü (Focus Trap + ARIA-Updates) -->
   <script>
     (function(){
       const burger = document.getElementById('burger');
       const panel  = document.getElementById('menu-mobile');
+      const focusableSelector = 'a, button';
+      let lastFocused = null;
+
       if(!burger || !panel) return;
-      function toggleMenu(){
-        const open = panel.classList.toggle('hidden') === false;
-        burger.setAttribute('aria-expanded', String(open));
-        burger.setAttribute('aria-label', open ? 'Menü schliessen' : 'Menü öffnen');
+
+      function getFocusable(){
+        return panel.querySelectorAll(focusableSelector);
       }
+
+      function openMenu(){
+        panel.classList.remove('hidden');
+        panel.removeAttribute('hidden');
+        panel.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('no-scroll');
+        burger.setAttribute('aria-expanded', 'true');
+        burger.setAttribute('aria-label', 'Menü schliessen');
+        lastFocused = document.activeElement;
+        const f = getFocusable();
+        if(f.length) f[0].focus();
+      }
+
+      function closeMenu(){
+        panel.classList.add('hidden');
+        panel.setAttribute('hidden', '');
+        panel.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('no-scroll');
+        burger.setAttribute('aria-expanded', 'false');
+        burger.setAttribute('aria-label', 'Menü öffnen');
+        if (lastFocused) lastFocused.focus();
+      }
+
+      function toggleMenu(){
+        if(panel.classList.contains('hidden')) openMenu(); else closeMenu();
+      }
+
       burger.addEventListener('click', toggleMenu);
+
+      // Klick ausserhalb schliesst
       document.addEventListener('click', (e)=>{
         if(panel.classList.contains('hidden')) return;
         const within = panel.contains(e.target) || burger.contains(e.target);
-        if(!within) toggleMenu();
+        if(!within) closeMenu();
       });
-      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && !panel.classList.contains('hidden')) toggleMenu(); });
+
+      // ESC & Focus Trap
+      document.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape' && !panel.classList.contains('hidden')) closeMenu();
+
+        if(e.key === 'Tab' && !panel.classList.contains('hidden')){
+          const f = Array.from(getFocusable());
+          if(!f.length) return;
+          const first = f[0];
+          const last  = f[f.length - 1];
+          if(e.shiftKey && document.activeElement === first){
+            e.preventDefault(); last.focus();
+          } else if(!e.shiftKey && document.activeElement === last){
+            e.preventDefault(); first.focus();
+          }
+        }
+      });
     })();
   </script>
 </body>
