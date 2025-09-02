@@ -1,14 +1,19 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" itemscope itemtype="https://schema.org/AboutPage">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Équipe – Sophira</title>
 
-  <!-- SEO -->
+  <!-- SEO de base -->
   <link rel="canonical" href="https://sophira.org/team.html" />
   <meta name="robots" content="index,follow" />
   <meta name="description" content="Rencontrez l'équipe Sophira : Arijanit Idrizi (président), Quôc-Bao Nguyên (co-président). Un poste de trésorier·ère est à pourvoir pour renforcer la gouvernance." />
+
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="fr" href="https://sophira.org/team.html" />
+  <link rel="alternate" hreflang="de" href="https://sophira.org/team-de.html" />
+  <link rel="alternate" hreflang="x-default" href="https://sophira.org/team.html" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Équipe – Sophira" />
@@ -16,6 +21,8 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sophira.org/team.html" />
   <meta property="og:image" content="https://sophira.org/Logo_sophira.png" />
+  <meta property="og:site_name" content="Sophira" />
+  <meta property="og:locale" content="fr_CH" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -23,7 +30,16 @@
   <meta name="twitter:description" content="Découvrez l'équipe dirigeante de Sophira : Arijanit Idrizi et Quôc-Bao Nguyên." />
   <meta name="twitter:image" content="https://sophira.org/Logo_sophira.png" />
 
+  <!-- Couleur navigateur & icônes -->
+  <meta name="theme-color" content="#1a73e8" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
   <!-- Police -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -39,8 +55,12 @@
       --radius: 12px;
       --radius-sm: 8px;
       --container: 1100px;
+      --focus:#0d6efd;
+      --focus-bg:#e8f0fe;
     }
     *{ box-sizing:border-box; }
+    html:focus-within{ scroll-behavior:smooth; }
+
     body{
       margin:0;
       font-family:'Inter',sans-serif;
@@ -48,11 +68,23 @@
       background-size:cover;
       color:var(--text);
     }
+    body.no-scroll{ overflow:hidden; }
     .overlay{
       background-color:var(--bg-overlay);
       min-height:100vh;
       display:flex;
       flex-direction:column;
+    }
+
+    /* Skip-link */
+    .skip-link{
+      position:absolute; left:1rem; top:.5rem;
+      transform:translateY(-200%);
+      background:#000; color:#fff; padding:.6rem .9rem; border-radius:8px;
+      text-decoration:none; z-index:1000; box-shadow:var(--shadow-sm);
+    }
+    .skip-link:focus, .skip-link:focus-visible{
+      transform:translateY(0); outline:2px solid #fff;
     }
 
     /* NAVBAR */
@@ -64,22 +96,37 @@
       box-shadow:var(--shadow-sm);
       backdrop-filter:blur(6px);
     }
-    .brand{ display:flex; align-items:center; gap:.6rem; min-width:0; }
+    .brand{ display:flex; align-items:center; gap:.6rem; min-width:0; text-decoration:none; }
     .brand img{ height:55px; width:auto; }
     .brand h1{ margin:0; font-size:1.7rem; font-weight:600; color:#1a202c; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
-    nav.primary{ display:flex; gap:1.1rem; }
+    nav.primary{ display:flex; gap:1.1rem; align-items:center; }
     nav.primary a{ text-decoration:none; color:var(--text); font-weight:500; }
-    nav.primary a:hover{ color:#1e88e5; }
+    nav.primary a:hover, nav.primary a:focus{ color:#1e88e5; }
+
+    /* Focus visible global */
+    a:focus-visible, button:focus-visible{
+      outline:3px solid var(--focus);
+      outline-offset:2px;
+      background:linear-gradient(0deg, var(--focus-bg), var(--focus-bg)) no-repeat;
+    }
+
+    /* Sélecteur de langue */
+    .lang{ display:inline-flex; gap:.4rem; margin-left:.6rem; font-size:.95rem; }
+    .lang a{ color:#5b6b7a; text-decoration:none; }
+    .lang a[aria-current="true"]{ font-weight:700; color:#1a202c; }
 
     .burger{ display:none; background:none; border:none; padding:.4rem .6rem; }
     .burger svg{ width:28px; height:28px; }
 
-    .mobile-panel{ display:none; position:fixed; inset:64px 0 0 0; background:#ffffffdd; backdrop-filter:blur(6px); padding:1rem; }
-    .mobile-links{ display:flex; flex-direction:column; gap:.8rem; }
+    .mobile-panel{
+      display:block; /* contrôle via [hidden] */
+      position:fixed; inset:64px 0 0 0; background:#ffffffdd; backdrop-filter:blur(6px); padding:1rem;
+    }
+    [hidden]{ display:none !important; }
+    .mobile-links{ display:flex; flex-direction:column; gap:.8rem; max-width:var(--container); margin:0 auto; }
     .mobile-links a{ text-decoration:none; color:var(--text); font-weight:600; padding:.7rem 0; border-bottom:1px solid #ddd; }
     .mobile-links a:last-child{ border-bottom:none; }
-    .hidden{ display:none !important; }
 
     /* LAYOUT */
     .container{ flex:1; max-width:var(--container); margin:2rem auto; padding:0 1rem; }
@@ -121,32 +168,47 @@
 
     @media (min-width:680px){ .card{ grid-column:span 6; } }
     @media (min-width:1000px){ .card{ grid-column:span 4; } }
-    @media (max-width:880px){ nav.primary{ display:none; } .burger{ display:inline-flex; } }
+    @media (max-width:880px){
+      nav.primary{ display:none; }
+      .burger{ display:inline-flex; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      *{ scroll-behavior:auto; transition:none !important; }
+    }
   </style>
 </head>
 <body>
+  <!-- Skip-link -->
+  <a class="skip-link" href="#main">Aller au contenu</a>
+
   <div class="overlay">
     <!-- NAVIGATION -->
-    <header class="navbar">
+    <header class="navbar" role="navigation" aria-label="Navigation principale">
       <a class="brand" href="index.html">
-        <img src="Logo_sophira.png" alt="Logo Sophira" />
+        <img src="Logo_sophira.png" alt="Logo Sophira" loading="eager" fetchpriority="high" />
         <h1>Sophira</h1>
       </a>
-      <nav class="primary">
+
+      <nav class="primary" aria-label="Liens principaux">
         <a href="index.html">Accueil</a>
         <a href="team.html" aria-current="page">Équipe</a>
         <a href="project.html">Projet social</a>
         <a href="dashboard.html">Tableau de bord</a>
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
+        <span class="lang" aria-label="Changer de langue">
+          <a href="team.html" lang="fr" aria-current="true">FR</a> |
+          <a href="team-de.html" lang="de">DE</a>
+        </span>
       </nav>
+
       <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-controls="menu-mobile" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
     </header>
 
-    <!-- MENU MOBILE -->
-    <div id="menu-mobile" class="mobile-panel hidden">
+    <!-- MENU MOBILE ACCESSIBLE -->
+    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Menu mobile" aria-hidden="true" hidden>
       <div class="mobile-links">
         <a href="index.html">Accueil</a>
         <a href="team.html" aria-current="page">Équipe</a>
@@ -154,17 +216,18 @@
         <a href="dashboard.html">Tableau de bord</a>
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
+        <a href="team-de.html" lang="de">→ Version DE</a>
       </div>
     </div>
 
     <!-- CONTENU -->
-    <main class="container">
+    <main id="main" class="container" itemprop="mainEntity">
       <section class="hero">
         <h2>Notre équipe</h2>
         <p class="subtitle">Des personnes engagées pour une reconversion <em>digne</em>, <em>inclusive</em> et <em>durable</em>. Nous créons des ponts entre les talents et les métiers d’avenir.</p>
       </section>
 
-      <section class="team">
+      <section class="team" aria-label="Membres de l’équipe">
         <!-- Président -->
         <article class="card" itemscope itemtype="https://schema.org/Person">
           <img class="avatar" src="photo%20CV.JPG" alt="Portrait d’Arijanit Idrizi" width="96" height="96" loading="lazy" decoding="async" fetchpriority="high" itemprop="image" />
@@ -189,21 +252,21 @@
 
         <!-- Trésorier à recruter -->
         <article class="card" itemscope itemtype="https://schema.org/Person">
-          <img class="avatar" src="img_1.jpg" alt="Portrait du poste de trésorier·ère (photo factice)" />
+          <img class="avatar" src="img_1.jpg" alt="Portrait du poste de trésorier·ère (photo factice)" width="96" height="96" loading="lazy" decoding="async" itemprop="image" />
           <div>
             <h3>Trésorier·ère – à recruter</h3>
             <div class="role">Gouvernance & Transparence</div>
             <p class="bio">Nous recherchons un·e trésorier·ère bénévole (ou part-time) pour renforcer la gouvernance financière : budget pilote, suivi des dons, rapports de transparence.</p>
-            <span class="pill">Candidatures ouvertes</span>
+            <span class="pill" aria-label="Statut des candidatures">Candidatures ouvertes</span>
           </div>
         </article>
       </section>
 
       <!-- Appel à l’action -->
-      <section class="cta">
+      <section class="cta" aria-label="Contribuer">
         <h3>Envie de contribuer&nbsp;?</h3>
         <p>Devenez partenaire, bénévole ou mécène pour accélérer la reconversion des adultes en Suisse.</p>
-        <div class="actions">
+        <div class="actions" role="group" aria-label="Actions principales">
           <a class="btn" href="contact.html">Nous contacter</a>
           <a class="btn outline" href="project.html">Découvrir le projet</a>
           <a class="btn" href="donate.html">Faire un don</a>
@@ -216,26 +279,93 @@
     </footer>
   </div>
 
-  <!-- JS menu mobile -->
+  <!-- JSON-LD (Organisation + membres clefs) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Sophira",
+    "url":"https://sophira.org/",
+    "logo":"https://sophira.org/Logo_sophira.png",
+    "areaServed":"CH",
+    "department":[
+      {
+        "@type":"Organization",
+        "name":"Équipe dirigeante",
+        "member":[
+          {
+            "@type":"Person",
+            "name":"Arijanit Idrizi",
+            "jobTitle":"Président",
+            "image":"https://sophira.org/photo%20CV.JPG"
+          },
+          {
+            "@type":"Person",
+            "name":"Quôc-Bao Nguyên",
+            "jobTitle":"Co-président",
+            "image":"https://sophira.org/PHOTO-BAO.jpg"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- JS menu mobile (focus trap + ARIA) -->
   <script>
     (function(){
       const burger = document.getElementById('burger');
       const panel  = document.getElementById('menu-mobile');
       if(!burger || !panel) return;
-      function toggleMenu(){
-        const open = panel.classList.toggle('hidden') === false;
-        burger.setAttribute('aria-expanded', String(open));
-      }
-      burger.addEventListener('click', toggleMenu);
-      document.addEventListener('click', (e)=>{
-        if(!panel.classList.contains('hidden') && !panel.contains(e.target) && !burger.contains(e.target)){ toggleMenu(); }
-      });
-      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && !panel.classList.contains('hidden')) toggleMenu(); });
-    })();
-  </script>
-</body>
-</html>
 
+      const focusableSelector = 'a, button';
+      let lastFocused = null;
+
+      function getFocusable(){ return panel.querySelectorAll(focusableSelector); }
+
+      function openMenu(){
+        panel.classList.remove('hidden');
+        panel.removeAttribute('hidden');
+        panel.setAttribute('aria-hidden','false');
+        document.body.classList.add('no-scroll');
+        burger.setAttribute('aria-expanded','true');
+        burger.setAttribute('aria-label','Fermer le menu');
+        lastFocused = document.activeElement;
+        const f = getFocusable();
+        if(f.length) f[0].focus();
+      }
+      function closeMenu(){
+        panel.classList.add('hidden');
+        panel.setAttribute('hidden','');
+        panel.setAttribute('aria-hidden','true');
+        document.body.classList.remove('no-scroll');
+        burger.setAttribute('aria-expanded','false');
+        burger.setAttribute('aria-label','Ouvrir le menu');
+        if(lastFocused) lastFocused.focus();
+      }
+      function toggleMenu(){ panel.classList.contains('hidden') ? openMenu() : closeMenu(); }
+
+      burger.addEventListener('click', toggleMenu);
+
+      // Click extérieur
+      document.addEventListener('click', (e)=>{
+        if(panel.classList.contains('hidden')) return;
+        const within = panel.contains(e.target) || burger.contains(e.target);
+        if(!within) closeMenu();
+      });
+
+      // ESC + Focus trap
+      document.addEventListener('keydown', (e)=>{
+        if(e.key==='Escape' && !panel.classList.contains('hidden')) closeMenu();
+
+        if(e.key==='Tab' && !panel.classList.contains('hidden')){
+          const f = Array.from(getFocusable());
+          if(!f.length) return;
+          const first=f[0], last=f[f.length-1];
+          if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+          else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+        }
+      });
     })();
   </script>
 </body>
