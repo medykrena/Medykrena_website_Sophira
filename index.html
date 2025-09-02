@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" itemscope itemtype="https://schema.org/WebPage">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,11 +8,11 @@
   <!-- SEO -->
   <link rel="canonical" href="https://sophira.org/" />
   <meta name="robots" content="index,follow" />
-  <meta name="description" content="Sophira accompagne les adultes en difficulté financière dans leur reconversion vers les métiers d’avenir (data, technologies vertes, santé digitale, IA) en Suisse." />
+  <meta name="description" content="Sophira accompagne des adultes en Suisse dans leur reconversion vers les métiers d’avenir (data, technologies vertes, santé digitale, IA), avec bourse, mentorat et projets concrets." />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Sophira – Association pour la reconversion professionnelle" />
-  <meta property="og:description" content="Lutter contre le chômage lié à l’automatisation et ouvrir des opportunités dans les métiers d’avenir." />
+  <meta property="og:description" content="Bourse, mentorat et projets pour aider des adultes à se reconvertir vers les métiers d’avenir en Suisse." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sophira.org/" />
   <meta property="og:image" content="https://sophira.org/Logo_sophira.png" />
@@ -20,7 +20,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Sophira – Association pour la reconversion professionnelle" />
-  <meta name="twitter:description" content="Sophira aide les adultes à se reconvertir vers les métiers d’avenir en Suisse." />
+  <meta name="twitter:description" content="Sophira aide les adultes à se reconvertir vers les métiers d’avenir en Suisse grâce à une bourse et un accompagnement humain." />
   <meta name="twitter:image" content="https://sophira.org/Logo_sophira.png" />
 
   <!-- Police -->
@@ -34,11 +34,14 @@
       --brand-hover:#155ab6;
       --whiteglass:#ffffffdd;
       --panel:#edf2f7cc;
+      --card:#ffffff;
       --radius:12px;
+      --radius-sm:8px;
       --shadow-sm:0 2px 8px rgba(0,0,0,.05);
-      --shadow-md:0 4px 12px rgba(0,0,0,.08);
-      --container: 980px;
+      --shadow-md:0 6px 16px rgba(0,0,0,.10);
+      --container:1100px;
     }
+    *{box-sizing:border-box}
     body{
       margin:0;
       font-family:'Inter',sans-serif;
@@ -54,51 +57,90 @@
       display:flex; align-items:center; justify-content:space-between; gap:.75rem;
       padding:.8rem 1rem; background:var(--whiteglass); box-shadow:var(--shadow-sm); backdrop-filter: blur(6px);
     }
-    .brand{ display:flex; align-items:center; gap:.6rem; }
-    .brand img{ height:55px; }
-    .brand h1{ margin:0; font-size:1.7rem; font-weight:600; color:#1a202c; }
+    .brand{ display:flex; align-items:center; gap:.6rem; min-width:0; }
+    .brand img{ height:55px; width:auto; }
+    .brand h1{ margin:0; font-size:1.7rem; font-weight:600; color:#1a202c; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
     nav.primary{ display:flex; gap:1.1rem; }
     nav.primary a{ text-decoration:none; color:var(--text); font-weight:500; }
-    nav.primary a:hover{ color:#1e88e5; }
+    nav.primary a:hover, nav.primary a:focus{ color:#1e88e5; }
 
-    .burger{ display:none; background:none; border:none; padding:.4rem .6rem; }
+    .burger{ display:none; background:none; border:none; padding:.4rem .6rem; border-radius:8px; }
     .burger svg{ width:28px; height:28px; }
 
     .mobile-panel{ display:none; position:fixed; inset:64px 0 0 0; background:var(--whiteglass); backdrop-filter: blur(6px); padding:1rem; }
-    .mobile-links{ display:flex; flex-direction:column; gap:.8rem; }
-    .mobile-links a{ text-decoration:none; color:var(--text); font-weight:600; padding:.7rem 0; border-bottom:1px solid #ddd; }
+    .mobile-links{ display:flex; flex-direction:column; gap:.8rem; max-width:var(--container); margin:0 auto; }
+    .mobile-links a{ text-decoration:none; color:var(--text); font-weight:600; padding:.7rem 0; border-bottom:1px solid rgba(0,0,0,.06); }
     .mobile-links a:last-child{ border-bottom:none; }
     .hidden{ display:none !important; }
 
     .container{ flex:1; max-width:var(--container); margin:2rem auto; padding:0 1rem; }
 
     /* HERO */
-    .hero{ background:var(--panel); padding:2.6rem 1.4rem; border-radius:var(--radius); text-align:center; box-shadow:var(--shadow-md); }
+    .hero{
+      background:var(--panel);
+      padding:2.6rem 1.4rem;
+      border-radius:var(--radius);
+      text-align:center;
+      box-shadow:var(--shadow-md);
+    }
     .hero h2{ font-size:2.1rem; margin:.2rem 0 .7rem; }
-    .subtitle{ font-size:1.08rem; color:var(--muted); margin:0 auto; max-width:800px; }
+    .subtitle{ font-size:1.08rem; color:var(--muted); margin:0 auto; max-width:840px; }
+    .cta-row{ margin-top:1.1rem; display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap; }
+    .btn{
+      display:inline-block; background:var(--brand); color:#fff; text-decoration:none;
+      padding:.65rem 1.1rem; border-radius:var(--radius-sm); font-weight:700;
+    }
+    .btn:hover,.btn:focus{ background:var(--brand-hover); }
+    .btn.outline{ background:transparent; color:var(--brand); border:2px solid var(--brand); }
+    .btn.outline:hover{ background:#e8f0fe; }
 
-    .content{ margin-top:2rem; background:var(--whiteglass); padding:2rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
-    .content h3{ font-size:1.55rem; margin:.2rem 0 .6rem; }
+    /* SECTIONS */
+    .section{ margin-top:2rem; background:var(--whiteglass); padding:1.8rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
+    .section h3{ font-size:1.55rem; margin:.2rem 0 1rem; text-align:center; }
+    .grid{ display:grid; grid-template-columns:repeat(12,1fr); gap:1rem; }
+    .card{ background:var(--card); padding:1rem; border-radius:10px; box-shadow:var(--shadow-sm); }
+    .col-6{ grid-column:span 12; }
+    .col-4{ grid-column:span 12; }
+    .kpi{ text-align:center; }
+    .kpi h4{ margin:.2rem 0; font-size:1.8rem; }
+    .kpi p{ margin:0; color:var(--muted); }
 
-    .cta{ margin-top:2rem; background:#f7fafc; padding:2rem; text-align:center; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
-    .cta a{ display:inline-block; margin-top:1rem; background:var(--brand); color:#fff; text-decoration:none; padding:.7rem 1.4rem; border-radius:10px; font-weight:700; }
-    .cta a:hover{ background:var(--brand-hover); }
+    /* BLOG TEASER */
+    .post-teaser h4{ margin:.2rem 0 .35rem; font-size:1.1rem; }
+    .post-teaser p{ margin:.2rem 0; color:#374151; }
+    .readmore{ display:inline-block; font-weight:600; text-decoration:none; color:#fff; background:var(--brand); padding:.45rem .8rem; border-radius:8px; }
+    .readmore:hover{ background:var(--brand-hover); }
 
-    footer{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:var(--whiteglass); border-top-left-radius:var(--radius); border-top-right-radius:var(--radius); }
+    /* FOOTER */
+    footer{
+      text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:var(--whiteglass);
+      border-top-left-radius:var(--radius); border-top-right-radius:var(--radius);
+    }
 
-    @media (max-width: 880px){ nav.primary{ display:none; } .burger{ display:inline-flex; } }
+    /* RESPONSIVE */
+    @media (min-width: 700px){
+      .col-6{ grid-column:span 6; }
+      .col-4{ grid-column:span 4; }
+    }
+    @media (max-width: 880px){
+      nav.primary{ display:none; }
+      .burger{ display:inline-flex; align-items:center; justify-content:center; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      *{ scroll-behavior:auto; transition:none !important; }
+    }
   </style>
 </head>
 <body>
   <div class="overlay">
     <!-- NAVIGATION -->
-    <header class="navbar">
+    <header class="navbar" role="navigation" aria-label="Navigation principale">
       <a class="brand" href="index.html">
         <img src="Logo_sophira.png" alt="Logo Sophira" />
         <h1>Sophira</h1>
       </a>
-      <nav class="primary">
+      <nav class="primary" aria-label="Liens principaux">
         <a href="index.html" aria-current="page">Accueil</a>
         <a href="team.html">Équipe</a>
         <a href="project.html">Projet social</a>
@@ -107,14 +149,16 @@
         <a href="contact.html">Contact</a>
       </nav>
       <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-controls="menu-mobile" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/>
+        </svg>
       </button>
     </header>
 
     <!-- MENU MOBILE -->
-    <div id="menu-mobile" class="mobile-panel hidden">
+    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Menu mobile">
       <div class="mobile-links">
-        <a href="index.html">Accueil</a>
+        <a href="index.html" aria-current="page">Accueil</a>
         <a href="team.html">Équipe</a>
         <a href="project.html">Projet social</a>
         <a href="dashboard.html">Tableau de bord</a>
@@ -125,28 +169,150 @@
 
     <!-- CONTENU -->
     <main class="container">
+      <!-- HERO -->
       <section class="hero">
         <h2>Révéler les talents de demain</h2>
         <p class="subtitle">
-          Sophira est une association suisse à but non lucratif qui accompagne les adultes confrontés à des obstacles
-          dans leur reconversion vers les métiers d’avenir, de la data aux technologies vertes.
+          Bourse de reconversion, mentorat et projets concrets pour aider des adultes en Suisse à rejoindre les métiers d’avenir
+          (data, technologies vertes, santé digitale, IA).
+        </p>
+        <div class="cta-row" role="group" aria-label="Appels à l’action principaux">
+          <a class="btn" href="project.html">Découvrir le projet</a>
+          <a class="btn outline" href="contact.html">Candidater / Être recontacté·e</a>
+          <a class="btn" href="donate.html">Faire un don</a>
+        </div>
+      </section>
+
+      <!-- POURQUOI / VALEUR -->
+      <section class="section" aria-label="Pourquoi Sophira">
+        <h3>Pourquoi Sophira&nbsp;?</h3>
+        <div class="grid">
+          <div class="col-6">
+            <div class="card">
+              <p><strong>Des barrières tombent</strong> : coût des formations, manque de réseau, d’information ou de confiance. Nous finançons et accompagnons pour ouvrir des portes.</p>
+              <ul>
+                <li>Parcours courts et certifiants</li>
+                <li>Mentorat & communauté d’entraide</li>
+                <li>Projets réels pour le portfolio</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card">
+              <p><strong>Métier d’avenir, impact durable</strong> : répond aux pénuries (data/IT, tech durable, santé digitale) et redonne du sens au travail.</p>
+              <ul>
+                <li>Compétences monétisables rapidement</li>
+                <li>Insertion et progression continues</li>
+                <li>Transparence et évaluation d’impact</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMMENT ÇA MARCHE -->
+      <section class="section" aria-label="Comment ça marche">
+        <h3>Comment ça marche&nbsp;?</h3>
+        <div class="grid">
+          <div class="col-4"><div class="card"><strong>1. Diagnostic</strong><br/>Échange initial, objectifs & contraintes.</div></div>
+          <div class="col-4"><div class="card"><strong>2. Plan</strong><br/>Parcours personnalisé & choix de filière.</div></div>
+          <div class="col-4"><div class="card"><strong>3. Bourse</strong><br/>Financement ciblé + mentorat.</div></div>
+          <div class="col-4"><div class="card"><strong>4. Projets</strong><br/>Cas réels à impact, portfolio GitHub.</div></div>
+          <div class="col-4"><div class="card"><strong>5. Insertion</strong><br/>Préparation, mises en relation, suivi.</div></div>
+          <div class="col-4"><div class="card"><strong>6. Montée en compétences</strong><br/>Suivi 6–12 mois si besoin.</div></div>
+        </div>
+      </section>
+
+      <!-- QUI PEUT EN BÉNÉFICIER -->
+      <section class="section" aria-label="Qui peut en bénéficier">
+        <h3>Qui peut en bénéficier&nbsp;?</h3>
+        <div class="grid">
+          <div class="col-6">
+            <div class="card">
+              <strong>Profil éligible</strong>
+              <ul>
+                <li>Adulte résidant en Suisse</li>
+                <li>En recherche d’emploi, sous-employé·e ou en reconversion</li>
+                <li>Motivation et disponibilité (8–20 h/semaine)</li>
+              </ul>
+              <a class="readmore" href="project.html">Voir les critères</a>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card kpi">
+              <h4>3–6&nbsp;mois</h4>
+              <p>Durée d’accompagnement (pilote)</p>
+              <h4 style="margin-top:.6rem;">70%+</h4>
+              <p>Objectif d’insertion/formation post-bourse</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRANSPARENCE / IMPACT -->
+      <section class="section" aria-label="Transparence et impact">
+        <h3>Transparence & impact</h3>
+        <div class="grid">
+          <div class="col-4">
+            <div class="card kpi">
+              <h4>100%</h4><p>Suivi public des fonds</p>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card kpi">
+              <h4>6–9&nbsp;mois</h4><p>Parcours moyen visé</p>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card kpi">
+              <h4>+2</h4><p>Projets concrets par bénéficiaire</p>
+            </div>
+          </div>
+        </div>
+        <p style="text-align:center; color:var(--muted); margin-top:.8rem">
+          Consultez le <a href="dashboard.html"><strong>tableau de bord</strong></a> pour les données détaillées.
         </p>
       </section>
 
-      <section class="content">
-        <h3>Pourquoi Sophira&nbsp;?</h3>
-        <p>Sophira est née d'une conviction : les transitions numérique et écologique transforment le marché du travail,
-          excluant souvent les adultes en situation de précarité. Pourtant, la Suisse a un besoin croissant de
-          professionnels qualifiés dans ces secteurs.</p>
-        <p>Nous agissons pour briser les barrières et offrir des opportunités concrètes. Sophira accompagne les adultes en reconversion
-          vers des métiers porteurs de sens, en leur donnant les compétences numériques et analytiques nécessaires pour réussir,
-          grâce à un soutien financier et humain.</p>
+      <!-- BLOG TEASER -->
+      <section class="section" aria-label="Derniers articles">
+        <h3>Derniers articles</h3>
+        <div class="grid">
+          <div class="col-4">
+            <div class="card post-teaser">
+              <h4>Lancement de l’initiative Sophira</h4>
+              <p>Pourquoi une bourse de reconversion et comment participer.</p>
+              <a class="readmore" href="article6.html">Lire</a>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card post-teaser">
+              <h4>Data & reconversion</h4>
+              <p>Des compétences demandées, accessibles et transférables.</p>
+              <a class="readmore" href="article7.html">Lire</a>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card post-teaser">
+              <h4>Secteurs porteurs 2025</h4>
+              <p>Où se situent les opportunités en Suisse.</p>
+              <a class="readmore" href="article2.html">Lire</a>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section class="cta">
-        <h3>Soutenez notre vision</h3>
-        <p>Construisons ensemble un avenir plus juste en révélant de nouveaux talents grâce à la solidarité et l'apprentissage continu.</p>
-        <a href="donate.html">Faire un don</a>
+      <!-- CTA FINAL -->
+      <section class="section" aria-label="Soutenir">
+        <h3>Vous pouvez faire la différence</h3>
+        <p style="text-align:center; max-width:820px; margin:0 auto;">
+          Candidat·e, mentor, partenaire ou donateur·rice — chacun peut contribuer à une reconversion digne, inclusive et durable.
+        </p>
+        <div class="cta-row" style="margin-top:.9rem">
+          <a class="btn" href="contact.html">Candidater / Devenir mentor</a>
+          <a class="btn outline" href="donate.html">Soutenir la bourse</a>
+          <a class="btn" href="project.html">Comprendre le parcours</a>
+        </div>
       </section>
     </main>
 
@@ -154,6 +320,27 @@
       <p>&copy; 2025 Sophira Association | Basel, Suisse</p>
     </footer>
   </div>
+
+  <!-- JSON-LD (Organization + WebSite) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"Organization",
+        "name":"Sophira",
+        "url":"https://sophira.org/",
+        "logo":"https://sophira.org/Logo_sophira.png",
+        "sameAs":[]
+      },
+      {
+        "@type":"WebSite",
+        "name":"Sophira",
+        "url":"https://sophira.org/"
+      }
+    ]
+  }
+  </script>
 
   <!-- JS menu mobile -->
   <script>
@@ -164,10 +351,13 @@
       function toggleMenu(){
         const open = panel.classList.toggle('hidden') === false;
         burger.setAttribute('aria-expanded', String(open));
+        burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
       }
       burger.addEventListener('click', toggleMenu);
       document.addEventListener('click', (e)=>{
-        if(!panel.classList.contains('hidden') && !panel.contains(e.target) && !burger.contains(e.target)){ toggleMenu(); }
+        if(panel.classList.contains('hidden')) return;
+        const within = panel.contains(e.target) || burger.contains(e.target);
+        if(!within) toggleMenu();
       });
       document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && !panel.classList.contains('hidden')) toggleMenu(); });
     })();
