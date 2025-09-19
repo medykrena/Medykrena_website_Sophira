@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr" itemscope itemtype="https://schema.org/DonateAction">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Faire un don – Sophira</title>
+
+  <!-- SEO -->
+  <link rel="canonical" href="https://sophira.org/donate.html" />
+  <meta name="robots" content="index,follow" />
+  <meta name="description" content="Soutenez Sophira avec un don. Scannez le QR TWINT ou donnez en ligne. Chaque contribution aide des adultes en Suisse à se reconvertir vers les métiers d’avenir." />
+
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="fr" href="https://sophira.org/donate.html" />
+  <link rel="alternate" hreflang="de" href="https://sophira.org/donate-de.html" />
+  <link rel="alternate" hreflang="x-default" href="https://sophira.org/donate.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Faire un don – Sophira" />
+  <meta property="og:description" content="Scannez le QR TWINT ou donnez en ligne pour soutenir la reconversion des adultes en Suisse." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sophira.org/donate.html" />
+  <meta property="og:image" content="https://sophira.org/Logo_sophira.png" />
+  <meta property="og:site_name" content="Sophira" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Faire un don – Sophira" />
+  <meta name="twitter:description" content="Soutenez Sophira : QR TWINT, carte de remerciement, événements, reconnaissance spéciale selon votre don." />
+  <meta name="twitter:image" content="https://sophira.org/Logo_sophira.png" />
+
+  <!-- Police -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg-overlay: rgba(255,255,255,0.92);
+      --card-bg: rgba(255,255,255,0.9);
+      --text: #2c3e50;
+      --muted: #4a5568;
+      --brand: #1a73e8;
+      --brand-hover: #155ab6;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+      --shadow-md: 0 6px 16px rgba(0,0,0,0.10);
+      --radius: 12px;
+      --radius-sm: 8px;
+      --container: 1100px;
+      --focus:#0d6efd;
+      --focus-bg:#e8f0fe;
+    }
+    *{ box-sizing:border-box; }
+    html:focus-within{ scroll-behavior:smooth; }
+    body{
+      margin:0; font-family:'Inter',sans-serif;
+      background:url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center center fixed;
+      background-size:cover; color:var(--text);
+    }
+    .overlay{ background-color:var(--bg-overlay); min-height:100vh; display:flex; flex-direction:column; }
+
+    /* Skip link */
+    .skip-link{
+      position:absolute; left:1rem; top:.5rem;
+      transform:translateY(-200%); background:#000; color:#fff;
+      padding:.6rem .9rem; border-radius:8px; text-decoration:none; z-index:1000;
+      box-shadow:var(--shadow-sm);
+    }
+    .skip-link:focus,.skip-link:focus-visible{ transform:translateY(0); outline:2px solid #fff; }
+
+    /* NAVBAR */
+    header.navbar{
+      position:sticky; top:0; z-index:20;
+      display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+      padding:.8rem 1rem; background:#ffffffdd; box-shadow:var(--shadow-sm); backdrop-filter:blur(6px);
+    }
+    .brand{ display:flex; align-items:center; gap:.6rem; }
+    .brand img{ height:55px; width:auto; }
+    .brand h1{ margin:0; font-size:1.7rem; font-weight:600; color:#1a202c; }
+
+    nav.primary{ display:flex; gap:1.1rem; align-items:center; }
+    nav.primary a{ text-decoration:none; color:var(--text); font-weight:500; }
+    nav.primary a:hover, nav.primary a:focus{ color:#1e88e5; }
+    a:focus-visible, button:focus-visible{
+      outline:3px solid var(--focus); outline-offset:2px;
+      background:linear-gradient(0deg, var(--focus-bg), var(--focus-bg)) no-repeat;
+    }
+
+    /* Language switcher */
+    .lang{ display:inline-flex; gap:.4rem; margin-left:.6rem; font-size:.95rem; }
+    .lang a{ color:#5b6b7a; text-decoration:none; }
+    .lang a[aria-current="true"]{ font-weight:700; color:#1a202c; }
+
+    /* Mobile menu */
+    .burger{ display:none; background:none; border:none; padding:.4rem .6rem; border-radius:8px; }
+    .burger svg{ width:28px; height:28px; }
+    .mobile-panel{ display:none; position:fixed; inset:64px 0 0 0; background:#ffffffdd; backdrop-filter:blur(6px); padding:1rem; }
+    .mobile-links{ display:flex; flex-direction:column; gap:.8rem; }
+    .mobile-links a{ text-decoration:none; color:var(--text); font-weight:600; padding:.7rem 0; border-bottom:1px solid rgba(0,0,0,.06); }
+    .mobile-links a:last-child{ border-bottom:none; }
+    .hidden{ display:none !important; }
+
+    .container{ flex:1; max-width:var(--container); margin:2rem auto; padding:0 1rem; }
+
+    /* HERO With QR */
+    .hero{
+      background:#edf2f7cc; padding:2.0rem 1.4rem; border-radius:var(--radius); box-shadow:var(--shadow-md);
+    }
+    .hero-grid{
+      display:grid; grid-template-columns:repeat(12,1fr); gap:1.2rem; align-items:center;
+    }
+    .hero-text{ grid-column:span 12; }
+    .hero-qr{ grid-column:span 12; text-align:center; }
+    .hero h2{ font-size:2.1rem; margin:.2rem 0 .6rem; text-align:center; }
+    .subtitle{ font-size:1.07rem; color:var(--muted); margin:0 auto 1rem; max-width:820px; text-align:center; }
+    figure.qr{
+      margin:0 auto; background:#fff; padding:1rem; border-radius:12px; display:inline-block;
+      box-shadow:var(--shadow-sm);
+    }
+    figure.qr img{
+      width:240px; max-width:60vw; height:auto; display:block; border-radius:8px;
+    }
+    figure.qr figcaption{
+      font-size:.95rem; color:#4a5568; margin-top:.5rem;
+    }
+    .qr-actions{ margin-top:.8rem; display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap; }
+    .btn{ display:inline-block; background:var(--brand); color:#fff; text-decoration:none; padding:.65rem 1.1rem; border-radius:10px; font-weight:700; }
+    .btn:hover{ background:var(--brand-hover); }
+    .btn.outline{ background:transparent; color:var(--brand); border:2px solid var(--brand); }
+    .btn.outline:hover{ background:#e8f0fe; }
+
+    /* Perks */
+    .section{ margin-top:1.6rem; background:var(--card-bg); padding:1.6rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
+    .section h3{ font-size:1.4rem; margin:.2rem 0 1rem; text-align:center; }
+    .perks{ display:grid; grid-template-columns:repeat(12,1fr); gap:1rem; margin-top:1rem; }
+    .perk{ grid-column:span 12; background:#fff; border-radius:10px; padding:1rem; box-shadow:var(--shadow-sm); text-align:center; }
+    .perk .amount{ font-size:1.25rem; font-weight:700; color:var(--brand); }
+    .perk p{ margin:.5rem 0; color:#374151; }
+
+    @media (min-width: 760px){
+      .hero-text{ grid-column:span 7; }
+      .hero-qr{ grid-column:span 5; }
+    }
+    @media (min-width: 900px){
+      .perk{ grid-column:span 3; }
+    }
+
+    /* CTA bottom */
+    .cta{ margin-top:2rem; background:#f7fafc; padding:2rem; text-align:center; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
+
+    footer.site{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:#ffffffdd; border-top-left-radius:var(--radius); border-top-right-radius:var(--radius); }
+
+    @media (max-width:880px){ nav.primary{ display:none; } .burger{ display:inline-flex; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Aller au contenu principal</a>
+  <div class="overlay">
+    <!-- NAVBAR -->
+    <header class="navbar" role="navigation" aria-label="Navigation principale">
+      <a class="brand" href="index.html">
+        <img src="Logo_sophira.png" alt="Logo Sophira" />
+        <h1>Sophira</h1>
+      </a>
+      <nav class="primary" aria-label="Liens principaux">
+        <a href="index.html">Accueil</a>
+        <a href="team.html">Équipe</a>
+        <a href="project.html">Projet social</a>
+        <a href="dashboard.html">Tableau de bord</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+        <a href="donate.html" aria-current="page">Don</a>
+        <span class="lang" aria-label="Changer de langue">
+          <a href="donate.html" lang="fr" aria-current="true">FR</a> |
+          <a href="donate-de.html" lang="de">DE</a>
+        </span>
+      </nav>
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-controls="menu-mobile" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </header>
+
+    <!-- MENU MOBILE -->
+    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Menu mobile">
+      <div class="mobile-links">
+        <a href="index.html">Accueil</a>
+        <a href="team.html">Équipe</a>
+        <a href="project.html">Projet social</a>
+        <a href="dashboard.html">Tableau de bord</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+        <a href="donate.html" aria-current="page">Don</a>
+      </div>
+    </div>
+
+    <!-- CONTENU -->
+    <main id="main" class="container">
+      <section class="hero" aria-label="Don par QR TWINT ou en ligne">
+        <h2>Soutenez Sophira</h2>
+        <p class="subtitle">Votre don aide directement des adultes en Suisse à se reconvertir et à accéder aux métiers d’avenir. Merci de rendre cela possible ❤️</p>
+
+        <div class="hero-grid">
+          <div class="hero-text">
+            <p style="line-height:1.6;">
+              Vous pouvez <strong>scanner le QR TWINT</strong> pour un virement immédiat depuis votre téléphone,
+              ou utiliser notre bouton de don en ligne. Un <strong>reçu postal</strong> peut être envoyé sur demande.
+            </p>
+            <div class="qr-actions" role="group" aria-label="Actions de don">
+              <a class="btn" href="https://www.paypal.com/donate" target="_blank" rel="noopener">Don en ligne</a>
+              <a class="btn outline" href="twint_QR.png" download="Sophira_TWINT_QR.png">Télécharger le QR</a>
+            </div>
+          </div>
+
+          <div class="hero-qr">
+            <figure class="qr">
+              <img src="twint_QR.png" width="480" height="480" alt="Code QR TWINT pour faire un don à Sophira" loading="eager" decoding="async" />
+              <figcaption>Ouvrez TWINT → Scannez ce QR → Indiquez le montant → Confirmez.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- Avantages donateurs -->
+      <section class="section" aria-label="Avantages pour les donateurs">
+        <h3>Avantages selon le montant</h3>
+        <div class="perks">
+          <div class="perk">
+            <div class="amount">Dès 20 CHF</div>
+            <p>Carte de remerciement personnalisée + reçu (par la poste).</p>
+          </div>
+          <div class="perk">
+            <div class="amount">Dès 100 CHF</div>
+            <p>Votre nom (optionnel) sur notre page <em>Soutiens</em> + avantages précédents.</p>
+          </div>
+          <div class="perk">
+            <div class="amount">Dès 500 CHF</div>
+            <p>Invitation annuelle à un événement privé avec l’équipe + avantages précédents.</p>
+          </div>
+          <div class="perk">
+            <div class="amount">Dès 1000 CHF</div>
+            <p>Accès à notre rapport d’impact détaillé + reconnaissance “Membre bienfaiteur”.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta" aria-label="Faire un don">
+        <h3>Prêt·e à soutenir ?</h3>
+        <p>Chaque contribution compte et aide des adultes à transformer leur avenir.</p>
+        <a class="btn" href="https://www.paypal.com/donate" target="_blank" rel="noopener">Faire un don en ligne</a>
+      </section>
+    </main>
+
+    <footer class="site">
+      <p>&copy; 2025 Sophira Association | Basel, Suisse</p>
+    </footer>
+  </div>
+
+  <!-- JSON-LD (schéma de don simple) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "DonateAction",
+    "name": "Don à Sophira",
+    "description": "Don en ligne ou via QR TWINT pour soutenir la reconversion professionnelle d'adultes en Suisse.",
+    "recipient": { "@type": "Organization", "name": "Sophira", "url": "https://sophira.org" },
+    "potentialAction": {
+      "@type": "PayAction",
+      "target": [
+        "https://www.paypal.com/donate",
+        "https://sophira.org/twint_QR.png"
+      ]
+    }
+  }
+  </script>
+
+  <!-- JS menu mobile (accessible) -->
+  <script>
+    (function(){
+      const burger = document.getElementById('burger');
+      const panel  = document.getElementById('menu-mobile');
+      if(!burger || !panel) return;
+
+      function toggleMenu(){
+        const open = panel.classList.toggle('hidden') === false;
+        burger.setAttribute('aria-expanded', String(open));
+        burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+        if(open){ panel.querySelector('a')?.focus(); }
+      }
+      burger.addEventListener('click', toggleMenu);
+      document.addEventListener('click', (e)=>{
+        if(panel.classList.contains('hidden')) return;
+        const within = panel.contains(e.target) || burger.contains(e.target);
+        if(!within) toggleMenu();
+      });
+      document.addEventListener('keydown', (e)=>{
+        if(e.key==='Escape' && !panel.classList.contains('hidden')) toggleMenu();
+      });
+    })();
+  </script>
+</body>
+</html>
