@@ -202,6 +202,15 @@
       border-top-left-radius:var(--radius); border-top-right-radius:var(--radius);
     }
 
+    /* GPT-Schwebeknopf */
+    .chat-fab{
+      position:fixed; right:18px; bottom:18px; z-index:30;
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.8rem 1rem; border-radius:999px; background:var(--brand); color:#fff; text-decoration:none;
+      box-shadow:var(--shadow-md);
+    }
+    .chat-fab:hover{ background:var(--brand-hover); }
+
     /* RESPONSIVE */
     @media (min-width: 700px){
       .col-6{ grid-column:span 6; }
@@ -235,6 +244,8 @@
         <a href="dashboard-de.html">Dashboard</a>
         <a href="blog.html">Blog</a>
         <a href="contact-de.html">Kontakt</a>
+        <!-- GPT-Link in der Hauptnavigation -->
+        <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Sophira‑Assistent in einem neuen Tab öffnen">Sophira‑Assistent</a>
         <span class="lang" aria-label="Sprache wechseln">
           <a href="project.html" lang="fr">FR</a> |
           <a href="project-de.html" lang="de" aria-current="true">DE</a>
@@ -256,6 +267,12 @@
         <a href="dashboard-de.html">Dashboard</a>
         <a href="blog.html">Blog</a>
         <a href="contact-de.html">Kontakt</a>
+        <!-- GPT-Link auch im mobilen Menü -->
+        <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener">Sophira‑Assistent</a>
+        <span class="lang" aria-label="Sprache wechseln">
+          <a href="project.html" lang="fr">FR</a> |
+          <a href="project-de.html" lang="de" aria-current="true">DE</a>
+        </span>
       </div>
     </div>
 
@@ -452,6 +469,12 @@
       <p>&copy; 2025 Sophira Verein | Basel, Schweiz</p>
     </footer>
   </div>
+
+  <!-- Schwebender Button zum Öffnen des GPT -->
+  <a class="chat-fab" href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Mit dem Sophira‑Assistenten sprechen (öffnet neuen Tab)">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Sophira‑Assistent</span>
+  </a>
 
   <!-- JSON-LD FAQ (SEO) -->
   <script type="application/ld+json">
