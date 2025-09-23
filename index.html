@@ -176,12 +176,21 @@
     .post a{ font-weight:600; color:#fff; background:var(--brand); padding:.4rem .7rem; border-radius:8px; text-decoration:none; }
     .post a:hover{ background:var(--brand-hover); }
 
-    /* CTA final (inchangé) */
+    /* CTA final */
     .cta{ margin-top:2rem; background:#f7fafc; padding:2rem; text-align:center; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
     .cta a{ display:inline-block; margin-top:1rem; background:var(--brand); color:#fff; text-decoration:none; padding:.7rem 1.4rem; border-radius:10px; font-weight:700; }
     .cta a:hover{ background:var(--brand-hover); }
 
     footer{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:var(--whiteglass); border-top-left-radius:var(--radius); border-top-right-radius:var(--radius); }
+
+    /* Bouton flottant GPT */
+    .chat-fab{
+      position:fixed; right:18px; bottom:18px; z-index:30;
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.8rem 1rem; border-radius:999px; background:var(--brand); color:#fff; text-decoration:none;
+      box-shadow:var(--shadow-md);
+    }
+    .chat-fab:hover{ background:var(--brand-hover); }
 
     /* Responsive */
     @media (min-width: 680px){
@@ -215,6 +224,9 @@
         <a href="dashboard.html">Tableau de bord</a>
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
+        <!-- Lien GPT dans la navigation principale -->
+        <!-- TODO: remplace l’URL par le lien public de ton GPT -->
+        <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Ouvrir l’assistant Sophira dans un nouvel onglet">Assistant Sophira</a>
         <span class="lang" aria-label="Changer de langue">
           <a href="index.html" lang="fr" aria-current="true">FR</a> |
           <a href="index-de.html" lang="de">DE</a>
@@ -236,6 +248,8 @@
         <a href="dashboard.html">Tableau de bord</a>
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
+        <!-- Lien GPT aussi dans le menu mobile -->
+        <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener">Assistant Sophira</a>
       </div>
     </div>
 
@@ -273,7 +287,7 @@
         </div>
       </section>
 
-      <!-- SECTION INFO (inchangée, concise) -->
+      <!-- SECTION INFO -->
       <section class="content">
         <h3>Pourquoi Sophira&nbsp;?</h3>
         <p>Sophira est née d'une conviction : les transitions numérique et écologique transforment le marché du travail,
@@ -284,7 +298,7 @@
           grâce à un soutien financier et humain.</p>
       </section>
 
-      <!-- Teaser très léger du blog (3 cartes) -->
+      <!-- Teaser blog (3 cartes) -->
       <section class="teaser" aria-label="Derniers articles">
         <h3>À lire sur le blog</h3>
         <div class="posts">
@@ -306,7 +320,7 @@
         </div>
       </section>
 
-      <!-- CTA FINAL (inchangé) -->
+      <!-- CTA FINAL -->
       <section class="cta" aria-label="Soutenir">
         <h3>Soutenez notre vision</h3>
         <p>Construisons ensemble un avenir plus juste en révélant de nouveaux talents grâce à la solidarité et l'apprentissage continu.</p>
@@ -319,7 +333,15 @@
     </footer>
   </div>
 
-  <!-- JS menu mobile (avec focus trap + attributs ARIA mis à jour) -->
+  <!-- Bouton flottant pour ouvrir le GPT -->
+  <!-- TODO: remplace l’URL par le lien public de ton GPT -->
+  <a class="chat-fab" href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Parler avec l’assistant Sophira (ouvre un nouvel onglet)">
+    <!-- Icône chat minimaliste en SVG -->
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Assistant Sophira</span>
+  </a>
+
+  <!-- JS menu mobile (focus trap + ARIA) -->
   <script>
     (function(){
       const burger = document.getElementById('burger');
@@ -368,11 +390,10 @@
         if(!within) closeMenu();
       });
 
-      // Échap pour fermer
+      // Échap + Focus trap
       document.addEventListener('keydown', (e)=>{
         if(e.key === 'Escape' && !panel.classList.contains('hidden')) closeMenu();
 
-        // Focus trap (Tab) dans le panneau
         if(e.key === 'Tab' && !panel.classList.contains('hidden')){
           const f = Array.from(getFocusable());
           if(!f.length) return;
