@@ -184,6 +184,15 @@
       border-top-left-radius:var(--radius); border-top-right-radius:var(--radius);
     }
 
+    /* GPT bouton flottant */
+    .chat-fab{
+      position:fixed; right:18px; bottom:18px; z-index:30;
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.8rem 1rem; border-radius:999px; background:var(--brand); color:#fff; text-decoration:none;
+      box-shadow:var(--shadow-md);
+    }
+    .chat-fab:hover{ background:var(--brand-hover); }
+
     /* RESPONSIVE */
     @media (min-width: 700px){
       .col-6{ grid-column:span 6; }
@@ -217,6 +226,8 @@
         <a href="dashboard.html">Tableau de bord</a>
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
+        <!-- Lien GPT dans la navigation -->
+        <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Ouvrir l’assistant Sophira dans un nouvel onglet">Assistant Sophira</a>
         <span class="lang" aria-label="Changer de langue">
           <a href="project.html" lang="fr" aria-current="true">FR</a> |
           <a href="project-de.html" lang="de">DE</a>
@@ -238,6 +249,8 @@
         <a href="dashboard.html">Tableau de bord</a>
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
+        <!-- Lien GPT mobile -->
+        <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener">Assistant Sophira</a>
         <span class="lang" aria-label="Changer de langue">
           <a href="project.html" lang="fr" aria-current="true">FR</a> |
           <a href="project-de.html" lang="de">DE</a>
@@ -438,6 +451,12 @@
       <p>&copy; 2025 Sophira Association | Basel, Suisse</p>
     </footer>
   </div>
+
+  <!-- Bouton flottant GPT -->
+  <a class="chat-fab" href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Parler avec l’assistant Sophira (ouvre un nouvel onglet)">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Assistant Sophira</span>
+  </a>
 
   <!-- JSON-LD FAQ (SEO) -->
   <script type="application/ld+json">
