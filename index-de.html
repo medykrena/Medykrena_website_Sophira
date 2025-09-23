@@ -183,6 +183,15 @@
 
     footer{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:var(--whiteglass); border-top-left-radius:var(--radius); border-top-right-radius:var(--radius); }
 
+    /* GPT-Schwebeknopf */
+    .chat-fab{
+      position:fixed; right:18px; bottom:18px; z-index:30;
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.8rem 1rem; border-radius:999px; background:var(--brand); color:#fff; text-decoration:none;
+      box-shadow:var(--shadow-md);
+    }
+    .chat-fab:hover{ background:var(--brand-hover); }
+
     /* Responsive */
     @media (min-width: 680px){
       .glance .item{ grid-column:span 4; }
@@ -215,6 +224,8 @@
         <a href="dashboard-de.html">Dashboard</a>
         <a href="blog.html">Blog</a>
         <a href="contact-de.html">Kontakt</a>
+        <!-- GPT-Link in der Hauptnavigation -->
+        <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Sophira-Assistent in einem neuen Tab öffnen">Sophira-Assistent</a>
         <span class="lang" aria-label="Sprache wechseln">
           <a href="index.html" lang="fr">FR</a> |
           <a href="index-de.html" lang="de" aria-current="true">DE</a>
@@ -236,6 +247,8 @@
         <a href="dashboard-de.html">Dashboard</a>
         <a href="blog.html">Blog</a>
         <a href="contact-de.html">Kontakt</a>
+        <!-- GPT-Link auch im mobilen Menü -->
+        <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener">Sophira-Assistent</a>
       </div>
     </div>
 
@@ -246,14 +259,14 @@
         <h2>Talente von morgen fördern</h2>
         <p class="subtitle">
           Sophira ist ein gemeinnütziger Schweizer Verein, der Erwachsene unterstützt,
-          die bei ihrer beruflichen Neuorientierung in Zukunftsberufe: von Daten bis zu grünen Technologien, auf Hindernisse stossen.
+          die bei ihrer beruflichen Neuorientierung in Zukunftsberufe – von Daten bis zu grünen Technologien – auf Hindernisse stossen.
         </p>
 
         <!-- Auf einen Blick -->
         <div class="glance" aria-label="Auf einen Blick">
           <div class="item">
             <strong>Zielgerichtetes Stipendium</strong>
-            Deckt einen Teil der Ausbildungs- und der wichtigsten Ausrüstungskosten ab.
+            Deckt einen Teil der Ausbildungs- und wichtigsten Ausrüstungskosten ab.
           </div>
           <div class="item">
             <strong>Mentoring & Netzwerk</strong>
@@ -317,6 +330,12 @@
       <p>&copy; 2025 Sophira Verein | Basel, Schweiz</p>
     </footer>
   </div>
+
+  <!-- Schwebender Button zum Öffnen des GPT -->
+  <a class="chat-fab" href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Mit dem Sophira‑Assistenten sprechen (öffnet neuen Tab)">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Sophira‑Assistent</span>
+  </a>
 
   <!-- JS mobiles Menü (Focus Trap + ARIA-Updates) -->
   <script>
