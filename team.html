@@ -9,6 +9,7 @@
   <link rel="canonical" href="https://sophira.org/team.html" />
   <meta name="robots" content="index,follow" />
   <meta name="description" content="Rencontrez l'équipe Sophira : Arijanit Idrizi (président), Quôc-Bao Nguyên (co-président). Un poste de trésorier·ère est à pourvoir pour renforcer la gouvernance." />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
 
   <!-- Hreflang -->
   <link rel="alternate" hreflang="fr" href="https://sophira.org/team.html" />
@@ -62,18 +63,20 @@
     html:focus-within{ scroll-behavior:smooth; }
 
     body{
-      margin:0;
-      font-family:'Inter',sans-serif;
-      background:url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center center fixed;
-      background-size:cover;
-      color:var(--text);
+      margin:0; font-family:'Inter',sans-serif;
+      background:
+        image-set(
+          url('mathew-schwartz-91ryOVMlBJc-unsplash.avif') type('image/avif'),
+          url('mathew-schwartz-91ryOVMlBJc-unsplash.webp') type('image/webp'),
+          url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') type('image/jpeg')
+        ) no-repeat center center fixed;
+      background-size:cover; color:var(--text);
     }
     body.no-scroll{ overflow:hidden; }
     .overlay{
       background-color:var(--bg-overlay);
       min-height:100vh;
-      display:flex;
-      flex-direction:column;
+      display:flex; flex-direction:column;
     }
 
     /* Skip-link */
@@ -97,7 +100,7 @@
       backdrop-filter:blur(6px);
     }
     .brand{ display:flex; align-items:center; gap:.6rem; min-width:0; text-decoration:none; }
-    .brand img{ height:55px; width:auto; }
+    .brand img{ height:55px; width:110px; object-fit:contain; }
     .brand h1{ margin:0; font-size:1.7rem; font-weight:600; color:#1a202c; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
     nav.primary{ display:flex; gap:1.1rem; align-items:center; }
@@ -184,8 +187,8 @@
   <div class="overlay">
     <!-- NAVIGATION -->
     <header class="navbar" role="navigation" aria-label="Navigation principale">
-      <a class="brand" href="index.html">
-        <img src="Logo_sophira.png" alt="Logo Sophira" loading="eager" fetchpriority="high" />
+      <a class="brand" href="index.html" aria-label="Page d’accueil Sophira">
+        <img src="Logo_sophira.png" alt="Logo Sophira" width="110" height="55" loading="eager" fetchpriority="high" />
         <h1>Sophira</h1>
       </a>
 
@@ -197,8 +200,8 @@
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
         <span class="lang" aria-label="Changer de langue">
-          <a href="team.html" lang="fr" aria-current="true">FR</a> |
-          <a href="team-de.html" lang="de">DE</a>
+          <a href="team.html" lang="fr" hreflang="fr" aria-current="true">FR</a> |
+          <a href="team-de.html" lang="de" hreflang="de">DE</a>
         </span>
       </nav>
 
@@ -208,29 +211,32 @@
     </header>
 
     <!-- MENU MOBILE ACCESSIBLE -->
-    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Menu mobile" aria-hidden="true" hidden>
+    <div id="menu-mobile" class="mobile-panel" role="dialog" aria-modal="true" aria-label="Menu mobile" aria-hidden="true" hidden>
       <div class="mobile-links">
+        <!-- Switch de langue d’abord sur mobile -->
+        <a href="team.html" lang="fr" hreflang="fr" aria-current="true">Français (FR)</a>
+        <a href="team-de.html" lang="de" hreflang="de">Deutsch (DE)</a>
+
         <a href="index.html">Accueil</a>
         <a href="team.html" aria-current="page">Équipe</a>
         <a href="project.html">Projet social</a>
         <a href="dashboard.html">Tableau de bord</a>
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
-        <a href="team-de.html" lang="de">→ Version DE</a>
       </div>
     </div>
 
     <!-- CONTENU -->
     <main id="main" class="container" itemprop="mainEntity">
-      <section class="hero">
-        <h2>Notre équipe</h2>
+      <section class="hero" aria-labelledby="hero-title">
+        <h2 id="hero-title">Notre équipe</h2>
         <p class="subtitle">Des personnes engagées pour une reconversion <em>digne</em>, <em>inclusive</em> et <em>durable</em>. Nous créons des ponts entre les talents et les métiers d’avenir.</p>
       </section>
 
       <section class="team" aria-label="Membres de l’équipe">
         <!-- Président -->
         <article class="card" itemscope itemtype="https://schema.org/Person">
-          <img class="avatar" src="photo%20CV.JPG" alt="Portrait d’Arijanit Idrizi" width="96" height="96" loading="lazy" decoding="async" fetchpriority="high" itemprop="image" />
+          <img class="avatar" src="photo%20CV.JPG" alt="Portrait d’Arijanit Idrizi" width="96" height="96" loading="lazy" decoding="async" itemprop="image" />
           <div>
             <h3 itemprop="name">Arijanit Idrizi</h3>
             <div class="role" itemprop="jobTitle">Président</div>
@@ -241,7 +247,7 @@
 
         <!-- Co-président -->
         <article class="card" itemscope itemtype="https://schema.org/Person">
-          <img class="avatar" src="PHOTO-BAO.jpg" alt="Portrait de Quôc-Bao Nguyên" width="96" height="96" loading="lazy" decoding="async" fetchpriority="high" itemprop="image" />
+          <img class="avatar" src="PHOTO-BAO.jpg" alt="Portrait de Quôc-Bao Nguyên" width="96" height="96" loading="lazy" decoding="async" itemprop="image" />
           <div>
             <h3 itemprop="name">Quôc-Bao Nguyên</h3>
             <div class="role" itemprop="jobTitle">Co-président</div>
@@ -293,18 +299,8 @@
         "@type":"Organization",
         "name":"Équipe dirigeante",
         "member":[
-          {
-            "@type":"Person",
-            "name":"Arijanit Idrizi",
-            "jobTitle":"Président",
-            "image":"https://sophira.org/photo%20CV.JPG"
-          },
-          {
-            "@type":"Person",
-            "name":"Quôc-Bao Nguyên",
-            "jobTitle":"Co-président",
-            "image":"https://sophira.org/PHOTO-BAO.jpg"
-          }
+          { "@type":"Person", "name":"Arijanit Idrizi", "jobTitle":"Président", "image":"https://sophira.org/photo%20CV.JPG" },
+          { "@type":"Person", "name":"Quôc-Bao Nguyên", "jobTitle":"Co-président", "image":"https://sophira.org/PHOTO-BAO.jpg" }
         ]
       }
     ]
@@ -324,7 +320,6 @@
       function getFocusable(){ return panel.querySelectorAll(focusableSelector); }
 
       function openMenu(){
-        panel.classList.remove('hidden');
         panel.removeAttribute('hidden');
         panel.setAttribute('aria-hidden','false');
         document.body.classList.add('no-scroll');
@@ -335,7 +330,6 @@
         if(f.length) f[0].focus();
       }
       function closeMenu(){
-        panel.classList.add('hidden');
         panel.setAttribute('hidden','');
         panel.setAttribute('aria-hidden','true');
         document.body.classList.remove('no-scroll');
@@ -343,22 +337,22 @@
         burger.setAttribute('aria-label','Ouvrir le menu');
         if(lastFocused) lastFocused.focus();
       }
-      function toggleMenu(){ panel.classList.contains('hidden') ? openMenu() : closeMenu(); }
+      function toggleMenu(){ panel.hasAttribute('hidden') ? openMenu() : closeMenu(); }
 
       burger.addEventListener('click', toggleMenu);
 
       // Click extérieur
       document.addEventListener('click', (e)=>{
-        if(panel.classList.contains('hidden')) return;
+        if(panel.hasAttribute('hidden')) return;
         const within = panel.contains(e.target) || burger.contains(e.target);
         if(!within) closeMenu();
       });
 
       // ESC + Focus trap
       document.addEventListener('keydown', (e)=>{
-        if(e.key==='Escape' && !panel.classList.contains('hidden')) closeMenu();
+        if(e.key==='Escape' && !panel.hasAttribute('hidden')) closeMenu();
 
-        if(e.key==='Tab' && !panel.classList.contains('hidden')){
+        if(e.key==='Tab' && !panel.hasAttribute('hidden')){
           const f = Array.from(getFocusable());
           if(!f.length) return;
           const first=f[0], last=f[f.length-1];
