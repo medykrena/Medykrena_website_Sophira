@@ -9,6 +9,7 @@
   <link rel="canonical" href="https://sophira.org/project.html" />
   <meta name="robots" content="index,follow" />
   <meta name="description" content="Découvrez comment la bourse Sophira aide des adultes en Suisse à se reconvertir vers des métiers d’avenir. Critères, étapes, accompagnement, et comment candidater ou devenir partenaire." />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
 
   <!-- Hreflang -->
   <link rel="alternate" hreflang="fr" href="https://sophira.org/project.html" />
@@ -22,6 +23,7 @@
   <meta property="og:url" content="https://sophira.org/project.html" />
   <meta property="og:image" content="https://sophira.org/Logo_sophira.png" />
   <meta property="og:site_name" content="Sophira" />
+  <meta property="og:locale" content="fr_CH" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -63,7 +65,12 @@
     html:focus-within{ scroll-behavior:smooth; }
     body{
       margin:0; font-family:'Inter',sans-serif;
-      background:url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center center fixed;
+      background:
+        image-set(
+          url('mathew-schwartz-91ryOVMlBJc-unsplash.avif') type('image/avif'),
+          url('mathew-schwartz-91ryOVMlBJc-unsplash.webp') type('image/webp'),
+          url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') type('image/jpeg')
+        ) no-repeat center center fixed;
       background-size:cover; color:var(--text);
     }
     body.no-scroll{ overflow:hidden; }
@@ -85,7 +92,7 @@
       padding:.8rem 1rem; background:#ffffffdd; box-shadow:var(--shadow-sm); backdrop-filter:blur(6px);
     }
     .brand{ display:flex; align-items:center; gap:.6rem; }
-    .brand img{ height:55px; width:auto; }
+    .brand img{ height:55px; width:110px; object-fit:contain; }
     .brand h1{ margin:0; font-size:1.7rem; font-weight:600; color:#1a202c; }
     nav.primary{ display:flex; gap:1.1rem; align-items:center; }
     nav.primary a{ text-decoration:none; color:var(--text); font-weight:500; }
@@ -215,8 +222,8 @@
   <div class="overlay">
     <!-- NAVIGATION -->
     <header class="navbar" role="navigation" aria-label="Navigation principale">
-      <a class="brand" href="index.html">
-        <img src="Logo_sophira.png" alt="Logo Sophira" />
+      <a class="brand" href="index.html" aria-label="Page d’accueil Sophira">
+        <img src="Logo_sophira.png" alt="Logo Sophira" width="110" height="55" loading="eager" fetchpriority="high" />
         <h1>Sophira</h1>
       </a>
       <nav class="primary" aria-label="Liens principaux">
@@ -229,8 +236,8 @@
         <!-- Lien GPT dans la navigation -->
         <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Ouvrir l’assistant Sophira dans un nouvel onglet">Assistant Sophira</a>
         <span class="lang" aria-label="Changer de langue">
-          <a href="project.html" lang="fr" aria-current="true">FR</a> |
-          <a href="project-de.html" lang="de">DE</a>
+          <a href="project.html" lang="fr" hreflang="fr" aria-current="true">FR</a> |
+          <a href="project-de.html" lang="de" hreflang="de">DE</a>
         </span>
       </nav>
       <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-controls="menu-mobile" aria-expanded="false">
@@ -243,6 +250,10 @@
     <!-- MENU MOBILE (accessible) -->
     <div id="menu-mobile" class="mobile-panel" role="dialog" aria-modal="true" aria-label="Menu mobile" aria-hidden="true" hidden>
       <div class="mobile-links">
+        <!-- Lang-switch en premier sur mobile -->
+        <a href="project.html" lang="fr" hreflang="fr" aria-current="true">Français (FR)</a>
+        <a href="project-de.html" lang="de" hreflang="de">Deutsch (DE)</a>
+
         <a href="index.html">Accueil</a>
         <a href="team.html">Équipe</a>
         <a href="project.html" aria-current="page">Projet social</a>
@@ -251,10 +262,6 @@
         <a href="contact.html">Contact</a>
         <!-- Lien GPT mobile -->
         <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener">Assistant Sophira</a>
-        <span class="lang" aria-label="Changer de langue">
-          <a href="project.html" lang="fr" aria-current="true">FR</a> |
-          <a href="project-de.html" lang="de">DE</a>
-        </span>
       </div>
     </div>
 
@@ -262,7 +269,7 @@
     <nav class="breadcrumbs container" aria-label="Fil d’Ariane">
       <ol>
         <li><a href="index.html">Accueil</a></li>
-        <li>›</li>
+        <li aria-hidden="true">›</li>
         <li>Projet social</li>
       </ol>
     </nav>
@@ -270,9 +277,9 @@
     <!-- CONTENU -->
     <main id="main" class="container" itemprop="mainEntity">
       <!-- Hero + CTA -->
-      <section class="hero">
-        <h2>Notre projet social</h2>
-        <p class="subtitle">
+      <section class="hero" aria-labelledby="hero-title" aria-describedby="hero-sub">
+        <h2 id="hero-title">Notre projet social</h2>
+        <p class="subtitle" id="hero-sub">
           Un parcours complet pour des adultes en Suisse : <strong>bourse de reconversion</strong>, <strong>mentorat</strong> et <strong>insertion</strong> vers les métiers d’avenir (data, tech durable, santé digitale, IA).
         </p>
         <div class="cta-row" role="group" aria-label="Appels à l’action principaux">
@@ -467,26 +474,17 @@
       {
         "@type": "Question",
         "name": "La bourse est-elle remboursable ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Non, elle est attribuée pour lever les barrières financières à l’accès à la formation."
-        }
+        "acceptedAnswer": { "@type": "Answer", "text": "Non, elle est attribuée pour lever les barrières financières à l’accès à la formation." }
       },
       {
         "@type": "Question",
         "name": "Dois-je déjà savoir programmer ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Pas forcément. Nous évaluons l’appétence et proposons une mise à niveau lorsqu’elle est nécessaire."
-        }
+        "acceptedAnswer": { "@type": "Answer", "text": "Pas forcément. Nous évaluons l’appétence et proposons une mise à niveau lorsqu’elle est nécessaire." }
       },
       {
         "@type": "Question",
         "name": "Quel est l’engagement attendu ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Entre 8 et 20 heures par semaine selon le parcours, avec rendez-vous réguliers."
-        }
+        "acceptedAnswer": { "@type": "Answer", "text": "Entre 8 et 20 heures par semaine selon le parcours, avec rendez-vous réguliers." }
       }
     ]
   }
