@@ -9,6 +9,7 @@
   <link rel="canonical" href="https://sophira.org/donate.html" />
   <meta name="robots" content="index,follow" />
   <meta name="description" content="Soutenez Sophira : aidez des adultes en Suisse à se reconvertir vers des métiers d’avenir. Don par TWINT ou PayPal." />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
 
   <!-- Hreflang -->
   <link rel="alternate" hreflang="fr" href="https://sophira.org/donate.html" />
@@ -80,14 +81,29 @@
     html:focus-within{ scroll-behavior:smooth; }
     body{
       margin:0; font-family:'Inter',sans-serif;
-      background:url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center center fixed;
+      background:
+        image-set(
+          url('mathew-schwartz-91ryOVMlBJc-unsplash.avif') type('image/avif'),
+          url('mathew-schwartz-91ryOVMlBJc-unsplash.webp') type('image/webp'),
+          url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') type('image/jpeg')
+        ) no-repeat center center fixed;
       background-size:cover; color:var(--text);
     }
+    body.no-scroll{ overflow:hidden; }
     .overlay{ background-color:var(--bg-overlay); min-height:100vh; display:flex; flex-direction:column; }
-    a:focus-visible, button:focus-visible{ outline:3px solid var(--focus); outline-offset:2px; background:linear-gradient(0deg,var(--focus-bg),var(--focus-bg)) no-repeat; }
+
+    /* Focus visible global */
+    a:focus-visible, button:focus-visible{
+      outline:3px solid var(--focus);
+      outline-offset:2px;
+      background:linear-gradient(0deg,var(--focus-bg),var(--focus-bg)) no-repeat;
+    }
 
     /* Skip link */
-    .skip-link{ position:absolute; left:1rem; top:.5rem; transform:translateY(-200%); background:#000; color:#fff; padding:.6rem .9rem; border-radius:8px; text-decoration:none; z-index:1000; box-shadow:var(--shadow-sm); }
+    .skip-link{
+      position:absolute; left:1rem; top:.5rem; transform:translateY(-200%);
+      background:#000; color:#fff; padding:.6rem .9rem; border-radius:8px; text-decoration:none; z-index:1000; box-shadow:var(--shadow-sm);
+    }
     .skip-link:focus, .skip-link:focus-visible{ transform:translateY(0); }
 
     /* Navbar */
@@ -98,17 +114,24 @@
     }
     .brand{ display:flex; align-items:center; gap:.6rem; }
     .brand img{ height:55px; width:auto; }
-    .brand h1{ margin:0; font-size:1.7rem; font-weight:600; color:#1a202c; }
+    .brand .title{ margin:0; font-size:1.7rem; font-weight:600; color:#1a202c; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
     nav.primary{ display:flex; gap:1.1rem; align-items:center; }
     nav.primary a{ text-decoration:none; color:var(--text); font-weight:500; }
     nav.primary a:hover, nav.primary a:focus{ color:#1e88e5; }
+
     .lang{ display:inline-flex; gap:.4rem; margin-left:.6rem; font-size:.95rem; }
     .lang a{ color:#5b6b7a; text-decoration:none; }
     .lang a[aria-current="true"]{ font-weight:700; color:#1a202c; }
 
     .burger{ display:none; background:none; border:none; padding:.4rem .6rem; }
     .burger svg{ width:28px; height:28px; }
-    .mobile-panel{ display:none; position:fixed; inset:64px 0 0 0; background:#ffffffdd; backdrop-filter:blur(6px); padding:1rem; }
+
+    .mobile-panel{
+      display:block; /* contrôlé par [hidden] */
+      position:fixed; inset:64px 0 0 0; background:#ffffffdd; backdrop-filter:blur(6px); padding:1rem;
+    }
+    [hidden]{ display:none !important; }
     .mobile-links{ display:flex; flex-direction:column; gap:.8rem; }
     .mobile-links a{ text-decoration:none; color:var(--text); font-weight:600; padding:.7rem 0; border-bottom:1px solid #ddd; }
     .mobile-links a:last-child{ border-bottom:none; }
@@ -162,9 +185,9 @@
   <div class="overlay">
     <!-- NAVIGATION -->
     <header class="navbar" role="navigation" aria-label="Navigation principale">
-      <a class="brand" href="index.html">
-        <img src="Logo_sophira.png" alt="Logo Sophira" />
-        <h1>Sophira</h1>
+      <a class="brand" href="index.html" aria-label="Page d’accueil Sophira">
+        <img src="Logo_sophira.png" alt="Logo Sophira" width="110" height="55" loading="eager" fetchpriority="high" />
+        <span class="title">Sophira</span>
       </a>
       <nav class="primary" aria-label="Liens principaux">
         <a href="index.html">Accueil</a>
@@ -174,8 +197,8 @@
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
         <span class="lang" aria-label="Changer de langue">
-          <a href="donate.html" lang="fr" aria-current="true">FR</a> |
-          <a href="donate-de.html" lang="de">DE</a>
+          <a href="donate.html" lang="fr" hreflang="fr" aria-current="true">FR</a> |
+          <a href="donate-de.html" lang="de" hreflang="de">DE</a>
         </span>
       </nav>
       <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-controls="menu-mobile" aria-expanded="false">
@@ -184,8 +207,12 @@
     </header>
 
     <!-- MENU MOBILE -->
-    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Menu mobile">
+    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Menu mobile" aria-hidden="true" hidden>
       <div class="mobile-links">
+        <!-- Sélecteur de langue mis en premier pour mobile -->
+        <a href="donate.html" lang="fr" hreflang="fr" aria-current="true">Français (FR)</a>
+        <a href="donate-de.html" lang="de" hreflang="de">Deutsch (DE)</a>
+
         <a href="index.html">Accueil</a>
         <a href="team.html">Équipe</a>
         <a href="project.html">Projet social</a>
@@ -197,9 +224,9 @@
 
     <!-- CONTENU -->
     <main id="main" class="container">
-      <section class="hero">
-        <h2>Votre don change des trajectoires</h2>
-        <p class="subtitle">
+      <section class="hero" aria-labelledby="hero-title" aria-describedby="hero-sub">
+        <h2 id="hero-title">Votre don change des trajectoires</h2>
+        <p class="subtitle" id="hero-sub">
           Grâce à vous, des adultes en Suisse accèdent aux métiers d’avenir – via une bourse, du mentorat
           et des projets réels qui crédibilisent leur portfolio.
         </p>
@@ -217,7 +244,7 @@
             </ul>
 
             <div class="cta" role="group" aria-label="Don via PayPal">
-              <p style="margin:.2rem 0 1rem;color:var(--muted)">Donner rapidement et en toute sécurité avec PayPal :</p>
+              <p class="hint" style="margin:.2rem 0 1rem">Donner rapidement et en toute sécurité avec PayPal :</p>
 
               <!-- BOUTON PAYPAL (remplace TON_ID_PAYPAL_ICI) -->
               <form action="https://www.paypal.com/donate" method="post" target="_blank" style="margin:.2rem 0 .6rem">
@@ -245,7 +272,7 @@
             </article>
             <article class="tier">
               <h3><span class="amt">CHF 100+</span> · Soutien</h3>
-              <p>Carte postale + reçu fiscal simplifié + newsletter d’impact trimestrielle.</p>
+              <p>Carte postale + reçu (simplifié) + newsletter d’impact trimestrielle.</p>
               <span class="perk">Carte postale</span>
               <span class="perk">Reçu de don</span>
               <span class="perk">Newsletter trimestrielle</span>
@@ -274,7 +301,7 @@
         <div class="col-5">
           <div class="card qr" aria-label="QR TWINT">
             <h3 style="margin:.2rem 0 .4rem">Donner avec TWINT</h3>
-            <img src="twint_QR.png" alt="QR TWINT pour faire un don à Sophira" loading="eager" fetchpriority="high" />
+            <img src="twint_QR.png" alt="QR TWINT pour faire un don à Sophira" width="640" height="640" loading="eager" fetchpriority="high" />
             <p class="hint">Scannez le QR avec TWINT · Choisissez le montant · Confirmez</p>
           </div>
         </div>
@@ -291,24 +318,71 @@
     </footer>
   </div>
 
-  <!-- JS menu mobile -->
+  <!-- JS menu mobile (focus trap + ARIA) -->
   <script>
     (function(){
       const burger = document.getElementById('burger');
       const panel  = document.getElementById('menu-mobile');
+      const focusableSelector = 'a, button';
+      let lastFocused = null;
+
       if(!burger || !panel) return;
-      function toggleMenu(){
-        const open = panel.classList.toggle('hidden') === false;
-        burger.setAttribute('aria-expanded', String(open));
-        burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+
+      function getFocusable(){
+        return panel.querySelectorAll(focusableSelector);
       }
+
+      function openMenu(){
+        panel.classList.remove('hidden');
+        panel.removeAttribute('hidden');
+        panel.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('no-scroll');
+        burger.setAttribute('aria-expanded', 'true');
+        burger.setAttribute('aria-label', 'Fermer le menu');
+        lastFocused = document.activeElement;
+        const f = getFocusable();
+        if(f.length) f[0].focus();
+      }
+
+      function closeMenu(){
+        panel.classList.add('hidden');
+        panel.setAttribute('hidden', '');
+        panel.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('no-scroll');
+        burger.setAttribute('aria-expanded', 'false');
+        burger.setAttribute('aria-label', 'Ouvrir le menu');
+        if (lastFocused) lastFocused.focus();
+      }
+
+      function toggleMenu(){
+        if(panel.classList.contains('hidden')) openMenu(); else closeMenu();
+      }
+
       burger.addEventListener('click', toggleMenu);
+
+      // Clic à l'extérieur
       document.addEventListener('click', (e)=>{
         if(panel.classList.contains('hidden')) return;
         const within = panel.contains(e.target) || burger.contains(e.target);
-        if(!within) toggleMenu();
+        if(!within) closeMenu();
       });
-      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && !panel.classList.contains('hidden')) toggleMenu(); });
+
+      // Échap + Focus trap
+      document.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape' && !panel.classList.contains('hidden')) closeMenu();
+
+        if(e.key === 'Tab' && !panel.classList.contains('hidden')){
+          const f = Array.from(getFocusable());
+          if(!f.length) return;
+          const first = f[0];
+          const last  = f[f.length - 1];
+          if(e.shiftKey && document.activeElement === first){
+            e.preventDefault(); last.focus();
+          } else if(!e.shiftKey && document.activeElement === last){
+            e.preventDefault(); first.focus();
+          }
+        }
+      });
     })();
   </script>
 </body>
