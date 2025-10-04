@@ -71,6 +71,7 @@
       --whiteglass:#ffffffdd;
       --panel:#edf2f7cc;
       --radius:12px;
+      --radius-sm:10px;
       --shadow-sm:0 2px 8px rgba(0,0,0,.05);
       --shadow-md:0 4px 12px rgba(0,0,0,.08);
       --container:980px;
@@ -86,7 +87,7 @@
     }
     body.no-scroll{ overflow:hidden; }
 
-    /* Skip link (accessibilité) */
+    /* Skip link */
     .skip-link{
       position:absolute; left:1rem; top:.5rem;
       transform:translateY(-200%);
@@ -100,49 +101,54 @@
     /* NAVBAR */
     header.navbar{
       position:sticky; top:0; z-index:20;
-      display:flex; align-items:center; justify-content:space-between; gap:.5rem;
+      display:flex; align-items:center; gap:.6rem;
       padding:.7rem 1rem; background:var(--whiteglass); box-shadow:var(--shadow-sm); backdrop-filter: blur(6px);
+      white-space:nowrap;
     }
-    .brand{ display:flex; align-items:center; gap:.6rem; min-width:0; text-decoration:none; }
+    .brand{ display:flex; align-items:center; gap:.6rem; min-width:0; text-decoration:none; flex:1 1 auto; }
     .brand img{ height:55px; width:auto; }
-    .brand h1{
-      margin:0; font-size:1.55rem; font-weight:600; color:#1a202c;
-      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-    }
+    .brand h1{ margin:0; font-size:1.55rem; font-weight:600; color:#1a202c; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
     nav.primary{ display:flex; gap:1rem; align-items:center; }
     nav.primary a{ text-decoration:none; color:var(--text); font-weight:500; }
     nav.primary a:hover, nav.primary a:focus{ color:#1e88e5; }
 
-    /* Liens de langue (desktop) */
+    /* Focus visible */
+    a:focus-visible, button:focus-visible{
+      outline:3px solid var(--focus);
+      outline-offset:2px;
+      background:linear-gradient(0deg, var(--focus-bg), var(--focus-bg)) no-repeat;
+    }
+
+    /* Langues desktop */
     .lang{ display:inline-flex; gap:.4rem; margin-left:.4rem; font-size:.95rem; }
     .lang a{ color:#5b6b7a; text-decoration:none; }
     .lang a[aria-current="true"]{ font-weight:700; color:#1a202c; }
 
-    /* Boutons mobile */
-    .burger{ display:none; background:none; border:none; padding:.35rem .55rem; }
+    /* Contrôles mobiles (nowrap) */
+    .controls{ display:flex; align-items:center; gap:.4rem; flex-shrink:0; }
+    .burger{ display:none; background:none; border:none; padding:.35rem; line-height:0; position:relative; z-index:3; }
     .burger svg{ width:26px; height:26px; }
     .lang-toggle{
-      display:none;
-      margin-left:.2rem;
-      background:#fff; border:1px solid #cbd5e1; border-radius:999px;
-      padding:.25rem .6rem; font-weight:700; cursor:pointer;
+      display:none; background:#fff; border:1px solid #cbd5e1; border-radius:999px;
+      padding:.25rem .6rem; font-weight:700; cursor:pointer; position:relative; z-index:2; font-size:.95rem;
     }
     .lang-menu{
-      position:absolute; right:1rem; top:64px; background:#ffffffdd; backdrop-filter:blur(6px);
+      position:absolute; right:1rem; top:60px; background:#ffffffdd; backdrop-filter:blur(6px);
       border:1px solid #e5e7eb; border-radius:10px; box-shadow:var(--shadow-sm);
-      display:flex; flex-direction:column; padding:.4rem; gap:.2rem;
+      display:flex; flex-direction:column; padding:.4rem; gap:.2rem; z-index:4;
     }
     .lang-menu a{ text-decoration:none; color:#1f2937; font-weight:600; padding:.4rem .6rem; border-radius:8px; }
     .lang-menu a[aria-current="true"]{ background:#e8f0fe; color:#174ea6; }
 
-    /* Menu mobile */
-    .mobile-panel{ display:none; position:fixed; inset:64px 0 0 0; background:var(--whiteglass); backdrop-filter:blur(6px); padding:1rem; }
+    /* Mobile panel */
+    .mobile-panel{ display:none; position:fixed; inset:64px 0 0 0; background:var(--whiteglass); backdrop-filter: blur(6px); padding:1rem; z-index:2; }
     .mobile-links{ display:flex; flex-direction:column; gap:.8rem; }
     .mobile-links a{ text-decoration:none; color:var(--text); font-weight:600; padding:.7rem 0; border-bottom:1px solid #ddd; }
     .mobile-links a:last-child{ border-bottom:none; }
     .hidden{ display:none !important; }
 
+    /* LAYOUT */
     .container{ flex:1; max-width:var(--container); margin:2rem auto; padding:0 1rem; }
 
     /* HERO */
@@ -206,9 +212,8 @@
     }
     @media (max-width: 880px){
       nav.primary{ display:none; }
-      .burger{ display:inline-flex; }
-      .lang-toggle{ display:inline-flex; align-items:center; }
-      .lang{ display:none; } /* cache FR | DE texte sur mobile */
+      .burger{ display:inline-flex; order:2; }   /* à droite */
+      .lang-toggle{ display:inline-flex; align-items:center; order:1; } /* à gauche du burger */
     }
     @media (prefers-reduced-motion: reduce){
       *{ scroll-behavior:auto; transition:none !important; }
@@ -234,17 +239,17 @@
         <a href="dashboard.html">Tableau de bord</a>
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
-        <!-- Lien GPT dans la navigation principale -->
+        <!-- Assistant (desktop) -->
         <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Ouvrir l’assistant Sophira dans un nouvel onglet">Assistant Sophira</a>
-        <!-- Sélecteur de langue (desktop) -->
+        <!-- Langues (desktop) -->
         <span class="lang" aria-label="Changer de langue">
           <a href="index.html" lang="fr" aria-current="true">FR</a> |
           <a href="index-de.html" lang="de">DE</a>
         </span>
       </nav>
 
-      <!-- Contrôles mobiles : bouton langue compact + burger -->
-      <div style="display:flex; align-items:center; gap:.4rem;">
+      <!-- Contrôles mobiles non-cassants -->
+      <div class="controls">
         <button class="lang-toggle" id="lang-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Changer de langue">FR</button>
         <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-controls="menu-mobile" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
@@ -253,8 +258,8 @@
         </button>
       </div>
 
-      <!-- Menu langue (mobile) -->
-      <div class="lang-menu" id="lang-menu" hidden role="menu" aria-label="Sélection de langue">
+      <!-- Menu Langue (mobile) -->
+      <div class="lang-menu" id="lang-menu" hidden role="menu" aria-label="Choisir la langue">
         <a role="menuitem" href="index.html" lang="fr" aria-current="true">FR</a>
         <a role="menuitem" href="index-de.html" lang="de">DE</a>
       </div>
@@ -269,8 +274,10 @@
         <a href="dashboard.html">Tableau de bord</a>
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
-        <!-- Lien GPT aussi dans le menu mobile -->
+        <!-- Assistant (mobile) -->
         <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener">Assistant Sophira</a>
+        <!-- Lien direct version DE -->
+        <a href="index-de.html" lang="de">→ Version DE</a>
       </div>
     </div>
 
@@ -284,7 +291,7 @@
           dans leur reconversion vers les métiers d’avenir, de la data aux technologies vertes.
         </p>
 
-        <!-- En un coup d'œil -->
+        <!-- En un coup d’œil -->
         <div class="glance" aria-label="En un coup d’œil">
           <div class="item">
             <strong>Une bourse ciblée</strong>
@@ -356,13 +363,11 @@
 
   <!-- Bouton flottant pour ouvrir le GPT -->
   <a class="chat-fab" href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Parler avec l’assistant Sophira (ouvre un nouvel onglet)">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-      <path d="M21 15a4 4 0 0 1-4 4H8l-5 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     <span>Assistant Sophira</span>
   </a>
 
-  <!-- JS menu mobile + sélecteur langue -->
+  <!-- JS: menu mobile + sélecteur de langue (fermeture croisée) -->
   <script>
     (function(){
       const burger   = document.getElementById('burger');
@@ -370,39 +375,60 @@
       const langBtn  = document.getElementById('lang-toggle');
       const langMenu = document.getElementById('lang-menu');
 
+      function closeLangMenu(){
+        if(langMenu && !langMenu.hasAttribute('hidden')){
+          langMenu.setAttribute('hidden','');
+          langBtn && langBtn.setAttribute('aria-expanded','false');
+        }
+      }
+      function openLangMenu(){
+        if(langMenu && langMenu.hasAttribute('hidden')){
+          langMenu.removeAttribute('hidden');
+          langBtn && langBtn.setAttribute('aria-expanded','true');
+        }
+      }
+      function closeMainMenu(){
+        if(panel && !panel.classList.contains('hidden')){
+          panel.classList.add('hidden');
+          burger && burger.setAttribute('aria-expanded','false');
+          burger && burger.setAttribute('aria-label','Ouvrir le menu');
+        }
+      }
+      function openMainMenu(){
+        if(panel && panel.classList.contains('hidden')){
+          panel.classList.remove('hidden');
+          burger && burger.setAttribute('aria-expanded','true');
+          burger && burger.setAttribute('aria-label','Fermer le menu');
+        }
+      }
+
       // Menu mobile
       if(burger && panel){
-        function toggleMenu(){
-          const open = panel.classList.toggle('hidden') === false;
-          burger.setAttribute('aria-expanded', String(open));
-          burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
-        }
-        burger.addEventListener('click', toggleMenu);
+        burger.addEventListener('click', ()=>{
+          if(panel.classList.contains('hidden')) closeLangMenu(); // évite chevauchement
+          panel.classList.contains('hidden') ? openMainMenu() : closeMainMenu();
+        });
         document.addEventListener('click', (e)=>{
           if(panel.classList.contains('hidden')) return;
           const within = panel.contains(e.target) || burger.contains(e.target);
-          if(!within) toggleMenu();
+          if(!within) closeMainMenu();
         });
-        document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && !panel.classList.contains('hidden')) toggleMenu(); });
+        document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && !panel.classList.contains('hidden')) closeMainMenu(); });
       }
 
-      // Sélecteur langue (mobile)
+      // Sélecteur de langue (mobile)
       if(langBtn && langMenu){
         langBtn.addEventListener('click', ()=>{
-          const open = langMenu.hasAttribute('hidden');
-          if(open){ langMenu.removeAttribute('hidden'); }
-          else { langMenu.setAttribute('hidden',''); }
-          langBtn.setAttribute('aria-expanded', String(open));
+          if(langMenu.hasAttribute('hidden')) closeMainMenu(); // évite chevauchement
+          langMenu.hasAttribute('hidden') ? openLangMenu() : closeLangMenu();
         });
         document.addEventListener('click', (e)=>{
-          if(!langMenu || langMenu.hasAttribute('hidden')) return;
+          if(langMenu.hasAttribute('hidden')) return;
           const within = langMenu.contains(e.target) || langBtn.contains(e.target);
-          if(!within){ langMenu.setAttribute('hidden',''); langBtn.setAttribute('aria-expanded','false'); }
+          if(!within) closeLangMenu();
         });
         document.addEventListener('keydown', (e)=>{
-          if(e.key==='Escape' && !langMenu.hasAttribute('hidden')){
-            langMenu.setAttribute('hidden',''); langBtn.setAttribute('aria-expanded','false');
-          }
+          if(e.key==='Escape' && !langMenu.hasAttribute('hidden')) closeLangMenu();
         });
       }
     })();
