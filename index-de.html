@@ -8,7 +8,7 @@
   <!-- SEO -->
   <link rel="canonical" href="https://sophira.org/index-de.html" />
   <meta name="robots" content="index,follow" />
-  <meta name="description" content="Sophira unterstützt Erwachsene in finanziell schwierigen Situationen bei ihrer beruflichen Neuorientierung in Zukunftsberufe (Daten, grüne Technologien, digitale Gesundheit, KI) in der Schweiz." />
+  <meta name="description" content="Sophira unterstützt Erwachsene in finanziellen Schwierigkeiten bei ihrer beruflichen Neuorientierung in Zukunftsberufe (Daten, grüne Technologien, digitale Gesundheit, KI) in der Schweiz." />
 
   <!-- Hreflang -->
   <link rel="alternate" hreflang="fr" href="https://sophira.org/index.html" />
@@ -46,36 +46,25 @@
   <!-- Strukturierte Daten (Organisation) -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "NonprofitOrganization",
-    "name": "Sophira",
-    "url": "https://sophira.org/",
-    "logo": "https://sophira.org/Logo_sophira.png",
-    "foundingLocation": "Basel, Schweiz",
-    "areaServed": "CH",
-    "sameAs": [],
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Basel",
-      "addressCountry": "CH"
-    }
+    "@context":"https://schema.org",
+    "@type":"NonprofitOrganization",
+    "name":"Sophira",
+    "url":"https://sophira.org/",
+    "logo":"https://sophira.org/Logo_sophira.png",
+    "foundingLocation":"Basel, Schweiz",
+    "areaServed":"CH",
+    "sameAs":[],
+    "address":{"@type":"PostalAddress","addressLocality":"Basel","addressCountry":"CH"}
   }
   </script>
 
   <style>
     :root{
-      --text:#2c3e50;
-      --muted:#4a5568;
-      --brand:#1a73e8;
-      --brand-hover:#155ab6;
-      --whiteglass:#ffffffdd;
-      --panel:#edf2f7cc;
-      --radius:12px;
-      --shadow-sm:0 2px 8px rgba(0,0,0,.05);
-      --shadow-md:0 4px 12px rgba(0,0,0,.08);
-      --container:980px;
-      --focus:#0d6efd;
-      --focus-bg:#e8f0fe;
+      --text:#2c3e50; --muted:#4a5568; --brand:#1a73e8; --brand-hover:#155ab6;
+      --whiteglass:#ffffffdd; --panel:#edf2f7cc;
+      --radius:12px; --radius-sm:10px;
+      --shadow-sm:0 2px 8px rgba(0,0,0,.05); --shadow-md:0 4px 12px rgba(0,0,0,.08);
+      --container:980px; --focus:#0d6efd; --focus-bg:#e8f0fe;
     }
     *{box-sizing:border-box}
     html:focus-within{ scroll-behavior:smooth; }
@@ -86,12 +75,10 @@
     }
     body.no-scroll{ overflow:hidden; }
 
-    /* Skip-Link (A11y) */
+    /* Skip-Link */
     .skip-link{
-      position:absolute; left:1rem; top:.5rem;
-      transform:translateY(-200%);
-      background:#000; color:#fff; padding:.6rem .9rem; border-radius:8px;
-      text-decoration:none; z-index:1000; box-shadow:var(--shadow-sm);
+      position:absolute; left:1rem; top:.5rem; transform:translateY(-200%);
+      background:#000; color:#fff; padding:.6rem .9rem; border-radius:8px; text-decoration:none; z-index:1000; box-shadow:var(--shadow-sm);
     }
     .skip-link:focus, .skip-link:focus-visible{ transform:translateY(0); outline:2px solid #fff; }
 
@@ -100,49 +87,59 @@
     /* NAVBAR */
     header.navbar{
       position:sticky; top:0; z-index:20;
-      display:flex; align-items:center; justify-content:space-between; gap:.5rem;
+      display:flex; align-items:center; gap:.6rem;
       padding:.7rem 1rem; background:var(--whiteglass); box-shadow:var(--shadow-sm); backdrop-filter: blur(6px);
+      white-space:nowrap;
     }
-    .brand{ display:flex; align-items:center; gap:.6rem; min-width:0; text-decoration:none; }
+    .brand{ display:flex; align-items:center; gap:.6rem; min-width:0; text-decoration:none; flex:1 1 auto; }
     .brand img{ height:55px; width:auto; }
-    .brand h1{
-      margin:0; font-size:1.55rem; font-weight:600; color:#1a202c;
-      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-    }
+    .brand h1{ margin:0; font-size:1.55rem; font-weight:600; color:#1a202c; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
     nav.primary{ display:flex; gap:1rem; align-items:center; }
     nav.primary a{ text-decoration:none; color:var(--text); font-weight:500; }
     nav.primary a:hover, nav.primary a:focus{ color:#1e88e5; }
 
-    /* Sprache (Desktop) */
+    /* Fokus sichtbar */
+    a:focus-visible, button:focus-visible{
+      outline:3px solid var(--focus); outline-offset:2px;
+      background:linear-gradient(0deg, var(--focus-bg), var(--focus-bg)) no-repeat;
+    }
+
+    /* Sprachen (Desktop) */
     .lang{ display:inline-flex; gap:.4rem; margin-left:.4rem; font-size:.95rem; }
     .lang a{ color:#5b6b7a; text-decoration:none; }
     .lang a[aria-current="true"]{ font-weight:700; color:#1a202c; }
 
-    /* Mobile Buttons */
-    .burger{ display:none; background:none; border:none; padding:.35rem .55rem; }
+    /* Mobile Controls */
+    .controls{ display:none; align-items:center; gap:.4rem; flex-shrink:0; position:relative; z-index:5; }
+    .burger{ background:none; border:none; padding:.35rem; line-height:0; z-index:5; }
     .burger svg{ width:26px; height:26px; }
     .lang-toggle{
-      display:none;
-      margin-left:.2rem;
       background:#fff; border:1px solid #cbd5e1; border-radius:999px;
-      padding:.25rem .6rem; font-weight:700; cursor:pointer;
+      padding:.25rem .6rem; font-weight:700; cursor:pointer; font-size:.95rem; z-index:5;
     }
+    /* Menu Sprache mobil, an Controls verankert und vom Burger weg versetzt */
+    .controls{ position:relative; }
     .lang-menu{
-      position:absolute; right:1rem; top:64px; background:#ffffffdd; backdrop-filter:blur(6px);
+      position:absolute; right:44px; top:calc(100% + 8px);
+      background:#ffffffdd; backdrop-filter:blur(6px);
       border:1px solid #e5e7eb; border-radius:10px; box-shadow:var(--shadow-sm);
       display:flex; flex-direction:column; padding:.4rem; gap:.2rem;
+      z-index:4; transition:opacity .12s ease, visibility .12s ease;
     }
+    .lang-menu[data-open="false"]{ opacity:0; visibility:hidden; pointer-events:none; }
+    .lang-menu[data-open="true"]{ opacity:1; visibility:visible; pointer-events:auto; }
     .lang-menu a{ text-decoration:none; color:#1f2937; font-weight:600; padding:.4rem .6rem; border-radius:8px; }
     .lang-menu a[aria-current="true"]{ background:#e8f0fe; color:#174ea6; }
 
-    /* Menü mobil */
-    .mobile-panel{ display:none; position:fixed; inset:64px 0 0 0; background:var(--whiteglass); backdrop-filter:blur(6px); padding:1rem; }
+    /* Mobile panel */
+    .mobile-panel{ display:none; position:fixed; inset:64px 0 0 0; background:var(--whiteglass); backdrop-filter: blur(6px); padding:1rem; z-index:4; }
     .mobile-links{ display:flex; flex-direction:column; gap:.8rem; }
     .mobile-links a{ text-decoration:none; color:var(--text); font-weight:600; padding:.7rem 0; border-bottom:1px solid #ddd; }
     .mobile-links a:last-child{ border-bottom:none; }
     .hidden{ display:none !important; }
 
+    /* LAYOUT */
     .container{ flex:1; max-width:var(--container); margin:2rem auto; padding:0 1rem; }
 
     /* HERO */
@@ -152,18 +149,12 @@
 
     /* AUF EINEN BLICK */
     .glance{ margin-top:1rem; display:grid; grid-template-columns:repeat(12,1fr); gap:.8rem; }
-    .glance .item{
-      grid-column:span 12; background:#fff; border-radius:10px; box-shadow:var(--shadow-sm);
-      padding:.9rem 1rem; text-align:left;
-    }
+    .glance .item{ grid-column:span 12; background:#fff; border-radius:10px; box-shadow:var(--shadow-sm); padding:.9rem 1rem; text-align:left; }
     .glance .item strong{ display:block; margin-bottom:.25rem; }
 
     /* SCHNELLE LINKS */
     .quick{ margin-top:1rem; display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap; }
-    .btn{
-      display:inline-block; background:var(--brand); color:#fff; text-decoration:none;
-      padding:.6rem 1rem; border-radius:10px; font-weight:700; transition:transform .06s ease;
-    }
+    .btn{ display:inline-block; background:var(--brand); color:#fff; text-decoration:none; padding:.6rem 1rem; border-radius:10px; font-weight:700; transition:transform .06s ease; }
     .btn:hover{ background:var(--brand-hover); transform:translateY(-1px); }
     .btn:active{ transform:translateY(0); }
     .btn.outline{ background:transparent; color:var(--brand); border:2px solid var(--brand); }
@@ -190,9 +181,9 @@
 
     footer{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:var(--whiteglass); border-top-left-radius:var(--radius); border-top-right-radius:var(--radius); }
 
-    /* GPT-Floating-Button */
+    /* GPT-FAB */
     .chat-fab{
-      position:fixed; right:18px; bottom:18px; z-index:30;
+      position:fixed; right:18px; bottom:18px; z-index:10;
       display:inline-flex; align-items:center; gap:.5rem;
       padding:.8rem 1rem; border-radius:999px; background:var(--brand); color:#fff; text-decoration:none;
       box-shadow:var(--shadow-md);
@@ -206,13 +197,9 @@
     }
     @media (max-width: 880px){
       nav.primary{ display:none; }
-      .burger{ display:inline-flex; }
-      .lang-toggle{ display:inline-flex; align-items:center; }
-      .lang{ display:none; } /* Desktop-Sprachlinks ausblenden auf Mobil */
+      .controls{ display:flex; margin-left:auto; }
     }
-    @media (prefers-reduced-motion: reduce){
-      *{ scroll-behavior:auto; transition:none !important; }
-    }
+    @media (prefers-reduced-motion: reduce){ *{ scroll-behavior:auto; transition:none !important; } }
   </style>
 </head>
 <body>
@@ -234,29 +221,29 @@
         <a href="dashboard-de.html">Dashboard</a>
         <a href="blog.html">Blog</a>
         <a href="contact-de.html">Kontakt</a>
-        <!-- Assistant-Link (Desktop) -->
+        <!-- Assistent (Desktop) -->
         <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Sophira-Assistent in neuem Tab öffnen">Sophira Assistent</a>
-        <!-- Sprache (Desktop) -->
+        <!-- Sprachen (Desktop) -->
         <span class="lang" aria-label="Sprache wechseln">
           <a href="index.html" lang="fr">FR</a> |
           <a href="index-de.html" lang="de" aria-current="true">DE</a>
         </span>
       </nav>
 
-      <!-- Mobile Controls: kompakter Sprachbutton + Burger -->
-      <div style="display:flex; align-items:center; gap:.4rem;">
-        <button class="lang-toggle" id="lang-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Sprache wechseln">DE</button>
+      <!-- Mobile Controls -->
+      <div class="controls">
+        <button class="lang-toggle" id="lang-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Sprache ändern">DE</button>
         <button class="burger" id="burger" aria-label="Menü öffnen" aria-controls="menu-mobile" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
             <path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/>
           </svg>
         </button>
-      </div>
 
-      <!-- Sprachmenü (Mobil) -->
-      <div class="lang-menu" id="lang-menu" hidden role="menu" aria-label="Sprachauswahl">
-        <a role="menuitem" href="index.html" lang="fr">FR</a>
-        <a role="menuitem" href="index-de.html" lang="de" aria-current="true">DE</a>
+        <!-- Sprachmenü (mobil) -->
+        <div class="lang-menu" id="lang-menu" data-open="false" role="menu" aria-label="Sprache wählen">
+          <a role="menuitem" href="index.html" lang="fr">FR</a>
+          <a role="menuitem" href="index-de.html" lang="de" aria-current="true">DE</a>
+        </div>
       </div>
     </header>
 
@@ -269,8 +256,10 @@
         <a href="dashboard-de.html">Dashboard</a>
         <a href="blog.html">Blog</a>
         <a href="contact-de.html">Kontakt</a>
-        <!-- Assistant auch im mobilen Menü -->
+        <!-- Assistent (mobil) -->
         <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener">Sophira Assistent</a>
+        <!-- Direkter Link FR -->
+        <a href="index.html" lang="fr">→ FR Version</a>
       </div>
     </div>
 
@@ -286,18 +275,9 @@
 
         <!-- Auf einen Blick -->
         <div class="glance" aria-label="Auf einen Blick">
-          <div class="item">
-            <strong>Zielgerichtetes Stipendium</strong>
-            Deckt einen Teil der Ausbildungs- und wichtigsten Ausrüstungskosten ab.
-          </div>
-          <div class="item">
-            <strong>Mentoring & Netzwerk</strong>
-            Vermittlung, Coaching und konkretes Feedback von Fachleuten.
-          </div>
-          <div class="item">
-            <strong>Reale Projekte</strong>
-            Sozial wirksame Fälle, um schnell ein glaubwürdiges Portfolio aufzubauen.
-          </div>
+          <div class="item"><strong>Zielgerichtetes Stipendium</strong> Deckt einen Teil der Ausbildungs- und Ausrüstungskosten ab.</div>
+          <div class="item"><strong>Mentoring & Netzwerk</strong> Vermittlung, Coaching und konkretes Feedback von Fachleuten.</div>
+          <div class="item"><strong>Reale Projekte</strong> Sozial wirksame Fälle, um schnell ein glaubwürdiges Portfolio aufzubauen.</div>
         </div>
 
         <!-- Schnelle Links -->
@@ -311,9 +291,10 @@
       <!-- INFO -->
       <section class="content">
         <h3>Warum Sophira?</h3>
-        <p>Die digitalen und ökologischen Transformationen verändern den Arbeitsmarkt und schliessen oft Erwachsene in prekären Situationen aus.
-          Gleichzeitig steigt in der Schweiz der Bedarf an qualifizierten Fachkräften in diesen Bereichen.</p>
-        <p>Wir bauen Barrieren ab und schaffen konkrete Chancen. Sophira begleitet Erwachsene bei der Neuorientierung
+        <p>Sophira entstand aus der Überzeugung, dass die digitalen und ökologischen Transformationen den Arbeitsmarkt verändern
+          und dabei oft Erwachsene in prekären Situationen ausschliessen. Gleichzeitig steigt in der Schweiz der Bedarf
+          an qualifizierten Fachkräften in diesen Bereichen.</p>
+        <p>Wir setzen uns dafür ein, Barrieren abzubauen und konkrete Chancen zu schaffen. Sophira begleitet Erwachsene bei der Neuorientierung
           in sinnstiftende Berufe, vermittelt die nötigen digitalen und analytischen Kompetenzen und bietet finanzielle sowie menschliche Unterstützung.</p>
       </section>
 
@@ -352,15 +333,13 @@
     </footer>
   </div>
 
-  <!-- GPT-Floating-Button -->
+  <!-- GPT-FAB -->
   <a class="chat-fab" href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Mit dem Sophira-Assistenten sprechen (neuer Tab)">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-      <path d="M21 15a4 4 0 0 1-4 4H8l-5 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     <span>Sophira Assistent</span>
   </a>
 
-  <!-- JS: mobiles Menü + Sprachumschalter -->
+  <!-- JS: Menüs (keine Überlagerung, Cross-Close) -->
   <script>
     (function(){
       const burger   = document.getElementById('burger');
@@ -368,39 +347,60 @@
       const langBtn  = document.getElementById('lang-toggle');
       const langMenu = document.getElementById('lang-menu');
 
-      // Mobiles Menü
-      if(burger && panel){
-        function toggleMenu(){
-          const open = panel.classList.toggle('hidden') === false;
-          burger.setAttribute('aria-expanded', String(open));
-          burger.setAttribute('aria-label', open ? 'Menü schliessen' : 'Menü öffnen');
+      function closeLangMenu(){
+        if(langMenu && langMenu.dataset.open === 'true'){
+          langMenu.dataset.open = 'false';
+          langBtn && langBtn.setAttribute('aria-expanded','false');
         }
-        burger.addEventListener('click', toggleMenu);
+      }
+      function openLangMenu(){
+        if(langMenu && langMenu.dataset.open !== 'true'){
+          langMenu.dataset.open = 'true';
+          langBtn && langBtn.setAttribute('aria-expanded','true');
+        }
+      }
+      function closeMainMenu(){
+        if(panel && !panel.classList.contains('hidden')){
+          panel.classList.add('hidden');
+          burger && burger.setAttribute('aria-expanded','false');
+          burger && burger.setAttribute('aria-label','Menü öffnen');
+        }
+      }
+      function openMainMenu(){
+        if(panel && panel.classList.contains('hidden')){
+          panel.classList.remove('hidden');
+          burger && burger.setAttribute('aria-expanded','true');
+          burger && burger.setAttribute('aria-label','Menü schliessen');
+        }
+      }
+
+      // Burger
+      if(burger && panel){
+        burger.addEventListener('click', ()=>{
+          if(panel.classList.contains('hidden')) closeLangMenu();
+          panel.classList.contains('hidden') ? openMainMenu() : closeMainMenu();
+        });
         document.addEventListener('click', (e)=>{
           if(panel.classList.contains('hidden')) return;
           const within = panel.contains(e.target) || burger.contains(e.target);
-          if(!within) toggleMenu();
+          if(!within) closeMainMenu();
         });
-        document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && !panel.classList.contains('hidden')) toggleMenu(); });
+        document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && !panel.classList.contains('hidden')) closeMainMenu(); });
       }
 
-      // Sprachumschalter (Mobil)
+      // Sprachen (mobil)
       if(langBtn && langMenu){
         langBtn.addEventListener('click', ()=>{
-          const open = langMenu.hasAttribute('hidden');
-          if(open){ langMenu.removeAttribute('hidden'); }
-          else { langMenu.setAttribute('hidden',''); }
-          langBtn.setAttribute('aria-expanded', String(open));
+          if(langMenu.dataset.open !== 'true') closeMainMenu();
+          langMenu.dataset.open === 'true' ? closeLangMenu() : openLangMenu();
         });
         document.addEventListener('click', (e)=>{
-          if(!langMenu || langMenu.hasAttribute('hidden')) return;
+          if(langMenu.dataset.open !== 'true') return;
           const within = langMenu.contains(e.target) || langBtn.contains(e.target);
-          if(!within){ langMenu.setAttribute('hidden',''); langBtn.setAttribute('aria-expanded','false'); }
+          if(!within) closeLangMenu();
         });
         document.addEventListener('keydown', (e)=>{
-          if(e.key==='Escape' && !langMenu.hasAttribute('hidden')){
-            langMenu.setAttribute('hidden',''); langBtn.setAttribute('aria-expanded','false');
-          }
+          if(e.key==='Escape' && langMenu.dataset.open === 'true') closeLangMenu();
         });
       }
     })();
