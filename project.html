@@ -5,11 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Projet social – Sophira</title>
 
-  <!-- SEO de base -->
+  <!-- GA4 + Consent Mode v2 (par défaut : refusé) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('consent','default',{
+      ad_storage:'denied',
+      analytics_storage:'denied',
+      functionality_storage:'granted',
+      security_storage:'granted',
+      ad_user_data:'denied',
+      ad_personalization:'denied',
+      wait_for_update:500
+    });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FL1S0MJWB1"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-FL1S0MJWB1');
+  </script>
+
+  <!-- SEO -->
   <link rel="canonical" href="https://sophira.org/project.html" />
   <meta name="robots" content="index,follow" />
-  <meta name="description" content="Découvrez comment la bourse Sophira aide des adultes en Suisse à se reconvertir vers des métiers d’avenir. Critères, étapes, accompagnement, et comment candidater ou devenir partenaire." />
-  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="description" content="Découvrez comment la bourse Sophira aide des adultes en Suisse à se reconvertir vers les métiers d’avenir. Critères, étapes, accompagnement, et comment candidater ou devenir partenaire." />
 
   <!-- Hreflang -->
   <link rel="alternate" hreflang="fr" href="https://sophira.org/project.html" />
@@ -60,17 +79,15 @@
       --warn: #d97706;
       --focus:#0d6efd;
       --focus-bg:#e8f0fe;
+      --z-header:20;
+      --z-lang:60;
+      --z-cookie:70;
     }
     *{ box-sizing: border-box; }
     html:focus-within{ scroll-behavior:smooth; }
     body{
       margin:0; font-family:'Inter',sans-serif;
-      background:
-        image-set(
-          url('mathew-schwartz-91ryOVMlBJc-unsplash.avif') type('image/avif'),
-          url('mathew-schwartz-91ryOVMlBJc-unsplash.webp') type('image/webp'),
-          url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') type('image/jpeg')
-        ) no-repeat center center fixed;
+      background:url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center center fixed;
       background-size:cover; color:var(--text);
     }
     body.no-scroll{ overflow:hidden; }
@@ -87,13 +104,18 @@
 
     /* NAVBAR */
     header.navbar{
-      position:sticky; top:0; z-index:20;
+      position:sticky; top:0; z-index:var(--z-header);
       display:flex; align-items:center; justify-content:space-between; gap:.75rem;
       padding:.8rem 1rem; background:#ffffffdd; box-shadow:var(--shadow-sm); backdrop-filter:blur(6px);
     }
-    .brand{ display:flex; align-items:center; gap:.6rem; }
-    .brand img{ height:55px; width:110px; object-fit:contain; }
-    .brand h1{ margin:0; font-size:1.7rem; font-weight:600; color:#1a202c; }
+    .brand{ display:flex; align-items:center; gap:.6rem; min-width:0; text-decoration:none; }
+    .brand img{ height:48px; width:auto; }
+    .brand h1{ margin:0; font-size:1.55rem; font-weight:600; color:#1a202c; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    @media (max-width:480px){
+      .brand img{ height:44px; }
+      .brand h1{ font-size:1.35rem; }
+    }
+
     nav.primary{ display:flex; gap:1.1rem; align-items:center; }
     nav.primary a{ text-decoration:none; color:var(--text); font-weight:500; }
     nav.primary a:hover, nav.primary a:focus{ color:#1e88e5; }
@@ -105,15 +127,36 @@
       background:linear-gradient(0deg, var(--focus-bg), var(--focus-bg)) no-repeat;
     }
 
-    /* Sélecteur de langue */
-    .lang{ display:inline-flex; gap:.4rem; margin-left:.6rem; font-size:.95rem; }
-    .lang a{ color:#5b6b7a; text-decoration:none; }
-    .lang a[aria-current="true"]{ font-weight:700; color:#1a202c; }
+    /* Contrôles à droite (lang + burger) */
+    .controls{ display:flex; align-items:center; gap:.5rem; position:relative; }
 
     .burger{ display:none; background:none; border:none; padding:.4rem .6rem; border-radius:8px; }
     .burger svg{ width:28px; height:28px; }
+
+    /* Bouton langue (mobile) */
+    .lang-btn{
+      display:inline-flex; align-items:center; gap:.35rem;
+      background:#fff; border:1px solid #e5e7eb; border-radius:999px; padding:.35rem .6rem;
+      font-weight:600; color:#1f2937; cursor:pointer; box-shadow:var(--shadow-sm);
+    }
+    .lang-btn svg{ width:18px; height:18px; }
+
+    /* Menu langue (séparé du burger) */
+    .lang-menu{
+      position:absolute; right:0; top:calc(100% + 8px); z-index:var(--z-lang);
+      background:#fff; border:1px solid #e5e7eb; border-radius:10px; box-shadow:var(--shadow-md);
+      padding:.35rem; min-width:120px; display:none;
+    }
+    .lang-menu.open{ display:block; }
+    .lang-menu a{
+      display:block; padding:.5rem .65rem; text-decoration:none; color:#111827; border-radius:8px; font-weight:600;
+    }
+    .lang-menu a:hover{ background:#f3f4f6; }
+    .lang-menu a[aria-current="true"]{ color:#1a73e8; }
+
+    /* Menu mobile */
     .mobile-panel{
-      display:block; /* contrôle via [hidden] */
+      display:block; /* via [hidden] */
       position:fixed; inset:64px 0 0 0; background:#ffffffdd; backdrop-filter:blur(6px); padding:1rem;
     }
     [hidden]{ display:none !important; }
@@ -196,9 +239,19 @@
       position:fixed; right:18px; bottom:18px; z-index:30;
       display:inline-flex; align-items:center; gap:.5rem;
       padding:.8rem 1rem; border-radius:999px; background:var(--brand); color:#fff; text-decoration:none;
-      box-shadow:var(--shadow-md);
+      box-shadow:var(--shadow-sm);
     }
     .chat-fab:hover{ background:var(--brand-hover); }
+
+    /* Cookie Banner */
+    .cookie-banner{
+      position:fixed; z-index:var(--z-cookie); inset:auto 12px 12px 12px;
+      background:#ffffff; border:1px solid #e5e7eb; border-radius:12px; box-shadow:var(--shadow-md);
+      padding:1rem; display:none; max-width:800px; margin:0 auto;
+    }
+    .cookie-actions{ display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.6rem; }
+    .cookie-banner .btn{ padding:.55rem 1rem; }
+    .cookie-banner .btn.minor{ background:#eef2ff; color:#1f2a66; border:1px solid #c7d2fe; }
 
     /* RESPONSIVE */
     @media (min-width: 700px){
@@ -206,7 +259,7 @@
       .stat{ grid-column:span 4; }
       .step{ grid-column:span 6; }
     }
-    @media (max-width: 880px){
+    @media (max-width: 980px){
       nav.primary{ display:none; }
       .burger{ display:inline-flex; align-items:center; justify-content:center; }
     }
@@ -216,16 +269,17 @@
   </style>
 </head>
 <body>
-  <!-- Skip-link -->
+  <!-- Lien d’évitement -->
   <a class="skip-link" href="#main">Aller au contenu principal</a>
 
   <div class="overlay">
     <!-- NAVIGATION -->
     <header class="navbar" role="navigation" aria-label="Navigation principale">
-      <a class="brand" href="index.html" aria-label="Page d’accueil Sophira">
-        <img src="Logo_sophira.png" alt="Logo Sophira" width="110" height="55" loading="eager" fetchpriority="high" />
+      <a class="brand" href="index.html">
+        <img src="Logo_sophira.png" alt="Logo Sophira" loading="eager" fetchpriority="high" />
         <h1>Sophira</h1>
       </a>
+
       <nav class="primary" aria-label="Liens principaux">
         <a href="index.html">Accueil</a>
         <a href="team.html">Équipe</a>
@@ -233,34 +287,43 @@
         <a href="dashboard.html">Tableau de bord</a>
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
-        <!-- Lien GPT dans la navigation -->
         <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Ouvrir l’assistant Sophira dans un nouvel onglet">Assistant Sophira</a>
-        <span class="lang" aria-label="Changer de langue">
-          <a href="project.html" lang="fr" hreflang="fr" aria-current="true">FR</a> |
-          <a href="project-de.html" lang="de" hreflang="de">DE</a>
+        <span class="lang desktop" aria-label="Changer de langue">
+          <a href="project.html" lang="fr" aria-current="true">FR</a> |
+          <a href="project-de.html" lang="de">DE</a>
         </span>
       </nav>
-      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-controls="menu-mobile" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-          <path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </button>
+
+      <!-- Contrôles à droite (mobile) -->
+      <div class="controls">
+        <!-- Bouton langue -->
+        <button class="lang-btn" id="lang-btn" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu" aria-label="Changer de langue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke-width="2"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" stroke-width="2" stroke-linecap="round"/></svg>
+          FR
+        </button>
+        <div id="lang-menu" class="lang-menu" role="menu" aria-label="Sélection de langue" aria-hidden="true">
+          <a href="project.html" lang="fr" aria-current="true" role="menuitem">Français</a>
+          <a href="project-de.html" lang="de" role="menuitem">Deutsch</a>
+        </div>
+
+        <!-- Burger -->
+        <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-controls="menu-mobile" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
     </header>
 
-    <!-- MENU MOBILE (accessible) -->
+    <!-- MENU MOBILE (séparé du menu langue) -->
     <div id="menu-mobile" class="mobile-panel" role="dialog" aria-modal="true" aria-label="Menu mobile" aria-hidden="true" hidden>
       <div class="mobile-links">
-        <!-- Lang-switch en premier sur mobile -->
-        <a href="project.html" lang="fr" hreflang="fr" aria-current="true">Français (FR)</a>
-        <a href="project-de.html" lang="de" hreflang="de">Deutsch (DE)</a>
-
         <a href="index.html">Accueil</a>
         <a href="team.html">Équipe</a>
         <a href="project.html" aria-current="page">Projet social</a>
         <a href="dashboard.html">Tableau de bord</a>
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
-        <!-- Lien GPT mobile -->
         <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener">Assistant Sophira</a>
       </div>
     </div>
@@ -269,7 +332,7 @@
     <nav class="breadcrumbs container" aria-label="Fil d’Ariane">
       <ol>
         <li><a href="index.html">Accueil</a></li>
-        <li aria-hidden="true">›</li>
+        <li>›</li>
         <li>Projet social</li>
       </ol>
     </nav>
@@ -277,9 +340,9 @@
     <!-- CONTENU -->
     <main id="main" class="container" itemprop="mainEntity">
       <!-- Hero + CTA -->
-      <section class="hero" aria-labelledby="hero-title" aria-describedby="hero-sub">
-        <h2 id="hero-title">Notre projet social</h2>
-        <p class="subtitle" id="hero-sub">
+      <section class="hero">
+        <h2>Notre projet social</h2>
+        <p class="subtitle">
           Un parcours complet pour des adultes en Suisse : <strong>bourse de reconversion</strong>, <strong>mentorat</strong> et <strong>insertion</strong> vers les métiers d’avenir (data, tech durable, santé digitale, IA).
         </p>
         <div class="cta-row" role="group" aria-label="Appels à l’action principaux">
@@ -474,76 +537,150 @@
       {
         "@type": "Question",
         "name": "La bourse est-elle remboursable ?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Non, elle est attribuée pour lever les barrières financières à l’accès à la formation." }
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Non, elle est attribuée pour lever les barrières financières à l’accès à la formation."
+        }
       },
       {
         "@type": "Question",
         "name": "Dois-je déjà savoir programmer ?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Pas forcément. Nous évaluons l’appétence et proposons une mise à niveau lorsqu’elle est nécessaire." }
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pas forcément. Nous évaluons l’appétence et proposons une mise à niveau lorsqu’elle est nécessaire."
+        }
       },
       {
         "@type": "Question",
         "name": "Quel est l’engagement attendu ?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Entre 8 et 20 heures par semaine selon le parcours, avec rendez-vous réguliers." }
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Entre 8 et 20 heures par semaine selon le parcours, avec rendez-vous réguliers."
+        }
       }
     ]
   }
   </script>
 
-  <!-- JS menu mobile : focus trap + ARIA -->
+  <!-- Cookie banner (FR) -->
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Préférences de confidentialité" aria-modal="true">
+    <p><strong>Cookies & confidentialité.</strong> Nous utilisons des cookies fonctionnels pour le bon fonctionnement du site et — avec votre accord — la mesure d’audience (Google Analytics). Vous pouvez accepter ou refuser l’analyse à tout moment.</p>
+    <div class="cookie-actions">
+      <button class="btn minor" id="cookie-refuse">Refuser l’analyse</button>
+      <button class="btn" id="cookie-accept">Accepter l’analyse</button>
+      <button class="btn outline" id="cookie-later" aria-label="Décider plus tard">Plus tard</button>
+    </div>
+  </div>
+
+  <!-- JS : menus + consent -->
   <script>
+    // ===== Consent (localStorage) =====
+    const CONSENT_KEY = 'sophira_consent_v1';
+    function readConsent(){
+      try { return JSON.parse(localStorage.getItem(CONSENT_KEY)) || null; } catch(e){ return null; }
+    }
+    function applyConsentToGtag(prefs){
+      const analyticsGranted = !!(prefs && prefs.analytics);
+      gtag('consent','update',{
+        analytics_storage: analyticsGranted ? 'granted' : 'denied',
+        ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied'
+      });
+    }
+    function acceptAnalytics(){
+      const prefs = { necessary:true, analytics:true, marketing:false, date:new Date().toISOString() };
+      localStorage.setItem(CONSENT_KEY, JSON.stringify(prefs));
+      applyConsentToGtag(prefs);
+      hideCookieBanner();
+    }
+    function refuseAnalytics(){
+      const prefs = { necessary:true, analytics:false, marketing:false, date:new Date().toISOString() };
+      localStorage.setItem(CONSENT_KEY, JSON.stringify(prefs));
+      applyConsentToGtag(prefs);
+      hideCookieBanner();
+    }
+    function showCookieBanner(){
+      const b = document.getElementById('cookie-banner');
+      if(b) b.style.display = 'block';
+    }
+    function hideCookieBanner(){
+      const b = document.getElementById('cookie-banner');
+      if(b) b.style.display = 'none';
+    }
+
+    (function initConsent(){
+      const prefs = readConsent();
+      if (prefs) {
+        applyConsentToGtag(prefs);
+        hideCookieBanner();
+      } else {
+        showCookieBanner();
+      }
+      const btnA = document.getElementById('cookie-accept');
+      const btnR = document.getElementById('cookie-refuse');
+      const btnL = document.getElementById('cookie-later');
+      if(btnA) btnA.addEventListener('click', acceptAnalytics);
+      if(btnR) btnR.addEventListener('click', refuseAnalytics);
+      if(btnL) btnL.addEventListener('click', hideCookieBanner);
+    })();
+
+    // ===== Navigation : burger & menu langue séparés (pas de chevauchement) =====
     (function(){
       const burger = document.getElementById('burger');
       const panel  = document.getElementById('menu-mobile');
-      const focusableSelector = 'a, button';
-      let lastFocused = null;
+      const langBtn = document.getElementById('lang-btn');
+      const langMenu = document.getElementById('lang-menu');
 
-      if(!burger || !panel) return;
-
-      function getFocusable(){ return panel.querySelectorAll(focusableSelector); }
-
-      function openMenu(){
+      function openMobile(){
         panel.removeAttribute('hidden');
         panel.setAttribute('aria-hidden','false');
-        document.body.classList.add('no-scroll');
         burger.setAttribute('aria-expanded','true');
-        burger.setAttribute('aria-label','Fermer le menu');
-        lastFocused = document.activeElement;
-        const f = getFocusable();
-        if(f.length) f[0].focus();
+        document.body.classList.add('no-scroll');
       }
-
-      function closeMenu(){
+      function closeMobile(){
         panel.setAttribute('hidden','');
         panel.setAttribute('aria-hidden','true');
-        document.body.classList.remove('no-scroll');
         burger.setAttribute('aria-expanded','false');
-        burger.setAttribute('aria-label','Ouvrir le menu');
-        if(lastFocused) lastFocused.focus();
+        document.body.classList.remove('no-scroll');
+      }
+      function toggleMobile(){
+        if(panel.hasAttribute('hidden')){ closeLang(); openMobile(); } else { closeMobile(); }
       }
 
-      function toggleMenu(){
-        if(panel.hasAttribute('hidden')) openMenu(); else closeMenu();
+      function openLang(){
+        langMenu.classList.add('open');
+        langMenu.setAttribute('aria-hidden','false');
+        langBtn.setAttribute('aria-expanded','true');
+      }
+      function closeLang(){
+        langMenu.classList.remove('open');
+        langMenu.setAttribute('aria-hidden','true');
+        langBtn.setAttribute('aria-expanded','false');
+      }
+      function toggleLang(e){
+        e.stopPropagation();
+        if(langMenu.classList.contains('open')){ closeLang(); }
+        else { closeMobile(); openLang(); }
       }
 
-      burger.addEventListener('click', toggleMenu);
+      if(burger && panel){ burger.addEventListener('click', toggleMobile); }
+      if(langBtn && langMenu){ langBtn.addEventListener('click', toggleLang); }
 
-      // click en dehors
+      // Clic à l’extérieur
       document.addEventListener('click', (e)=>{
-        if(panel.hasAttribute('hidden')) return;
-        const within = panel.contains(e.target) || burger.contains(e.target);
-        if(!within) closeMenu();
+        if(langMenu && langMenu.classList.contains('open')){
+          const insideLang = langMenu.contains(e.target) || langBtn.contains(e.target);
+          if(!insideLang) closeLang();
+        }
+        if(panel && !panel.hasAttribute('hidden')){
+          const insideMob = panel.contains(e.target) || (burger && burger.contains(e.target));
+          if(!insideMob) closeMobile();
+        }
       });
-
-      // ESC + focus trap
+      // ESC
       document.addEventListener('keydown', (e)=>{
-        if(e.key==='Escape' && !panel.hasAttribute('hidden')) closeMenu();
-        if(e.key==='Tab' && !panel.hasAttribute('hidden')){
-          const f = Array.from(getFocusable());
-          if(!f.length) return;
-          const first = f[0], last = f[f.length-1];
-          if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
-          else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+        if(e.key==='Escape'){
+          closeLang();
+          closeMobile();
         }
       });
     })();
