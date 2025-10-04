@@ -3,9 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sophira: Verein für berufliche Neuorientierung</title>
+  <title>Sophira – Verein für berufliche Neuorientierung</title>
 
-  <!-- SEO -->
+  <!-- GA4 + Consent Mode v2 (Standard: abgelehnt) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('consent','default',{
+      ad_storage:'denied',
+      analytics_storage:'denied',
+      functionality_storage:'granted',
+      security_storage:'granted',
+      ad_user_data:'denied',
+      ad_personalization:'denied',
+      wait_for_update:500
+    });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FL1S0MJWB1"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-FL1S0MJWB1');
+  </script>
+
+  <!-- SEO Basis -->
   <link rel="canonical" href="https://sophira.org/index-de.html" />
   <meta name="robots" content="index,follow" />
   <meta name="description" content="Sophira unterstützt Erwachsene in finanziellen Schwierigkeiten bei ihrer beruflichen Neuorientierung in Zukunftsberufe (Daten, grüne Technologien, digitale Gesundheit, KI) in der Schweiz." />
@@ -16,18 +36,17 @@
   <link rel="alternate" hreflang="x-default" href="https://sophira.org/index.html" />
 
   <!-- Open Graph / Social -->
-  <meta property="og:title" content="Sophira: Verein für berufliche Neuorientierung" />
+  <meta property="og:title" content="Sophira – Verein für berufliche Neuorientierung" />
   <meta property="og:description" content="Arbeitslosigkeit durch Automatisierung bekämpfen und Chancen in Zukunftsberufen eröffnen." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sophira.org/index-de.html" />
   <meta property="og:image" content="https://sophira.org/Logo_sophira.png" />
   <meta property="og:site_name" content="Sophira" />
   <meta property="og:locale" content="de_CH" />
-  <meta property="og:locale:alternate" content="fr_CH" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Sophira: Verein für berufliche Neuorientierung" />
+  <meta name="twitter:title" content="Sophira – Verein für berufliche Neuorientierung" />
   <meta name="twitter:description" content="Sophira hilft Erwachsenen, sich in der Schweiz in Zukunftsberufe neu zu orientieren." />
   <meta name="twitter:image" content="https://sophira.org/Logo_sophira.png" />
 
@@ -46,25 +65,39 @@
   <!-- Strukturierte Daten (Organisation) -->
   <script type="application/ld+json">
   {
-    "@context":"https://schema.org",
-    "@type":"NonprofitOrganization",
-    "name":"Sophira",
-    "url":"https://sophira.org/",
-    "logo":"https://sophira.org/Logo_sophira.png",
-    "foundingLocation":"Basel, Schweiz",
-    "areaServed":"CH",
-    "sameAs":[],
-    "address":{"@type":"PostalAddress","addressLocality":"Basel","addressCountry":"CH"}
+    "@context": "https://schema.org",
+    "@type": "NonprofitOrganization",
+    "name": "Sophira",
+    "url": "https://sophira.org/",
+    "logo": "https://sophira.org/Logo_sophira.png",
+    "foundingLocation": "Basel, Schweiz",
+    "areaServed": "CH",
+    "sameAs": [],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Basel",
+      "addressCountry": "CH"
+    }
   }
   </script>
 
   <style>
     :root{
-      --text:#2c3e50; --muted:#4a5568; --brand:#1a73e8; --brand-hover:#155ab6;
-      --whiteglass:#ffffffdd; --panel:#edf2f7cc;
-      --radius:12px; --radius-sm:10px;
-      --shadow-sm:0 2px 8px rgba(0,0,0,.05); --shadow-md:0 4px 12px rgba(0,0,0,.08);
-      --container:980px; --focus:#0d6efd; --focus-bg:#e8f0fe;
+      --text:#2c3e50;
+      --muted:#4a5568;
+      --brand:#1a73e8;
+      --brand-hover:#155ab6;
+      --whiteglass:#ffffffdd;
+      --panel:#edf2f7cc;
+      --radius:12px;
+      --shadow-sm:0 2px 8px rgba(0,0,0,.05);
+      --shadow-md:0 4px 12px rgba(0,0,0,.08);
+      --container:980px;
+      --focus:#0d6efd;
+      --focus-bg:#e8f0fe;
+      --z-header:20;
+      --z-lang:60;   /* über dem Burger */
+      --z-cookie:70; /* ganz oben */
     }
     *{box-sizing:border-box}
     html:focus-within{ scroll-behavior:smooth; }
@@ -77,8 +110,10 @@
 
     /* Skip-Link */
     .skip-link{
-      position:absolute; left:1rem; top:.5rem; transform:translateY(-200%);
-      background:#000; color:#fff; padding:.6rem .9rem; border-radius:8px; text-decoration:none; z-index:1000; box-shadow:var(--shadow-sm);
+      position:absolute; left:1rem; top:.5rem;
+      transform:translateY(-200%);
+      background:#000; color:#fff; padding:.6rem .9rem; border-radius:8px;
+      text-decoration:none; z-index:1000; box-shadow:var(--shadow-sm);
     }
     .skip-link:focus, .skip-link:focus-visible{ transform:translateY(0); outline:2px solid #fff; }
 
@@ -86,75 +121,90 @@
 
     /* NAVBAR */
     header.navbar{
-      position:sticky; top:0; z-index:20;
-      display:flex; align-items:center; gap:.6rem;
-      padding:.7rem 1rem; background:var(--whiteglass); box-shadow:var(--shadow-sm); backdrop-filter: blur(6px);
-      white-space:nowrap;
+      position:sticky; top:0; z-index:var(--z-header);
+      display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+      padding:.8rem 1rem; background:var(--whiteglass); box-shadow:var(--shadow-sm); backdrop-filter: blur(6px);
     }
-    .brand{ display:flex; align-items:center; gap:.6rem; min-width:0; text-decoration:none; flex:1 1 auto; }
-    .brand img{ height:55px; width:auto; }
-    .brand h1{ margin:0; font-size:1.55rem; font-weight:600; color:#1a202c; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .brand{ display:flex; align-items:center; gap:.6rem; min-width:0; text-decoration:none; }
+    .brand img{ height:48px; width:auto; } /* leicht verkleinert */
+    .brand h1{
+      margin:0; font-size:1.55rem; font-weight:600; color:#1a202c; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    }
+    @media (max-width:480px){
+      .brand img{ height:44px; }
+      .brand h1{ font-size:1.35rem; } /* kleiner auf Mobile */
+    }
 
-    nav.primary{ display:flex; gap:1rem; align-items:center; }
+    nav.primary{ display:flex; gap:1.1rem; align-items:center; }
     nav.primary a{ text-decoration:none; color:var(--text); font-weight:500; }
     nav.primary a:hover, nav.primary a:focus{ color:#1e88e5; }
 
-    /* Fokus sichtbar */
+    /* Globaler sichtbarer Fokus */
     a:focus-visible, button:focus-visible{
-      outline:3px solid var(--focus); outline-offset:2px;
+      outline:3px solid var(--focus);
+      outline-offset:2px;
       background:linear-gradient(0deg, var(--focus-bg), var(--focus-bg)) no-repeat;
     }
 
-    /* Sprachen (Desktop) */
-    .lang{ display:inline-flex; gap:.4rem; margin-left:.4rem; font-size:.95rem; }
-    .lang a{ color:#5b6b7a; text-decoration:none; }
-    .lang a[aria-current="true"]{ font-weight:700; color:#1a202c; }
+    /* Rechte Kontrollen (Lang + Burger) */
+    .controls{ display:flex; align-items:center; gap:.5rem; position:relative; }
 
-    /* Mobile Controls */
-    .controls{ display:none; align-items:center; gap:.4rem; flex-shrink:0; position:relative; z-index:5; }
-    .burger{ background:none; border:none; padding:.35rem; line-height:0; z-index:5; }
-    .burger svg{ width:26px; height:26px; }
-    .lang-toggle{
-      background:#fff; border:1px solid #cbd5e1; border-radius:999px;
-      padding:.25rem .6rem; font-weight:700; cursor:pointer; font-size:.95rem; z-index:5;
+    .burger{ display:none; background:none; border:none; padding:.4rem .6rem; border-radius:8px; }
+    .burger svg{ width:28px; height:28px; }
+
+    /* Sprachschalter (Button) */
+    .lang-btn{
+      display:inline-flex; align-items:center; gap:.35rem;
+      background:#fff; border:1px solid #e5e7eb; border-radius:999px; padding:.35rem .6rem;
+      font-weight:600; color:#1f2937; cursor:pointer; box-shadow:var(--shadow-sm);
     }
-    /* Menu Sprache mobil, an Controls verankert und vom Burger weg versetzt */
-    .controls{ position:relative; }
+    .lang-btn svg{ width:18px; height:18px; }
+
+    /* Sprachmenü, separat vom Burger */
     .lang-menu{
-      position:absolute; right:44px; top:calc(100% + 8px);
-      background:#ffffffdd; backdrop-filter:blur(6px);
-      border:1px solid #e5e7eb; border-radius:10px; box-shadow:var(--shadow-sm);
-      display:flex; flex-direction:column; padding:.4rem; gap:.2rem;
-      z-index:4; transition:opacity .12s ease, visibility .12s ease;
+      position:absolute; right:0; top:calc(100% + 8px); z-index:var(--z-lang);
+      background:#fff; border:1px solid #e5e7eb; border-radius:10px; box-shadow:var(--shadow-md);
+      padding:.35rem; min-width:120px; display:none;
     }
-    .lang-menu[data-open="false"]{ opacity:0; visibility:hidden; pointer-events:none; }
-    .lang-menu[data-open="true"]{ opacity:1; visibility:visible; pointer-events:auto; }
-    .lang-menu a{ text-decoration:none; color:#1f2937; font-weight:600; padding:.4rem .6rem; border-radius:8px; }
-    .lang-menu a[aria-current="true"]{ background:#e8f0fe; color:#174ea6; }
+    .lang-menu.open{ display:block; }
+    .lang-menu a{
+      display:block; padding:.5rem .65rem; text-decoration:none; color:#111827; border-radius:8px; font-weight:600;
+    }
+    .lang-menu a:hover{ background:#f3f4f6; }
+    .lang-menu a[aria-current="true"]{ color:#1a73e8; }
 
-    /* Mobile panel */
-    .mobile-panel{ display:none; position:fixed; inset:64px 0 0 0; background:var(--whiteglass); backdrop-filter: blur(6px); padding:1rem; z-index:4; }
+    /* MOBILPANEL */
+    .mobile-panel{
+      display:block; /* via [hidden] gesteuert */
+      position:fixed; inset:64px 0 0 0; background:var(--whiteglass);
+      backdrop-filter: blur(6px); padding:1rem;
+    }
+    [hidden]{ display:none !important; }
     .mobile-links{ display:flex; flex-direction:column; gap:.8rem; }
     .mobile-links a{ text-decoration:none; color:var(--text); font-weight:600; padding:.7rem 0; border-bottom:1px solid #ddd; }
     .mobile-links a:last-child{ border-bottom:none; }
-    .hidden{ display:none !important; }
 
-    /* LAYOUT */
     .container{ flex:1; max-width:var(--container); margin:2rem auto; padding:0 1rem; }
 
     /* HERO */
     .hero{ background:var(--panel); padding:2.4rem 1.4rem; border-radius:var(--radius); text-align:center; box-shadow:var(--shadow-md); }
-    .hero h2{ font-size:2.05rem; margin:.2rem 0 .7rem; }
+    .hero h2{ font-size:2.1rem; margin:.2rem 0 .7rem; }
     .subtitle{ font-size:1.08rem; color:var(--muted); margin:0 auto; max-width:800px; }
 
     /* AUF EINEN BLICK */
     .glance{ margin-top:1rem; display:grid; grid-template-columns:repeat(12,1fr); gap:.8rem; }
-    .glance .item{ grid-column:span 12; background:#fff; border-radius:10px; box-shadow:var(--shadow-sm); padding:.9rem 1rem; text-align:left; }
+    .glance .item{
+      grid-column:span 12; background:#fff; border-radius:10px; box-shadow:var(--shadow-sm);
+      padding:.9rem 1rem; text-align:left;
+    }
     .glance .item strong{ display:block; margin-bottom:.25rem; }
 
     /* SCHNELLE LINKS */
     .quick{ margin-top:1rem; display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap; }
-    .btn{ display:inline-block; background:var(--brand); color:#fff; text-decoration:none; padding:.6rem 1rem; border-radius:10px; font-weight:700; transition:transform .06s ease; }
+    .btn{
+      display:inline-block; background:var(--brand); color:#fff; text-decoration:none;
+      padding:.6rem 1rem; border-radius:10px; font-weight:700; transition:transform .06s ease;
+    }
     .btn:hover{ background:var(--brand-hover); transform:translateY(-1px); }
     .btn:active{ transform:translateY(0); }
     .btn.outline{ background:transparent; color:var(--brand); border:2px solid var(--brand); }
@@ -183,23 +233,35 @@
 
     /* GPT-FAB */
     .chat-fab{
-      position:fixed; right:18px; bottom:18px; z-index:10;
+      position:fixed; right:18px; bottom:18px; z-index:30;
       display:inline-flex; align-items:center; gap:.5rem;
       padding:.8rem 1rem; border-radius:999px; background:var(--brand); color:#fff; text-decoration:none;
       box-shadow:var(--shadow-md);
     }
     .chat-fab:hover{ background:var(--brand-hover); }
 
+    /* Cookie-Banner */
+    .cookie-banner{
+      position:fixed; z-index:var(--z-cookie); inset:auto 12px 12px 12px;
+      background:#ffffff; border:1px solid #e5e7eb; border-radius:12px; box-shadow:var(--shadow-md);
+      padding:1rem; display:none; max-width:800px; margin:0 auto;
+    }
+    .cookie-actions{ display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.6rem; }
+    .cookie-banner .btn{ padding:.55rem 1rem; }
+    .cookie-banner .btn.minor{ background:#eef2ff; color:#1f2a66; border:1px solid #c7d2fe; }
+
     /* Responsive */
     @media (min-width: 680px){
       .glance .item{ grid-column:span 4; }
       .post{ grid-column:span 4; }
     }
-    @media (max-width: 880px){
+    @media (max-width: 980px){
       nav.primary{ display:none; }
-      .controls{ display:flex; margin-left:auto; }
+      .burger{ display:inline-flex; }
     }
-    @media (prefers-reduced-motion: reduce){ *{ scroll-behavior:auto; transition:none !important; } }
+    @media (prefers-reduced-motion: reduce){
+      *{ scroll-behavior:auto; transition:none !important; }
+    }
   </style>
 </head>
 <body>
@@ -221,34 +283,36 @@
         <a href="dashboard-de.html">Dashboard</a>
         <a href="blog.html">Blog</a>
         <a href="contact-de.html">Kontakt</a>
-        <!-- Assistent (Desktop) -->
-        <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Sophira-Assistent in neuem Tab öffnen">Sophira Assistent</a>
-        <!-- Sprachen (Desktop) -->
-        <span class="lang" aria-label="Sprache wechseln">
+        <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Sophira Assistent in neuem Tab öffnen">Sophira Assistent</a>
+        <span class="lang desktop" aria-label="Sprache wechseln">
           <a href="index.html" lang="fr">FR</a> |
           <a href="index-de.html" lang="de" aria-current="true">DE</a>
         </span>
       </nav>
 
-      <!-- Mobile Controls -->
+      <!-- Rechte Steuerleiste (Mobile) -->
       <div class="controls">
-        <button class="lang-toggle" id="lang-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Sprache ändern">DE</button>
+        <!-- Sprachen-Button -->
+        <button class="lang-btn" id="lang-btn" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu" aria-label="Sprache wechseln">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke-width="2"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" stroke-width="2" stroke-linecap="round"/></svg>
+          DE
+        </button>
+        <div id="lang-menu" class="lang-menu" role="menu" aria-label="Sprachauswahl" aria-hidden="true">
+          <a href="index.html" lang="fr" role="menuitem">Français</a>
+          <a href="index-de.html" lang="de" aria-current="true" role="menuitem">Deutsch</a>
+        </div>
+
+        <!-- Burger -->
         <button class="burger" id="burger" aria-label="Menü öffnen" aria-controls="menu-mobile" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
             <path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/>
           </svg>
         </button>
-
-        <!-- Sprachmenü (mobil) -->
-        <div class="lang-menu" id="lang-menu" data-open="false" role="menu" aria-label="Sprache wählen">
-          <a role="menuitem" href="index.html" lang="fr">FR</a>
-          <a role="menuitem" href="index-de.html" lang="de" aria-current="true">DE</a>
-        </div>
       </div>
     </header>
 
-    <!-- MOBILES MENÜ -->
-    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Mobiles Menü">
+    <!-- MOBILES MENÜ (getrennt vom Sprachmenü) -->
+    <div id="menu-mobile" class="mobile-panel" role="dialog" aria-modal="true" aria-label="Mobiles Menü" aria-hidden="true" hidden>
       <div class="mobile-links">
         <a href="index-de.html" aria-current="page">Startseite</a>
         <a href="team-de.html">Team</a>
@@ -256,10 +320,7 @@
         <a href="dashboard-de.html">Dashboard</a>
         <a href="blog.html">Blog</a>
         <a href="contact-de.html">Kontakt</a>
-        <!-- Assistent (mobil) -->
         <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener">Sophira Assistent</a>
-        <!-- Direkter Link FR -->
-        <a href="index.html" lang="fr">→ FR Version</a>
       </div>
     </div>
 
@@ -275,9 +336,18 @@
 
         <!-- Auf einen Blick -->
         <div class="glance" aria-label="Auf einen Blick">
-          <div class="item"><strong>Zielgerichtetes Stipendium</strong> Deckt einen Teil der Ausbildungs- und Ausrüstungskosten ab.</div>
-          <div class="item"><strong>Mentoring & Netzwerk</strong> Vermittlung, Coaching und konkretes Feedback von Fachleuten.</div>
-          <div class="item"><strong>Reale Projekte</strong> Sozial wirksame Fälle, um schnell ein glaubwürdiges Portfolio aufzubauen.</div>
+          <div class="item">
+            <strong>Zielgerichtetes Stipendium</strong>
+            Deckt einen Teil der Ausbildungs- und der wichtigsten Ausrüstungskosten ab.
+          </div>
+          <div class="item">
+            <strong>Mentoring & Netzwerk</strong>
+            Vermittlung, Coaching und konkretes Feedback von Fachleuten.
+          </div>
+          <div class="item">
+            <strong>Reale Projekte</strong>
+            Sozial wirksame Fälle, um schnell ein glaubwürdiges Portfolio aufzubauen.
+          </div>
         </div>
 
         <!-- Schnelle Links -->
@@ -298,7 +368,7 @@
           in sinnstiftende Berufe, vermittelt die nötigen digitalen und analytischen Kompetenzen und bietet finanzielle sowie menschliche Unterstützung.</p>
       </section>
 
-      <!-- Blog-Teaser (3 Karten) -->
+      <!-- Blog-Teaser -->
       <section class="teaser" aria-label="Neueste Artikel">
         <h3>Lesenswert im Blog</h3>
         <div class="posts">
@@ -320,7 +390,7 @@
         </div>
       </section>
 
-      <!-- CTA -->
+      <!-- CTA FINAL -->
       <section class="cta" aria-label="Unterstützen">
         <h3>Unterstützen Sie unsere Vision</h3>
         <p>Gestalten wir gemeinsam eine gerechtere Zukunft, indem wir neue Talente durch Solidarität und lebenslanges Lernen fördern.</p>
@@ -334,75 +404,132 @@
   </div>
 
   <!-- GPT-FAB -->
-  <a class="chat-fab" href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Mit dem Sophira-Assistenten sprechen (neuer Tab)">
+  <a class="chat-fab" href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Mit dem Sophira Assistenten sprechen (öffnet in neuem Tab)">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     <span>Sophira Assistent</span>
   </a>
 
-  <!-- JS: Menüs (keine Überlagerung, Cross-Close) -->
+  <!-- Cookie-Banner (Consent) -->
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Datenschutzeinstellungen" aria-modal="true">
+    <p><strong>Cookies & Datenschutz.</strong> Wir verwenden funktionale Cookies für den Betrieb der Website und – mit Ihrer Einwilligung – Reichweitenmessung (Google Analytics). Sie können die Analyse jederzeit annehmen oder ablehnen.</p>
+    <div class="cookie-actions">
+      <button class="btn minor" id="cookie-refuse">Analyse ablehnen</button>
+      <button class="btn" id="cookie-accept">Analyse akzeptieren</button>
+      <button class="btn outline" id="cookie-later" aria-label="Später entscheiden">Später</button>
+    </div>
+  </div>
+
+  <!-- JS: Menüs + Consent -->
   <script>
+    // ===== Consent (localStorage) =====
+    const CONSENT_KEY = 'sophira_consent_v1';
+    function readConsent(){
+      try { return JSON.parse(localStorage.getItem(CONSENT_KEY)) || null; } catch(e){ return null; }
+    }
+    function applyConsentToGtag(prefs){
+      const analyticsGranted = !!(prefs && prefs.analytics);
+      gtag('consent','update',{
+        analytics_storage: analyticsGranted ? 'granted' : 'denied',
+        ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied'
+      });
+    }
+    function acceptAnalytics(){
+      const prefs = { necessary:true, analytics:true, marketing:false, date:new Date().toISOString() };
+      localStorage.setItem(CONSENT_KEY, JSON.stringify(prefs));
+      applyConsentToGtag(prefs);
+      hideCookieBanner();
+    }
+    function refuseAnalytics(){
+      const prefs = { necessary:true, analytics:false, marketing:false, date:new Date().toISOString() };
+      localStorage.setItem(CONSENT_KEY, JSON.stringify(prefs));
+      applyConsentToGtag(prefs);
+      hideCookieBanner();
+    }
+    function showCookieBanner(){
+      const b = document.getElementById('cookie-banner');
+      if(b) b.style.display = 'block';
+    }
+    function hideCookieBanner(){
+      const b = document.getElementById('cookie-banner');
+      if(b) b.style.display = 'none';
+    }
+
+    (function initConsent(){
+      const prefs = readConsent();
+      if (prefs) {
+        applyConsentToGtag(prefs);
+        hideCookieBanner();
+      } else {
+        showCookieBanner();
+      }
+      const btnA = document.getElementById('cookie-accept');
+      const btnR = document.getElementById('cookie-refuse');
+      const btnL = document.getElementById('cookie-later');
+      if(btnA) btnA.addEventListener('click', acceptAnalytics);
+      if(btnR) btnR.addEventListener('click', refuseAnalytics);
+      if(btnL) btnL.addEventListener('click', hideCookieBanner);
+    })();
+
+    // ===== Navigation: Burger & Sprachmenü getrennt =====
     (function(){
-      const burger   = document.getElementById('burger');
-      const panel    = document.getElementById('menu-mobile');
-      const langBtn  = document.getElementById('lang-toggle');
+      const burger = document.getElementById('burger');
+      const panel  = document.getElementById('menu-mobile');
+      const langBtn = document.getElementById('lang-btn');
       const langMenu = document.getElementById('lang-menu');
 
-      function closeLangMenu(){
-        if(langMenu && langMenu.dataset.open === 'true'){
-          langMenu.dataset.open = 'false';
-          langBtn && langBtn.setAttribute('aria-expanded','false');
-        }
+      function openMobile(){
+        panel.removeAttribute('hidden');
+        panel.setAttribute('aria-hidden','false');
+        burger.setAttribute('aria-expanded','true');
+        document.body.classList.add('no-scroll');
       }
-      function openLangMenu(){
-        if(langMenu && langMenu.dataset.open !== 'true'){
-          langMenu.dataset.open = 'true';
-          langBtn && langBtn.setAttribute('aria-expanded','true');
-        }
+      function closeMobile(){
+        panel.setAttribute('hidden','');
+        panel.setAttribute('aria-hidden','true');
+        burger.setAttribute('aria-expanded','false');
+        document.body.classList.remove('no-scroll');
       }
-      function closeMainMenu(){
-        if(panel && !panel.classList.contains('hidden')){
-          panel.classList.add('hidden');
-          burger && burger.setAttribute('aria-expanded','false');
-          burger && burger.setAttribute('aria-label','Menü öffnen');
-        }
-      }
-      function openMainMenu(){
-        if(panel && panel.classList.contains('hidden')){
-          panel.classList.remove('hidden');
-          burger && burger.setAttribute('aria-expanded','true');
-          burger && burger.setAttribute('aria-label','Menü schliessen');
-        }
+      function toggleMobile(){
+        if(panel.hasAttribute('hidden')){ closeLang(); openMobile(); } else { closeMobile(); }
       }
 
-      // Burger
-      if(burger && panel){
-        burger.addEventListener('click', ()=>{
-          if(panel.classList.contains('hidden')) closeLangMenu();
-          panel.classList.contains('hidden') ? openMainMenu() : closeMainMenu();
-        });
-        document.addEventListener('click', (e)=>{
-          if(panel.classList.contains('hidden')) return;
-          const within = panel.contains(e.target) || burger.contains(e.target);
-          if(!within) closeMainMenu();
-        });
-        document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && !panel.classList.contains('hidden')) closeMainMenu(); });
+      function openLang(){
+        langMenu.classList.add('open');
+        langMenu.setAttribute('aria-hidden','false');
+        langBtn.setAttribute('aria-expanded','true');
+      }
+      function closeLang(){
+        langMenu.classList.remove('open');
+        langMenu.setAttribute('aria-hidden','true');
+        langBtn.setAttribute('aria-expanded','false');
+      }
+      function toggleLang(e){
+        e.stopPropagation();
+        if(langMenu.classList.contains('open')){ closeLang(); }
+        else { closeMobile(); openLang(); }
       }
 
-      // Sprachen (mobil)
-      if(langBtn && langMenu){
-        langBtn.addEventListener('click', ()=>{
-          if(langMenu.dataset.open !== 'true') closeMainMenu();
-          langMenu.dataset.open === 'true' ? closeLangMenu() : openLangMenu();
-        });
-        document.addEventListener('click', (e)=>{
-          if(langMenu.dataset.open !== 'true') return;
-          const within = langMenu.contains(e.target) || langBtn.contains(e.target);
-          if(!within) closeLangMenu();
-        });
-        document.addEventListener('keydown', (e)=>{
-          if(e.key==='Escape' && langMenu.dataset.open === 'true') closeLangMenu();
-        });
-      }
+      if(burger && panel){ burger.addEventListener('click', toggleMobile); }
+      if(langBtn && langMenu){ langBtn.addEventListener('click', toggleLang); }
+
+      // Klick ausserhalb
+      document.addEventListener('click', (e)=>{
+        if(langMenu && langMenu.classList.contains('open')){
+          const insideLang = langMenu.contains(e.target) || langBtn.contains(e.target);
+          if(!insideLang) closeLang();
+        }
+        if(panel && !panel.hasAttribute('hidden')){
+          const insideMob = panel.contains(e.target) || (burger && burger.contains(e.target));
+          if(!insideMob) closeMobile();
+        }
+      });
+      // ESC
+      document.addEventListener('keydown', (e)=>{
+        if(e.key==='Escape'){
+          closeLang();
+          closeMobile();
+        }
+      });
     })();
   </script>
 </body>
