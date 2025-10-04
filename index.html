@@ -54,29 +54,17 @@
     "foundingLocation": "Bâle, Suisse",
     "areaServed": "CH",
     "sameAs": [],
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Bâle",
-      "addressCountry": "CH"
-    }
+    "address": { "@type": "PostalAddress", "addressLocality": "Bâle", "addressCountry": "CH" }
   }
   </script>
 
   <style>
     :root{
-      --text:#2c3e50;
-      --muted:#4a5568;
-      --brand:#1a73e8;
-      --brand-hover:#155ab6;
-      --whiteglass:#ffffffdd;
-      --panel:#edf2f7cc;
-      --radius:12px;
-      --radius-sm:10px;
-      --shadow-sm:0 2px 8px rgba(0,0,0,.05);
-      --shadow-md:0 4px 12px rgba(0,0,0,.08);
-      --container:980px;
-      --focus:#0d6efd;
-      --focus-bg:#e8f0fe;
+      --text:#2c3e50; --muted:#4a5568; --brand:#1a73e8; --brand-hover:#155ab6;
+      --whiteglass:#ffffffdd; --panel:#edf2f7cc;
+      --radius:12px; --radius-sm:10px;
+      --shadow-sm:0 2px 8px rgba(0,0,0,.05); --shadow-md:0 4px 12px rgba(0,0,0,.08);
+      --container:980px; --focus:#0d6efd; --focus-bg:#e8f0fe;
     }
     *{box-sizing:border-box}
     html:focus-within{ scroll-behavior:smooth; }
@@ -89,10 +77,8 @@
 
     /* Skip link */
     .skip-link{
-      position:absolute; left:1rem; top:.5rem;
-      transform:translateY(-200%);
-      background:#000; color:#fff; padding:.6rem .9rem; border-radius:8px;
-      text-decoration:none; z-index:1000; box-shadow:var(--shadow-sm);
+      position:absolute; left:1rem; top:.5rem; transform:translateY(-200%);
+      background:#000; color:#fff; padding:.6rem .9rem; border-radius:8px; text-decoration:none; z-index:1000; box-shadow:var(--shadow-sm);
     }
     .skip-link:focus, .skip-link:focus-visible{ transform:translateY(0); outline:2px solid #fff; }
 
@@ -115,8 +101,7 @@
 
     /* Focus visible */
     a:focus-visible, button:focus-visible{
-      outline:3px solid var(--focus);
-      outline-offset:2px;
+      outline:3px solid var(--focus); outline-offset:2px;
       background:linear-gradient(0deg, var(--focus-bg), var(--focus-bg)) no-repeat;
     }
 
@@ -125,24 +110,32 @@
     .lang a{ color:#5b6b7a; text-decoration:none; }
     .lang a[aria-current="true"]{ font-weight:700; color:#1a202c; }
 
-    /* Contrôles mobiles (nowrap) */
-    .controls{ display:flex; align-items:center; gap:.4rem; flex-shrink:0; }
-    .burger{ display:none; background:none; border:none; padding:.35rem; line-height:0; position:relative; z-index:3; }
+    /* Contrôles mobiles */
+    .controls{ display:none; align-items:center; gap:.4rem; flex-shrink:0; position:relative; z-index:5; }
+    .burger{ background:none; border:none; padding:.35rem; line-height:0; z-index:5; }
     .burger svg{ width:26px; height:26px; }
     .lang-toggle{
-      display:none; background:#fff; border:1px solid #cbd5e1; border-radius:999px;
-      padding:.25rem .6rem; font-weight:700; cursor:pointer; position:relative; z-index:2; font-size:.95rem;
+      background:#fff; border:1px solid #cbd5e1; border-radius:999px;
+      padding:.25rem .6rem; font-weight:700; cursor:pointer; font-size:.95rem; z-index:5;
     }
+    /* Menu langue mobile ancré à .controls (pas au dessus du burger) */
+    .controls{ position:relative; }
     .lang-menu{
-      position:absolute; right:1rem; top:60px; background:#ffffffdd; backdrop-filter:blur(6px);
+      position:absolute; right:44px; /* décale pour ne pas couvrir le burger */
+      top:calc(100% + 8px);
+      background:#ffffffdd; backdrop-filter:blur(6px);
       border:1px solid #e5e7eb; border-radius:10px; box-shadow:var(--shadow-sm);
-      display:flex; flex-direction:column; padding:.4rem; gap:.2rem; z-index:4;
+      display:flex; flex-direction:column; padding:.4rem; gap:.2rem;
+      z-index:4;
+      transition:opacity .12s ease, visibility .12s ease;
     }
+    .lang-menu[data-open="false"]{ opacity:0; visibility:hidden; pointer-events:none; }
+    .lang-menu[data-open="true"]{ opacity:1; visibility:visible; pointer-events:auto; }
     .lang-menu a{ text-decoration:none; color:#1f2937; font-weight:600; padding:.4rem .6rem; border-radius:8px; }
     .lang-menu a[aria-current="true"]{ background:#e8f0fe; color:#174ea6; }
 
     /* Mobile panel */
-    .mobile-panel{ display:none; position:fixed; inset:64px 0 0 0; background:var(--whiteglass); backdrop-filter: blur(6px); padding:1rem; z-index:2; }
+    .mobile-panel{ display:none; position:fixed; inset:64px 0 0 0; background:var(--whiteglass); backdrop-filter: blur(6px); padding:1rem; z-index:4; }
     .mobile-links{ display:flex; flex-direction:column; gap:.8rem; }
     .mobile-links a{ text-decoration:none; color:var(--text); font-weight:600; padding:.7rem 0; border-bottom:1px solid #ddd; }
     .mobile-links a:last-child{ border-bottom:none; }
@@ -158,18 +151,12 @@
 
     /* EN UN COUP D’ŒIL */
     .glance{ margin-top:1rem; display:grid; grid-template-columns:repeat(12,1fr); gap:.8rem; }
-    .glance .item{
-      grid-column:span 12; background:#fff; border-radius:10px; box-shadow:var(--shadow-sm);
-      padding:.9rem 1rem; text-align:left;
-    }
+    .glance .item{ grid-column:span 12; background:#fff; border-radius:10px; box-shadow:var(--shadow-sm); padding:.9rem 1rem; text-align:left; }
     .glance .item strong{ display:block; margin-bottom:.25rem; }
 
     /* LIENS RAPIDES */
     .quick{ margin-top:1rem; display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap; }
-    .btn{
-      display:inline-block; background:var(--brand); color:#fff; text-decoration:none;
-      padding:.6rem 1rem; border-radius:10px; font-weight:700; transition:transform .06s ease;
-    }
+    .btn{ display:inline-block; background:var(--brand); color:#fff; text-decoration:none; padding:.6rem 1rem; border-radius:10px; font-weight:700; transition:transform .06s ease; }
     .btn:hover{ background:var(--brand-hover); transform:translateY(-1px); }
     .btn:active{ transform:translateY(0); }
     .btn.outline{ background:transparent; color:var(--brand); border:2px solid var(--brand); }
@@ -198,7 +185,7 @@
 
     /* Bouton flottant GPT */
     .chat-fab{
-      position:fixed; right:18px; bottom:18px; z-index:30;
+      position:fixed; right:18px; bottom:18px; z-index:10;
       display:inline-flex; align-items:center; gap:.5rem;
       padding:.8rem 1rem; border-radius:999px; background:var(--brand); color:#fff; text-decoration:none;
       box-shadow:var(--shadow-md);
@@ -212,12 +199,9 @@
     }
     @media (max-width: 880px){
       nav.primary{ display:none; }
-      .burger{ display:inline-flex; order:2; }   /* à droite */
-      .lang-toggle{ display:inline-flex; align-items:center; order:1; } /* à gauche du burger */
+      .controls{ display:flex; margin-left:auto; }
     }
-    @media (prefers-reduced-motion: reduce){
-      *{ scroll-behavior:auto; transition:none !important; }
-    }
+    @media (prefers-reduced-motion: reduce){ *{ scroll-behavior:auto; transition:none !important; } }
   </style>
 </head>
 <body>
@@ -248,7 +232,7 @@
         </span>
       </nav>
 
-      <!-- Contrôles mobiles non-cassants -->
+      <!-- Contrôles mobiles -->
       <div class="controls">
         <button class="lang-toggle" id="lang-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Changer de langue">FR</button>
         <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-controls="menu-mobile" aria-expanded="false">
@@ -256,12 +240,12 @@
             <path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/>
           </svg>
         </button>
-      </div>
 
-      <!-- Menu Langue (mobile) -->
-      <div class="lang-menu" id="lang-menu" hidden role="menu" aria-label="Choisir la langue">
-        <a role="menuitem" href="index.html" lang="fr" aria-current="true">FR</a>
-        <a role="menuitem" href="index-de.html" lang="de">DE</a>
+        <!-- Menu Langue (mobile) -->
+        <div class="lang-menu" id="lang-menu" data-open="false" role="menu" aria-label="Choisir la langue">
+          <a role="menuitem" href="index.html" lang="fr" aria-current="true">FR</a>
+          <a role="menuitem" href="index-de.html" lang="de">DE</a>
+        </div>
       </div>
     </header>
 
@@ -283,7 +267,6 @@
 
     <!-- CONTENU -->
     <main id="main" class="container">
-      <!-- HERO -->
       <section class="hero">
         <h2>Révéler les talents de demain</h2>
         <p class="subtitle">
@@ -291,23 +274,12 @@
           dans leur reconversion vers les métiers d’avenir, de la data aux technologies vertes.
         </p>
 
-        <!-- En un coup d’œil -->
         <div class="glance" aria-label="En un coup d’œil">
-          <div class="item">
-            <strong>Une bourse ciblée</strong>
-            Couvre une partie des frais de formation et d’équipement essentiels.
-          </div>
-          <div class="item">
-            <strong>Mentorat & réseau</strong>
-            Mise en relation, coaching et retours concrets d’experts.
-          </div>
-          <div class="item">
-            <strong>Projets réels</strong>
-            Cas à impact social pour bâtir un portfolio crédible rapidement.
-          </div>
+          <div class="item"><strong>Une bourse ciblée</strong> Couvre une partie des frais de formation et d’équipement essentiels.</div>
+          <div class="item"><strong>Mentorat & réseau</strong> Mise en relation, coaching et retours concrets d’experts.</div>
+          <div class="item"><strong>Projets réels</strong> Cas à impact social pour bâtir un portfolio crédible rapidement.</div>
         </div>
 
-        <!-- Liens rapides -->
         <div class="quick" role="group" aria-label="Liens rapides">
           <a class="btn" href="project.html">Comprendre le projet</a>
           <a class="btn outline" href="contact.html">Être recontacté·e</a>
@@ -315,7 +287,6 @@
         </div>
       </section>
 
-      <!-- SECTION INFO -->
       <section class="content">
         <h3>Pourquoi Sophira&nbsp;?</h3>
         <p>Sophira est née d'une conviction : les transitions numérique et écologique transforment le marché du travail,
@@ -326,7 +297,6 @@
           grâce à un soutien financier et humain.</p>
       </section>
 
-      <!-- Teaser blog (3 cartes) -->
       <section class="teaser" aria-label="Derniers articles">
         <h3>À lire sur le blog</h3>
         <div class="posts">
@@ -348,7 +318,6 @@
         </div>
       </section>
 
-      <!-- CTA FINAL -->
       <section class="cta" aria-label="Soutenir">
         <h3>Soutenez notre vision</h3>
         <p>Construisons ensemble un avenir plus juste en révélant de nouveaux talents grâce à la solidarité et l'apprentissage continu.</p>
@@ -361,13 +330,13 @@
     </footer>
   </div>
 
-  <!-- Bouton flottant pour ouvrir le GPT -->
+  <!-- Bouton flottant GPT -->
   <a class="chat-fab" href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Parler avec l’assistant Sophira (ouvre un nouvel onglet)">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     <span>Assistant Sophira</span>
   </a>
 
-  <!-- JS: menu mobile + sélecteur de langue (fermeture croisée) -->
+  <!-- JS: menus (fermeture croisée + aucune superposition) -->
   <script>
     (function(){
       const burger   = document.getElementById('burger');
@@ -376,14 +345,14 @@
       const langMenu = document.getElementById('lang-menu');
 
       function closeLangMenu(){
-        if(langMenu && !langMenu.hasAttribute('hidden')){
-          langMenu.setAttribute('hidden','');
+        if(langMenu && langMenu.dataset.open === 'true'){
+          langMenu.dataset.open = 'false';
           langBtn && langBtn.setAttribute('aria-expanded','false');
         }
       }
       function openLangMenu(){
-        if(langMenu && langMenu.hasAttribute('hidden')){
-          langMenu.removeAttribute('hidden');
+        if(langMenu && langMenu.dataset.open !== 'true'){
+          langMenu.dataset.open = 'true';
           langBtn && langBtn.setAttribute('aria-expanded','true');
         }
       }
@@ -402,10 +371,10 @@
         }
       }
 
-      // Menu mobile
+      // Burger
       if(burger && panel){
         burger.addEventListener('click', ()=>{
-          if(panel.classList.contains('hidden')) closeLangMenu(); // évite chevauchement
+          if(panel.classList.contains('hidden')) closeLangMenu();
           panel.classList.contains('hidden') ? openMainMenu() : closeMainMenu();
         });
         document.addEventListener('click', (e)=>{
@@ -416,19 +385,19 @@
         document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && !panel.classList.contains('hidden')) closeMainMenu(); });
       }
 
-      // Sélecteur de langue (mobile)
+      // Langues (mobile)
       if(langBtn && langMenu){
         langBtn.addEventListener('click', ()=>{
-          if(langMenu.hasAttribute('hidden')) closeMainMenu(); // évite chevauchement
-          langMenu.hasAttribute('hidden') ? openLangMenu() : closeLangMenu();
+          if(langMenu.dataset.open !== 'true') closeMainMenu();
+          langMenu.dataset.open === 'true' ? closeLangMenu() : openLangMenu();
         });
         document.addEventListener('click', (e)=>{
-          if(langMenu.hasAttribute('hidden')) return;
+          if(langMenu.dataset.open !== 'true') return;
           const within = langMenu.contains(e.target) || langBtn.contains(e.target);
           if(!within) closeLangMenu();
         });
         document.addEventListener('keydown', (e)=>{
-          if(e.key==='Escape' && !langMenu.hasAttribute('hidden')) closeLangMenu();
+          if(e.key==='Escape' && langMenu.dataset.open === 'true') closeLangMenu();
         });
       }
     })();
