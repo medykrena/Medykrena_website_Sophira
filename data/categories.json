@@ -1,0 +1,26 @@
+{
+  "automation_affected": [
+    {"key":"admin_backoffice","fr":"Administration / Back-office","de":"Administration / Back-Office"},
+    {"key":"data_entry_ops","fr":"Saisie & Opérations de données","de":"Datenerfassung & Operationen"},
+    {"key":"cust_support","fr":"Support client / Call center","de":"Kundensupport / Callcenter"},
+    {"key":"retail_cashier","fr":"Vente / Caisse / Retail","de":"Verkauf / Kasse / Retail"},
+    {"key":"warehouse_logistics","fr":"Logistique & Entrepôt","de":"Logistik & Lager"},
+    {"key":"manufacturing_assembly","fr":"Manufacture & Assemblage","de":"Produktion & Montage"},
+    {"key":"basic_accounting","fr":"Comptabilité (tâches de base)","de":"Buchhaltung (Basisaufgaben)"},
+    {"key":"basic_it_helpdesk","fr":"IT Helpdesk (Niveau 1)","de":"IT-Helpdesk (Level 1)"},
+    {"key":"scheduling_dispatch","fr":"Planification / Dispatching","de":"Planung / Disposition"},
+    {"key":"hr_screening","fr":"RH – tri de candidatures","de":"HR – Bewerbungssichtung"},
+    {"key":"content_routine","fr":"Contenu répétitif (fiche, listing)","de":"Routine-Content (Listen, Datenblätter)"},
+    {"key":"translation_basic","fr":"Traduction basique / Localisation","de":"Einfache Übersetzung / Lokalisierung"},
+    {"key":"sales_ops_crm","fr":"Sales Ops / CRM (données)","de":"Sales Ops / CRM (Daten)"}
+  ],
+  "future_fields": [
+    {"key":"data_ai","fr":"Data / IA","de":"Data / KI"},
+    {"key":"green_energy","fr":"Énergie verte","de":"Grüne Energie"},
+    {"key":"digital_health","fr":"Santé digitale","de":"Digitale Gesundheit"},
+    {"key":"tech_dev","fr":"Tech / Développement","de":"Tech / Entwicklung"},
+    {"key":"social_education","fr":"Social / Éducation","de":"Soziales / Bildung"},
+    {"key":"marketing_comm","fr":"Marketing / Communication","de":"Marketing / Kommunikation"},
+    {"key":"admin_ops","fr":"Administration / Opérations","de":"Administration / Betrieb"}
+  ]
+}
