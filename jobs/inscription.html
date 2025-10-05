@@ -88,13 +88,18 @@
         <h2>Candidat / Demandeur d’emploi</h2>
         <p class="hint">Envoyez vos informations et votre CV. Nous créons une <strong>fiche anonymisée</strong> visible par les employeurs. Le CV complet n’est partagé qu’avec votre accord.</p>
 
-        <!-- Netlify Forms : ajouter l’attribut data-netlify -->
-        <form name="sophira-candidat" method="POST" data-netlify="true" enctype="multipart/form-data">
+        <!-- Netlify Forms -->
+        <form name="sophira-candidat"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              enctype="multipart/form-data"
+              action="/jobs/merci.html">
           <!-- Champ caché requis par Netlify -->
           <input type="hidden" name="form-name" value="sophira-candidat" />
           <!-- Honeypot anti-spam -->
           <p style="display:none">
-            <label>Ne pas remplir: <input name="bot-field"></label>
+            <label>Ne pas remplir: <input name="bot-field" autocomplete="off"></label>
           </p>
 
           <div class="row">
@@ -150,9 +155,13 @@
         <h2>Employeur</h2>
         <p class="hint">Inscrivez votre organisation. Vous aurez accès à des <strong>fiches anonymisées</strong> de candidats. Pour obtenir un CV complet, contactez-nous depuis la fiche.</p>
 
-        <form name="sophira-employeur" method="POST" data-netlify="true">
+        <form name="sophira-employeur"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              action="/jobs/merci.html">
           <input type="hidden" name="form-name" value="sophira-employeur" />
-          <p style="display:none"><label>Ne pas remplir: <input name="bot-field"></label></p>
+          <p style="display:none"><label>Ne pas remplir: <input name="bot-field" autocomplete="off"></label></p>
 
           <div class="row">
             <div>
@@ -204,8 +213,15 @@
     const panE = document.getElementById('panel-e');
 
     function selectTab(which){
-      if(which==='c'){ tabC.setAttribute('aria-selected','true'); tabE.setAttribute('aria-selected','false'); panC.hidden=false; panE.hidden=true; }
-      else { tabC.setAttribute('aria-selected','false'); tabE.setAttribute('aria-selected','true'); panC.hidden=true; panE.hidden=false; }
+      if(which==='c'){
+        tabC.setAttribute('aria-selected','true');
+        tabE.setAttribute('aria-selected','false');
+        panC.hidden=false; panE.hidden=true;
+      } else {
+        tabC.setAttribute('aria-selected','false');
+        tabE.setAttribute('aria-selected','true');
+        panC.hidden=true; panE.hidden=false;
+      }
     }
     tabC.addEventListener('click', ()=>selectTab('c'));
     tabE.addEventListener('click', ()=>selectTab('e'));
@@ -223,5 +239,28 @@
       localStorage.setItem(KEY_ROLE,'employeur');
     });
   </script>
+
+  <!-- ====== SHADOW FORMS (cachés) pour forcer la détection Netlify au build ====== -->
+  <form name="sophira-candidat" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="nom" />
+    <input type="email" name="email" />
+    <input type="text" name="ville" />
+    <input type="text" name="domaine" />
+    <input type="text" name="competences" />
+    <textarea name="bio"></textarea>
+    <input type="file" name="cv" />
+    <button type="submit">Send</button>
+  </form>
+
+  <form name="sophira-employeur" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="societe" />
+    <input type="text" name="contact" />
+    <input type="email" name="email" />
+    <input type="text" name="ville" />
+    <input type="text" name="besoins" />
+    <textarea name="message"></textarea>
+    <button type="submit">Send</button>
+  </form>
+  <!-- =========================================================================== -->
 </body>
 </html>
