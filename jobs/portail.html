@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portail Emploi – Sophira</title>
+
+  <!-- GA4 + Consent Mode -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('consent','default',{
+      ad_storage:'denied', analytics_storage:'denied',
+      functionality_storage:'granted', security_storage:'granted',
+      ad_user_data:'denied', ad_personalization:'denied',
+      wait_for_update:500
+    });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FL1S0MJWB1"></script>
+  <script> gtag('js', new Date()); gtag('config', 'G-FL1S0MJWB1'); </script>
+
+  <!-- SEO -->
+  <link rel="canonical" href="https://sophira.ch/jobs/portail.html" />
+  <meta name="robots" content="noindex,follow" />
+  <meta name="description" content="Portail Emploi Sophira : inscription requise pour participer. Candidats et Employeurs peuvent s’inscrire pour accéder à l’espace dédié." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Portail Emploi – Sophira" />
+  <meta property="og:description" content="Inscription requise. Choisissez votre rôle (Candidat ou Employeur) pour accéder à l’espace emploi." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sophira.ch/jobs/portail.html" />
+  <meta property="og:image" content="https://sophira.ch/Logo_sophira.png" />
+  <meta property="og:site_name" content="Sophira" />
+  <meta property="og:locale" content="fr_CH" />
+
+  <!-- Icônes -->
+  <meta name="theme-color" content="#1a73e8" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --text:#2c3e50; --muted:#4a5568; --brand:#1a73e8; --brand-hover:#155ab6;
+      --whiteglass:#ffffffdd; --panel:#edf2f7cc; --radius:12px;
+      --shadow-sm:0 2px 8px rgba(0,0,0,.05); --shadow-md:0 4px 12px rgba(0,0,0,.08);
+      --container:980px; --focus:#0d6efd; --focus-bg:#e8f0fe;
+      --z-header:20; --z-lang:60;
+    }
+    *{box-sizing:border-box} html:focus-within{scroll-behavior:smooth}
+    body{margin:0;font-family:'Inter',sans-serif;background:url('../mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center/cover fixed;color:var(--text)}
+    .overlay{min-height:100vh;background:rgba(255,255,255,.9);display:flex;flex-direction:column}
+    header.navbar{position:sticky;top:0;z-index:var(--z-header);display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:.8rem 1rem;background:var(--whiteglass);box-shadow:var(--shadow-sm);backdrop-filter:blur(6px)}
+    .brand{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+    .brand img{height:48px;width:auto}
+    .brand h1{margin:0;font-size:1.55rem;font-weight:600;color:#1a202c}
+    nav.primary{display:flex;gap:1.1rem;align-items:center}
+    nav.primary a{text-decoration:none;color:var(--text);font-weight:500}
+    nav.primary a:hover{color:#1e88e5}
+    .container{flex:1;max-width:var(--container);margin:2rem auto;padding:0 1rem}
+    .panel{background:var(--panel);padding:2rem;border-radius:var(--radius);box-shadow:var(--shadow-md)}
+    .panel h2{margin-top:0}
+    .muted{color:var(--muted)}
+    .actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
+    .btn{display:inline-block;background:var(--brand);color:#fff;text-decoration:none;padding:.6rem 1rem;border-radius:10px;font-weight:700}
+    .btn:hover{background:var(--brand-hover)}
+    .btn.outline{background:transparent;color:var(--brand);border:2px solid var(--brand)}
+    .gate{margin-top:1rem;background:#fff;border-radius:12px;padding:1rem;box-shadow:var(--shadow-sm)}
+    .gate label{display:block;margin:.4rem 0 .2rem;font-weight:600}
+    .gate input, .gate select{width:100%;padding:.55rem .6rem;border:1px solid #d1d5db;border-radius:8px}
+    .hint{font-size:.95rem;color:#374151}
+    footer{text-align:center;padding:1rem;margin-top:3rem;color:#4a4a4a;background:var(--whiteglass);border-top-left-radius:var(--radius);border-top-right-radius:var(--radius)}
+    @media (max-width:980px){nav.primary{display:none}}
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <!-- NAV -->
+    <header class="navbar" role="navigation" aria-label="Navigation principale">
+      <a class="brand" href="../index.html">
+        <img src="../Logo_sophira.png" alt="Logo Sophira" />
+        <h1>Sophira</h1>
+      </a>
+      <nav class="primary" aria-label="Liens principaux">
+        <a href="../index.html">Accueil</a>
+        <a href="../project.html">Projet social</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../contact.html">Contact</a>
+        <a href="index.html">Emplois</a>
+        <a href="portail.html" aria-current="page">Portail Emploi</a>
+      </nav>
+    </header>
+
+    <!-- CONTENU -->
+    <main class="container">
+      <section class="panel">
+        <h2>Portail Emploi</h2>
+        <p class="muted">Pour participer à cette partie du site, vous devez être inscrit·e (Candidat·e ou Employeur).</p>
+
+        <div class="actions" role="group" aria-label="Inscription et accès">
+          <a class="btn" href="inscription.html">S’inscrire</a>
+          <button class="btn outline" id="open-access">Je suis déjà inscrit·e</button>
+        </div>
+
+        <!-- Petit “déverrouillage” local (pas un vrai compte) -->
+        <div id="access-box" class="gate" hidden>
+          <p class="hint">Indiquez votre e-mail et votre rôle pour accéder à l’espace. (Astuce : si vous changez d’ordinateur ou de navigateur, il faudra le refaire.)</p>
+          <label for="acc-email">E-mail</label>
+          <input id="acc-email" type="email" placeholder="vous@exemple.ch" autocomplete="email" />
+          <label for="acc-role">Rôle</label>
+          <select id="acc-role">
+            <option value="candidat">Candidat / Demandeur d’emploi</option>
+            <option value="employeur">Employeur</option>
+          </select>
+          <div class="actions" style="margin-top:.8rem">
+            <button class="btn" id="grant-access">Accéder</button>
+            <button class="btn outline" id="revoke-access">Réinitialiser l’accès</button>
+          </div>
+        </div>
+
+        <div class="gate" style="margin-top:1rem">
+          <p class="hint"><strong>Protection des données :</strong> vos informations sont traitées de manière confidentielle. Les employeurs voient uniquement des fiches <em>anonymisées</em> et limitées. Les CV complets ne sont partagés qu’avec votre accord explicite.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Sophira Association | Basel, Suisse</p>
+    </footer>
+  </div>
+
+  <script>
+    // Clés locales
+    const KEY_REG = 'sophira_job_reg';      // { email, role, ts }
+    const KEY_ROLE = 'sophira_job_role';    // 'candidat' | 'employeur'
+
+    const btnOpen = document.getElementById('open-access');
+    const box = document.getElementById('access-box');
+    const email = document.getElementById('acc-email');
+    const role = document.getElementById('acc-role');
+    const grant = document.getElementById('grant-access');
+    const revoke = document.getElementById('revoke-access');
+
+    function showBox(){ box.hidden = false; }
+    function hideBox(){ box.hidden = true; }
+
+    function saveAccess(){
+      const e = (email.value||'').trim();
+      const r = role.value;
+      if(!e){ alert("Merci d’indiquer votre e-mail."); return; }
+      localStorage.setItem(KEY_REG, JSON.stringify({email:e, role:r, ts:Date.now()}));
+      localStorage.setItem(KEY_ROLE, r);
+      // Rediriger selon le rôle (pages qu’on créera à l’étape suivante)
+      if(r==='employeur'){ window.location.href = 'candidats.html'; }
+      else { window.location.href = 'espace-candidat.html'; }
+    }
+    function resetAccess(){
+      localStorage.removeItem(KEY_REG);
+      localStorage.removeItem(KEY_ROLE);
+      alert('Accès local réinitialisé.');
+    }
+
+    btnOpen?.addEventListener('click', showBox);
+    grant?.addEventListener('click', saveAccess);
+    revoke?.addEventListener('click', resetAccess);
+  </script>
+</body>
+</html>
