@@ -6,7 +6,7 @@
   <title>Contact – Sophira</title>
 
   <!-- SEO -->
-  <link rel="canonical" href="https://sophira.org/contact.html" />
+  <link rel="canonical" href="https://sophira.ch/contact.html" />
   <meta name="robots" content="index,follow" />
   <meta name="description" content="Contactez l'association Sophira : adresse, email, téléphone et plan d'accès à Bâle, Suisse." />
 
@@ -14,14 +14,16 @@
   <meta property="og:title" content="Contact – Sophira" />
   <meta property="og:description" content="Coordonnées et plan d'accès pour contacter Sophira, association pour la reconversion en Suisse." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://sophira.org/contact.html" />
-  <meta property="og:image" content="https://sophira.org/Logo_sophira.png" />
+  <meta property="og:url" content="https://sophira.ch/contact.html" />
+  <meta property="og:image" content="https://sophira.ch/Logo_sophira.png" />
+  <meta property="og:site_name" content="Sophira" />
+  <meta property="og:locale" content="fr_CH" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Contact – Sophira" />
   <meta name="twitter:description" content="Adresse, email et téléphone de Sophira, association pour la reconversion en Suisse." />
-  <meta name="twitter:image" content="https://sophira.org/Logo_sophira.png" />
+  <meta name="twitter:image" content="https://sophira.ch/Logo_sophira.png" />
 
   <!-- Police -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -52,7 +54,7 @@
       display:flex; align-items:center; justify-content:space-between; gap:.75rem;
       padding:.8rem 1rem; background:var(--whiteglass); box-shadow:var(--shadow-sm); backdrop-filter:blur(6px);
     }
-    .brand{ display:flex; align-items:center; gap:.6rem; }
+    .brand{ display:flex; align-items:center; gap:.6rem; text-decoration:none; }
     .brand img{ height:55px; }
     .brand h1{ margin:0; font-size:1.7rem; font-weight:600; color:#1a202c; }
 
@@ -75,6 +77,8 @@
     .content h2{ text-align:center; margin-top:0; }
 
     .contact-info{ margin-top:1.5rem; font-size:1rem; }
+    .contact-info p{ margin:.3rem 0; }
+    .muted{ color:var(--muted); }
 
     iframe{ width:100%; height:350px; border:none; border-radius:var(--radius); margin-top:2rem; }
 
@@ -87,7 +91,23 @@
     .btn.outline{ background:transparent; color:var(--brand); border:2px solid var(--brand); }
     .btn.outline:hover{ background:#e8f0fe; }
 
+    /* SUIVEZ-NOUS + LIENS LEGAUX */
+    .follow{ margin-top:2rem; background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:1.2rem; box-shadow:var(--shadow-sm); }
+    .follow h3{ margin:.2rem 0 .6rem; }
+    .socials{ display:flex; flex-wrap:wrap; gap:.6rem; }
+    .social-btn{
+      display:inline-flex; align-items:center; gap:.5rem;
+      border:1px solid #e5e7eb; border-radius:999px; padding:.5rem .8rem; background:#fff;
+      text-decoration:none; color:#111827; font-weight:700;
+    }
+    .social-btn:hover{ border-color:#cbd5e1; }
+    .legal-links{ margin-top:.8rem; font-size:.95rem; }
+    .legal-links a{ color:#1a73e8; text-decoration:none; }
+    .legal-links a:hover{ text-decoration:underline; }
+
     footer{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:var(--whiteglass); border-top-left-radius:var(--radius); border-top-right-radius:var(--radius); }
+    footer a{ color:#1a73e8; text-decoration:none; }
+    footer a:hover{ text-decoration:underline; }
 
     @media(max-width:880px){ nav.primary{ display:none; } .burger{ display:inline-flex; } }
   </style>
@@ -95,54 +115,58 @@
 <body>
   <div class="overlay">
     <!-- NAVIGATION -->
-    <header class="navbar">
+    <header class="navbar" role="navigation" aria-label="Navigation principale">
       <a class="brand" href="index.html">
         <img src="Logo_sophira.png" alt="Logo Sophira" />
         <h1>Sophira</h1>
       </a>
-      <nav class="primary">
+      <nav class="primary" aria-label="Liens principaux">
         <a href="index.html">Accueil</a>
         <a href="team.html">Équipe</a>
         <a href="project.html">Projet social</a>
         <a href="dashboard.html">Tableau de bord</a>
         <a href="blog.html">Blog</a>
+        <a href="jobs/">Emplois</a>
         <a href="contact.html" aria-current="page">Contact</a>
       </nav>
       <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-controls="menu-mobile" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
     </header>
 
     <!-- MENU MOBILE -->
-    <div id="menu-mobile" class="mobile-panel hidden">
+    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Menu mobile">
       <div class="mobile-links">
         <a href="index.html">Accueil</a>
         <a href="team.html">Équipe</a>
         <a href="project.html">Projet social</a>
         <a href="dashboard.html">Tableau de bord</a>
         <a href="blog.html">Blog</a>
+        <a href="jobs/">Emplois</a>
         <a href="contact.html" aria-current="page">Contact</a>
       </div>
     </div>
 
     <!-- CONTENU -->
-    <main class="container">
+    <main class="container" id="main">
       <div class="content">
         <h2>Contactez-nous</h2>
 
         <div class="contact-info">
           <p><strong>Adresse :</strong> Sandgrubenstrasse, 4058 Bâle, Suisse</p>
-          <p><strong>Email :</strong> association_sophira@protonmail.com</p>
-          <p><strong>Téléphone :</strong> +41 79 123 45 67</p>
+          <p><strong>Email :</strong> <a href="mailto:association_sophira@protonmail.com">association_sophira@protonmail.com</a></p>
+          <p><strong>Téléphone :</strong> <a href="tel:+41791234567">+41 79 123 45 67</a></p>
+          <p class="muted">Réponse sous 2–3 jours ouvrables.</p>
         </div>
 
         <!-- Google Maps -->
         <iframe
+          title="Plan d'accès Sophira – Bâle"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2752.415159526313!2d7.588576115595142!3d47.55959817918171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4791b9a6f3e10ff7%3A0xdea0a2f76e49767f!2sBasel%2C%20Switzerland!5e0!3m2!1sfr!2sch!4v1691010100000"
           allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
 
-      <!-- CTA ajoutée -->
+      <!-- CTA -->
       <section class="cta" aria-label="Appel à l’action">
         <h3>Envie de contribuer&nbsp;?</h3>
         <p>Rejoignez notre équipe, soutenez notre mission ou faites un don pour accélérer la reconversion des adultes en Suisse.</p>
@@ -151,10 +175,40 @@
           <a class="btn outline" href="team.html">Rejoindre l’équipe</a>
         </div>
       </section>
+
+      <!-- Suivez-nous + Mentions -->
+      <section class="follow" aria-label="Suivez-nous et informations légales">
+        <h3>Suivez-nous</h3>
+        <p class="muted">Actus, appels à projets et transparence.</p>
+        <div class="socials" role="group" aria-label="Réseaux sociaux">
+          <a class="social-btn" href="https://www.linkedin.com" target="_blank" rel="noopener">
+            <!-- LinkedIn icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3A2.94 2.94 0 0 1 22 6v12a2.94 2.94 0 0 1-3 3H5a2.94 2.94 0 0 1-3-3V6a2.94 2.94 0 0 1 3-3h14M8.34 18.34V9.66H5.66v8.68h2.68m-1.35-9.94a1.56 1.56 0 1 0-1.56-1.56 1.56 1.56 0 0 0 1.56 1.56M20 18.34v-4.66c0-2.5-1.33-3.66-3.11-3.66a2.69 2.69 0 0 0-2.42 1.33h-.05V9.66H11.7v8.68h2.72v-4.3c0-1.13.22-2.22 1.61-2.22s1.39 1.26 1.39 2.29v4.23Z"/></svg>
+            LinkedIn
+          </a>
+          <a class="social-btn" href="https://instagram.com" target="_blank" rel="noopener">
+            <!-- Instagram icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7m10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10M12 7a5 5 0 1 0 5 5 5 5 0 0 0-5-5m6-1a1 1 0 1 0 1 1 1 1 0 0 0-1-1Z"/></svg>
+            Instagram
+          </a>
+          <a class="social-btn" href="https://x.com" target="_blank" rel="noopener">
+            <!-- X/Twitter icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h4.2l3.4 4.6L15.6 4H20l-6.2 7.3L20 20h-4.2l-3.8-5.1L8.4 20H4l6.4-7.5z"/></svg>
+            X / Twitter
+          </a>
+        </div>
+        <div class="legal-links">
+          <a href="privacy.html">Politique de confidentialité</a> ·
+          <a href="mentions.html">Mentions légales</a>
+        </div>
+      </section>
     </main>
 
     <footer>
-      <p>&copy; 2025 Sophira Association | Basel, Suisse</p>
+      <p>&copy; 2025 Sophira Association | Basel, Suisse ·
+        <a href="privacy.html">Confidentialité</a> ·
+        <a href="mentions.html">Mentions légales</a>
+      </p>
     </footer>
   </div>
 
@@ -165,8 +219,9 @@
       const panel=document.getElementById('menu-mobile');
       if(!burger||!panel) return;
       function toggleMenu(){
-        const open=panel.classList.toggle('hidden')===false;
-        burger.setAttribute('aria-expanded',String(open));
+        const open=!panel.classList.contains('hidden');
+        panel.classList.toggle('hidden', open); // inverse l'état
+        burger.setAttribute('aria-expanded', String(!open));
       }
       burger.addEventListener('click',toggleMenu);
       document.addEventListener('click',(e)=>{
