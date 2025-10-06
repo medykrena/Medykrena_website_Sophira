@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Datenschutzerklärung – Sophira</title>
+
+  <link rel="canonical" href="https://sophira.ch/privacy-de.html" />
+  <meta name="robots" content="index,follow" />
+  <meta name="description" content="Datenschutzerklärung der Schweizer Non-Profit-Organisation Sophira in Basel. Informationen gemäss LPD und DSGVO." />
+
+  <meta property="og:title" content="Datenschutzerklärung – Sophira" />
+  <meta property="og:description" content="Erfahren Sie, wie Sophira personenbezogene Daten verarbeitet und schützt (LPD/DSGVO-konform)." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sophira.ch/privacy-de.html" />
+  <meta property="og:image" content="https://sophira.ch/Logo_sophira.png" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family:'Inter',sans-serif;
+      margin:0; padding:0;
+      background:#f9fafb; color:#2c3e50;
+      line-height:1.6;
+    }
+    header, footer {
+      background:#ffffffdd;
+      text-align:center;
+      padding:1.2rem;
+      box-shadow:0 2px 6px rgba(0,0,0,0.05);
+    }
+    main {
+      max-width:960px;
+      margin:2rem auto;
+      background:#fff;
+      padding:2rem;
+      border-radius:12px;
+      box-shadow:0 2px 10px rgba(0,0,0,0.06);
+    }
+    h1, h2 {
+      color:#1a73e8;
+    }
+    a { color:#1a73e8; text-decoration:none; }
+    a:hover { text-decoration:underline; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Datenschutzerklärung</h1>
+  </header>
+
+  <main>
+    <h2>1. Verantwortliche Stelle</h2>
+    <p>
+      <strong>Sophira Verein</strong><br>
+      Sandgrubenstrasse, 4058 Basel, Schweiz<br>
+      E-Mail: <a href="mailto:association_sophira@protonmail.com">association_sophira@protonmail.com</a>
+    </p>
+
+    <h2>2. Grundprinzipien</h2>
+    <p>
+      Wir behandeln personenbezogene Daten vertraulich und im Einklang mit dem Schweizer Datenschutzgesetz (LPD) und der EU-Datenschutz-Grundverordnung (DSGVO), soweit anwendbar.
+      Ihre Daten werden nur zu klar definierten Zwecken verwendet, wie der Bearbeitung von Anfragen, Bewerbungen oder Spenden.
+    </p>
+
+    <h2>3. Erhebung und Verwendung von Daten</h2>
+    <p>
+      Wir erfassen nur Daten, die Sie uns aktiv über Formulare, E-Mails oder unsere Jobplattform übermitteln (z. B. Name, E-Mail, Lebenslauf).
+      Diese Informationen werden ausschliesslich für den vorgesehenen Zweck genutzt und nicht ohne Ihre Zustimmung weitergegeben.
+    </p>
+
+    <h2>4. Speicherung und Sicherheit</h2>
+    <p>
+      Daten werden auf sicheren Servern (Netlify, Neon, ProtonMail) gespeichert. Der Zugriff ist nur autorisierten Personen vorbehalten.
+      Wir ergreifen technische und organisatorische Massnahmen, um Ihre Daten vor unbefugtem Zugriff, Verlust oder Missbrauch zu schützen.
+    </p>
+
+    <h2>5. Weitergabe an Dritte</h2>
+    <p>
+      Ihre Daten werden nur dann an Dritte weitergegeben, wenn dies für die Erfüllung eines legitimen Zwecks erforderlich ist
+      (z. B. Kontaktaufnahme zwischen Bewerber und Arbeitgeber mit Ihrer Zustimmung) oder eine gesetzliche Pflicht besteht.
+    </p>
+
+    <h2>6. Rechte der betroffenen Personen</h2>
+    <p>
+      Sie haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer Daten.
+      Kontaktieren Sie uns dazu unter: <a href="mailto:association_sophira@protonmail.com">association_sophira@protonmail.com</a>.
+    </p>
+
+    <h2>7. Dauer der Aufbewahrung</h2>
+    <p>
+      Daten werden nur so lange aufbewahrt, wie es zur Erfüllung des jeweiligen Zwecks erforderlich ist oder gesetzliche Aufbewahrungspflichten bestehen.
+    </p>
+
+    <h2>8. Änderungen</h2>
+    <p>
+      Diese Datenschutzerklärung kann bei Bedarf angepasst werden. Das Datum der letzten Aktualisierung wird am Ende angegeben.
+    </p>
+
+    <p><em>Letzte Aktualisierung: Oktober 2025</em></p>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Sophira Verein | Basel, Schweiz · <a href="contact-de.html">Kontakt</a></p>
+  </footer>
+</body>
+</html>
