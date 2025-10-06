@@ -1,76 +1,32 @@
 <!DOCTYPE html>
-<html lang="de" itemscope itemtype="https://schema.org/ContactPage">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kontakt – Sophira</title>
 
   <!-- SEO -->
-  <link rel="canonical" href="https://sophira.org/contact-de.html" />
+  <link rel="canonical" href="https://sophira.ch/contact-de.html" />
   <meta name="robots" content="index,follow" />
-  <meta name="description" content="Kontaktieren Sie den Verein Sophira: Adresse, E-Mail, Telefon und Anfahrtsplan in Basel, Schweiz." />
-
-  <!-- Hreflang -->
-  <link rel="alternate" hreflang="fr" href="https://sophira.org/contact.html" />
-  <link rel="alternate" hreflang="de" href="https://sophira.org/contact-de.html" />
-  <link rel="alternate" hreflang="x-default" href="https://sophira.org/contact.html" />
+  <meta name="description" content="Kontaktieren Sie die gemeinnützige Organisation Sophira in Basel. Adresse, E-Mail, Telefon und Lageplan." />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Kontakt – Sophira" />
-  <meta property="og:description" content="Kontaktdaten und Anfahrt zum Verein Sophira – Umschulung und Neuorientierung in der Schweiz." />
+  <meta property="og:description" content="Adresse, E-Mail und Telefon der Schweizer Organisation Sophira für berufliche Neuorientierung." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://sophira.org/contact-de.html" />
-  <meta property="og:image" content="https://sophira.org/Logo_sophira.png" />
+  <meta property="og:url" content="https://sophira.ch/contact-de.html" />
+  <meta property="og:image" content="https://sophira.ch/Logo_sophira.png" />
   <meta property="og:site_name" content="Sophira" />
   <meta property="og:locale" content="de_CH" />
 
-  <!-- Twitter -->
+  <!-- Twitter/OpenGraph compatibility -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Kontakt – Sophira" />
-  <meta name="twitter:description" content="Adresse, E-Mail und Telefon des Vereins Sophira in Basel, Schweiz." />
-  <meta name="twitter:image" content="https://sophira.org/Logo_sophira.png" />
+  <meta name="twitter:description" content="Adresse, E-Mail und Telefonnummer der Organisation Sophira in Basel, Schweiz." />
+  <meta name="twitter:image" content="https://sophira.ch/Logo_sophira.png" />
 
-  <!-- Browser-Farbe & Icons -->
-  <meta name="theme-color" content="#1a73e8" />
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-
-  <!-- Schrift -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Schriftart -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-
-  <!-- Strukturierte Daten (Kontakt + Organisation) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    "url": "https://sophira.org/contact-de.html",
-    "about": {
-      "@type": "NonprofitOrganization",
-      "name": "Sophira",
-      "url": "https://sophira.org/",
-      "logo": "https://sophira.org/Logo_sophira.png",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Sandgrubenstrasse",
-        "postalCode": "4058",
-        "addressLocality": "Basel",
-        "addressCountry": "CH"
-      },
-      "contactPoint": [{
-        "@type": "ContactPoint",
-        "contactType": "customer support",
-        "email": "association_sophira@protonmail.com",
-        "telephone": "+41 79 123 45 67",
-        "areaServed": "CH",
-        "availableLanguage": ["de", "fr", "en"]
-      }]
-    }
-  }
-  </script>
 
   <style>
     :root{
@@ -84,27 +40,13 @@
       --shadow-sm:0 2px 8px rgba(0,0,0,0.05);
       --shadow-md:0 4px 12px rgba(0,0,0,0.08);
       --container:960px;
-      --focus:#0d6efd;
-      --focus-bg:#e8f0fe;
     }
-    *{ box-sizing:border-box; }
-    html:focus-within{ scroll-behavior:smooth; }
     body{
       margin:0; font-family:'Inter',sans-serif;
       background:url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center center fixed;
       background-size:cover; color:var(--text);
     }
-    body.no-scroll{ overflow:hidden; }
     .overlay{ background-color:var(--bg-overlay); min-height:100vh; display:flex; flex-direction:column; }
-
-    /* Skip-Link (A11y) */
-    .skip-link{
-      position:absolute; left:1rem; top:.5rem;
-      transform:translateY(-200%);
-      background:#000; color:#fff; padding:.6rem .9rem; border-radius:8px;
-      text-decoration:none; z-index:1000; box-shadow:var(--shadow-sm);
-    }
-    .skip-link:focus, .skip-link:focus-visible{ transform:translateY(0); outline:2px solid #fff; }
 
     /* NAVBAR */
     header.navbar{
@@ -112,34 +54,18 @@
       display:flex; align-items:center; justify-content:space-between; gap:.75rem;
       padding:.8rem 1rem; background:var(--whiteglass); box-shadow:var(--shadow-sm); backdrop-filter:blur(6px);
     }
-    .brand{ display:flex; align-items:center; gap:.6rem; }
+    .brand{ display:flex; align-items:center; gap:.6rem; text-decoration:none; }
     .brand img{ height:55px; }
     .brand h1{ margin:0; font-size:1.7rem; font-weight:600; color:#1a202c; }
 
-    nav.primary{ display:flex; gap:1.1rem; align-items:center; }
+    nav.primary{ display:flex; gap:1.1rem; }
     nav.primary a{ text-decoration:none; color:var(--text); font-weight:500; }
-    nav.primary a:hover, nav.primary a:focus{ color:#1e88e5; }
-
-    /* Sprachumschalter */
-    .lang{ display:inline-flex; gap:.4rem; margin-left:.6rem; font-size:.95rem; }
-    .lang a{ color:#5b6b7a; text-decoration:none; }
-    .lang a[aria-current="true"]{ font-weight:700; color:#1a202c; }
-
-    /* Sichtbarer Fokus */
-    a:focus-visible, button:focus-visible{
-      outline:3px solid var(--focus);
-      outline-offset:2px;
-      background:linear-gradient(0deg, var(--focus-bg), var(--focus-bg)) no-repeat;
-    }
+    nav.primary a:hover{ color:#1e88e5; }
 
     .burger{ display:none; background:none; border:none; padding:.4rem .6rem; }
     .burger svg{ width:28px; height:28px; }
 
-    .mobile-panel{
-      display:block; /* Sichtbarkeit via [hidden] */
-      position:fixed; inset:64px 0 0 0; background:#ffffffdd; backdrop-filter:blur(6px); padding:1rem;
-    }
-    [hidden]{ display:none !important; }
+    .mobile-panel{ display:none; position:fixed; inset:64px 0 0 0; background:#ffffffdd; backdrop-filter:blur(6px); padding:1rem; }
     .mobile-links{ display:flex; flex-direction:column; gap:.8rem; }
     .mobile-links a{ text-decoration:none; color:var(--text); font-weight:600; padding:.7rem 0; border-bottom:1px solid #ddd; }
     .mobile-links a:last-child{ border-bottom:none; }
@@ -151,8 +77,8 @@
     .content h2{ text-align:center; margin-top:0; }
 
     .contact-info{ margin-top:1.5rem; font-size:1rem; }
-    .contact-info a{ color:var(--brand); text-decoration:none; }
-    .contact-info a:hover{ text-decoration:underline; }
+    .contact-info p{ margin:.3rem 0; }
+    .muted{ color:var(--muted); }
 
     iframe{ width:100%; height:350px; border:none; border-radius:var(--radius); margin-top:2rem; }
 
@@ -160,21 +86,33 @@
     .cta{ margin-top:2.2rem; background:#f7fafc; padding:2rem; text-align:center; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
     .cta h3{ margin:0 0 .8rem 0; }
     .cta .actions{ display:flex; flex-wrap:wrap; gap:.8rem; justify-content:center; margin-top:.6rem; }
-    .btn{ display:inline-block; background:var(--brand); color:#fff; text-decoration:none; padding:.6rem 1.1rem; border-radius:8px; font-weight:600; transition:transform .06s ease; }
-    .btn:hover{ background:var(--brand-hover); transform:translateY(-1px); }
-    .btn:active{ transform:translateY(0); }
+    .btn{ display:inline-block; background:var(--brand); color:#fff; text-decoration:none; padding:.6rem 1.1rem; border-radius:8px; font-weight:600; }
+    .btn:hover{ background:var(--brand-hover); }
     .btn.outline{ background:transparent; color:var(--brand); border:2px solid var(--brand); }
     .btn.outline:hover{ background:#e8f0fe; }
 
+    /* FOLLOW & LEGAL */
+    .follow{ margin-top:2rem; background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:1.2rem; box-shadow:var(--shadow-sm); }
+    .follow h3{ margin:.2rem 0 .6rem; }
+    .socials{ display:flex; flex-wrap:wrap; gap:.6rem; }
+    .social-btn{
+      display:inline-flex; align-items:center; gap:.5rem;
+      border:1px solid #e5e7eb; border-radius:999px; padding:.5rem .8rem; background:#fff;
+      text-decoration:none; color:#111827; font-weight:700;
+    }
+    .social-btn:hover{ border-color:#cbd5e1; }
+    .legal-links{ margin-top:.8rem; font-size:.95rem; }
+    .legal-links a{ color:#1a73e8; text-decoration:none; }
+    .legal-links a:hover{ text-decoration:underline; }
+
     footer{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:var(--whiteglass); border-top-left-radius:var(--radius); border-top-right-radius:var(--radius); }
+    footer a{ color:#1a73e8; text-decoration:none; }
+    footer a:hover{ text-decoration:underline; }
 
     @media(max-width:880px){ nav.primary{ display:none; } .burger{ display:inline-flex; } }
   </style>
 </head>
 <body>
-  <!-- Skip-Link -->
-  <a class="skip-link" href="#main">Zum Hauptinhalt springen</a>
-
   <div class="overlay">
     <!-- NAVIGATION -->
     <header class="navbar" role="navigation" aria-label="Hauptnavigation">
@@ -187,12 +125,9 @@
         <a href="team-de.html">Team</a>
         <a href="project-de.html">Soziales Projekt</a>
         <a href="dashboard-de.html">Dashboard</a>
-        <a href="blog.html">Blog</a>
+        <a href="blog-de.html">Blog</a>
+        <a href="jobs/">Jobs</a>
         <a href="contact-de.html" aria-current="page">Kontakt</a>
-        <span class="lang" aria-label="Sprache wechseln">
-          <a href="contact.html" lang="fr">FR</a> |
-          <a href="contact-de.html" lang="de" aria-current="true">DE</a>
-        </span>
       </nav>
       <button class="burger" id="burger" aria-label="Menü öffnen" aria-controls="menu-mobile" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/></svg>
@@ -200,120 +135,93 @@
     </header>
 
     <!-- MOBILES MENÜ -->
-    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Mobiles Menü" aria-hidden="true" hidden>
+    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Mobiles Menü">
       <div class="mobile-links">
         <a href="index-de.html">Startseite</a>
         <a href="team-de.html">Team</a>
         <a href="project-de.html">Soziales Projekt</a>
         <a href="dashboard-de.html">Dashboard</a>
-        <a href="blog.html">Blog</a>
+        <a href="blog-de.html">Blog</a>
+        <a href="jobs/">Jobs</a>
         <a href="contact-de.html" aria-current="page">Kontakt</a>
       </div>
     </div>
 
     <!-- INHALT -->
-    <main id="main" class="container">
+    <main class="container" id="main">
       <div class="content">
-        <h2>Kontakt aufnehmen</h2>
+        <h2>Kontaktieren Sie uns</h2>
 
-        <div class="contact-info" aria-labelledby="contact-details">
-          <h3 id="contact-details" class="visually-hidden" style="position:absolute;left:-9999px;">Kontaktdetails</h3>
+        <div class="contact-info">
           <p><strong>Adresse:</strong> Sandgrubenstrasse, 4058 Basel, Schweiz</p>
-          <p><strong>E-Mail:</strong> <a href="mailto:association_sophira@protonmail.com" aria-label="E-Mail an Sophira senden">association_sophira@protonmail.com</a></p>
-          <p><strong>Telefon:</strong> <a href="tel:+41791234567" aria-label="Telefonnummer anrufen">+41 79 123 45 67</a></p>
+          <p><strong>E-Mail:</strong> <a href="mailto:association_sophira@protonmail.com">association_sophira@protonmail.com</a></p>
+          <p><strong>Telefon:</strong> <a href="tel:+41791234567">+41 79 123 45 67</a></p>
+          <p class="muted">Antwort innerhalb von 2–3 Werktagen.</p>
         </div>
 
         <!-- Google Maps -->
         <iframe
-          title="Anfahrtsplan zu Sophira in Basel"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2752.415159526313!2d7.588576115595142!3d47.55959817918171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4791b9a6f3e10ff7%3A0xdea0a2f76e49767f!2sBasel%2C%20Switzerland!5e0!3m2!1sde!2sch!4v1691010100000"
-          loading="lazy"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
+          title="Anfahrt Sophira – Basel"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2752.415159526313!2d7.588576115595142!3d47.55959817918171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4791b9a6f3e10ff7%3A0xdea0a2f76e49767f!2sBasel%2C%20Schweiz!5e0!3m2!1sde!2sch!4v1691010100000"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
 
       <!-- CTA -->
       <section class="cta" aria-label="Call to Action">
-        <h3>Möchten Sie mitwirken?</h3>
-        <p>Werden Sie Teil unseres Netzwerks, unterstützen Sie unsere Mission oder spenden Sie für Stipendien.</p>
+        <h3>Möchten Sie mithelfen?</h3>
+        <p>Treten Sie unserem Team bei, unterstützen Sie unsere Mission oder spenden Sie, um die berufliche Neuorientierung von Erwachsenen in der Schweiz zu fördern.</p>
         <div class="actions">
           <a class="btn" href="donate-de.html">Spenden</a>
-          <a class="btn outline" href="team-de.html">Team beitreten</a>
+          <a class="btn outline" href="team-de.html">Dem Team beitreten</a>
+        </div>
+      </section>
+
+      <!-- FOLLOW & LEGAL -->
+      <section class="follow" aria-label="Folgen und rechtliche Informationen">
+        <h3>Folgen Sie uns</h3>
+        <p class="muted">Aktuelles, Projekte und Transparenz.</p>
+        <div class="socials" role="group" aria-label="Soziale Netzwerke">
+          <a class="social-btn" href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="social-btn" href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+          <a class="social-btn" href="https://www.tiktok.com/@sophira" target="_blank" rel="noopener" aria-label="TikTok">
+            <!-- TikTok Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12.04 2c.51 3.17 2.53 5.06 5.63 5.23v3.36c-1.61.16-3.05-.36-4.57-1.29v6.42a6.36 6.36 0 1 1-6.36-6.36 6.43 6.43 0 0 1 1.36.14v3.4a2.95 2.95 0 1 0 2.02 2.82V2h1.92z"/>
+            </svg>
+            <span>TikTok</span>
+          </a>
+        </div>
+        <div class="legal-links">
+          <a href="privacy-de.html">Datenschutzerklärung</a> ·
+          <a href="mentions-de.html">Impressum</a>
         </div>
       </section>
     </main>
 
     <footer>
-      <p>&copy; 2025 Sophira Verein | Basel, Schweiz</p>
+      <p>&copy; 2025 Sophira Verein | Basel, Schweiz ·
+        <a href="privacy-de.html">Datenschutz</a> ·
+        <a href="mentions-de.html">Impressum</a>
+      </p>
     </footer>
   </div>
 
-  <!-- JS mobiles Menü (Focus Trap + ARIA-Updates) -->
+  <!-- JS Menü -->
   <script>
     (function(){
-      const burger = document.getElementById('burger');
-      const panel  = document.getElementById('menu-mobile');
-      const focusableSelector = 'a, button';
-      let lastFocused = null;
-
-      if(!burger || !panel) return;
-
-      function getFocusable(){
-        return panel.querySelectorAll(focusableSelector);
-      }
-
-      function openMenu(){
-        panel.classList.remove('hidden');
-        panel.removeAttribute('hidden');
-        panel.setAttribute('aria-hidden', 'false');
-        document.body.classList.add('no-scroll');
-        burger.setAttribute('aria-expanded', 'true');
-        burger.setAttribute('aria-label', 'Menü schliessen');
-        lastFocused = document.activeElement;
-        const f = getFocusable();
-        if(f.length) f[0].focus();
-      }
-
-      function closeMenu(){
-        panel.classList.add('hidden');
-        panel.setAttribute('hidden', '');
-        panel.setAttribute('aria-hidden', 'true');
-        document.body.classList.remove('no-scroll');
-        burger.setAttribute('aria-expanded', 'false');
-        burger.setAttribute('aria-label', 'Menü öffnen');
-        if (lastFocused) lastFocused.focus();
-      }
-
+      const burger=document.getElementById('burger');
+      const panel=document.getElementById('menu-mobile');
+      if(!burger||!panel) return;
       function toggleMenu(){
-        if(panel.classList.contains('hidden')) openMenu(); else closeMenu();
+        const open=!panel.classList.contains('hidden');
+        panel.classList.toggle('hidden', open);
+        burger.setAttribute('aria-expanded', String(!open));
       }
-
-      burger.addEventListener('click', toggleMenu);
-
-      // Klick ausserhalb schliesst
-      document.addEventListener('click', (e)=>{
-        if(panel.classList.contains('hidden')) return;
-        const within = panel.contains(e.target) || burger.contains(e.target);
-        if(!within) closeMenu();
+      burger.addEventListener('click',toggleMenu);
+      document.addEventListener('click',(e)=>{
+        if(!panel.classList.contains('hidden') && !panel.contains(e.target) && !burger.contains(e.target)){toggleMenu();}
       });
-
-      // ESC & Focus Trap
-      document.addEventListener('keydown', (e)=>{
-        if(e.key === 'Escape' && !panel.classList.contains('hidden')) closeMenu();
-
-        if(e.key === 'Tab' && !panel.classList.contains('hidden')){
-          const f = Array.from(getFocusable());
-          if(!f.length) return;
-          const first = f[0];
-          const last  = f[f.length - 1];
-          if(e.shiftKey && document.activeElement === first){
-            e.preventDefault(); last.focus();
-          } else if(!e.shiftKey && document.activeElement === last){
-            e.preventDefault(); first.focus();
-          }
-        }
-      });
+      document.addEventListener('keydown',(e)=>{if(e.key==='Escape' && !panel.classList.contains('hidden')) toggleMenu();});
     })();
   </script>
 </body>
