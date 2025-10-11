@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vielen Dank – Sophira Job-Portal</title>
+
+  <link rel="canonical" href="https://sophira.ch/jobs/danke.html" />
+  <meta name="robots" content="noindex,follow" />
+  <meta name="description" content="Bestätigung: Ihre Angaben wurden übermittelt. Das Sophira-Team meldet sich in Kürze." />
+
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --text:#2c3e50; --muted:#4a5568; --brand:#1a73e8; --brand-hover:#155ab6;
+      --whiteglass:#ffffffdd; --panel:#edf2f7cc; --radius:12px;
+      --shadow-sm:0 2px 8px rgba(0,0,0,.05); --shadow-md:0 4px 12px rgba(0,0,0,.08);
+      --container:820px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:'Inter',sans-serif; color:var(--text);
+      background:url('../mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center/cover fixed;
+    }
+    .overlay{min-height:100vh; background:rgba(255,255,255,.9); display:flex; flex-direction:column;}
+
+    header.navbar{
+      position:sticky; top:0; z-index:10; background:var(--whiteglass);
+      display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+      padding:.8rem 1rem; box-shadow:var(--shadow-sm); backdrop-filter:blur(6px);
+    }
+    .brand{display:flex; align-items:center; gap:.6rem; text-decoration:none;}
+    .brand img{height:48px}
+    .brand strong{font-size:1.35rem; color:#1a202c}
+    .btn{
+      display:inline-block; text-decoration:none; font-weight:700; border-radius:10px;
+      padding:.6rem 1rem; background:var(--brand); color:#fff;
+    }
+    .btn:hover{ background:var(--brand-hover); }
+    .btn.outline{ background:transparent; color:var(--brand); border:2px solid var(--brand); }
+    .btn.outline:hover{ background:#e8f0fe; }
+
+    .container{flex:1; max-width:var(--container); margin:2rem auto; padding:0 1rem;}
+    .card{
+      background:#fff; border:1px solid #e5e7eb; border-radius:12px; box-shadow:var(--shadow-md);
+      padding:1.4rem; text-align:center;
+    }
+    .card h1{ margin:.2rem 0 .6rem; font-size:1.8rem; }
+    .muted{ color:var(--muted); }
+    .actions{ display:flex; gap:.6rem; flex-wrap:wrap; justify-content:center; margin-top:.8rem; }
+
+    footer{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:var(--whiteglass); border-top-left-radius:12px; border-top-right-radius:12px; }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <header class="navbar">
+      <a class="brand" href="../index-de.html">
+        <img src="../Logo_sophira.png" alt="Sophira Logo" />
+        <strong>Sophira</strong>
+      </a>
+      <nav>
+        <a class="btn outline" href="index-de.html">Job-Portal</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      <article class="card" aria-labelledby="h1">
+        <h1 id="h1">Vielen Dank!</h1>
+        <p class="muted">Ihre Angaben wurden übermittelt. Unser Team prüft die Informationen und meldet sich in Kürze.</p>
+        <div class="actions">
+          <a class="btn" href="index-de.html">Zurück zum Job-Portal</a>
+          <a class="btn outline" href="../contact-de.html">Kontakt</a>
+        </div>
+      </article>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Sophira Verein | Basel, Schweiz</p>
+    </footer>
+  </div>
+</body>
+</html>
