@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Talents (employeurs) – Portail Emploi Sophira</title>
+
+  <!-- SEO -->
+  <link rel="canonical" href="https://sophira.ch/jobs/talents.html" />
+  <meta name="robots" content="noindex,follow" />
+  <meta name="description" content="Espace employeur : parcourez des fiches anonymisées de talents. Accès réservé aux employeurs inscrits." />
+
+  <!-- Icônes & police -->
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --text:#2c3e50; --muted:#4a5568; --brand:#1a73e8; --brand-hover:#155ab6;
+      --whiteglass:#ffffffdd; --panel:#edf2f7cc; --radius:12px;
+      --shadow-sm:0 2px 8px rgba(0,0,0,.05); --shadow-md:0 4px 12px rgba(0,0,0,.08);
+      --container:1040px;
+      --chip:#eef2ff;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:'Inter',sans-serif; color:var(--text);
+      background:url('../mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center/cover fixed;
+    }
+    .overlay{min-height:100vh; background:rgba(255,255,255,.9); display:flex; flex-direction:column;}
+
+    header.navbar{
+      position:sticky; top:0; z-index:10; background:var(--whiteglass);
+      display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+      padding:.8rem 1rem; box-shadow:var(--shadow-sm); backdrop-filter:blur(6px);
+    }
+    .brand{display:flex; align-items:center; gap:.6rem; text-decoration:none;}
+    .brand img{height:48px}
+    .brand strong{font-size:1.35rem; color:#1a202c}
+
+    .container{flex:1; max-width:var(--container); margin:2rem auto; padding:0 1rem;}
+
+    .hero{ background:var(--panel); padding:1.2rem 1.4rem; border-radius:var(--radius); box-shadow:var(--shadow-md); }
+    .hero h1{ margin:.1rem 0 .4rem; font-size:1.7rem; }
+    .muted{ color:var(--muted); }
+
+    .gate, .board{
+      margin-top:1rem; background:#fff; border:1px solid #e5e7eb; border-radius:12px;
+      padding:1rem; box-shadow:var(--shadow-sm);
+    }
+    .actions{ display:flex; flex-wrap:wrap; gap:.6rem; margin-top:.6rem; }
+    .btn{
+      display:inline-block; text-decoration:none; font-weight:700; border-radius:10px;
+      padding:.6rem 1rem; background:var(--brand); color:#fff; border:none; cursor:pointer;
+    }
+    .btn:hover{ background:var(--brand-hover); }
+    .btn.outline{ background:transparent; color:var(--brand); border:2px solid var(--brand); }
+    .btn.outline:hover{ background:#e8f0fe; }
+    .btn.small{ padding:.45rem .8rem; font-weight:600; border-radius:8px; }
+
+    /* Filtres */
+    .filters{
+      display:grid; grid-template-columns:repeat(12,1fr); gap:.8rem; margin-top:.8rem; align-items:end;
+    }
+    .filters .field{ grid-column:span 12; }
+    .filters label{ display:block; margin-bottom:.25rem; font-weight:600; }
+    .filters select, .filters input{
+      width:100%; padding:.55rem .7rem; border:1px solid #d1d5db; border-radius:8px;
+    }
+    .filters .actions{ grid-column:span 12; }
+
+    @media(min-width:760px){
+      .filters .field.col-4{ grid-column:span 4; }
+      .filters .field.col-8{ grid-column:span 8; }
+      .filters .actions{ grid-column:span 12; justify-content:flex-end; }
+    }
+
+    /* Résultats */
+    .empty{
+      margin-top:1rem; padding:1rem; border:1px dashed #cbd5e1; border-radius:10px; background:#f8fafc; color:#475569;
+    }
+
+    .grid{ display:grid; grid-template-columns:repeat(12,1fr); gap:.9rem; margin-top:.9rem; }
+    .card{
+      grid-column:span 12;
+      background:#fff; border:1px solid #e5e7eb; border-radius:12px; box-shadow:var(--shadow-sm);
+      padding:1rem; display:flex; gap:1rem; align-items:flex-start;
+    }
+    .avatar{
+      flex:0 0 56px; height:56px; width:56px; border-radius:50%;
+      display:grid; place-items:center; font-weight:800; color:#1a202c; background:#e5f0ff; border:1px solid #c7dbff;
+    }
+    .meta{ flex:1 1 auto; }
+    .meta h3{ margin:.1rem 0 .25rem; font-size:1.15rem; }
+    .meta .row{ font-size:.95rem; color:#374151; margin:.15rem 0; }
+    .chips{ display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.35rem; }
+    .chip{ background:var(--chip); border:1px solid #c7d2fe; padding:.25rem .5rem; border-radius:999px; font-size:.85rem; }
+    .right{ display:flex; flex-direction:column; align-items:flex-end; gap:.4rem; }
+
+    footer{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:var(--whiteglass); border-top-left-radius:12px; border-top-right-radius:12px; }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <header class="navbar">
+      <a class="brand" href="../index.html">
+        <img src="../Logo_sophira.png" alt="Logo Sophira" />
+        <strong>Sophira</strong>
+      </a>
+      <nav>
+        <a class="btn outline" href="index.html">Portail</a>
+        <a class="btn" href="offres.html">Voir les offres</a>
+      </nav>
+    </header>
+
+    <main class="container" id="main">
+      <section class="hero">
+        <h1>Talents (employeurs)</h1>
+        <p class="muted">Accédez à des <strong>profils anonymisés</strong> de candidats. Le CV complet est transmis uniquement <strong>sur demande et accord du candidat</strong>.</p>
+      </section>
+
+      <!-- Vue ACCÈS RESTREINT (si non employeur) -->
+      <section class="gate" id="gate">
+        <h2>Accès restreint</h2>
+        <p class="muted">Cette page est réservée aux employeurs inscrits et connectés.</p>
+        <div class="actions">
+          <a class="btn" href="inscription.html">S’inscrire comme employeur</a>
+          <a class="btn outline" href="index.html">Retour au portail</a>
+        </div>
+      </section>
+
+      <!-- Vue EMPLOYEUR CONNECTÉ -->
+      <section class="board" id="board" hidden>
+        <h2>Rechercher des talents</h2>
+
+        <!-- Filtres -->
+        <form class="filters" id="filters" onsubmit="return false" aria-label="Filtres de recherche">
+          <div class="field col-4">
+            <label for="f-domaine">Domaine</label>
+            <select id="f-domaine">
+              <option value="">Tous les domaines</option>
+              <option>Data / IA</option>
+              <option>Énergie verte</option>
+              <option>Santé digitale</option>
+              <option>Tech / Développement</option>
+              <option>Marketing / Communication</option>
+              <option>Administration / Opérations</option>
+            </select>
+          </div>
+          <div class="field col-4">
+            <label for="f-ville">Canton / Ville</label>
+            <input id="f-ville" placeholder="ex: Bâle-Ville, Genève, Vaud..." />
+          </div>
+          <div class="field col-8">
+            <label for="f-mots">Mots-clés (compétences)</label>
+            <input id="f-mots" placeholder="ex: Python, SQL, support N1, CRM..." />
+          </div>
+          <div class="actions">
+            <button class="btn small" id="btn-filtrer" type="button">Filtrer</button>
+            <button class="btn small outline" id="btn-reset" type="button">Réinitialiser</button>
+          </div>
+        </form>
+
+        <!-- Résultats -->
+        <div id="empty" class="empty" hidden>Aucun talent ne correspond à ces critères. Modifiez les filtres ou réinitialisez.</div>
+        <div id="grid" class="grid" aria-live="polite" aria-busy="false"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Sophira Association | Basel, Suisse · <a href="../contact.html">Contact</a></p>
+    </footer>
+  </div>
+
+  <script>
+    // ==== Accès (garde-barrière)
+    const KEY_ROLE = 'sophira_job_role';
+    const gate = document.getElementById('gate');
+    const board = document.getElementById('board');
+
+    function checkAccess(){
+      const role = localStorage.getItem(KEY_ROLE);
+      const ok = role === 'employeur';
+      gate.hidden = !!ok;
+      board.hidden = !ok;
+    }
+    checkAccess();
+
+    // ==== Données fictives (à remplacer plus tard par la base)
+    const TALENTS = [
+      {
+        id: "T-24001",
+        initials: "AI",
+        ville: "Bâle-Ville",
+        domaine: "Data / IA",
+        competences: ["Python", "Pandas", "SQL", "Tableau"],
+        resume: "Analyste de données junior, projets de tableau de bord et de nettoyage de données.",
+        consent_cv: false
+      },
+      {
+        id: "T-24002",
+        initials: "BM",
+        ville: "Genève",
+        domaine: "Tech / Développement",
+        competences: ["HTML", "CSS", "JavaScript", "Git"],
+        resume: "Développeur front junior, expérience en sites statiques et accessibilité.",
+        consent_cv: false
+      },
+      {
+        id: "T-24003",
+        initials: "CL",
+        ville: "Vaud",
+        domaine: "Administration / Opérations",
+        competences: ["Excel", "ERP", "Support N1"],
+        resume: "Profil polyvalent administration, support de premier niveau et coordination.",
+        consent_cv: false
+      },
+      {
+        id: "T-24004",
+        initials: "DN",
+        ville: "Zurich",
+        domaine: "Énergie verte",
+        competences: ["PV", "BIM", "AutoCAD"],
+        resume: "Assistant de projet dans l’énergie solaire, mise à jour de plans et suivi.",
+        consent_cv: false
+      },
+      {
+        id: "T-24005",
+        initials: "EP",
+        ville: "Neuchâtel",
+        domaine: "Marketing / Communication",
+        competences: ["SEO", "Rédaction", "Analytics"],
+        resume: "Junior marketing digital, contenus et optimisation SEO on-page.",
+        consent_cv: false
+      },
+      {
+        id: "T-24006",
+        initials: "FS",
+        ville: "Bâle-Campagne",
+        domaine: "Santé digitale",
+        competences: ["Dossiers patients", "Data qualité", "Support"],
+        resume: "Support aux équipes cliniques, amélioration qualité des données.",
+        consent_cv: false
+      }
+    ];
+
+    // ==== Rendu des cartes
+    const grid = document.getElementById('grid');
+    const empty = document.getElementById('empty');
+
+    function renderCards(list){
+      grid.innerHTML = '';
+      if(!list || list.length === 0){
+        empty.hidden = false;
+        return;
+      }
+      empty.hidden = true;
+
+      list.forEach(t => {
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.setAttribute('data-id', t.id);
+
+        card.innerHTML = `
+          <div class="avatar" aria-hidden="true">${t.initials}</div>
+          <div class="meta">
+            <h3>${t.domaine} · <span style="font-weight:600">${t.initials}</span> <small style="font-weight:400;color:#6b7280">(${t.id})</small></h3>
+            <div class="row"><strong>Localisation :</strong> ${t.ville}</div>
+            <div class="row"><strong>Résumé :</strong> ${t.resume}</div>
+            <div class="chips" aria-label="Compétences">
+              ${t.competences.map(c=>`<span class="chip">${c}</span>`).join('')}
+            </div>
+          </div>
+          <div class="right">
+            <button class="btn small outline" data-action="contact">Demander le CV</button>
+            <a class="btn small" href="../contact.html?ref=${encodeURIComponent(t.id)}">Contacter Sophira</a>
+          </div>
+        `;
+
+        card.querySelector('[data-action="contact"]').addEventListener('click', ()=>{
+          // Ici, on ne révèle rien : on redirige juste vers contact avec la ref
+          window.location.href = `../contact.html?ref=${encodeURIComponent(t.id)}&type=candidate`;
+        });
+
+        grid.appendChild(card);
+      });
+    }
+
+    // ==== Filtres
+    const fDomaine = document.getElementById('f-domaine');
+    const fVille = document.getElementById('f-ville');
+    const fMots = document.getElementById('f-mots');
+    const btnFiltrer = document.getElementById('btn-filtrer');
+    const btnReset = document.getElementById('btn-reset');
+
+    function applyFilters(){
+      const d = (fDomaine.value || '').trim().toLowerCase();
+      const v = (fVille.value || '').trim().toLowerCase();
+      const m = (fMots.value || '').trim().toLowerCase();
+
+      const terms = m ? m.split(',').map(s=>s.trim()).filter(Boolean) : [];
+
+      const out = TALENTS.filter(t => {
+        // Domaine
+        if(d && t.domaine.toLowerCase() !== d) return false;
+        // Ville
+        if(v && !t.ville.toLowerCase().includes(v)) return false;
+        // Mots-clés dans compétences (ET logique : chaque terme doit être présent dans au moins une compétence)
+        if(terms.length){
+          const comp = t.competences.map(c=>c.toLowerCase());
+          const ok = terms.every(term => comp.some(c => c.includes(term)));
+          if(!ok) return false;
+        }
+        return true;
+      });
+
+      renderCards(out);
+    }
+
+    btnFiltrer.addEventListener('click', applyFilters);
+    btnReset.addEventListener('click', ()=>{
+      fDomaine.value = '';
+      fVille.value = '';
+      fMots.value = '';
+      renderCards(TALENTS);
+    });
+
+    // ==== Démarrage (si autorisé)
+    if(!board.hidden){
+      renderCards(TALENTS);
+    }
+  </script>
+</body>
+</html>
