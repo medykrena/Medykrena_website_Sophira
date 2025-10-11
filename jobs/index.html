@@ -115,7 +115,6 @@
           <article class="card" id="block-candidat" hidden>
             <h3>Espace Candidat</h3>
             <p>Parcourez les opportunités et suivez l’état de votre profil.</p>
-            <a class="btn" href="offres.html">Voir les offres</a>
             <a class="btn outline" href="profil.html">Voir mon profil</a>
           </article>
 
@@ -174,7 +173,7 @@
       dashboard.hidden = false;
 
       if(role === 'candidat'){
-        roleText.textContent = "Connecté en tant que candidat. Accédez aux offres et à votre profil.";
+        roleText.textContent = "Connecté en tant que candidat. Accédez à votre profil, nous pouvons eventuellement vous mettre en contact avec des employeurs .";
         blockC.hidden = false;
         blockE.hidden = true;
       } else if(role === 'employeur'){
