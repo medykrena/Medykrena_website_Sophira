@@ -8,50 +8,38 @@
   <!-- SEO -->
   <link rel="canonical" href="https://sophira.ch/contact-de.html" />
   <meta name="robots" content="index,follow" />
-  <meta name="description" content="Kontaktieren Sie die gemeinnützige Organisation Sophira in Basel. Adresse, E-Mail, Telefon und Lageplan." />
+  <meta name="description" content="Kontaktieren Sie den Verein Sophira: Adresse, E-Mail, Telefon und Anfahrtsplan in Basel, Schweiz. Kontaktformular verfügbar." />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Kontakt – Sophira" />
-  <meta property="og:description" content="Adresse, E-Mail und Telefon der Schweizer Organisation Sophira für berufliche Neuorientierung." />
+  <meta property="og:description" content="Kontaktangaben und Anfahrt, Verein Sophira für berufliche Neuorientierung in der Schweiz." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sophira.ch/contact-de.html" />
   <meta property="og:image" content="https://sophira.ch/Logo_sophira.png" />
-  <meta property="og:site_name" content="Sophira" />
-  <meta property="og:locale" content="de_CH" />
 
-  <!-- Twitter/OpenGraph compatibility -->
+  <!-- Social metas (TikTok/LinkedIn liens plus bas) -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Kontakt – Sophira" />
-  <meta name="twitter:description" content="Adresse, E-Mail und Telefonnummer der Organisation Sophira in Basel, Schweiz." />
+  <meta name="twitter:description" content="Adresse, E-Mail und Telefon des Vereins Sophira." />
   <meta name="twitter:image" content="https://sophira.ch/Logo_sophira.png" />
 
-  <!-- Schriftart -->
+  <!-- Schrift -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --text:#2c3e50;
-      --muted:#4a5568;
-      --brand:#1a73e8;
-      --brand-hover:#155ab6;
-      --bg-overlay:rgba(255,255,255,0.95);
-      --whiteglass:#ffffffdd;
-      --radius:12px;
-      --shadow-sm:0 2px 8px rgba(0,0,0,0.05);
-      --shadow-md:0 4px 12px rgba(0,0,0,0.08);
-      --container:960px;
+      --text:#2c3e50; --muted:#4a5568; --brand:#1a73e8; --brand-hover:#155ab6;
+      --bg-overlay:rgba(255,255,255,0.95); --whiteglass:#ffffffdd; --radius:12px;
+      --shadow-sm:0 2px 8px rgba(0,0,0,0.05); --shadow-md:0 4px 12px rgba(0,0,0,0.08);
+      --container:960px; --ok:#065f46; --warn:#92400e; --panel:#f8fafc;
     }
     body{
-      margin:0; font-family:'Inter',sans-serif;
-      background:url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center center fixed;
-      background-size:cover; color:var(--text);
+      margin:0; font-family:'Inter',sans-serif; background:url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center/cover fixed; color:var(--text);
     }
     .overlay{ background-color:var(--bg-overlay); min-height:100vh; display:flex; flex-direction:column; }
 
-    /* NAVBAR */
     header.navbar{
-      position:sticky; top:0; z-index:20;
-      display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+      position:sticky; top:0; z-index:20; display:flex; align-items:center; justify-content:space-between; gap:.75rem;
       padding:.8rem 1rem; background:var(--whiteglass); box-shadow:var(--shadow-sm); backdrop-filter:blur(6px);
     }
     .brand{ display:flex; align-items:center; gap:.6rem; text-decoration:none; }
@@ -64,60 +52,50 @@
 
     .burger{ display:none; background:none; border:none; padding:.4rem .6rem; }
     .burger svg{ width:28px; height:28px; }
-
     .mobile-panel{ display:none; position:fixed; inset:64px 0 0 0; background:#ffffffdd; backdrop-filter:blur(6px); padding:1rem; }
     .mobile-links{ display:flex; flex-direction:column; gap:.8rem; }
     .mobile-links a{ text-decoration:none; color:var(--text); font-weight:600; padding:.7rem 0; border-bottom:1px solid #ddd; }
     .mobile-links a:last-child{ border-bottom:none; }
     .hidden{ display:none !important; }
+    @media(max-width:880px){ nav.primary{ display:none; } .burger{ display:inline-flex; } }
 
-    /* LAYOUT */
     .container{ flex:1; max-width:var(--container); margin:2rem auto; padding:0 1rem; }
     .content{ background:#ffffffdd; padding:2rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
     .content h2{ text-align:center; margin-top:0; }
-
     .contact-info{ margin-top:1.5rem; font-size:1rem; }
-    .contact-info p{ margin:.3rem 0; }
-    .muted{ color:var(--muted); }
+
+    .context{
+      margin:1rem 0 0; padding:.9rem 1rem; border-radius:10px; border:1px solid #cbd5e1; background:#f1f5f9; color:#0f172a;
+      display:none;
+    }
+    .context.ok{ border-color:#a7f3d0; background:#ecfdf5; color:#064e3b; }
+    .context.warn{ border-color:#fed7aa; background:#fff7ed; color:#7c2d12; }
 
     iframe{ width:100%; height:350px; border:none; border-radius:var(--radius); margin-top:2rem; }
 
-    /* CTA */
-    .cta{ margin-top:2.2rem; background:#f7fafc; padding:2rem; text-align:center; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
-    .cta h3{ margin:0 0 .8rem 0; }
-    .cta .actions{ display:flex; flex-wrap:wrap; gap:.8rem; justify-content:center; margin-top:.6rem; }
-    .btn{ display:inline-block; background:var(--brand); color:#fff; text-decoration:none; padding:.6rem 1.1rem; border-radius:8px; font-weight:600; }
+    .form-card{ margin-top:1.2rem; background:#fff; border:1px solid #e5e7eb; border-radius:12px; box-shadow:var(--shadow-sm); padding:1rem; }
+    form label{ display:block; margin:.6rem 0 .25rem; font-weight:600; }
+    input, textarea{ width:100%; padding:.6rem .7rem; border:1px solid #d1d5db; border-radius:8px; }
+    .actions{ display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.8rem; }
+    .btn{ display:inline-block; background:var(--brand); color:#fff; text-decoration:none; padding:.6rem 1.1rem; border-radius:8px; font-weight:700; border:none; cursor:pointer; }
     .btn:hover{ background:var(--brand-hover); }
     .btn.outline{ background:transparent; color:var(--brand); border:2px solid var(--brand); }
     .btn.outline:hover{ background:#e8f0fe; }
 
-    /* FOLLOW & LEGAL */
-    .follow{ margin-top:2rem; background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:1.2rem; box-shadow:var(--shadow-sm); }
-    .follow h3{ margin:.2rem 0 .6rem; }
-    .socials{ display:flex; flex-wrap:wrap; gap:.6rem; }
-    .social-btn{
-      display:inline-flex; align-items:center; gap:.5rem;
-      border:1px solid #e5e7eb; border-radius:999px; padding:.5rem .8rem; background:#fff;
-      text-decoration:none; color:#111827; font-weight:700;
-    }
-    .social-btn:hover{ border-color:#cbd5e1; }
-    .legal-links{ margin-top:.8rem; font-size:.95rem; }
-    .legal-links a{ color:#1a73e8; text-decoration:none; }
-    .legal-links a:hover{ text-decoration:underline; }
+    .social{ margin-top:2rem; background:var(--panel); border:1px solid #e5e7eb; border-radius:12px; padding:1rem; }
+    .social h3{ margin:.2rem 0 .6rem; }
+    .social a{ display:inline-block; margin-right:.6rem; text-decoration:none; font-weight:700; }
+    .tiktok{ color:#000; }
+    .linkedin{ color:#0a66c2; }
 
     footer{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:var(--whiteglass); border-top-left-radius:var(--radius); border-top-right-radius:var(--radius); }
-    footer a{ color:#1a73e8; text-decoration:none; }
-    footer a:hover{ text-decoration:underline; }
-
-    @media(max-width:880px){ nav.primary{ display:none; } .burger{ display:inline-flex; } }
   </style>
 </head>
 <body>
   <div class="overlay">
-    <!-- NAVIGATION -->
-    <header class="navbar" role="navigation" aria-label="Hauptnavigation">
+    <header class="navbar">
       <a class="brand" href="index-de.html">
-        <img src="Logo_sophira.png" alt="Logo Sophira" />
+        <img src="Logo_sophira.png" alt="Sophira Logo" />
         <h1>Sophira</h1>
       </a>
       <nav class="primary" aria-label="Hauptlinks">
@@ -125,103 +103,125 @@
         <a href="team-de.html">Team</a>
         <a href="project-de.html">Soziales Projekt</a>
         <a href="dashboard-de.html">Dashboard</a>
+        <a href="blog.html">Blog</a>
         <a href="jobs/index-de.html">Job-Portal</a>
-        <a href="blog-de.html">Blog</a>
         <a href="contact-de.html" aria-current="page">Kontakt</a>
       </nav>
       <button class="burger" id="burger" aria-label="Menü öffnen" aria-controls="menu-mobile" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
     </header>
 
-    <!-- MOBILES MENÜ -->
-    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Mobiles Menü">
+    <div id="menu-mobile" class="mobile-panel hidden">
       <div class="mobile-links">
         <a href="index-de.html">Startseite</a>
         <a href="team-de.html">Team</a>
         <a href="project-de.html">Soziales Projekt</a>
         <a href="dashboard-de.html">Dashboard</a>
+        <a href="blog.html">Blog</a>
         <a href="jobs/index-de.html">Job-Portal</a>
-        <a href="blog-de.html">Blog</a>
         <a href="contact-de.html" aria-current="page">Kontakt</a>
       </div>
     </div>
 
-    <!-- INHALT -->
-    <main class="container" id="main">
+    <main class="container">
       <div class="content">
-        <h2>Kontaktieren Sie uns</h2>
+        <h2>Kontakt</h2>
+
+        <!-- Kontextbanner -->
+        <div id="ctx" class="context" role="status" aria-live="polite"></div>
 
         <div class="contact-info">
           <p><strong>Adresse:</strong> Sandgrubenstrasse, 4058 Basel, Schweiz</p>
-          <p><strong>E-Mail:</strong> <a href="mailto:association_sophira@protonmail.com">association_sophira@protonmail.com</a></p>
-          <p><strong>Telefon:</strong> <a href="tel:+41791234567">+41 79 123 45 67</a></p>
-          <p class="muted">Antwort innerhalb von 2–3 Werktagen.</p>
+          <p><strong>E-Mail:</strong> association_sophira@protonmail.com</p>
+          <p><strong>Telefon:</strong> +41 79 123 45 67</p>
         </div>
 
-        <!-- Google Maps -->
         <iframe
-          title="Anfahrt Sophira – Basel"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2752.415159526313!2d7.588576115595142!3d47.55959817918171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4791b9a6f3e10ff7%3A0xdea0a2f76e49767f!2sBasel%2C%20Schweiz!5e0!3m2!1sde!2sch!4v1691010100000"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2752.415159526313!2d7.588576115595142!3d47.55959817918171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4791b9a6f3e10ff7%3A0xdea0a2f76e49767f!2sBasel%2C%20Switzerland!5e0!3m2!1sde!2sch!4v1691010100000"
           allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
 
-      <!-- CTA -->
-      <section class="cta" aria-label="Call to Action">
-        <h3>Möchten Sie mithelfen?</h3>
-        <p>Treten Sie unserem Team bei, unterstützen Sie unsere Mission oder spenden Sie, um die berufliche Neuorientierung von Erwachsenen in der Schweiz zu fördern.</p>
-        <div class="actions">
-          <a class="btn" href="donate-de.html">Spenden</a>
-          <a class="btn outline" href="team-de.html">Dem Team beitreten</a>
-        </div>
+      <section class="form-card" aria-label="Kontaktformular">
+        <h3>Nachricht senden</h3>
+        <p class="muted">Wenn Sie vom Job-Portal kommen, wird die Referenz automatisch übermittelt.</p>
+
+        <form name="sophira-kontakt" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/danke.html">
+          <input type="hidden" name="form-name" value="sophira-kontakt" />
+          <p style="display:none"><label>Nicht ausfüllen: <input name="bot-field" /></label></p>
+
+          <input type="hidden" id="f-ref" name="ref" />
+          <input type="hidden" id="f-type" name="type" />
+
+          <label for="f-name">Name und Vorname</label>
+          <input id="f-name" name="name" autocomplete="name" required />
+
+          <label for="f-email">E-Mail</label>
+          <input id="f-email" type="email" name="email" autocomplete="email" required />
+
+          <label for="f-msg">Nachricht</label>
+          <textarea id="f-msg" name="message" rows="5" placeholder="Ihre Anfrage..."></textarea>
+
+          <label><input type="checkbox" name="consent" required /> Ich bin einverstanden, dass meine Daten zur Kontaktaufnahme verwendet werden.</label>
+
+          <div class="actions">
+            <button class="btn" type="submit">Senden</button>
+            <a class="btn outline" href="jobs/index-de.html">Zum Job-Portal</a>
+          </div>
+        </form>
       </section>
 
-      <!-- FOLLOW & LEGAL -->
-      <section class="follow" aria-label="Folgen und rechtliche Informationen">
+      <section class="social" aria-label="Soziale Netzwerke">
         <h3>Folgen Sie uns</h3>
-        <p class="muted">Aktuelles, Projekte und Transparenz.</p>
-        <div class="socials" role="group" aria-label="Soziale Netzwerke">
-          <a class="social-btn" href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="social-btn" href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
-          <a class="social-btn" href="https://www.tiktok.com/@sophira" target="_blank" rel="noopener" aria-label="TikTok">
-            <!-- TikTok Icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12.04 2c.51 3.17 2.53 5.06 5.63 5.23v3.36c-1.61.16-3.05-.36-4.57-1.29v6.42a6.36 6.36 0 1 1-6.36-6.36 6.43 6.43 0 0 1 1.36.14v3.4a2.95 2.95 0 1 0 2.02 2.82V2h1.92z"/>
-            </svg>
-            <span>TikTok</span>
-          </a>
-        </div>
-        <div class="legal-links">
-          <a href="privacy-de.html">Datenschutzerklärung</a> ·
-          <a href="mentions-de.html">Impressum</a>
-        </div>
+        <p class="muted">Bleiben Sie über Aktionen, Events und neue Möglichkeiten informiert.</p>
+        <a class="tiktok" href="https://www.tiktok.com/@sophira" target="_blank" rel="noopener">TikTok</a>
+        <a class="linkedin" href="https://www.linkedin.com/company/sophira" target="_blank" rel="noopener">LinkedIn</a>
       </section>
     </main>
 
     <footer>
-      <p>&copy; 2025 Sophira Verein | Basel, Schweiz ·
-        <a href="privacy-de.html">Datenschutz</a> ·
-        <a href="mentions-de.html">Impressum</a>
-      </p>
+      <p>&copy; 2025 Sophira Verein | Basel, Schweiz</p>
     </footer>
   </div>
 
-  <!-- JS Menü -->
   <script>
+    // Mobile-Menü
     (function(){
       const burger=document.getElementById('burger');
       const panel=document.getElementById('menu-mobile');
       if(!burger||!panel) return;
       function toggleMenu(){
-        const open=!panel.classList.contains('hidden');
-        panel.classList.toggle('hidden', open);
-        burger.setAttribute('aria-expanded', String(!open));
+        const open=panel.classList.toggle('hidden')===false;
+        burger.setAttribute('aria-expanded',String(open));
       }
       burger.addEventListener('click',toggleMenu);
-      document.addEventListener('click',(e)=>{
-        if(!panel.classList.contains('hidden') && !panel.contains(e.target) && !burger.contains(e.target)){toggleMenu();}
-      });
-      document.addEventListener('keydown',(e)=>{if(e.key==='Escape' && !panel.classList.contains('hidden')) toggleMenu();});
+      document.addEventListener('click',(e)=>{ if(!panel.classList.contains('hidden') && !panel.contains(e.target) && !burger.contains(e.target)) toggleMenu(); });
+      document.addEventListener('keydown',(e)=>{ if(e.key==='Escape' && !panel.classList.contains('hidden')) toggleMenu(); });
+    })();
+
+    // URL-Parameter lesen (ref, type, from)
+    (function(){
+      const params = new URLSearchParams(window.location.search);
+      const ref = params.get('ref');
+      const type = params.get('type');
+      const from = params.get('from');
+
+      if(ref) document.getElementById('f-ref').value = ref;
+      if(type) document.getElementById('f-type').value = type;
+
+      const ctx = document.getElementById('ctx');
+      if(!ctx) return;
+
+      if(ref && type){
+        ctx.classList.add('ok');
+        const label = (type === 'offer') ? "Stelle" : (type === 'candidate' ? "Kandidat:innenprofil" : "Referenz");
+        ctx.innerHTML = `Übermittelte Referenz: <strong>${ref}</strong> (${label}). Wir verknüpfen Ihre Nachricht mit diesem Dossier.`;
+        ctx.style.display = 'block';
+      } else if (from === 'profil') {
+        ctx.classList.add('warn');
+        ctx.innerHTML = `Sie kontaktieren Sophira aus Ihrem Profilbereich. Bitte geben Sie den Zweck Ihrer Anfrage an.`;
+        ctx.style.display = 'block';
+      }
     })();
   </script>
 </body>
