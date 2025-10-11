@@ -77,10 +77,12 @@
       .filters .actions{ grid-column:span 12; justify-content:flex-end; }
     }
 
-    /* Résultats */
+    /* États */
     .empty{
       margin-top:1rem; padding:1rem; border:1px dashed #cbd5e1; border-radius:10px; background:#f8fafc; color:#475569;
     }
+    .loading{ margin-top:1rem; padding:1rem; background:#fff; border:1px solid #e5e7eb; border-radius:12px; box-shadow:var(--shadow-sm); }
+    .error{ margin-top:1rem; padding:1rem; background:#fff0f0; border:1px solid #f5c2c2; border-radius:12px; color:#9b1c1c; }
 
     .grid{ display:grid; grid-template-columns:repeat(12,1fr); gap:.9rem; margin-top:.9rem; }
     .card{
@@ -99,9 +101,6 @@
     .chip{ background:var(--chip); border:1px solid #c7d2fe; padding:.25rem .5rem; border-radius:999px; font-size:.85rem; }
     .right{ display:flex; flex-direction:column; align-items:flex-end; gap:.4rem; }
 
-    .loading{ margin-top:1rem; padding:1rem; background:#fff; border:1px solid #e5e7eb; border-radius:12px; box-shadow:var(--shadow-sm); }
-    .error{ margin-top:1rem; padding:1rem; background:#fff0f0; border:1px solid #f5c2c2; border-radius:12px; color:#9b1c1c; }
-
     footer{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:var(--whiteglass); border-top-left-radius:12px; border-top-right-radius:12px; }
   </style>
 </head>
@@ -114,6 +113,7 @@
       </a>
       <nav>
         <a class="btn outline" href="index.html">Portail</a>
+        <a class="btn" href="inscription.html">S’inscrire (employeur)</a>
       </nav>
     </header>
 
@@ -230,7 +230,6 @@
         card.setAttribute('data-id', t.id);
 
         const initials = initialsFrom(t.domaine);
-
         const chips = (t.competences || []).map(c => `<span class="chip">${c}</span>`).join('');
         const metaVille = t.ville ? `📍 ${t.ville}` : '';
         const metaDate = t.date ? ` • ${t.date}` : '';
@@ -239,7 +238,7 @@
           <div class="avatar" aria-hidden="true">${initials}</div>
           <div class="meta">
             <h3>${t.domaine || "Non spécifié"} <small style="font-weight:400;color:#6b7280">(#${t.id})</small></h3>
-            <div class="row"><strong>Résumé :</strong> ${t.bio || "—"}</div>
+            <div class="row"><strong>Résumé :</strong> ${t.resume || "—"}</div>
             <div class="chips" aria-label="Compétences">
               ${chips}
             </div>
@@ -267,13 +266,8 @@
       const terms = m ? m.split(',').map(s=>s.trim()).filter(Boolean) : [];
 
       const out = TALENTS.filter(t => {
-        // Domaine: égalité stricte (sans casse) si sélectionné
-        if(d && (t.domaine || '').toLowerCase() !== d) return false;
-
-        // Ville/Canton: inclusion (sans casse)
-        if(v && !((t.ville || '').toLowerCase().includes(v))) return false;
-
-        // Mots-clés: chaque terme doit apparaître dans au moins une compétence
+        if(d && (t.domaine || '').toLowerCase() !== d) return false; // domaine strict
+        if(v && !((t.ville || '').toLowerCase().includes(v))) return false; // ville substring
         if(terms.length){
           const comp = (t.competences || []).map(c => (c || '').toLowerCase());
           const ok = terms.every(term => comp.some(c => c.includes(term)));
@@ -305,8 +299,7 @@
         const res = await fetch('/.netlify/functions/talents', { headers:{ 'accept':'application/json' } });
         if(!res.ok) throw new Error('HTTP '+res.status);
         const data = await res.json();
-
-        // data attendu: [{id, domaine, competences[], bio, ville, date}]
+        // attendu: [{id, date, domaine, competences[], resume, ville}]
         TALENTS = Array.isArray(data) ? data : [];
         renderCards(TALENTS);
       } catch(err){
