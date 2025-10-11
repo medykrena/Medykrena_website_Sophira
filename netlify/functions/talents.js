@@ -1,15 +1,13 @@
 // netlify/functions/talents.js
-// Liste anonymisée des candidats Sophira pour la page talents.html
+// Liste anonymisée des candidats Sophira (uniquement approuvés)
 
 const { neon } = require('@netlify/neon');
 
-exports.handler = async (event) => {
+exports.handler = async () => {
   try {
-    // Connexion à la base Neon (URL lue via NETLIFY_DATABASE_URL)
     const sql = neon();
 
-    // Lecture des 20 derniers candidats, sans infos sensibles
-    const rows = await sql`
+    const rows = await sql/*sql*/`
       SELECT 
         id,
         submitted_at,
@@ -18,26 +16,25 @@ exports.handler = async (event) => {
         bio,
         ville
       FROM public.candidats
+      WHERE approved = true
       ORDER BY submitted_at DESC
-      LIMIT 20;
+      LIMIT 50;
     `;
 
-    // Formatage "anonymisé"
     const result = rows.map(r => ({
       id: r.id,
       domaine: r.domaine,
-      competences: r.competences ? r.competences.split(',').map(s => s.trim()) : [],
-      bio: r.bio ? r.bio.substring(0, 180) + '…' : '',
+      competences: r.competences ? r.competences.split(',').map(s => s.trim()).filter(Boolean) : [],
+      bio: r.bio ? (r.bio.length > 180 ? r.bio.slice(0, 180) + '…' : r.bio) : '',
       ville: r.ville || '',
-      date: new Date(r.submitted_at).toLocaleDateString('fr-CH')
+      date: r.submitted_at ? new Date(r.submitted_at).toLocaleDateString('fr-CH') : ''
     }));
 
-    // Réponse JSON
     return {
       statusCode: 200,
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
-        'Access-Control-Allow-Origin': '*'  // autorise lecture côté JS
+        'Access-Control-Allow-Origin': '*'
       },
       body: JSON.stringify(result, null, 2)
     };
