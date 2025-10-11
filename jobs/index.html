@@ -3,196 +3,133 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Emplois – Sophira | Connecter talents et employeurs</title>
+  <title>Portail Emploi – Sophira</title>
 
-  <!-- GA4 + Consent Mode -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('consent','default',{
-      ad_storage:'denied',
-      analytics_storage:'denied',
-      functionality_storage:'granted',
-      security_storage:'granted',
-      ad_user_data:'denied',
-      ad_personalization:'denied',
-      wait_for_update:500
-    });
-  </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FL1S0MJWB1"></script>
-  <script> gtag('js', new Date()); gtag('config', 'G-FL1S0MJWB1'); </script>
-
-  <!-- SEO -->
-  <link rel="canonical" href="https://sophira.ch/jobs/index.html" />
+  <!-- SEO de base -->
+  <link rel="canonical" href="https://sophira.ch/jobs/" />
   <meta name="robots" content="index,follow" />
-  <meta name="description" content="Espace Emplois de Sophira : met en relation talents en reconversion et employeurs engagés. Offres, profils anonymisés, catégories et secteurs d’avenir." />
+  <meta name="description" content="Portail Emploi Sophira : espace candidats et employeurs. Inscription requise pour accéder aux talents et aux offres." />
 
-  <!-- Hreflang -->
-  <link rel="alternate" hreflang="fr" href="https://sophira.ch/jobs/index.html" />
-  <link rel="alternate" hreflang="de" href="https://sophira.ch/jobs/index-de.html" />
-  <link rel="alternate" hreflang="x-default" href="https://sophira.ch/jobs/index.html" />
-
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="Emplois – Sophira | Connecter talents et employeurs" />
-  <meta property="og:description" content="Offres d’emploi et profils anonymisés. Priorité aux métiers impactés par l’automatisation et aux domaines d’avenir." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://sophira.ch/jobs/index.html" />
-  <meta property="og:image" content="https://sophira.ch/Logo_sophira.png" />
-  <meta property="og:site_name" content="Sophira" />
-  <meta property="og:locale" content="fr_CH" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Emplois – Sophira | Connecter talents et employeurs" />
-  <meta name="twitter:description" content="Offres d’emploi et profils anonymisés. Priorité aux métiers impactés par l’automatisation et aux domaines d’avenir." />
-  <meta name="twitter:image" content="https://sophira.ch/Logo_sophira.png" />
-
-  <!-- Icônes -->
-  <meta name="theme-color" content="#1a73e8" />
+  <!-- Icônes & police -->
   <link rel="icon" href="/favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-
-  <!-- Police -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- Données structurées -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"WebPage",
-    "name":"Espace Emplois – Sophira",
-    "url":"https://sophira.ch/jobs/index.html",
-    "inLanguage":"fr-CH",
-    "about":{"@type":"Organization","name":"Sophira","url":"https://sophira.ch/","logo":"https://sophira.ch/Logo_sophira.png"}
-  }
-  </script>
-
   <style>
-    :root{ --text:#2c3e50; --muted:#4a5568; --brand:#1a73e8; --brand-hover:#155ab6; --whiteglass:#ffffffdd; --panel:#edf2f7cc; --radius:12px; --shadow-sm:0 2px 8px rgba(0,0,0,.05); --shadow-md:0 4px 12px rgba(0,0,0,.08); --container:980px; --focus:#0d6efd; --focus-bg:#e8f0fe; --z-header:20; --z-lang:60; }
-    *{box-sizing:border-box} html:focus-within{scroll-behavior:smooth}
-    body{margin:0;font-family:'Inter',sans-serif;background:url('../mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center/cover fixed;color:var(--text)}
-    body.no-scroll{overflow:hidden}
-    .skip-link{position:absolute;left:1rem;top:.5rem;transform:translateY(-200%);background:#000;color:#fff;padding:.6rem .9rem;border-radius:8px;text-decoration:none;z-index:1000;box-shadow:var(--shadow-sm)}
-    .skip-link:focus{transform:translateY(0);outline:2px solid #fff}
-    .overlay{min-height:100vh;background:rgba(255,255,255,.9);display:flex;flex-direction:column}
-    header.navbar{position:sticky;top:0;z-index:var(--z-header);display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:.8rem 1rem;background:var(--whiteglass);box-shadow:var(--shadow-sm);backdrop-filter:blur(6px)}
-    .brand{display:flex;align-items:center;gap:.6rem;text-decoration:none}
-    .brand img{height:48px;width:auto}
-    .brand h1{margin:0;font-size:1.55rem;font-weight:600;color:#1a202c;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    nav.primary{display:flex;gap:1.1rem;align-items:center}
-    nav.primary a{text-decoration:none;color:var(--text);font-weight:500}
-    nav.primary a:hover,nav.primary a:focus{color:#1e88e5}
-    a:focus-visible,button:focus-visible{outline:3px solid var(--focus);outline-offset:2px;background:linear-gradient(0deg,var(--focus-bg),var(--focus-bg)) no-repeat}
-    .controls{display:flex;align-items:center;gap:.5rem;position:relative}
-    .burger{display:none;background:none;border:none;padding:.4rem .6rem;border-radius:8px}
-    .burger svg{width:28px;height:28px}
-    .lang-btn{display:inline-flex;align-items:center;gap:.35rem;background:#fff;border:1px solid #e5e7eb;border-radius:999px;padding:.35rem .6rem;font-weight:600;color:#1f2937;cursor:pointer;box-shadow:var(--shadow-sm)}
-    .lang-menu{position:absolute;right:0;top:calc(100% + 8px);z-index:var(--z-lang);background:#fff;border:1px solid #e5e7eb;border-radius:10px;box-shadow:var(--shadow-md);padding:.35rem;min-width:120px;display:none}
-    .lang-menu.open{display:block}
-    .lang-menu a{display:block;padding:.5rem .65rem;text-decoration:none;color:#111827;border-radius:8px;font-weight:600}
-    .lang-menu a:hover{background:#f3f4f6}
-    .mobile-panel{display:block;position:fixed;inset:64px 0 0 0;background:var(--whiteglass);backdrop-filter:blur(6px);padding:1rem}
-    [hidden]{display:none!important}
-    .mobile-links{display:flex;flex-direction:column;gap:.8rem}
-    .mobile-links a{text-decoration:none;color:var(--text);font-weight:600;padding:.7rem 0;border-bottom:1px solid #ddd}
-    .container{flex:1;max-width:var(--container);margin:2rem auto;padding:0 1rem}
-    .hero{background:var(--panel);padding:2.4rem 1.4rem;border-radius:var(--radius);text-align:center;box-shadow:var(--shadow-md)}
-    .hero h2{font-size:2.1rem;margin:.2rem 0 .7rem}
-    .subtitle{font-size:1.08rem;color:var(--muted);margin:0 auto;max-width:820px}
-    .quick{margin-top:1rem;display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
-    .btn{display:inline-block;background:var(--brand);color:#fff;text-decoration:none;padding:.6rem 1rem;border-radius:10px;font-weight:700;transition:transform .06s ease}
-    .btn:hover{background:var(--brand-hover);transform:translateY(-1px)}
-    .btn.outline{background:transparent;color:var(--brand);border:2px solid var(--brand)}
-    .content{margin-top:2rem;background:#ffffffdd;padding:2rem;border-radius:var(--radius);box-shadow:var(--shadow-sm)}
-    .cta{margin-top:2rem;background:#f7fafc;padding:2rem;text-align:center;border-radius:var(--radius);box-shadow:var(--shadow-sm)}
-    footer{text-align:center;padding:1rem;margin-top:3rem;font-size:.95rem;color:#4a4a4a;background:#ffffffdd;border-top-left-radius:var(--radius);border-top-right-radius:var(--radius)}
-    @media (max-width:980px){nav.primary{display:none}.burger{display:inline-flex}}
+    :root{
+      --text:#2c3e50; --muted:#4a5568; --brand:#1a73e8; --brand-hover:#155ab6;
+      --whiteglass:#ffffffdd; --panel:#edf2f7cc; --radius:12px;
+      --shadow-sm:0 2px 8px rgba(0,0,0,.05); --shadow-md:0 4px 12px rgba(0,0,0,.08);
+      --container:980px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:'Inter',sans-serif; color:var(--text);
+      background:url('../mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center/cover fixed;
+    }
+    .overlay{min-height:100vh; background:rgba(255,255,255,.9); display:flex; flex-direction:column;}
+
+    /* NAVBAR (simple, cohérente avec le site) */
+    header.navbar{
+      position:sticky; top:0; z-index:10; background:var(--whiteglass);
+      display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+      padding:.8rem 1rem; box-shadow:var(--shadow-sm); backdrop-filter:blur(6px);
+    }
+    .brand{display:flex; align-items:center; gap:.6rem; text-decoration:none;}
+    .brand img{height:48px}
+    .brand strong{font-size:1.35rem; color:#1a202c}
+
+    .container{flex:1; max-width:var(--container); margin:2rem auto; padding:0 1rem;}
+
+    .hero{ background:var(--panel); padding:1.6rem; border-radius:var(--radius); box-shadow:var(--shadow-md); }
+    .hero h1{ margin:.2rem 0 .6rem; font-size:1.8rem; }
+    .muted{ color:var(--muted); }
+
+    /* Gate (verrou) et tableau de bord */
+    .gate, .dashboard{
+      margin-top:1rem; background:#fff; border:1px solid #e5e7eb; border-radius:12px;
+      padding:1.2rem; box-shadow:var(--shadow-sm);
+    }
+    .actions{ display:flex; flex-wrap:wrap; gap:.6rem; margin-top:.6rem; }
+    .btn{
+      display:inline-block; text-decoration:none; font-weight:700; border-radius:10px;
+      padding:.6rem 1rem; background:var(--brand); color:#fff;
+    }
+    .btn:hover{ background:var(--brand-hover); }
+    .btn.outline{ background:transparent; color:var(--brand); border:2px solid var(--brand); }
+    .btn.outline:hover{ background:#e8f0fe; }
+
+    /* Cartes d’accès */
+    .grid{ display:grid; grid-template-columns:repeat(12,1fr); gap:.9rem; margin-top:.8rem; }
+    .card{
+      grid-column:span 12; background:#fff; border:1px solid #e5e7eb; border-radius:12px;
+      padding:1rem; box-shadow:var(--shadow-sm);
+    }
+    .card h3{ margin:.2rem 0 .4rem; }
+    .card p{ margin:.2rem 0 .6rem; color:#374151; }
+    .card .btn{ margin-top:.2rem; }
+
+    @media(min-width:720px){
+      .card{ grid-column:span 6; }
+    }
+
+    footer{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:var(--whiteglass); border-top-left-radius:12px; border-top-right-radius:12px; }
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Aller au contenu principal</a>
   <div class="overlay">
-    <!-- NAV -->
-    <header class="navbar" role="navigation" aria-label="Navigation principale">
+    <header class="navbar">
       <a class="brand" href="../index.html">
-        <img src="../Logo_sophira.png" alt="Logo Sophira" loading="eager" fetchpriority="high" />
-        <h1>Sophira</h1>
+        <img src="../Logo_sophira.png" alt="Logo Sophira" />
+        <strong>Sophira</strong>
       </a>
-
-      <nav class="primary" aria-label="Liens principaux">
-        <a href="../index.html">Accueil</a>
-        <a href="../team.html">Équipe</a>
-        <a href="../project.html">Projet social</a>
-        <a href="../dashboard.html">Tableau de bord</a>
-        <a href="../blog.html">Blog</a>
-        <a href="../contact.html">Contact</a>
-        <a href="index.html" aria-current="page">Emplois</a>
-        <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener">Assistant Sophira</a>
-        <span class="lang desktop" aria-label="Changer de langue">
-          <a href="index.html" lang="fr" aria-current="true">FR</a> |
-          <a href="index-de.html" lang="de">DE</a>
-        </span>
+      <nav>
+        <a class="btn outline" href="inscription.html" aria-label="S'inscrire au portail emploi">Inscription</a>
       </nav>
-
-      <div class="controls">
-        <button class="lang-btn" id="lang-btn" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu" aria-label="Changer de langue">FR</button>
-        <div id="lang-menu" class="lang-menu" aria-hidden="true">
-          <a href="index.html" lang="fr" aria-current="true">Français</a>
-          <a href="index-de.html" lang="de">Deutsch</a>
-        </div>
-        <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-controls="menu-mobile" aria-expanded="false">☰</button>
-      </div>
     </header>
 
-    <!-- MENU MOBILE -->
-    <div id="menu-mobile" class="mobile-panel" role="dialog" aria-modal="true" aria-label="Menu mobile" aria-hidden="true" hidden>
-      <div class="mobile-links">
-        <a href="../index.html">Accueil</a>
-        <a href="../team.html">Équipe</a>
-        <a href="../project.html">Projet social</a>
-        <a href="../dashboard.html">Tableau de bord</a>
-        <a href="../blog.html">Blog</a>
-        <a href="../contact.html">Contact</a>
-        <a href="index.html" aria-current="page">Emplois</a>
-        <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener">Assistant Sophira</a>
-      </div>
-    </div>
-
-    <!-- CONTENU -->
-    <main id="main" class="container">
+    <main class="container" id="main">
       <section class="hero">
-        <h2>Espace Emplois</h2>
-        <p class="subtitle">
-          Connecter des <strong>talents en reconversion</strong> avec des <strong>employeurs engagés</strong>.
-          Parcourez les <em>offres</em> ou découvrez des <em>profils</em> anonymisés par catégories.
-        </p>
-        <div class="quick" role="group" aria-label="Accès rapide">
-          <a class="btn" href="offres.html">Voir les offres</a>
-          <a class="btn outline" href="talents.html">Voir les talents</a>
+        <h1>Portail Emploi</h1>
+        <p class="muted">Un espace simple pour connecter <strong>candidats</strong> et <strong>employeurs</strong>. L’inscription est gratuite et requise pour accéder aux contenus.</p>
+      </section>
+
+      <!-- Vue si NON inscrit -->
+      <section class="gate" id="gate">
+        <h2>Accès restreint</h2>
+        <p class="muted">Vous devez être inscrit pour accéder à cette partie du site.</p>
+        <div class="actions">
+          <a class="btn" href="inscription.html">S’inscrire maintenant</a>
+          <a class="btn outline" href="../contact.html">Besoin d’aide ?</a>
         </div>
       </section>
 
-      <section class="content">
-        <h3>Catégories prioritaires (métiers exposés à l’automatisation)</h3>
-        <p>Nous priorisons l’accès à l’emploi pour les métiers fortement impactés par l’automatisation, afin d’accélérer
-          une <strong>transition vers des rôles durables</strong> (data, énergie verte, santé digitale…).</p>
-        <ul>
-          <li>Administration / Back-office, Saisie & Opérations de données</li>
-          <li>Support client / Call center, Vente / Retail</li>
-          <li>Logistique & Entrepôt, Manufacture & Assemblage</li>
-          <li>Comptabilité de base, IT Helpdesk (Niveau 1)</li>
-        </ul>
-        <p class="subtitle">Vous pourrez aussi filtrer par <em>domaines d’avenir</em> (Data/IA, Énergie verte, Santé digitale, etc.).</p>
-      </section>
+      <!-- Vue si inscrit -->
+      <section class="dashboard" id="dashboard" hidden>
+        <h2>Bienvenue sur votre portail</h2>
+        <p id="role-text" class="muted" aria-live="polite"></p>
 
-      <section class="cta" aria-label="Contribuer">
-        <h3>Publier une offre ou créer un profil</h3>
-        <p>Soumettez votre annonce, nous la <strong>modérons</strong> et la publions rapidement.</p>
-        <div class="quick" role="group" aria-label="Soumissions">
-          <a class="btn" href="poster.html">Publier une offre</a>
-          <a class="btn outline" href="profil.html">Créer un profil talent</a>
+        <div class="grid" aria-label="Liens rapides">
+          <!-- Bloc Candidat -->
+          <article class="card" id="block-candidat" hidden>
+            <h3>Espace Candidat</h3>
+            <p>Parcourez les opportunités et suivez l’état de votre profil.</p>
+            <a class="btn" href="offres.html">Voir les offres</a>
+            <a class="btn outline" href="profil.html">Voir mon profil</a>
+          </article>
+
+          <!-- Bloc Employeur -->
+          <article class="card" id="block-employeur" hidden>
+            <h3>Espace Employeur</h3>
+            <p>Consultez des fiches anonymisées de candidats. Le CV complet est partagé uniquement sur demande.</p>
+            <a class="btn" href="talents.html">Voir les talents</a>
+            <a class="btn outline" href="../contact.html">Contacter Sophira</a>
+          </article>
+        </div>
+
+        <div class="actions" style="margin-top:1rem">
+          <button class="btn outline" id="btn-logout" type="button" aria-label="Se déconnecter du portail">Se déconnecter</button>
         </div>
       </section>
     </main>
@@ -203,26 +140,64 @@
   </div>
 
   <script>
-    // Consent (reprise de tes pages)
-    const CONSENT_KEY='sophira_consent_v1';
-    function readConsent(){try{return JSON.parse(localStorage.getItem(CONSENT_KEY))||null;}catch(e){return null}}
-    function applyConsent(p){const ok=!!(p&&p.analytics); gtag('consent','update',{analytics_storage:ok?'granted':'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'})}
-    (function(){const p=readConsent(); if(p) applyConsent(p)})();
+    // Clés déjà utilisées dans inscription.html
+    const KEY_REG = 'sophira_job_reg';
+    const KEY_ROLE = 'sophira_job_role';
 
-    // Menus (langue / burger)
-    (function(){
-      const burger=document.getElementById('burger'), panel=document.getElementById('menu-mobile'),
-            langBtn=document.getElementById('lang-btn'), langMenu=document.getElementById('lang-menu');
-      function openMobile(){panel.removeAttribute('hidden');panel.setAttribute('aria-hidden','false');burger.setAttribute('aria-expanded','true');document.body.classList.add('no-scroll')}
-      function closeMobile(){panel.setAttribute('hidden','');panel.setAttribute('aria-hidden','true');burger.setAttribute('aria-expanded','false');document.body.classList.remove('no-scroll')}
-      function toggleMobile(){if(panel.hasAttribute('hidden')){closeLang();openMobile()}else{closeMobile()}}
-      function openLang(){langMenu.classList.add('open')}
-      function closeLang(){langMenu.classList.remove('open')}
-      if(burger&&panel) burger.addEventListener('click',toggleMobile);
-      if(langBtn&&langMenu) langBtn.addEventListener('click',(e)=>{e.stopPropagation(); if(langMenu.classList.contains('open')) closeLang(); else {closeMobile(); openLang();}});
-      document.addEventListener('click',(e)=>{ if(langMenu&&langMenu.classList.contains('open')){ const inside=langMenu.contains(e.target)||langBtn.contains(e.target); if(!inside) closeLang(); } if(panel&&!panel.hasAttribute('hidden')){ const inside=panel.contains(e.target)||burger.contains(e.target); if(!inside) closeMobile(); }});
-      document.addEventListener('keydown',(e)=>{ if(e.key==='Escape'){ closeLang(); closeMobile(); }});
-    })();
+    const gate = document.getElementById('gate');
+    const dashboard = document.getElementById('dashboard');
+    const roleText = document.getElementById('role-text');
+    const blockC = document.getElementById('block-candidat');
+    const blockE = document.getElementById('block-employeur');
+    const btnLogout = document.getElementById('btn-logout');
+
+    function getStored(){
+      try {
+        const reg = JSON.parse(localStorage.getItem(KEY_REG) || 'null');
+        const role = localStorage.getItem(KEY_ROLE) || null;
+        return { reg, role };
+      } catch(e){ return { reg:null, role:null }; }
+    }
+
+    function render(){
+      const { reg, role } = getStored();
+
+      if(!reg || !role){
+        // Non inscrit
+        gate.hidden = false;
+        dashboard.hidden = true;
+        return;
+      }
+
+      // Inscrit
+      gate.hidden = true;
+      dashboard.hidden = false;
+
+      if(role === 'candidat'){
+        roleText.textContent = "Connecté en tant que candidat. Accédez aux offres et à votre profil.";
+        blockC.hidden = false;
+        blockE.hidden = true;
+      } else if(role === 'employeur'){
+        roleText.textContent = "Connecté en tant qu’employeur. Parcourez des fiches anonymisées de talents.";
+        blockC.hidden = true;
+        blockE.hidden = false;
+      } else {
+        roleText.textContent = "Rôle inconnu. Merci de vous réinscrire.";
+        blockC.hidden = true;
+        blockE.hidden = true;
+      }
+    }
+
+    btnLogout.addEventListener('click', ()=>{
+      localStorage.removeItem(KEY_REG);
+      localStorage.removeItem(KEY_ROLE);
+      render();
+      // On remonte la page au besoin
+      document.getElementById('main')?.scrollIntoView({behavior:'smooth'});
+    });
+
+    // Au chargement
+    render();
   </script>
 </body>
 </html>
