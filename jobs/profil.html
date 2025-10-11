@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mon profil (candidat) – Portail Emploi Sophira</title>
+
+  <!-- SEO -->
+  <link rel="canonical" href="https://sophira.ch/jobs/profil.html" />
+  <meta name="robots" content="noindex,follow" />
+  <meta name="description" content="Espace candidat : aperçu de votre profil et des offres enregistrées. Accès réservé aux candidats inscrits." />
+
+  <!-- Icônes & police -->
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --text:#2c3e50; --muted:#4a5568; --brand:#1a73e8; --brand-hover:#155ab6;
+      --whiteglass:#ffffffdd; --panel:#edf2f7cc; --radius:12px;
+      --shadow-sm:0 2px 8px rgba(0,0,0,.05); --shadow-md:0 4px 12px rgba(0,0,0,.08);
+      --container:980px; --chip:#eef2ff;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:'Inter',sans-serif; color:var(--text);
+      background:url('../mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center/cover fixed;
+    }
+    .overlay{min-height:100vh; background:rgba(255,255,255,.9); display:flex; flex-direction:column;}
+
+    header.navbar{
+      position:sticky; top:0; z-index:10; background:var(--whiteglass);
+      display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+      padding:.8rem 1rem; box-shadow:var(--shadow-sm); backdrop-filter:blur(6px);
+    }
+    .brand{display:flex; align-items:center; gap:.6rem; text-decoration:none;}
+    .brand img{height:48px}
+    .brand strong{font-size:1.35rem; color:#1a202c}
+
+    .container{flex:1; max-width:var(--container); margin:2rem auto; padding:0 1rem;}
+
+    .hero{ background:var(--panel); padding:1.2rem 1.4rem; border-radius:var(--radius); box-shadow:var(--shadow-md); }
+    .hero h1{ margin:.1rem 0 .4rem; font-size:1.7rem; }
+    .muted{ color:var(--muted); }
+
+    .gate, .board{
+      margin-top:1rem; background:#fff; border:1px solid #e5e7eb; border-radius:12px;
+      padding:1rem; box-shadow:var(--shadow-sm);
+    }
+    .actions{ display:flex; flex-wrap:wrap; gap:.6rem; margin-top:.6rem; }
+    .btn{
+      display:inline-block; text-decoration:none; font-weight:700; border-radius:10px;
+      padding:.6rem 1rem; background:var(--brand); color:#fff; border:none; cursor:pointer;
+    }
+    .btn:hover{ background:var(--brand-hover); }
+    .btn.outline{ background:transparent; color:var(--brand); border:2px solid var(--brand); }
+    .btn.outline:hover{ background:#e8f0fe; }
+    .btn.small{ padding:.45rem .8rem; font-weight:600; border-radius:8px; }
+
+    .grid{ display:grid; grid-template-columns:repeat(12,1fr); gap:.9rem; margin-top:.9rem; }
+    .card{ grid-column:span 12; background:#fff; border:1px solid #e5e7eb; border-radius:12px; box-shadow:var(--shadow-sm); padding:1rem; }
+    .card h2{ margin:.1rem 0 .6rem; font-size:1.25rem; }
+
+    .row{ display:grid; grid-template-columns:1fr 2fr; gap:.6rem; margin:.35rem 0; }
+    .label{ color:#374151; font-weight:600; }
+    .value{ color:#1f2937; }
+
+    .list{ display:grid; grid-template-columns:repeat(12,1fr); gap:.8rem; margin-top:.6rem; }
+    .item{ grid-column:span 12; border:1px solid #e5e7eb; border-radius:10px; padding:.7rem .9rem; background:#f9fafb; }
+    @media(min-width:760px){ .item{ grid-column:span 6; } }
+
+    footer{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:var(--whiteglass); border-top-left-radius:12px; border-top-right-radius:12px; }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <header class="navbar">
+      <a class="brand" href="../index.html">
+        <img src="../Logo_sophira.png" alt="Logo Sophira" />
+        <strong>Sophira</strong>
+      </a>
+      <nav>
+        <a class="btn outline" href="index.html">Portail</a>
+        <a class="btn" href="offres.html">Voir les offres</a>
+      </nav>
+    </header>
+
+    <main class="container" id="main">
+      <section class="hero">
+        <h1>Mon profil (candidat)</h1>
+        <p class="muted">Aperçu de votre inscription et des offres que vous avez enregistrées depuis ce navigateur.</p>
+      </section>
+
+      <!-- Vue ACCÈS RESTREINT -->
+      <section class="gate" id="gate">
+        <h2>Accès restreint</h2>
+        <p class="muted">Cette page est réservée aux candidats inscrits et connectés.</p>
+        <div class="actions">
+          <a class="btn" href="inscription.html">M’inscrire comme candidat</a>
+          <a class="btn outline" href="index.html">Retour au portail</a>
+        </div>
+      </section>
+
+      <!-- Vue CANDIDAT CONNECTÉ -->
+      <section class="board" id="board" hidden>
+        <!-- Carte Infos -->
+        <article class="card" aria-labelledby="h-infos">
+          <h2 id="h-infos">Mes informations</h2>
+          <div class="row"><div class="label">Statut</div><div class="value" id="v-role">—</div></div>
+          <div class="row"><div class="label">Email</div><div class="value" id="v-email">—</div></div>
+          <div class="row"><div class="label">Date d’inscription</div><div class="value" id="v-date">—</div></div>
+          <p class="muted" style="margin-top:.6rem">Ces informations proviennent uniquement de ce navigateur (localStorage). Pour corriger ou compléter vos données (CV, compétences…), contactez Sophira ou renvoyez le formulaire d’inscription.</p>
+          <div class="actions">
+            <a class="btn" href="inscription.html">Renvoyer le formulaire</a>
+            <a class="btn outline" href="../contact.html?from=profil">Contacter Sophira</a>
+          </div>
+        </article>
+
+        <!-- Carte Offres enregistrées -->
+        <article class="card" aria-labelledby="h-saved">
+          <h2 id="h-saved">Mes offres enregistrées</h2>
+          <div id="saved-empty" class="muted">Aucune offre enregistrée pour l’instant. Depuis la page “Offres”, cliquez sur “Enregistrer”.</div>
+          <div id="saved-list" class="list" hidden></div>
+
+          <div class="actions" style="margin-top:.6rem">
+            <button class="btn small outline" id="btn-export">Exporter mes données</button>
+            <button class="btn small" id="btn-clear">Effacer mes données locales</button>
+            <button class="btn small outline" id="btn-logout">Se déconnecter</button>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Sophira Association | Basel, Suisse · <a href="../contact.html">Contact</a></p>
+    </footer>
+  </div>
+
+  <script>
+    // ===== Clés locales utilisées dans le portail
+    const KEY_REG   = 'sophira_job_reg';        // { email, role, ts }
+    const KEY_ROLE  = 'sophira_job_role';       // "candidat" | "employeur"
+    const SAVED_KEY = 'sophira_saved_offers';   // ["O-25001", "O-25002", ...]
+
+    // ===== Accès (garde-barrière)
+    const gate = document.getElementById('gate');
+    const board = document.getElementById('board');
+
+    function isCandidate(){
+      return localStorage.getItem(KEY_ROLE) === 'candidat';
+    }
+    function lockOrOpen(){
+      const ok = isCandidate();
+      gate.hidden = !!ok;
+      board.hidden = !ok;
+    }
+
+    // ===== Rendu des infos de profil (local uniquement)
+    const vRole  = document.getElementById('v-role');
+    const vEmail = document.getElementById('v-email');
+    const vDate  = document.getElementById('v-date');
+
+    function renderProfile(){
+      try{
+        const reg = JSON.parse(localStorage.getItem(KEY_REG) || 'null');
+        const role = localStorage.getItem(KEY_ROLE) || '—';
+        vRole.textContent  = (role === 'candidat') ? 'Candidat' : (role || '—');
+        vEmail.textContent = (reg && reg.email) ? reg.email : '—';
+        if(reg && reg.ts){
+          const d = new Date(reg.ts);
+          vDate.textContent = d.toLocaleString();
+        } else {
+          vDate.textContent = '—';
+        }
+      }catch(e){
+        vRole.textContent = vEmail.textContent = vDate.textContent = '—';
+      }
+    }
+
+    // ===== Offres enregistrées (local)
+    const savedEmpty = document.getElementById('saved-empty');
+    const savedList  = document.getElementById('saved-list');
+
+    function renderSaved(){
+      let saved = [];
+      try { saved = JSON.parse(localStorage.getItem(SAVED_KEY) || '[]'); }
+      catch(e){ saved = []; }
+
+      savedList.innerHTML = '';
+
+      if(!saved.length){
+        savedEmpty.hidden = false;
+        savedList.hidden = true;
+        return;
+      }
+
+      savedEmpty.hidden = true;
+      savedList.hidden = false;
+
+      saved.forEach(id => {
+        const item = document.createElement('div');
+        item.className = 'item';
+        item.innerHTML = `
+          <div><strong>Référence :</strong> ${id}</div>
+          <div class="actions" style="margin-top:.4rem">
+            <a class="btn small" href="../contact.html?ref=${encodeURIComponent(id)}&type=offer">Postuler via Sophira</a>
+            <button class="btn small outline" data-id="${id}">Retirer</button>
+          </div>
+        `;
+        item.querySelector('button[data-id]').addEventListener('click', (ev)=>{
+          const rid = ev.currentTarget.getAttribute('data-id');
+          removeSaved(rid);
+        });
+        savedList.appendChild(item);
+      });
+    }
+
+    function removeSaved(id){
+      try{
+        const arr = JSON.parse(localStorage.getItem(SAVED_KEY) || '[]').filter(x => x !== id);
+        localStorage.setItem(SAVED_KEY, JSON.stringify(arr));
+        renderSaved();
+      }catch(e){}
+    }
+
+    // ===== Actions : export / clear / logout
+    document.getElementById('btn-export').addEventListener('click', ()=>{
+      try{
+        const payload = {
+          profile: JSON.parse(localStorage.getItem(KEY_REG) || 'null'),
+          role: localStorage.getItem(KEY_ROLE) || null,
+          saved_offers: JSON.parse(localStorage.getItem(SAVED_KEY) || '[]'),
+          exported_at: new Date().toISOString()
+        };
+        const blob = new Blob([JSON.stringify(payload, null, 2)], {type:'application/json'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'sophira_profil_export.json';
+        document.body.appendChild(a); a.click(); a.remove();
+        URL.revokeObjectURL(url);
+      }catch(e){
+        alert("Export impossible (erreur locale).");
+      }
+    });
+
+    document.getElementById('btn-clear').addEventListener('click', ()=>{
+      if(!confirm("Cela effacera vos données locales (profil & offres enregistrées) sur ce navigateur. Continuer ?")) return;
+      try{
+        localStorage.removeItem(KEY_REG);
+        localStorage.removeItem(KEY_ROLE);
+        localStorage.removeItem(SAVED_KEY);
+        // Recalcul de l'affichage
+        lockOrOpen();
+        renderProfile();
+        renderSaved();
+        alert("Données locales effacées sur ce navigateur.");
+      }catch(e){}
+    });
+
+    document.getElementById('btn-logout').addEventListener('click', ()=>{
+      try{
+        localStorage.removeItem(KEY_REG);
+        localStorage.removeItem(KEY_ROLE);
+        lockOrOpen();
+      }catch(e){}
+      document.getElementById('main')?.scrollIntoView({behavior:'smooth'});
+    });
+
+    // ===== Initialisation
+    lockOrOpen();
+    if(!board.hidden){
+      renderProfile();
+      renderSaved();
+    }
+  </script>
+</body>
+</html>
