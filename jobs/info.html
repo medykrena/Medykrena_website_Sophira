@@ -1,22 +1,103 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Informations – Portail Sophira</title>
-  <link rel="stylesheet" href="../style.css">
+
+  <!-- SEO -->
+  <link rel="canonical" href="https://sophira.ch/jobs/infos.html" />
+  <meta name="robots" content="noindex,follow" />
+  <meta name="description" content="Informations internes pour les collaborateurs participant au développement du site Sophira et à la gestion du portail." />
+
+  <!-- Icônes -->
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8fafc;
+      margin: 0;
+      color: #2c3e50;
+    }
+    header {
+      background: #1a73e8;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    h1 {
+      margin: 0 0 1rem;
+      font-size: 1.8rem;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin: 0.6rem 0;
+    }
+    a {
+      color: #1a73e8;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+      background: #f1f5f9;
+      font-size: 0.9rem;
+      color: #4a5568;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Informations pour les participants</h1>
+    <h1>Informations pour les collaborateurs</h1>
   </header>
+
   <main>
-    <p>Bienvenue ! Cette page contient quelques informations utiles pour les participants au projet Sophira.</p>
+    <p>Bienvenue 👋 Ce document est destiné aux personnes contribuant au développement et à la maintenance du site <strong>Sophira</strong>.</p>
+
+    <h2>🔧 Détails techniques</h2>
     <ul>
-      <li>📧 Contact : <a href="mailto:association_sophira@protonmail.com">asso_sophra@protonmail.com</a></li>
-      <li>🌐 Site : <a href="https://sophira.ch">sophira.ch</a></li>
+      <li>🗂️ Dépôt GitHub : <a href="https://github.com/medykrena/Medykrena_website_Sophira" target="_blank">Medykrena_website_Sophira</a></li>
+      <li>🌐 Site en ligne : <a href="https://sophira.ch" target="_blank">sophira.ch</a></li>
+      <li>☁️ Hébergement : Netlify (déploiement automatique depuis GitHub)</li>
+      <li>🧠 Base de données : Neon (PostgreSQL Cloud) – utilisée pour les formulaires du portail emploi</li>
+      <li>⚙️ Fonctions serveur : Netlify Functions (dossier <code>/netlify/functions</code>)</li>
+      <li>🪶 Langages : HTML5, CSS3, JavaScript (vanilla)</li>
+    </ul>
+
+    <h2>📌 Objectif du site</h2>
+    <p>
+      Le site <strong>Sophira</strong> présente l’association et héberge un <em>portail emploi solidaire</em> reliant des personnes en reconversion professionnelle à des employeurs inclusifs en Suisse.
+      Il inclut aussi des pages d’information, de dons, de contact, et un tableau de bord à venir.
+    </p>
+
+    <h2>📫 Contacts</h2>
+    <ul>
+      <li>📧 Email principal : <a href="mailto:association_sophira@protonmail.com">asso_sophra@protonmail.com</a></li>
+      <li>👤 Président : Arijanit Idrizi</li>
+      <li>🌍 Localisation : Bâle, Suisse</li>
     </ul>
   </main>
+
   <footer>
     <p>&copy; 2025 Sophira Association – Bâle, Suisse</p>
   </footer>
