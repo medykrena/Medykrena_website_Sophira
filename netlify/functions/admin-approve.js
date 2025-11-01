@@ -2,13 +2,15 @@
 // Active/Désactive un candidat : POST JSON { id:<uuid>, approved:true|false }
 // Protégé par ADMIN_TOKEN (header X-Admin-Token ou query ?token=)
 
-const { neon } = require('@netlify/neon');
+const { neon, neonConfig } = require('@neondatabase/serverless');
+neonConfig.fetchConnectionCache = true;
+const connectionString = process.env.NETLIFY_DATABASE_URL || process.env.DATABASE_URL;
 
 const json = (statusCode, data) => ({
   statusCode,
   headers: {
     'Content-Type': 'application/json; charset=utf-8',
-    'Access-Control-Allow-Origin': '*',               // CORS : simple
+    'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type,X-Admin-Token',
     'Access-Control-Allow-Methods': 'POST,OPTIONS'
   },
@@ -26,7 +28,7 @@ exports.handler = async (event) => {
       return json(405, { error: 'Method Not Allowed' });
     }
 
-    // --- Auth admin via header ou ?token=
+    // Auth admin
     const tokenHeader = event.headers['x-admin-token'] || event.headers['X-Admin-Token'];
     const tokenQuery  = event.queryStringParameters?.token || null;
     const ADMIN_TOKEN = process.env.ADMIN_TOKEN;
@@ -35,7 +37,7 @@ exports.handler = async (event) => {
       return json(401, { error: 'Unauthorized' });
     }
 
-    // --- Body & validation minimale
+    // Parse body
     let body;
     try {
       body = JSON.parse(event.body || '{}');
@@ -45,15 +47,13 @@ exports.handler = async (event) => {
 
     const id = body.id;
     const approved = typeof body.approved === 'boolean' ? body.approved : true;
-
     if (!id) return json(400, { error: 'Missing id' });
 
-    // UUID v4 simple (souple) — évite un aller-retour DB inutile en cas d’erreur
     const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
     if (!UUID_RE.test(id)) return json(400, { error: 'Invalid id format (UUID expected)' });
 
-    // --- DB
-    const sql = neon();
+    // DB
+    const sql = neon(connectionString);
     const res = await sql/*sql*/`
       UPDATE public.candidats
       SET approved = ${approved}
@@ -65,7 +65,7 @@ exports.handler = async (event) => {
       return json(404, { error: 'Not found' });
     }
 
-    // --- Journalisation optionnelle (si table audit_logs existe)
+    // Journalisation optionnelle
     try {
       await sql/*sql*/`
         INSERT INTO public.audit_logs(level, message, context)
@@ -76,7 +76,6 @@ exports.handler = async (event) => {
         )
       `;
     } catch (e) {
-      // silencieux si la table n’existe pas
       console.warn('audit_logs skipped:', e.message);
     }
 
