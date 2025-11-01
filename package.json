@@ -3,6 +3,6 @@
   "private": true,
   "type": "commonjs",
   "dependencies": {
-    "@netlify/neon": "^0.6.0"
+    "@neondatabase/serverless": "^0.10.3"
   }
 }
