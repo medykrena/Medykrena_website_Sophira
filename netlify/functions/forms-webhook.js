@@ -1,7 +1,7 @@
 // netlify/functions/forms-webhook.js
-// Netlify Forms (Outgoing webhook) -> Insertion dans Neon (PostgreSQL)
-// Dépendance: @neondatabase/serverless (flavor Netlify) et variable NETLIFY_DATABASE_URL
-// Optionnel: WEBHOOK_TOKEN (sécurité légère par header/query)
+// Netlify Forms (Outgoing webhook) -> Insert into Neon (PostgreSQL)
+// Requires: @neondatabase/serverless and env NETLIFY_DATABASE_URL (or DATABASE_URL)
+// Optional: WEBHOOK_TOKEN (light auth via header/query)
 
 'use strict';
 
@@ -21,23 +21,31 @@ exports.handler = async (event) => {
       return responseJSON(405, { error: 'Method Not Allowed' });
     }
 
-    // ---------------------------------------------------------
-    // 1) Sécurité légère par token (header X-Webhook-Token ou ?token=)
-    // ---------------------------------------------------------
-    const EXPECTED = process.env.WEBHOOK_TOKEN || '';
+    // --- 0) DB connection string (must exist)
+    const connectionString =
+      process.env.NETLIFY_DATABASE_URL || process.env.DATABASE_URL || '';
+
+    if (!connectionString) {
+      return responseJSON(500, {
+        error: 'Missing NETLIFY_DATABASE_URL (or DATABASE_URL)',
+      });
+    }
+
+    // --- 1) Optional token (header X-Webhook-Token or ?token=)
     const hdrs = event.headers || {};
+    // Netlify lower-cases headers; we still check both just in case.
     const providedHeader = hdrs['x-webhook-token'] || hdrs['X-Webhook-Token'];
-    const providedQuery  = (event.queryStringParameters && event.queryStringParameters.token) || null;
+    const providedQuery =
+      (event.queryStringParameters && event.queryStringParameters.token) || null;
+
+    const EXPECTED = process.env.WEBHOOK_TOKEN || '';
     const provided = providedHeader || providedQuery || '';
 
     if (EXPECTED && provided !== EXPECTED) {
       return responseJSON(401, { error: 'Unauthorized' });
     }
 
-    // ---------------------------------------------------------
-    // 2) Récupération payload Netlify (Outgoing webhook)
-    //    Netlify envoie généralement { payload: {...} }
-    // ---------------------------------------------------------
+    // --- 2) Parse body (Netlify usually sends { payload: {...} })
     let raw;
     try {
       raw = JSON.parse(event.body || '{}');
@@ -45,48 +53,40 @@ exports.handler = async (event) => {
       return responseJSON(400, { error: 'Invalid JSON body' });
     }
 
-    const submission = raw && (raw.payload || raw) || {};
-    const data = submission.data || submission; // compat
+    const submission = (raw && (raw.payload || raw)) || {};
+    const data = submission.data || submission;
     const formName = submission.form_name || data.form_name || '';
     const netlifyId = submission.id || submission.uuid || null;
 
-    // ---------------------------------------------------------
-    // 3) Fichiers (URL) si présents
-    // ---------------------------------------------------------
+    // --- 3) File URL extraction (if any)
     let fileUrl = null;
     let fileKey = null;
 
-    // a) champ fichier "cv" renvoyé en URL
     if (typeof data.cv === 'string' && data.cv.trim()) {
       fileUrl = data.cv.trim();
       fileKey = 'cv';
     }
 
-    // b) payload.files[] via webhook Netlify
     const files = Array.isArray(submission.files) ? submission.files : [];
     if (!fileUrl && files.length) {
-      const first = files.find(f => f && (f.url || f.path));
+      const first = files.find((f) => f && (f.url || f.path));
       if (first) {
         fileUrl = first.url || first.path || null;
         fileKey = first.name || 'file';
       }
     }
 
-    // ---------------------------------------------------------
-    // 4) Connexion DB (Neon)
-    // ---------------------------------------------------------
-    const sql = neon(); // lit NETLIFY_DATABASE_URL
+    // --- 4) DB client
+    const sql = neon(connectionString);
 
-    // ---------------------------------------------------------
-    // 5) Routage selon le nom du formulaire
-    // ---------------------------------------------------------
+    // --- 5) Route by form name
     if (formName === 'sophira-candidat') {
-      const nom         = data.nom || null;
-      const email       = data.email || null;
-      const ville       = data.ville || null;
-      const domaine     = data.domaine || null;
+      const nom = data.nom || null;
+      const email = data.email || null;
+      const ville = data.ville || null;
+      const domaine = data.domaine || null;
       const competences = data.competences || null;
-      const bio         = data.bio || null;
+      const bio = data.bio || null;
 
       await sql/*sql*/`
         INSERT INTO public.candidats
@@ -113,8 +113,8 @@ exports.handler = async (event) => {
     if (formName === 'sophira-employeur') {
       const societe = data.societe || null;
       const contact = data.contact || null;
-      const email   = data.email   || null;
-      const ville   = data.ville   || null;
+      const email = data.email || null;
+      const ville = data.ville || null;
       const besoins = data.besoins || null;
       const message = data.message || null;
 
@@ -133,9 +133,7 @@ exports.handler = async (event) => {
       return responseJSON(200, { ok: true, type: 'employeur', netlifyId });
     }
 
-    // ---------------------------------------------------------
-    // 6) Formulaire non ciblé -> on journalise en "warn" mais 200
-    // ---------------------------------------------------------
+    // --- 6) Unknown form -> warn log but 200
     await sql/*sql*/`
       INSERT INTO public.audit_logs (source, level, message, context)
       VALUES ('netlify_forms_webhook','warn','unknown_form', ${sql.json({ formName, keys: Object.keys(data || {}) })})
@@ -143,13 +141,16 @@ exports.handler = async (event) => {
 
     return responseJSON(200, { ok: true, ignored: true, formName });
   } catch (err) {
-    // Tentative de log serveur
     try {
-      const sql = neon();
-      await sql/*sql*/`
-        INSERT INTO public.audit_logs (source, level, message, context)
-        VALUES ('netlify_forms_webhook','error','handler_failed', ${sql.json({ error: String(err) })})
-      `;
+      const connectionString =
+        process.env.NETLIFY_DATABASE_URL || process.env.DATABASE_URL || '';
+      if (connectionString) {
+        const sql = neon(connectionString);
+        await sql/*sql*/`
+          INSERT INTO public.audit_logs (source, level, message, context)
+          VALUES ('netlify_forms_webhook','error','handler_failed', ${sql.json({ error: String(err) })})
+        `;
+      }
     } catch (_) {}
     return responseJSON(500, { error: 'Internal Server Error' });
   }
