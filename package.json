@@ -3,6 +3,6 @@
   "private": true,
   "type": "commonjs",
   "dependencies": {
-    "@neondatabase/serverless": "^0.10.3"
+    "@neondatabase/serverless": "^0.10.4"
   }
 }
