@@ -2,9 +2,13 @@
 // Active/Désactive un candidat : POST JSON { id:<uuid>, approved:true|false }
 // Protégé par ADMIN_TOKEN (header X-Admin-Token ou query ?token=)
 
+'use strict';
+
 const { neon, neonConfig } = require('@neondatabase/serverless');
 neonConfig.fetchConnectionCache = true;
-const connectionString = process.env.NETLIFY_DATABASE_URL || process.env.DATABASE_URL;
+
+const connectionString =
+  process.env.NETLIFY_DATABASE_URL || process.env.DATABASE_URL || '';
 
 const json = (statusCode, data) => ({
   statusCode,
@@ -12,14 +16,14 @@ const json = (statusCode, data) => ({
     'Content-Type': 'application/json; charset=utf-8',
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type,X-Admin-Token',
-    'Access-Control-Allow-Methods': 'POST,OPTIONS'
+    'Access-Control-Allow-Methods': 'POST,OPTIONS',
   },
-  body: JSON.stringify(data)
+  body: JSON.stringify(data),
 });
 
 exports.handler = async (event) => {
   try {
-    // Preflight CORS
+    // CORS preflight
     if (event.httpMethod === 'OPTIONS') {
       return json(200, { ok: true });
     }
@@ -28,8 +32,14 @@ exports.handler = async (event) => {
       return json(405, { error: 'Method Not Allowed' });
     }
 
-    // Auth admin
-    const tokenHeader = event.headers['x-admin-token'] || event.headers['X-Admin-Token'];
+    // Ensure DB URL present
+    if (!connectionString) {
+      return json(500, { error: 'Missing NETLIFY_DATABASE_URL (or DATABASE_URL)' });
+    }
+
+    // --- Auth admin (header or ?token=)
+    const hdrs = event.headers || {};
+    const tokenHeader = hdrs['x-admin-token'] || hdrs['X-Admin-Token'];
     const tokenQuery  = event.queryStringParameters?.token || null;
     const ADMIN_TOKEN = process.env.ADMIN_TOKEN;
 
@@ -37,7 +47,7 @@ exports.handler = async (event) => {
       return json(401, { error: 'Unauthorized' });
     }
 
-    // Parse body
+    // --- Parse body
     let body;
     try {
       body = JSON.parse(event.body || '{}');
@@ -52,7 +62,7 @@ exports.handler = async (event) => {
     const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
     if (!UUID_RE.test(id)) return json(400, { error: 'Invalid id format (UUID expected)' });
 
-    // DB
+    // --- DB
     const sql = neon(connectionString);
     const res = await sql/*sql*/`
       UPDATE public.candidats
@@ -65,7 +75,7 @@ exports.handler = async (event) => {
       return json(404, { error: 'Not found' });
     }
 
-    // Journalisation optionnelle
+    // --- Optional audit log
     try {
       await sql/*sql*/`
         INSERT INTO public.audit_logs(level, message, context)
