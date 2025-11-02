@@ -1,4 +1,3 @@
-# === Build config (explicit, no build step for a static site) ===
 [build]
   publish = "."
   command = ""
@@ -7,35 +6,4 @@
 [build.environment]
   NODE_VERSION = "20"
 
-# If you truly cannot use Netlify’s Environment Variables UI,
-# you may TEMPORARILY put secrets here (NOT RECOMMENDED — commits secrets to git).
-# Remove these once the UI works for you.
-# ADMIN_TOKEN = "REPLACE_WITH_A_SECRET"
-# NETLIFY_DATABASE_URL = "postgresql://USER:PASSWORD@HOST/DB?sslmode=require"
-# WEBHOOK_TOKEN = "OPTIONAL_SECRET"
-
-# === Security headers + CSP ===
-[[headers]]
-  for = "/*"
-  [headers.values]
-  Strict-Transport-Security = "max-age=15552000; includeSubDomains; preload"
-  X-Content-Type-Options = "nosniff"
-  X-Frame-Options = "SAMEORIGIN"
-  Referrer-Policy = "strict-origin-when-cross-origin"
-  Permissions-Policy = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
-
-  # CSP UPDATED:
-  # - Added public.tableau.com to frame-src (enables Tableau embeds)
-  # - Kept Google/PayPal you had
-  # - Added Neon host (connect-src) and wildcard fallback for future Neon hosts
-  # - Allow calling your own Netlify Functions (self covers it)
-  Content-Security-Policy = """
-    default-src 'self';
-    script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.paypal.com https://www.gstatic.com;
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    img-src 'self' data: https://sophira.ch https://www.google-analytics.com https://www.googletagmanager.com https://public.tableau.com;
-    font-src 'self' https://fonts.gstatic.com;
-    connect-src 'self' https://www.google-analytics.com https://region1.analytics.google.com https://ep-flat-block-aejgx92u-pooler.c-2.us-east-2.aws.neon.tech https://*.neon.tech;
-    frame-src https://public.tableau.com https://www.google.com https://www.youtube.com https://www.paypal.com;
-    upgrade-insecure-requests;
-  """
+# (No headers yet; we’ll re-add after the deploy succeeds)
