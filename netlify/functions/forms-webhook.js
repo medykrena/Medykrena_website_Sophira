@@ -5,7 +5,7 @@
 
 'use strict';
 
-const { neon } = require('@neondatabase/serverless/netlify'); // <-- lit NETLIFY_DATABASE_URL automatiquement
+const { neon } = require('@neondatabase/serverless');
 
 function responseJSON(statusCode, data) {
   return {
