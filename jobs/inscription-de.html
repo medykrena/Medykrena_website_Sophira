@@ -63,12 +63,15 @@
     .hint{font-size:.95rem;color:#374151}
     .actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
     .btn{background:var(--brand);color:#fff;border:none;border-radius:10px;padding:.6rem 1rem;font-weight:700;cursor:pointer}
+    .btn[disabled]{opacity:.6; cursor:not-allowed;}
     .btn:hover{background:var(--brand-hover)}
     .btn.outline{background:transparent;color:var(--brand);border:2px solid var(--brand)}
     footer{text-align:center;padding:1rem;margin-top:3rem;background:#ffffffdd}
     @media (max-width:780px){.row{grid-template-columns:1fr}}
     .error{color:#b00020; font-size:.95rem; margin-top:.25rem;}
     .sr-only{position:absolute!important; height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px); white-space:nowrap;}
+    .policy{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:.75rem;margin-top:.6rem}
+    .policy a{font-weight:600}
   </style>
 </head>
 <body>
@@ -153,10 +156,20 @@
             </div>
           </div>
 
-          <label><input type="checkbox" name="consent" required /> Ich bin einverstanden, dass meine Daten für die Arbeitsvermittlung verwendet werden (LPD/RGPD).</label>
+          <!-- 1) Pflicht: Einwilligung Nutzung (bereits vorhanden) -->
+          <label class="policy">
+            <input type="checkbox" name="consent" required />
+            Ich bin einverstanden, dass meine Daten für die Arbeitsvermittlung verwendet werden (LPD/RGPD).
+          </label>
+
+          <!-- 2) NEU: Pflicht – ich habe die Richtlinie gelesen -->
+          <label class="policy">
+            <input type="checkbox" id="c-policy-read" required />
+            Ich habe die <a href="/jobs/privacy-data-processing-de.html" target="_blank" rel="noopener">Datenschutzrichtlinie</a> gelesen und stimme zu.
+          </label>
 
           <div class="actions">
-            <button class="btn" type="submit" id="c-submit">Anmeldung senden</button>
+            <button class="btn" type="submit" id="c-submit" disabled>Anmeldung senden</button>
             <a class="btn outline" href="index-de.html">Abbrechen</a>
           </div>
         </form>
@@ -208,10 +221,20 @@
 
           <p id="e-help" class="hint sr-only">Nach dem Absenden werden Sie zur Bestätigungsseite weitergeleitet.</p>
 
-          <label><input type="checkbox" name="consent" required /> Ich bin einverstanden, dass meine Daten genutzt werden, um auf den Arbeitgeberbereich zuzugreifen und Kandidat/innen zu kontaktieren.</label>
+          <!-- 1) Pflicht: Einwilligung Nutzung -->
+          <label class="policy">
+            <input type="checkbox" name="consent" required />
+            Ich bin einverstanden, dass meine Daten genutzt werden, um auf den Arbeitgeberbereich zuzugreifen und Kandidat/innen zu kontaktieren.
+          </label>
+
+          <!-- 2) NEU: Pflicht – ich habe die Richtlinie gelesen -->
+          <label class="policy">
+            <input type="checkbox" id="e-policy-read" required />
+            Ich habe die <a href="/jobs/privacy-data-processing-de.html" target="_blank" rel="noopener">Datenschutzrichtlinie</a> gelesen und stimme zu.
+          </label>
 
           <div class="actions">
-            <button class="btn" type="submit" id="e-submit">Anmeldung senden</button>
+            <button class="btn" type="submit" id="e-submit" disabled>Anmeldung senden</button>
             <a class="btn outline" href="index-de.html">Abbrechen</a>
           </div>
         </form>
@@ -219,7 +242,7 @@
     </main>
 
     <footer>
-      <p>&copy; 2025 Sophira Verein | Basel, Schweiz</p>
+      <p>&copy; 2025 Sophira Verein | Basel, Schweiz · <a href="/jobs/privacy-data-processing-de.html">Datenschutz</a></p>
     </footer>
   </div>
 
@@ -236,7 +259,7 @@
     tabC.addEventListener('click', ()=>selectTab('c'));
     tabE.addEventListener('click', ()=>selectTab('e'));
 
-    // Local keys (keep French role tokens for consistency)
+    // Local keys (keep FR tokens for consistency across pages)
     const KEY_REG='sophira_job_reg';
     const KEY_ROLE='sophira_job_role';
 
@@ -299,16 +322,31 @@
       saveThrottle(map);
     }
 
-    function wireForm(role, formId, emailId, errorId, submitBtnId){
+    function wireForm(role, formId, emailId, errorId, submitBtnId, policyCheckboxId){
       const form = document.getElementById(formId);
       if(!form) return;
       const emailInput = document.getElementById(emailId);
       const errorBox = document.getElementById(errorId);
       const submitBtn = document.getElementById(submitBtnId);
+      const policyCbx = document.getElementById(policyCheckboxId);
+
+      // Disable submit until policy read checkbox is ticked
+      function syncPolicy(){
+        if(submitBtn) submitBtn.disabled = !policyCbx?.checked;
+      }
+      policyCbx?.addEventListener('change', syncPolicy);
+      syncPolicy();
 
       form.addEventListener('submit', (e)=>{
         errorBox.textContent = '';
         const email = (emailInput?.value || '').trim().toLowerCase();
+
+        if(!policyCbx?.checked){
+          e.preventDefault();
+          alert('Bitte die Datenschutzrichtlinie lesen und zustimmen.');
+          return;
+        }
+
         if(!canSubmit(role, email)){
           e.preventDefault();
           errorBox.textContent = "Diese E-Mail wurde kuerzlich verwendet. Bitte in etwa 10 Minuten erneut versuchen.";
@@ -320,8 +358,8 @@
       });
     }
 
-    wireForm('candidat', 'sophira-candidat', 'c-email', 'c-email-error', 'c-submit');
-    wireForm('employeur', 'sophira-employeur', 'e-email', 'e-email-error', 'e-submit');
+    wireForm('candidat', 'sophira-candidat', 'c-email', 'c-email-error', 'c-submit', 'c-policy-read');
+    wireForm('employeur', 'sophira-employeur', 'e-email', 'e-email-error', 'e-submit', 'e-policy-read');
   </script>
 
   <!-- ====== SHADOW FORMS for Netlify detection ====== -->
