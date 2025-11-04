@@ -63,12 +63,15 @@
     .hint{font-size:.95rem;color:#374151}
     .actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
     .btn{background:var(--brand);color:#fff;border:none;border-radius:10px;padding:.6rem 1rem;font-weight:700;cursor:pointer}
+    .btn[disabled]{opacity:.6; cursor:not-allowed;}
     .btn:hover{background:var(--brand-hover)}
     .btn.outline{background:transparent;color:var(--brand);border:2px solid var(--brand)}
     footer{text-align:center;padding:1rem;margin-top:3rem;background:#ffffffdd}
     @media (max-width:780px){.row{grid-template-columns:1fr}}
     .error{color:#b00020; font-size:.95rem; margin-top:.25rem;}
     .sr-only{position:absolute!important; height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px); white-space:nowrap;}
+    .policy{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:.75rem;margin-top:.6rem}
+    .policy a{font-weight:600}
   </style>
 </head>
 <body>
@@ -99,6 +102,7 @@
 
         <!-- Netlify Forms -->
         <form name="sophira-candidat"
+              id="sophira-candidat"
               method="POST"
               data-netlify="true"
               netlify-honeypot="bot-field"
@@ -155,10 +159,20 @@
             </div>
           </div>
 
-          <label><input type="checkbox" name="consent" required /> J’accepte que mes données soient traitées pour la mise en relation emploi (LPD/RGPD).</label>
+          <!-- 1) Obligatoire : consentement d’usage (déjà présent) -->
+          <label class="policy">
+            <input type="checkbox" name="consent" required />
+            J’accepte que mes données soient traitées pour la mise en relation emploi (LPD/RGPD).
+          </label>
+
+          <!-- 2) NOUVEAU : Obligatoire – j’ai lu la politique -->
+          <label class="policy">
+            <input type="checkbox" id="c-policy-read" required />
+            J’ai lu et j’accepte la <a href="/jobs/privacy-data-processing.html" target="_blank" rel="noopener">Politique de traitement des données</a>.
+          </label>
 
           <div class="actions">
-            <button class="btn" type="submit" id="c-submit">Envoyer mon inscription</button>
+            <button class="btn" type="submit" id="c-submit" disabled>Envoyer mon inscription</button>
             <a class="btn outline" href="index.html">Annuler</a>
           </div>
         </form>
@@ -170,6 +184,7 @@
         <p class="hint">Inscrivez votre organisation. Vous aurez accès à des <strong>fiches anonymisées</strong> de candidats. Pour obtenir un CV complet, contactez-nous depuis la fiche.</p>
 
         <form name="sophira-employeur"
+              id="sophira-employeur"
               method="POST"
               data-netlify="true"
               netlify-honeypot="bot-field"
@@ -209,10 +224,20 @@
 
           <p id="e-help" class="hint sr-only">Après validation, vous serez redirigé vers la page de confirmation.</p>
 
-          <label><input type="checkbox" name="consent" required /> J’accepte l’usage de mes données pour accéder à l’espace employeur et contacter des candidats.</label>
+          <!-- 1) Obligatoire : consentement d’usage -->
+          <label class="policy">
+            <input type="checkbox" name="consent" required />
+            J’accepte l’usage de mes données pour accéder à l’espace employeur et contacter des candidats.
+          </label>
+
+          <!-- 2) NOUVEAU : Obligatoire – j’ai lu la politique -->
+          <label class="policy">
+            <input type="checkbox" id="e-policy-read" required />
+            J’ai lu et j’accepte la <a href="/jobs/privacy-data-processing.html" target="_blank" rel="noopener">Politique de traitement des données</a>.
+          </label>
 
           <div class="actions">
-            <button class="btn" type="submit" id="e-submit">Envoyer mon inscription</button>
+            <button class="btn" type="submit" id="e-submit" disabled>Envoyer mon inscription</button>
             <a class="btn outline" href="index.html">Annuler</a>
           </div>
         </form>
@@ -220,7 +245,7 @@
     </main>
 
     <footer>
-      <p>&copy; 2025 Sophira Association | Basel, Suisse</p>
+      <p>&copy; 2025 Sophira Association | Basel, Suisse · <a href="/jobs/privacy-data-processing.html">Politique de données</a></p>
     </footer>
   </div>
 
@@ -241,7 +266,7 @@
     const KEY_REG='sophira_job_reg';
     const KEY_ROLE='sophira_job_role';
 
-    // Markers (unchanged)
+    // Markers
     document.getElementById('c-submit')?.addEventListener('click', ()=>{
       const email = document.getElementById('c-email')?.value || '';
       localStorage.setItem(KEY_REG, JSON.stringify({email, role:'candidat', ts:Date.now()}));
@@ -253,7 +278,7 @@
       localStorage.setItem(KEY_ROLE,'employeur');
     });
 
-    // CV validation (unchanged)
+    // CV validation
     const cvInput = document.getElementById('c-cv');
     const cvError = document.getElementById('c-cv-error');
     if (cvInput){
@@ -281,9 +306,8 @@
       });
     }
 
-    // ===== Client-side 10-min throttle per email & role (candidat / employeur) =====
+    // ===== Client-side 10-min throttle per email & role =====
     const THROTTLE_MS = 10 * 60 * 1000;
-
     function now(){ return Date.now(); }
     function loadThrottle(){
       try { return JSON.parse(localStorage.getItem('sophira_email_throttle') || '{}'); }
@@ -306,30 +330,44 @@
       saveThrottle(map);
     }
 
-    function wireForm(role, formId, emailId, errorId, submitBtnId){
-      const form = document.forms[formId];
+    function wireForm(role, formId, emailId, errorId, submitBtnId, policyCheckboxId){
+      const form = document.getElementById(formId);
       if(!form) return;
       const emailInput = document.getElementById(emailId);
       const errorBox = document.getElementById(errorId);
       const submitBtn = document.getElementById(submitBtnId);
+      const policyCbx = document.getElementById(policyCheckboxId);
+
+      // Disable submit until policy read checkbox is ticked
+      function syncPolicy(){
+        if(submitBtn) submitBtn.disabled = !policyCbx?.checked;
+      }
+      policyCbx?.addEventListener('change', syncPolicy);
+      syncPolicy();
 
       form.addEventListener('submit', (e)=>{
         errorBox.textContent = '';
         const email = (emailInput?.value || '').trim().toLowerCase();
+
+        if(!policyCbx?.checked){
+          e.preventDefault();
+          alert('Veuillez lire et accepter la politique de traitement des données.');
+          return;
+        }
+
         if(!canSubmit(role, email)){
           e.preventDefault();
           errorBox.textContent = "Cette adresse e-mail a été utilisée récemment. Merci de réessayer dans ~10 minutes.";
           emailInput?.focus();
           return;
         }
-        // Prevent rapid double-clicks and record the attempt
         submitBtn?.setAttribute('disabled','true');
         markSubmitted(role, email);
       });
     }
 
-    wireForm('candidat', 'sophira-candidat', 'c-email', 'c-email-error', 'c-submit');
-    wireForm('employeur', 'sophira-employeur', 'e-email', 'e-email-error', 'e-submit');
+    wireForm('candidat', 'sophira-candidat', 'c-email', 'c-email-error', 'c-submit', 'c-policy-read');
+    wireForm('employeur', 'sophira-employeur', 'e-email', 'e-email-error', 'e-submit', 'e-policy-read');
   </script>
 
   <!-- SHADOW FORMS (unchanged) -->
