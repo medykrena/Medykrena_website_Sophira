@@ -7,6 +7,9 @@
 
   <!-- SEO -->
   <link rel="canonical" href="https://sophira.ch/jobs/talents.html" />
+  <link rel="alternate" hreflang="fr" href="https://sophira.ch/jobs/talents.html" />
+  <link rel="alternate" hreflang="de" href="https://sophira.ch/jobs/talents-de.html" />
+  <link rel="alternate" hreflang="x-default" href="https://sophira.ch/jobs/talents.html" />
   <meta name="robots" content="noindex,follow" />
   <meta name="description" content="Espace employeur : parcourez des fiches anonymisées de talents. Accès réservé aux employeurs inscrits." />
 
@@ -101,7 +104,7 @@
     .chip{ background:var(--chip); border:1px solid #c7d2fe; padding:.25rem .5rem; border-radius:999px; font-size:.85rem; }
     .right{ display:flex; flex-direction:column; align-items:flex-end; gap:.4rem; }
 
-    footer{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:var(--whiteglass); border-top-left-radius:12px; border-top-right-radius:12px; }
+    .count{margin-top:.6rem;color:#4b5563;font-size:.95rem}
   </style>
 </head>
 <body>
@@ -165,6 +168,8 @@
           </div>
         </form>
 
+        <p id="count" class="count" aria-live="polite" hidden></p>
+
         <!-- États -->
         <div id="loading" class="loading" role="status" aria-live="polite" hidden>Chargement des profils…</div>
         <div id="error" class="error" role="alert" hidden>Erreur de chargement. Réessayez plus tard.</div>
@@ -181,11 +186,10 @@
   </div>
 
   <script>
-    // ==== Accès (garde-barrière)
+    // ==== Accès
     const KEY_ROLE = 'sophira_job_role';
     const gate = document.getElementById('gate');
     const board = document.getElementById('board');
-
     function checkAccess(){
       const role = localStorage.getItem(KEY_ROLE);
       const ok = role === 'employeur';
@@ -199,6 +203,7 @@
     const empty  = document.getElementById('empty');
     const loading= document.getElementById('loading');
     const errorB = document.getElementById('error');
+    const count  = document.getElementById('count');
 
     const fDomaine = document.getElementById('f-domaine');
     const fVille   = document.getElementById('f-ville');
@@ -216,8 +221,15 @@
       return (parts[0][0] + parts[1][0]).toUpperCase();
     }
 
+    function updateCount(n){
+      if(n === 0){ count.hidden = true; return; }
+      count.hidden = false;
+      count.textContent = n + (n > 1 ? " profils trouvés" : " profil trouvé");
+    }
+
     function renderCards(list){
       grid.innerHTML = '';
+      updateCount(list?.length || 0);
       if(!list || list.length === 0){
         empty.hidden = false;
         return;
@@ -262,12 +274,11 @@
       const d = (fDomaine.value || '').trim().toLowerCase();
       const v = (fVille.value   || '').trim().toLowerCase();
       const m = (fMots.value    || '').trim().toLowerCase();
-
       const terms = m ? m.split(',').map(s=>s.trim()).filter(Boolean) : [];
 
       const out = TALENTS.filter(t => {
-        if(d && (t.domaine || '').toLowerCase() !== d) return false; // domaine strict
-        if(v && !((t.ville || '').toLowerCase().includes(v))) return false; // ville substring
+        if(d && (t.domaine || '').toLowerCase() !== d) return false;
+        if(v && !((t.ville || '').toLowerCase().includes(v))) return false;
         if(terms.length){
           const comp = (t.competences || []).map(c => (c || '').toLowerCase());
           const ok = terms.every(term => comp.some(c => c.includes(term)));
@@ -285,21 +296,28 @@
       fVille.value = '';
       fMots.value = '';
       renderCards(TALENTS);
+      fDomaine.focus();
     });
 
-    // ==== Chargement depuis la Function (si accès autorisé)
+    // Filtrer en pressant "Enter" dans un champ texte
+    [fVille, fMots].forEach(el => el.addEventListener('keydown', e=>{
+      if(e.key === 'Enter'){ e.preventDefault(); applyFilters(); }
+    }));
+
+    // ==== Chargement depuis la Function
     async function loadTalents(){
-      if(board.hidden) return; // non employeur
+      if(board.hidden) return;
       loading.hidden = false;
       errorB.hidden = true;
+      grid.setAttribute('aria-busy','true');
       grid.innerHTML = '';
       empty.hidden = true;
+      count.hidden = true;
 
       try{
         const res = await fetch('/.netlify/functions/talents', { headers:{ 'accept':'application/json' } });
         if(!res.ok) throw new Error('HTTP '+res.status);
         const data = await res.json();
-        // attendu: [{id, date, domaine, competences[], resume, ville}]
         TALENTS = Array.isArray(data) ? data : [];
         renderCards(TALENTS);
       } catch(err){
@@ -307,10 +325,10 @@
         errorB.hidden = false;
       } finally {
         loading.hidden = true;
+        grid.setAttribute('aria-busy','false');
       }
     }
 
-    // Démarrage
     loadTalents();
   </script>
 </body>
