@@ -5,12 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portail Emploi – Sophira</title>
 
-  <!-- SEO de base -->
+  <!-- SEO -->
   <link rel="canonical" href="https://sophira.ch/jobs/" />
+  <!-- If you have a German page at /jobs/index-de.html, keep these hreflang links -->
+  <link rel="alternate" hreflang="fr" href="https://sophira.ch/jobs/" />
+  <link rel="alternate" hreflang="de" href="https://sophira.ch/jobs/index-de.html" />
+  <link rel="alternate" hreflang="x-default" href="https://sophira.ch/jobs/" />
   <meta name="robots" content="index,follow" />
   <meta name="description" content="Portail Emploi Sophira : espace candidats et employeurs. Inscription requise pour accéder aux talents et aux offres." />
 
-  <!-- Icônes & police -->
+  <!-- Icons & font -->
   <link rel="icon" href="/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -30,7 +34,7 @@
     }
     .overlay{min-height:100vh; background:rgba(255,255,255,.9); display:flex; flex-direction:column;}
 
-    /* NAVBAR (simple, cohérente avec le site) */
+    /* NAVBAR */
     header.navbar{
       position:sticky; top:0; z-index:10; background:var(--whiteglass);
       display:flex; align-items:center; justify-content:space-between; gap:.75rem;
@@ -46,7 +50,7 @@
     .hero h1{ margin:.2rem 0 .6rem; font-size:1.8rem; }
     .muted{ color:var(--muted); }
 
-    /* Gate (verrou) et tableau de bord */
+    /* Gate & dashboard */
     .gate, .dashboard{
       margin-top:1rem; background:#fff; border:1px solid #e5e7eb; border-radius:12px;
       padding:1.2rem; box-shadow:var(--shadow-sm);
@@ -60,7 +64,6 @@
     .btn.outline{ background:transparent; color:var(--brand); border:2px solid var(--brand); }
     .btn.outline:hover{ background:#e8f0fe; }
 
-    /* Cartes d’accès */
     .grid{ display:grid; grid-template-columns:repeat(12,1fr); gap:.9rem; margin-top:.8rem; }
     .card{
       grid-column:span 12; background:#fff; border:1px solid #e5e7eb; border-radius:12px;
@@ -79,12 +82,12 @@
 </head>
 <body>
   <div class="overlay">
-    <header class="navbar">
+    <header class="navbar" role="navigation" aria-label="Navigation principale">
       <a class="brand" href="../index.html">
         <img src="../Logo_sophira.png" alt="Logo Sophira" />
         <strong>Sophira</strong>
       </a>
-      <nav>
+      <nav aria-label="Liens rapides">
         <a class="btn outline" href="inscription.html" aria-label="S'inscrire au portail emploi">Inscription</a>
       </nav>
     </header>
@@ -96,8 +99,8 @@
       </section>
 
       <!-- Vue si NON inscrit -->
-      <section class="gate" id="gate">
-        <h2>Accès restreint</h2>
+      <section class="gate" id="gate" aria-labelledby="gate-title">
+        <h2 id="gate-title">Accès restreint</h2>
         <p class="muted">Vous devez être inscrit pour accéder à cette partie du site.</p>
         <div class="actions">
           <a class="btn" href="inscription.html">S’inscrire maintenant</a>
@@ -106,8 +109,8 @@
       </section>
 
       <!-- Vue si inscrit -->
-      <section class="dashboard" id="dashboard" hidden>
-        <h2>Bienvenue sur votre portail</h2>
+      <section class="dashboard" id="dashboard" hidden aria-labelledby="dash-title">
+        <h2 id="dash-title">Bienvenue sur votre portail</h2>
         <p id="role-text" class="muted" aria-live="polite"></p>
 
         <div class="grid" aria-label="Liens rapides">
@@ -162,18 +165,16 @@
       const { reg, role } = getStored();
 
       if(!reg || !role){
-        // Non inscrit
         gate.hidden = false;
         dashboard.hidden = true;
         return;
       }
 
-      // Inscrit
       gate.hidden = true;
       dashboard.hidden = false;
 
       if(role === 'candidat'){
-        roleText.textContent = "Connecté en tant que candidat. Accédez à votre profil, nous pouvons eventuellement vous mettre en contact avec des employeurs .";
+        roleText.textContent = "Connecté en tant que candidat. Accédez à votre profil ; nous pouvons vous mettre en contact avec des employeurs.";
         blockC.hidden = false;
         blockE.hidden = true;
       } else if(role === 'employeur'){
@@ -191,11 +192,9 @@
       localStorage.removeItem(KEY_REG);
       localStorage.removeItem(KEY_ROLE);
       render();
-      // On remonte la page au besoin
       document.getElementById('main')?.scrollIntoView({behavior:'smooth'});
     });
 
-    // Au chargement
     render();
   </script>
 </body>
