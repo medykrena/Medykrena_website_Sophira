@@ -6,6 +6,9 @@
   <title>Talente (Arbeitgeber) – Sophira Job-Portal</title>
 
   <link rel="canonical" href="https://sophira.ch/jobs/talents-de.html" />
+  <link rel="alternate" hreflang="de" href="https://sophira.ch/jobs/talents-de.html" />
+  <link rel="alternate" hreflang="fr" href="https://sophira.ch/jobs/talents.html" />
+  <link rel="alternate" hreflang="x-default" href="https://sophira.ch/jobs/talents-de.html" />
   <meta name="robots" content="noindex,follow" />
   <meta name="description" content="Arbeitgeberbereich: anonymisierte Talente durchsuchen. Zugang nur für angemeldete Arbeitgeber." />
 
@@ -83,7 +86,9 @@
     .chips{ display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.35rem; }
     .chip{ background:var(--chip); border:1px solid #c7d2fe; padding:.25rem .5rem; border-radius:999px; font-size:.85rem; }
     .right{ display:flex; flex-direction:column; align-items:flex-end; gap:.4rem; }
+    .date{ font-size:.85rem; color:#64748b; margin-top:.25rem; }
 
+    .error{ margin-top:1rem; color:#b00020; }
     footer{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:var(--whiteglass); border-top-left-radius:12px; border-top-right-radius:12px; }
   </style>
 </head>
@@ -105,15 +110,17 @@
         <p class="muted">Zugang zu <strong>anonymisierten Profilen</strong>. Vollständige Lebensläufe werden nur <strong>auf Anfrage und mit Zustimmung</strong> weitergegeben.</p>
       </section>
 
+      <!-- Zugangskontrolle -->
       <section class="gate" id="gate">
         <h2>Eingeschränkter Zugang</h2>
         <p class="muted">Diese Seite ist nur für angemeldete Arbeitgeber zugänglich.</p>
         <div class="actions">
-          <a class="btn" href="inscription.html">Als Arbeitgeber anmelden</a>
+          <a class="btn" href="inscription-de.html">Als Arbeitgeber anmelden</a>
           <a class="btn outline" href="index-de.html">Zurück zum Portal</a>
         </div>
       </section>
 
+      <!-- Board -->
       <section class="board" id="board" hidden>
         <h2>Talente suchen</h2>
 
@@ -128,6 +135,7 @@
               <option>Tech / Développement</option>
               <option>Marketing / Communication</option>
               <option>Administration / Opérations</option>
+              <option>Autre</option>
             </select>
           </div>
           <div class="field col-4">
@@ -144,6 +152,7 @@
           </div>
         </form>
 
+        <div id="error" class="error" hidden></div>
         <div id="empty" class="empty" hidden>Keine passenden Talente gefunden. Passen Sie die Filter an oder setzen Sie sie zurück.</div>
         <div id="grid" class="grid" aria-live="polite" aria-busy="false"></div>
       </section>
@@ -159,7 +168,6 @@
     const KEY_ROLE = 'sophira_job_role';
     const gate = document.getElementById('gate');
     const board = document.getElementById('board');
-
     function checkAccess(){
       const role = localStorage.getItem(KEY_ROLE);
       const ok = role === 'employeur';
@@ -168,38 +176,48 @@
     }
     checkAccess();
 
-    // Demodaten (wie FR, später DB)
-    const TALENTS = [
-      { id:"T-24001", initials:"AI", ville:"Basel-Stadt", domaine:"Data / IA", competences:["Python","Pandas","SQL","Tableau"], resume:"Junior Data Analyst, Dashboards & Datenbereinigung.", consent_cv:false },
-      { id:"T-24002", initials:"BM", ville:"Genf", domaine:"Tech / Développement", competences:["HTML","CSS","JavaScript","Git"], resume:"Junior Frontend-Entwickler, statische Sites & Accessibility.", consent_cv:false },
-      { id:"T-24003", initials:"CL", ville:"Waadt", domaine:"Administration / Opérations", competences:["Excel","ERP","Support N1"], resume:"Breites Administrationsprofil, 1st-Level-Support & Koordination.", consent_cv:false },
-      { id:"T-24004", initials:"DN", ville:"Zürich", domaine:"Énergie verte", competences:["PV","BIM","AutoCAD"], resume:"Projektassistenz Solarenergie, Planaktualisierung & Nachverfolgung.", consent_cv:false },
-      { id:"T-24005", initials:"EP", ville:"Neuenburg", domaine:"Marketing / Communication", competences:["SEO","Redaktion","Analytics"], resume:"Junior Online-Marketing, Inhalte & Onpage-Optimierung.", consent_cv:false },
-      { id:"T-24006", initials:"FS", ville:"Basel-Landschaft", domaine:"Santé digitale", competences:["Patientendaten","Datenqualität","Support"], resume:"Support für Klinikteams, Datenqualitätsverbesserung.", consent_cv:false }
-    ];
-
+    // DOM refs
     const grid = document.getElementById('grid');
     const empty = document.getElementById('empty');
+    const errorBox = document.getElementById('error');
+    const fDomaine = document.getElementById('f-domaine');
+    const fVille = document.getElementById('f-ville');
+    const fMots = document.getElementById('f-mots');
+    const btnFiltrer = document.getElementById('btn-filtrer');
+    const btnReset = document.getElementById('btn-reset');
+
+    let TALENTS = []; // will load from API
 
     function renderCards(list){
       grid.innerHTML = '';
-      if(!list || list.length === 0){ empty.hidden = false; return; }
+      if(!list || list.length === 0){
+        empty.hidden = false;
+        return;
+      }
       empty.hidden = true;
 
       list.forEach(t => {
+        const initials = (t.id || 'XX').slice(0,2).toUpperCase();
+        const dom = t.domaine || '—';
+        const ville = t.ville || '—';
+        const skills = Array.isArray(t.competences) ? t.competences : [];
+        const resume = t.bio || '—';
+        const date = t.date || '';
+
         const card = document.createElement('article');
         card.className = 'card';
         card.setAttribute('data-id', t.id);
 
         card.innerHTML = `
-          <div class="avatar" aria-hidden="true">${t.initials}</div>
+          <div class="avatar" aria-hidden="true">${initials}</div>
           <div class="meta">
-            <h3>${t.domaine} · <span style="font-weight:600">${t.initials}</span> <small style="font-weight:400;color:#6b7280">(${t.id})</small></h3>
-            <div class="row"><strong>Ort:</strong> ${t.ville}</div>
-            <div class="row"><strong>Kurzprofil:</strong> ${t.resume}</div>
+            <h3>${dom} · <span style="font-weight:600">${initials}</span> <small style="font-weight:400;color:#6b7280">(${t.id})</small></h3>
+            <div class="row"><strong>Ort:</strong> ${ville}</div>
+            <div class="row"><strong>Kurzprofil:</strong> ${resume}</div>
             <div class="chips" aria-label="Kompetenzen">
-              ${t.competences.map(c=>`<span class="chip">${c}</span>`).join('')}
+              ${skills.map(c=>`<span class="chip">${c}</span>`).join('')}
             </div>
+            ${date ? `<div class="date">Eingang: ${date}</div>` : ''}
           </div>
           <div class="right">
             <button class="btn small outline" data-action="contact">CV anfordern</button>
@@ -215,12 +233,6 @@
       });
     }
 
-    const fDomaine = document.getElementById('f-domaine');
-    const fVille = document.getElementById('f-ville');
-    const fMots = document.getElementById('f-mots');
-    const btnFiltrer = document.getElementById('btn-filtrer');
-    const btnReset = document.getElementById('btn-reset');
-
     function applyFilters(){
       const d = (fDomaine.value || '').trim().toLowerCase();
       const v = (fVille.value || '').trim().toLowerCase();
@@ -228,11 +240,14 @@
       const terms = m ? m.split(',').map(s=>s.trim()).filter(Boolean) : [];
 
       const out = TALENTS.filter(t => {
-        if(d && t.domaine.toLowerCase() !== d) return false;
-        if(v && !t.ville.toLowerCase().includes(v)) return false;
+        const domaine = (t.domaine || '').toLowerCase();
+        const ville = (t.ville || '').toLowerCase();
+        const comps = Array.isArray(t.competences) ? t.competences.map(c=>String(c).toLowerCase()) : [];
+
+        if(d && domaine !== d) return false;
+        if(v && !ville.includes(v)) return false;
         if(terms.length){
-          const comp = t.competences.map(c=>c.toLowerCase());
-          const ok = terms.every(term => comp.some(c => c.includes(term)));
+          const ok = terms.every(term => comps.some(c => c.includes(term)));
           if(!ok) return false;
         }
         return true;
@@ -249,7 +264,29 @@
       renderCards(TALENTS);
     });
 
-    if(!board.hidden){ renderCards(TALENTS); }
+    async function loadTalents(){
+      if(board.hidden) return; // not allowed
+      try{
+        grid.setAttribute('aria-busy','true');
+        errorBox.hidden = true;
+        empty.hidden = true;
+
+        const res = await fetch('/.netlify/functions/talents', { headers: { 'Accept':'application/json' } });
+        if(!res.ok){
+          throw new Error('Fehler beim Laden der Talente');
+        }
+        const data = await res.json();
+        TALENTS = Array.isArray(data) ? data : [];
+        renderCards(TALENTS);
+      } catch(err){
+        errorBox.textContent = 'Es ist ein Fehler aufgetreten. Bitte später erneut versuchen.';
+        errorBox.hidden = false;
+      } finally {
+        grid.setAttribute('aria-busy','false');
+      }
+    }
+
+    if(!board.hidden){ loadTalents(); }
   </script>
 </body>
 </html>
