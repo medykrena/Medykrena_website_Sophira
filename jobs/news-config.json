@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "description": "Sophira blog auto-news filter (FR+DE). Only keep articles that match >=3 keywords in the same language.",
+  "min_keyword_matches": 3,
+  "max_age_days": 21,
+  "dedupe_window_hours": 72,
+  "normalize": {
+    "lowercase": true,
+    "strip_punctuation": true
+  },
+  "languages": {
+    "fr": {
+      "keywords": [
+        "automatisation",
+        "ai",
+        "data",
+        "emploi",
+        "job",
+        "crise",
+        "renvoi",
+        "licenciement",
+        "robotisation",
+        "transformation numérique",
+        "reconversion",
+        "productivité",
+        "marché du travail",
+        "risque d'automatisation"
+      ],
+      "sources": [
+        {"name": "RTS Info – Économie", "lang": "fr", "type": "website", "url": "https://www.rts.ch/info/economie/"},
+        {"name": "RTS Info – Sciences/Tech", "lang": "fr", "type": "website", "url": "https://www.rts.ch/info/sciences-tech/"},
+        {"name": "Le Temps – Économie", "lang": "fr", "type": "website", "url": "https://www.letemps.ch/economie"},
+        {"name": "Le Temps – Explorations IA", "lang": "fr", "type": "website", "url": "https://www.letemps.ch/explorations"},
+        {"name": "Le Monde – Économie", "lang": "fr", "type": "website", "url": "https://www.lemonde.fr/economie/"},
+        {"name": "Les Echos – Tech & Médias", "lang": "fr", "type": "website", "url": "https://www.lesechos.fr/tech-medias/"}
+      ],
+      "seed_urls": [
+        "https://www.rts.ch/info/economie/2025/article/le-chomage-grimpe-aux-etats-unis-la-creation-d-emplois-ralentit-28989927.html",
+        "https://www.rts.ch/info/sciences-tech/2025/article/ia-generative-les-emplois-feminins-3-fois-plus-menaces-que-les-masculins-28895927.html",
+        "https://www.letemps.ch/explorations/ia-qu-a-m-expliquer/podcast-le-travail-humain-invisible-de-l-automatisation-dans-l-ia"
+      ]
+    },
+    "de": {
+      "keywords": [
+        "automatisierung",
+        "ki",
+        "daten",
+        "beschäftigung",
+        "job",
+        "krise",
+        "entlassung",
+        "verdrängung",
+        "umschulung",
+        "digitalisierung",
+        "produktivität",
+        "rationalisierung",
+        "arbeitsmarkt",
+        "stellenabbau"
+      ],
+      "sources": [
+        {"name": "SRF News – Digital", "lang": "de", "type": "website", "url": "https://www.srf.ch/digital"},
+        {"name": "SRF News – Wirtschaft", "lang": "de", "type": "website", "url": "https://www.srf.ch/wirtschaft"},
+        {"name": "Der Bund – Wirtschaft", "lang": "de", "type": "website", "url": "https://www.derbund.ch/wirtschaft"},
+        {"name": "NZZ – Digital", "lang": "de", "type": "website", "url": "https://www.nzz.ch/digital"},
+        {"name": "Handelszeitung", "lang": "de", "type": "website", "url": "https://www.handelszeitung.ch/"},
+        {"name": "Tages-Anzeiger – Wirtschaft", "lang": "de", "type": "website", "url": "https://www.tagesanzeiger.ch/wirtschaft.html"}
+      ],
+      "seed_urls": [
+        "https://www.derbund.ch/ai-bedrohung-oder-chance-fuer-arbeitsplaetze-554966491616"
+      ]
+    }
+  },
+  "global_exclude": {
+    "patterns": [
+      "sport",
+      "people",
+      "recette",
+      "voyage",
+      "unterhaltung",
+      "gesellschaft (klatsch)"
+    ]
+  },
+  "scoring": {
+    "title_weight": 2.0,
+    "summary_weight": 1.2,
+    "body_weight": 1.0,
+    "bonus_terms": [
+      "étude",
+      "rapport",
+      "analyse",
+      "studie",
+      "bericht",
+      "analyse"
+    ],
+    "bonus": 0.5
+  },
+  "output": {
+    "max_items_per_run": 12,
+    "fields": ["title", "url", "published_at", "source", "lang", "matched_keywords", "excerpt"],
+    "sort": "published_at_desc"
+  }
+}
