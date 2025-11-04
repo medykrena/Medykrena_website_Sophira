@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Talente (Arbeitgeber) – Sophira Job-Portal</title>
 
+  <!-- SEO -->
   <link rel="canonical" href="https://sophira.ch/jobs/talents-de.html" />
   <link rel="alternate" hreflang="de" href="https://sophira.ch/jobs/talents-de.html" />
   <link rel="alternate" hreflang="fr" href="https://sophira.ch/jobs/talents.html" />
-  <link rel="alternate" hreflang="x-default" href="https://sophira.ch/jobs/talents-de.html" />
+  <link rel="alternate" hreflang="x-default" href="https://sophira.ch/jobs/talents.html" />
   <meta name="robots" content="noindex,follow" />
   <meta name="description" content="Arbeitgeberbereich: anonymisierte Talente durchsuchen. Zugang nur für angemeldete Arbeitgeber." />
 
@@ -25,8 +26,10 @@
       --container:1040px; --chip:#eef2ff;
     }
     *{box-sizing:border-box}
-    body{ margin:0; font-family:'Inter',sans-serif; color:var(--text);
-      background:url('../mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center/cover fixed; }
+    body{
+      margin:0; font-family:'Inter',sans-serif; color:var(--text);
+      background:url('../mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center/cover fixed;
+    }
     .overlay{min-height:100vh; background:rgba(255,255,255,.9); display:flex; flex-direction:column;}
 
     header.navbar{
@@ -62,14 +65,17 @@
     .filters label{ display:block; margin-bottom:.25rem; font-weight:600; }
     .filters select, .filters input{ width:100%; padding:.55rem .7rem; border:1px solid #d1d5db; border-radius:8px; }
     .filters .actions{ grid-column:span 12; }
-
     @media(min-width:760px){
       .filters .field.col-4{ grid-column:span 4; }
       .filters .field.col-8{ grid-column:span 8; }
       .filters .actions{ grid-column:span 12; justify-content:flex-end; }
     }
 
+    .count{ margin-top:.6rem; color:#4b5563; font-size:.95rem; }
+
     .empty{ margin-top:1rem; padding:1rem; border:1px dashed #cbd5e1; border-radius:10px; background:#f8fafc; color:#475569; }
+    .loading{ margin-top:1rem; padding:1rem; background:#fff; border:1px solid #e5e7eb; border-radius:12px; box-shadow:var(--shadow-sm); }
+    .error{ margin-top:1rem; padding:1rem; background:#fff0f0; border:1px solid #f5c2c2; border-radius:12px; color:#9b1c1c; }
 
     .grid{ display:grid; grid-template-columns:repeat(12,1fr); gap:.9rem; margin-top:.9rem; }
     .card{
@@ -88,7 +94,6 @@
     .right{ display:flex; flex-direction:column; align-items:flex-end; gap:.4rem; }
     .date{ font-size:.85rem; color:#64748b; margin-top:.25rem; }
 
-    .error{ margin-top:1rem; color:#b00020; }
     footer{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:var(--whiteglass); border-top-left-radius:12px; border-top-right-radius:12px; }
   </style>
 </head>
@@ -152,7 +157,10 @@
           </div>
         </form>
 
-        <div id="error" class="error" hidden></div>
+        <p id="count" class="count" aria-live="polite" hidden></p>
+
+        <div id="loading" class="loading" role="status" aria-live="polite" hidden>Profile werden geladen…</div>
+        <div id="error" class="error" role="alert" hidden></div>
         <div id="empty" class="empty" hidden>Keine passenden Talente gefunden. Passen Sie die Filter an oder setzen Sie sie zurück.</div>
         <div id="grid" class="grid" aria-live="polite" aria-busy="false"></div>
       </section>
@@ -180,6 +188,9 @@
     const grid = document.getElementById('grid');
     const empty = document.getElementById('empty');
     const errorBox = document.getElementById('error');
+    const loading = document.getElementById('loading');
+    const count = document.getElementById('count');
+
     const fDomaine = document.getElementById('f-domaine');
     const fVille = document.getElementById('f-ville');
     const fMots = document.getElementById('f-mots');
@@ -188,8 +199,15 @@
 
     let TALENTS = []; // will load from API
 
+    function updateCount(n){
+      if(!n){ count.hidden = true; return; }
+      count.hidden = false;
+      count.textContent = n + (n > 1 ? " Profile gefunden" : " Profil gefunden");
+    }
+
     function renderCards(list){
       grid.innerHTML = '';
+      updateCount(list?.length || 0);
       if(!list || list.length === 0){
         empty.hidden = false;
         return;
@@ -201,7 +219,7 @@
         const dom = t.domaine || '—';
         const ville = t.ville || '—';
         const skills = Array.isArray(t.competences) ? t.competences : [];
-        const resume = t.bio || '—';
+        const resume = t.bio || t.resume || '—';
         const date = t.date || '';
 
         const card = document.createElement('article');
@@ -262,19 +280,25 @@
       fVille.value = '';
       fMots.value = '';
       renderCards(TALENTS);
+      fDomaine.focus();
     });
+
+    // Enter zum Filtern aus Textfeldern
+    [fVille, fMots].forEach(el => el.addEventListener('keydown', e=>{
+      if(e.key === 'Enter'){ e.preventDefault(); applyFilters(); }
+    }));
 
     async function loadTalents(){
       if(board.hidden) return; // not allowed
       try{
         grid.setAttribute('aria-busy','true');
+        loading.hidden = false;
         errorBox.hidden = true;
         empty.hidden = true;
+        count.hidden = true;
 
         const res = await fetch('/.netlify/functions/talents', { headers: { 'Accept':'application/json' } });
-        if(!res.ok){
-          throw new Error('Fehler beim Laden der Talente');
-        }
+        if(!res.ok){ throw new Error('Fehler beim Laden der Talente'); }
         const data = await res.json();
         TALENTS = Array.isArray(data) ? data : [];
         renderCards(TALENTS);
@@ -283,6 +307,7 @@
         errorBox.hidden = false;
       } finally {
         grid.setAttribute('aria-busy','false');
+        loading.hidden = true;
       }
     }
 
