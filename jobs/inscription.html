@@ -79,7 +79,7 @@
         <strong>Sophira</strong>
       </a>
       <nav aria-label="Liens secondaires">
-        <a href="index.html" rel="noopener">Portail Emplois</a>
+        <a href="index.html">Portail Emplois</a>
       </nav>
     </header>
 
@@ -116,15 +116,16 @@
           <div class="row">
             <div>
               <label for="c-nom">Nom et prénom</label>
-              <input id="c-nom" name="nom" required maxlength="120" autocomplete="name" />
+              <input id="c-nom" name="nom" required maxlength="120" />
             </div>
             <div>
               <label for="c-email">E-mail</label>
               <input id="c-email" name="email" type="email" autocomplete="email" required maxlength="160" />
+              <div id="c-email-error" class="error" aria-live="polite"></div>
             </div>
             <div>
               <label for="c-ville">Ville / Canton</label>
-              <input id="c-ville" name="ville" placeholder="ex: Bâle-Ville" maxlength="120" autocomplete="address-level2" />
+              <input id="c-ville" name="ville" placeholder="ex: Bâle-Ville" maxlength="120" />
             </div>
             <div>
               <label for="c-domaine">Domaine visé</label>
@@ -158,11 +159,8 @@
 
           <div class="actions">
             <button class="btn" type="submit" id="c-submit">Envoyer mon inscription</button>
-            <a class="btn outline" href="index.html" rel="noopener">Annuler</a>
+            <a class="btn outline" href="index.html">Annuler</a>
           </div>
-
-          <!-- client-side duplicate email message -->
-          <div id="dup-error-c" class="error" aria-live="polite"></div>
         </form>
       </section>
 
@@ -184,19 +182,20 @@
           <div class="row">
             <div>
               <label for="e-societe">Organisation / Société</label>
-              <input id="e-societe" name="societe" required maxlength="160" autocomplete="organization" />
+              <input id="e-societe" name="societe" required maxlength="160" />
             </div>
             <div>
               <label for="e-contact">Personne de contact</label>
-              <input id="e-contact" name="contact" required maxlength="120" autocomplete="name" />
+              <input id="e-contact" name="contact" required maxlength="120" />
             </div>
             <div>
               <label for="e-email">E-mail</label>
               <input id="e-email" name="email" type="email" autocomplete="email" required maxlength="160" />
+              <div id="e-email-error" class="error" aria-live="polite"></div>
             </div>
             <div>
               <label for="e-ville">Ville / Canton</label>
-              <input id="e-ville" name="ville" maxlength="120" autocomplete="address-level2" />
+              <input id="e-ville" name="ville" maxlength="120" />
             </div>
             <div class="full">
               <label for="e-besoins">Profils recherchés (mots-clés)</label>
@@ -214,11 +213,8 @@
 
           <div class="actions">
             <button class="btn" type="submit" id="e-submit">Envoyer mon inscription</button>
-            <a class="btn outline" href="index.html" rel="noopener">Annuler</a>
+            <a class="btn outline" href="index.html">Annuler</a>
           </div>
-
-          <!-- client-side duplicate email message -->
-          <div id="dup-error-e" class="error" aria-live="polite"></div>
         </form>
       </section>
     </main>
@@ -229,28 +225,23 @@
   </div>
 
   <script>
-    // Onglets accessibles
+    // Onglets
     const tabC = document.getElementById('tab-c');
     const tabE = document.getElementById('tab-e');
     const panC = document.getElementById('panel-c');
     const panE = document.getElementById('panel-e');
-
     function selectTab(which){
-      if(which==='c'){
-        tabC.setAttribute('aria-selected','true');
-        tabE.setAttribute('aria-selected','false');
-        panC.hidden=false; panE.hidden=true;
-      } else {
-        tabC.setAttribute('aria-selected','false');
-        tabE.setAttribute('aria-selected','true');
-        panC.hidden=true; panE.hidden=false;
-      }
+      if(which==='c'){ tabC.setAttribute('aria-selected','true'); tabE.setAttribute('aria-selected','false'); panC.hidden=false; panE.hidden=true; }
+      else { tabC.setAttribute('aria-selected','false'); tabE.setAttribute('aria-selected','true'); panC.hidden=true; panE.hidden=false; }
     }
     tabC.addEventListener('click', ()=>selectTab('c'));
     tabE.addEventListener('click', ()=>selectTab('e'));
 
-    // Marqueurs locaux (facilitent l'accès ensuite)
-    const KEY_REG='sophira_job_reg'; const KEY_ROLE='sophira_job_role';
+    // Local keys
+    const KEY_REG='sophira_job_reg';
+    const KEY_ROLE='sophira_job_role';
+
+    // Markers (unchanged)
     document.getElementById('c-submit')?.addEventListener('click', ()=>{
       const email = document.getElementById('c-email')?.value || '';
       localStorage.setItem(KEY_REG, JSON.stringify({email, role:'candidat', ts:Date.now()}));
@@ -262,7 +253,7 @@
       localStorage.setItem(KEY_ROLE,'employeur');
     });
 
-    // Validation légère du fichier CV (taille <= 5 Mo, type)
+    // CV validation (unchanged)
     const cvInput = document.getElementById('c-cv');
     const cvError = document.getElementById('c-cv-error');
     if (cvInput){
@@ -270,7 +261,7 @@
         cvError.textContent = '';
         const f = cvInput.files && cvInput.files[0];
         if (!f) return;
-        const max = 5 * 1024 * 1024; // 5MB
+        const max = 5 * 1024 * 1024;
         const okTypes = ['application/pdf','application/msword',
                          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
                          'application/vnd.oasis.opendocument.text'];
@@ -290,50 +281,58 @@
       });
     }
 
-    // === Simple client-side duplicate email guard + submit lock ===
-    const DUP_MINUTES = 10; // window to block same email
-    const STORAGE_KEY = 'sophira_last_submit_email';
+    // ===== Client-side 10-min throttle per email & role (candidat / employeur) =====
+    const THROTTLE_MS = 10 * 60 * 1000;
 
-    function wireDuplicateGuard(formName, emailId, errorId, submitBtnId){
-      const form = document.querySelector(`form[name="${formName}"]`);
+    function now(){ return Date.now(); }
+    function loadThrottle(){
+      try { return JSON.parse(localStorage.getItem('sophira_email_throttle') || '{}'); }
+      catch { return {}; }
+    }
+    function saveThrottle(obj){
+      localStorage.setItem('sophira_email_throttle', JSON.stringify(obj));
+    }
+    function canSubmit(role, email){
+      if(!email) return true;
+      const key = role + '::' + email.trim().toLowerCase();
+      const map = loadThrottle();
+      const last = map[key] || 0;
+      return (now() - last) > THROTTLE_MS;
+    }
+    function markSubmitted(role, email){
+      const key = role + '::' + (email||'').trim().toLowerCase();
+      const map = loadThrottle();
+      map[key] = now();
+      saveThrottle(map);
+    }
+
+    function wireForm(role, formId, emailId, errorId, submitBtnId){
+      const form = document.forms[formId];
+      if(!form) return;
       const emailInput = document.getElementById(emailId);
-      const submitBtn = document.getElementById(submitBtnId);
       const errorBox = document.getElementById(errorId);
-      if(!form || !emailInput || !errorBox) return;
+      const submitBtn = document.getElementById(submitBtnId);
 
       form.addEventListener('submit', (e)=>{
-        // reset UI
         errorBox.textContent = '';
-        // prevent double-click during send
-        if (submitBtn) submitBtn.disabled = true;
-
-        const email = (emailInput.value || '').trim().toLowerCase();
-        if(!email) { if (submitBtn) submitBtn.disabled = false; return; }
-
-        try{
-          const prev = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
-          const now = Date.now();
-          if(prev && prev.email === email && (now - prev.ts) < DUP_MINUTES*60000){
-            e.preventDefault();
-            const left = Math.ceil((DUP_MINUTES*60000 - (now - prev.ts))/60000);
-            errorBox.textContent = `Cette adresse e-mail a déjà été utilisée récemment. Réessayez dans ~${left} minute(s).`;
-            errorBox.scrollIntoView({behavior:'smooth', block:'center'});
-            if (submitBtn) submitBtn.disabled = false;
-            return;
-          }
-          // Remember this submit attempt
-          localStorage.setItem(STORAGE_KEY, JSON.stringify({ email, ts: now }));
-        }catch(_){
-          // if storage fails, just let it submit
+        const email = (emailInput?.value || '').trim().toLowerCase();
+        if(!canSubmit(role, email)){
+          e.preventDefault();
+          errorBox.textContent = "Cette adresse e-mail a été utilisée récemment. Merci de réessayer dans ~10 minutes.";
+          emailInput?.focus();
+          return;
         }
+        // Prevent rapid double-clicks and record the attempt
+        submitBtn?.setAttribute('disabled','true');
+        markSubmitted(role, email);
       });
     }
 
-    wireDuplicateGuard('sophira-candidat','c-email','dup-error-c','c-submit');
-    wireDuplicateGuard('sophira-employeur','e-email','dup-error-e','e-submit');
+    wireForm('candidat', 'sophira-candidat', 'c-email', 'c-email-error', 'c-submit');
+    wireForm('employeur', 'sophira-employeur', 'e-email', 'e-email-error', 'e-submit');
   </script>
 
-  <!-- ====== SHADOW FORMS (cachés) pour forcer la détection Netlify au build ====== -->
+  <!-- SHADOW FORMS (unchanged) -->
   <form name="sophira-candidat" netlify netlify-honeypot="bot-field" hidden enctype="multipart/form-data" action="/jobs/merci.html">
     <input type="hidden" name="form-name" value="sophira-candidat" />
     <input type="text" name="nom" />
@@ -356,6 +355,5 @@
     <textarea name="message"></textarea>
     <button type="submit">Send</button>
   </form>
-  <!-- =========================================================================== -->
 </body>
 </html>
