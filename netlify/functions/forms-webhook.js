@@ -81,6 +81,26 @@ exports.handler = async (event) => {
       const competences = data.competences || null;
       const bio         = data.bio || null;
 
+      // --- Server-side recent duplicate guard (10 minutes)
+      const emailNorm = (email || '').trim().toLowerCase();
+      if (emailNorm) {
+        const dup = await sql/*sql*/`
+          SELECT 1
+          FROM public.candidats
+          WHERE deleted_at IS NULL
+            AND lower(email) = ${emailNorm}
+            AND submitted_at > NOW() - INTERVAL '10 minutes'
+          LIMIT 1
+        `;
+        if (dup.length) {
+          return responseJSON(409, {
+            ok: false,
+            error: 'duplicate_recent',
+            message: 'Adresse e-mail déjà utilisée récemment (candidat).',
+          });
+        }
+      }
+
       await sql/*sql*/`
         INSERT INTO public.candidats
           (nom, email, ville, domaine, competences, bio, netlify_id, netlify_form, file_key, file_url, raw_payload)
@@ -97,7 +117,7 @@ exports.handler = async (event) => {
 
       await sql/*sql*/`
         INSERT INTO public.audit_logs (source, level, message, context)
-        VALUES ('netlify_forms_webhook','info','candidat_inserted', ${sql.json({ netlifyId, email, fileKey, fileUrl })})
+        VALUES ('netlify_forms_webhook','info','candidat_inserted', ${sql.json({ netlifyId, email: emailNorm, fileKey, fileUrl })})
       `;
 
       return responseJSON(200, { ok: true, type: 'candidat', netlifyId });
@@ -111,6 +131,25 @@ exports.handler = async (event) => {
       const besoins = data.besoins || null;
       const message = data.message || null;
 
+      // --- Server-side recent duplicate guard (10 minutes)
+      const emailNorm = (email || '').trim().toLowerCase();
+      if (emailNorm) {
+        const dup = await sql/*sql*/`
+          SELECT 1
+          FROM public.employeurs
+          WHERE lower(email) = ${emailNorm}
+            AND submitted_at > NOW() - INTERVAL '10 minutes'
+          LIMIT 1
+        `;
+        if (dup.length) {
+          return responseJSON(409, {
+            ok: false,
+            error: 'duplicate_recent',
+            message: 'Adresse e-mail déjà utilisée récemment (employeur).',
+          });
+        }
+      }
+
       await sql/*sql*/`
         INSERT INTO public.employeurs
           (societe, contact, email, ville, besoins, message, netlify_id, netlify_form, raw_payload)
@@ -120,7 +159,7 @@ exports.handler = async (event) => {
 
       await sql/*sql*/`
         INSERT INTO public.audit_logs (source, level, message, context)
-        VALUES ('netlify_forms_webhook','info','employeur_inserted', ${sql.json({ netlifyId, email })})
+        VALUES ('netlify_forms_webhook','info','employeur_inserted', ${sql.json({ netlifyId, email: emailNorm })})
       `;
 
       return responseJSON(200, { ok: true, type: 'employeur', netlifyId });
