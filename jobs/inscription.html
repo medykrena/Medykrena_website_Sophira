@@ -22,8 +22,11 @@
   <link rel="canonical" href="https://sophira.ch/jobs/inscription.html" />
   <meta name="robots" content="noindex,follow" />
   <meta name="description" content="Inscription au Portail Emploi Sophira : candidats et employeurs. Envoi sécurisé des informations et des CV (PDF, DOC…)." />
+  <link rel="alternate" hreflang="fr" href="https://sophira.ch/jobs/inscription.html" />
+  <link rel="alternate" hreflang="de" href="https://sophira.ch/jobs/inscription-de.html" />
+  <link rel="alternate" hreflang="x-default" href="https://sophira.ch/jobs/inscription.html" />
 
-  <!-- Icônes -->
+  <!-- Icons -->
   <meta name="theme-color" content="#1a73e8" />
   <link rel="icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -64,6 +67,8 @@
     .btn.outline{background:transparent;color:var(--brand);border:2px solid var(--brand)}
     footer{text-align:center;padding:1rem;margin-top:3rem;background:#ffffffdd}
     @media (max-width:780px){.row{grid-template-columns:1fr}}
+    .error{color:#b00020; font-size:.95rem; margin-top:.25rem;}
+    .sr-only{position:absolute!important; height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px); white-space:nowrap;}
   </style>
 </head>
 <body>
@@ -98,7 +103,8 @@
               data-netlify="true"
               netlify-honeypot="bot-field"
               enctype="multipart/form-data"
-              action="/jobs/merci.html">
+              action="/jobs/merci.html"
+              aria-describedby="c-help">
           <!-- Champs requis pour Netlify -->
           <input type="hidden" name="form-name" value="sophira-candidat" />
           <input type="hidden" name="subject" value="CANDIDAT – Portail Emplois Sophira" />
@@ -110,15 +116,15 @@
           <div class="row">
             <div>
               <label for="c-nom">Nom et prénom</label>
-              <input id="c-nom" name="nom" required />
+              <input id="c-nom" name="nom" required maxlength="120" />
             </div>
             <div>
               <label for="c-email">E-mail</label>
-              <input id="c-email" name="email" type="email" autocomplete="email" required />
+              <input id="c-email" name="email" type="email" autocomplete="email" required maxlength="160" />
             </div>
             <div>
               <label for="c-ville">Ville / Canton</label>
-              <input id="c-ville" name="ville" placeholder="ex: Bâle-Ville" />
+              <input id="c-ville" name="ville" placeholder="ex: Bâle-Ville" maxlength="120" />
             </div>
             <div>
               <label for="c-domaine">Domaine visé</label>
@@ -134,15 +140,17 @@
             </div>
             <div class="full">
               <label for="c-competences">Compétences principales</label>
-              <input id="c-competences" name="competences" placeholder="mots-clés séparés par des virgules" />
+              <input id="c-competences" name="competences" placeholder="mots-clés séparés par des virgules" maxlength="300" />
             </div>
             <div class="full">
               <label for="c-bio">Résumé de profil</label>
-              <textarea id="c-bio" name="bio" rows="4" placeholder="Quelques lignes sur votre parcours et votre objectif."></textarea>
+              <textarea id="c-bio" name="bio" rows="4" placeholder="Quelques lignes sur votre parcours et votre objectif." maxlength="1200"></textarea>
             </div>
             <div class="full">
               <label for="c-cv">Votre CV (PDF de préférence)</label>
               <input id="c-cv" name="cv" type="file" accept=".pdf,.doc,.docx,.odt" required />
+              <div id="c-cv-error" class="error" aria-live="polite"></div>
+              <p id="c-help" class="hint">Formats acceptés : PDF, DOC, DOCX, ODT. Taille max 5&nbsp;Mo.</p>
             </div>
           </div>
 
@@ -164,7 +172,8 @@
               method="POST"
               data-netlify="true"
               netlify-honeypot="bot-field"
-              action="/jobs/merci.html">
+              action="/jobs/merci.html"
+              aria-describedby="e-help">
           <input type="hidden" name="form-name" value="sophira-employeur" />
           <input type="hidden" name="subject" value="EMPLOYEUR – Portail Emplois Sophira" />
           <p style="display:none" aria-hidden="true"><label>Ne pas remplir: <input name="bot-field" autocomplete="off"></label></p>
@@ -172,29 +181,31 @@
           <div class="row">
             <div>
               <label for="e-societe">Organisation / Société</label>
-              <input id="e-societe" name="societe" required />
+              <input id="e-societe" name="societe" required maxlength="160" />
             </div>
             <div>
               <label for="e-contact">Personne de contact</label>
-              <input id="e-contact" name="contact" required />
+              <input id="e-contact" name="contact" required maxlength="120" />
             </div>
             <div>
               <label for="e-email">E-mail</label>
-              <input id="e-email" name="email" type="email" autocomplete="email" required />
+              <input id="e-email" name="email" type="email" autocomplete="email" required maxlength="160" />
             </div>
             <div>
               <label for="e-ville">Ville / Canton</label>
-              <input id="e-ville" name="ville" />
+              <input id="e-ville" name="ville" maxlength="120" />
             </div>
             <div class="full">
               <label for="e-besoins">Profils recherchés (mots-clés)</label>
-              <input id="e-besoins" name="besoins" placeholder="ex: assistanat admin, data junior, helpdesk N1…" />
+              <input id="e-besoins" name="besoins" placeholder="ex: assistanat admin, data junior, helpdesk N1…" maxlength="300" />
             </div>
             <div class="full">
               <label for="e-message">Message / précisions</label>
-              <textarea id="e-message" name="message" rows="3"></textarea>
+              <textarea id="e-message" name="message" rows="3" maxlength="1200"></textarea>
             </div>
           </div>
+
+          <p id="e-help" class="hint sr-only">Après validation, vous serez redirigé vers la page de confirmation.</p>
 
           <label><input type="checkbox" name="consent" required /> J’accepte l’usage de mes données pour accéder à l’espace employeur et contacter des candidats.</label>
 
@@ -244,6 +255,35 @@
       localStorage.setItem(KEY_REG, JSON.stringify({email, role:'employeur', ts:Date.now()}));
       localStorage.setItem(KEY_ROLE,'employeur');
     });
+
+    // Validation légère du fichier CV (taille <= 5 Mo, type)
+    const cvInput = document.getElementById('c-cv');
+    const cvError = document.getElementById('c-cv-error');
+    if (cvInput){
+      cvInput.addEventListener('change', ()=>{
+        cvError.textContent = '';
+        const f = cvInput.files && cvInput.files[0];
+        if (!f) return;
+        const max = 5 * 1024 * 1024; // 5MB
+        const okTypes = ['application/pdf','application/msword',
+                         'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                         'application/vnd.oasis.opendocument.text'];
+        if (f.size > max){
+          cvError.textContent = 'Fichier trop volumineux (max 5 Mo).';
+          cvInput.value = '';
+          return;
+        }
+        if (!okTypes.includes(f.type)){
+          // Certains navigateurs ne renseignent pas toujours type; on reste souple
+          const name = f.name.toLowerCase();
+          const extOk = name.endsWith('.pdf') || name.endsWith('.doc') || name.endsWith('.docx') || name.endsWith('.odt');
+          if (!extOk){
+            cvError.textContent = 'Format non reconnu. Utilisez PDF, DOC, DOCX ou ODT.';
+            cvInput.value = '';
+          }
+        }
+      });
+    }
   </script>
 
   <!-- ====== SHADOW FORMS (cachés) pour forcer la détection Netlify au build ====== -->
