@@ -79,7 +79,7 @@
         <strong>Sophira</strong>
       </a>
       <nav aria-label="Liens secondaires">
-        <a href="index.html">Portail Emplois</a>
+        <a href="index.html" rel="noopener">Portail Emplois</a>
       </nav>
     </header>
 
@@ -116,7 +116,7 @@
           <div class="row">
             <div>
               <label for="c-nom">Nom et prénom</label>
-              <input id="c-nom" name="nom" required maxlength="120" />
+              <input id="c-nom" name="nom" required maxlength="120" autocomplete="name" />
             </div>
             <div>
               <label for="c-email">E-mail</label>
@@ -124,7 +124,7 @@
             </div>
             <div>
               <label for="c-ville">Ville / Canton</label>
-              <input id="c-ville" name="ville" placeholder="ex: Bâle-Ville" maxlength="120" />
+              <input id="c-ville" name="ville" placeholder="ex: Bâle-Ville" maxlength="120" autocomplete="address-level2" />
             </div>
             <div>
               <label for="c-domaine">Domaine visé</label>
@@ -158,8 +158,11 @@
 
           <div class="actions">
             <button class="btn" type="submit" id="c-submit">Envoyer mon inscription</button>
-            <a class="btn outline" href="index.html">Annuler</a>
+            <a class="btn outline" href="index.html" rel="noopener">Annuler</a>
           </div>
+
+          <!-- client-side duplicate email message -->
+          <div id="dup-error-c" class="error" aria-live="polite"></div>
         </form>
       </section>
 
@@ -181,11 +184,11 @@
           <div class="row">
             <div>
               <label for="e-societe">Organisation / Société</label>
-              <input id="e-societe" name="societe" required maxlength="160" />
+              <input id="e-societe" name="societe" required maxlength="160" autocomplete="organization" />
             </div>
             <div>
               <label for="e-contact">Personne de contact</label>
-              <input id="e-contact" name="contact" required maxlength="120" />
+              <input id="e-contact" name="contact" required maxlength="120" autocomplete="name" />
             </div>
             <div>
               <label for="e-email">E-mail</label>
@@ -193,7 +196,7 @@
             </div>
             <div>
               <label for="e-ville">Ville / Canton</label>
-              <input id="e-ville" name="ville" maxlength="120" />
+              <input id="e-ville" name="ville" maxlength="120" autocomplete="address-level2" />
             </div>
             <div class="full">
               <label for="e-besoins">Profils recherchés (mots-clés)</label>
@@ -211,8 +214,11 @@
 
           <div class="actions">
             <button class="btn" type="submit" id="e-submit">Envoyer mon inscription</button>
-            <a class="btn outline" href="index.html">Annuler</a>
+            <a class="btn outline" href="index.html" rel="noopener">Annuler</a>
           </div>
+
+          <!-- client-side duplicate email message -->
+          <div id="dup-error-e" class="error" aria-live="polite"></div>
         </form>
       </section>
     </main>
@@ -274,7 +280,6 @@
           return;
         }
         if (!okTypes.includes(f.type)){
-          // Certains navigateurs ne renseignent pas toujours type; on reste souple
           const name = f.name.toLowerCase();
           const extOk = name.endsWith('.pdf') || name.endsWith('.doc') || name.endsWith('.docx') || name.endsWith('.odt');
           if (!extOk){
@@ -284,6 +289,48 @@
         }
       });
     }
+
+    // === Simple client-side duplicate email guard + submit lock ===
+    const DUP_MINUTES = 10; // window to block same email
+    const STORAGE_KEY = 'sophira_last_submit_email';
+
+    function wireDuplicateGuard(formName, emailId, errorId, submitBtnId){
+      const form = document.querySelector(`form[name="${formName}"]`);
+      const emailInput = document.getElementById(emailId);
+      const submitBtn = document.getElementById(submitBtnId);
+      const errorBox = document.getElementById(errorId);
+      if(!form || !emailInput || !errorBox) return;
+
+      form.addEventListener('submit', (e)=>{
+        // reset UI
+        errorBox.textContent = '';
+        // prevent double-click during send
+        if (submitBtn) submitBtn.disabled = true;
+
+        const email = (emailInput.value || '').trim().toLowerCase();
+        if(!email) { if (submitBtn) submitBtn.disabled = false; return; }
+
+        try{
+          const prev = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+          const now = Date.now();
+          if(prev && prev.email === email && (now - prev.ts) < DUP_MINUTES*60000){
+            e.preventDefault();
+            const left = Math.ceil((DUP_MINUTES*60000 - (now - prev.ts))/60000);
+            errorBox.textContent = `Cette adresse e-mail a déjà été utilisée récemment. Réessayez dans ~${left} minute(s).`;
+            errorBox.scrollIntoView({behavior:'smooth', block:'center'});
+            if (submitBtn) submitBtn.disabled = false;
+            return;
+          }
+          // Remember this submit attempt
+          localStorage.setItem(STORAGE_KEY, JSON.stringify({ email, ts: now }));
+        }catch(_){
+          // if storage fails, just let it submit
+        }
+      });
+    }
+
+    wireDuplicateGuard('sophira-candidat','c-email','dup-error-c','c-submit');
+    wireDuplicateGuard('sophira-employeur','e-email','dup-error-e','e-submit');
   </script>
 
   <!-- ====== SHADOW FORMS (cachés) pour forcer la détection Netlify au build ====== -->
