@@ -8,22 +8,16 @@
   <!-- SEO -->
   <link rel="canonical" href="https://sophira.ch/blog.html" />
   <meta name="robots" content="index,follow" />
-  <meta name="description" content="Le blog de Sophira : actualités, analyses et coulisses de notre initiative de reconversion professionnelle en Suisse." />
+  <meta name="description" content="Le blog bilingue (FR/DE) de Sophira : actualités, analyses et coulisses de notre initiative en Suisse." />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Blog – Sophira" />
-  <meta property="og:description" content="Découvrez les actualités, analyses et coulisses de Sophira, association pour la reconversion en Suisse." />
+  <meta property="og:description" content="Actualités et analyses de Sophira (FR/DE)." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sophira.ch/blog.html" />
   <meta property="og:image" content="https://sophira.ch/Logo_sophira.png" />
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Blog – Sophira" />
-  <meta name="twitter:description" content="Suivez les articles et histoires de Sophira autour de la reconversion en Suisse." />
-  <meta name="twitter:image" content="https://sophira.ch/Logo_sophira.png" />
-
-  <!-- Police -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -34,16 +28,15 @@
       --muted: #4a5568;
       --brand: #1a73e8;
       --brand-hover: #155ab6;
-      --chip: #eef2ff;
       --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
       --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
       --radius: 12px;
       --radius-sm: 8px;
       --container: 1100px;
+      --panel: #edf2f7cc;
     }
     body{
-      margin:0;
-      font-family:'Inter',sans-serif;
+      margin:0; font-family:'Inter',sans-serif;
       background:url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center center fixed;
       background-size:cover; color:var(--text);
     }
@@ -53,83 +46,62 @@
     header.navbar{
       position:sticky; top:0; z-index:20;
       display:flex; align-items:center; justify-content:space-between; gap:.75rem;
-      padding:.8rem 1rem;
-      background:#ffffffdd; box-shadow:var(--shadow-sm); backdrop-filter:blur(6px);
+      padding:.8rem 1rem; background:#ffffffdd; box-shadow:var(--shadow-sm); backdrop-filter:blur(6px);
     }
-    .brand{ display:flex; align-items:center; gap:.6rem; text-decoration:none; }
+    .brand{ display:flex; align-items:center; gap:.6rem; text-decoration:none; color:inherit; }
     .brand img{ height:55px; }
-    .brand h1{ margin:0; font-size:1.7rem; font-weight:600; color:#1a202c; }
+    .brand h1{ margin:0; font-size:1.6rem; font-weight:600; color:#1a202c; }
 
     nav.primary{ display:flex; gap:1.1rem; }
     nav.primary a{ text-decoration:none; color:var(--text); font-weight:500; }
-    nav.primary a:hover{ color:#1e88e5; }
-
-    .burger{ display:none; background:none; border:none; padding:.4rem .6rem; }
-    .burger svg{ width:28px; height:28px; }
-
-    .mobile-panel{ display:none; position:fixed; inset:64px 0 0 0; background:#ffffffdd; backdrop-filter:blur(6px); padding:1rem; }
-    .mobile-links{ display:flex; flex-direction:column; gap:.8rem; }
-    .mobile-links a{ text-decoration:none; color:var(--text); font-weight:600; padding:.7rem 0; border-bottom:1px solid #ddd; }
-    .mobile-links a:last-child{ border-bottom:none; }
-    .hidden{ display:none !important; }
-
+    nav.primary a:hover{ color:var(--brand); }
     .container{ flex:1; max-width:var(--container); margin:2rem auto; padding:0 1rem; }
 
-    /* Fil d’Ariane */
-    nav.breadcrumbs{ font-size:.9rem; margin:1rem 0; }
-    nav.breadcrumbs ol{ list-style:none; display:flex; gap:.5rem; padding:0; margin:0; }
-    nav.breadcrumbs li{ color:var(--muted); }
-    nav.breadcrumbs a{ text-decoration:none; color:var(--brand); }
+    /* HERO + language toggle */
+    .hero{ background:var(--panel); padding:1.6rem; border-radius:var(--radius); text-align:center; box-shadow:var(--shadow-md); }
+    .hero h2{ font-size:2rem; margin:.2rem 0 .6rem; }
+    .subtitle{ font-size:1.05rem; color:var(--muted); margin:0 auto; max-width:800px; }
+    .lang-tabs{ margin-top:1rem; display:inline-flex; gap:.5rem; background:#fff; padding:.25rem; border:1px solid #e5e7eb; border-radius:999px; }
+    .lang-tabs button{
+      border:0; background:transparent; padding:.45rem .9rem; border-radius:999px; cursor:pointer; font-weight:700; color:#1f2937;
+    }
+    .lang-tabs button[aria-selected="true"]{ background:var(--brand); color:#fff; }
 
-    /* HERO */
-    .hero{ background:#edf2f7cc; padding:2.4rem 1.4rem; border-radius:var(--radius); text-align:center; box-shadow:var(--shadow-md); }
-    .hero h2{ font-size:2.1rem; margin:.2rem 0 .6rem; }
-    .subtitle{ font-size:1.08rem; color:var(--muted); margin:0 auto; max-width:800px; }
+    /* SECTION blocks */
+    .section{ margin-top:1.2rem; background:#fff; border:1px solid #e5e7eb; border-radius:var(--radius); box-shadow:var(--shadow-sm); padding:1rem; }
+    .section h3{ margin:.2rem 0 .6rem; }
 
-    /* POSTS */
-    .posts{ margin-top:2rem; display:grid; grid-template-columns:repeat(12,1fr); gap:1.2rem; }
-    .post{ grid-column:span 12; background:var(--card-bg); border-radius:var(--radius); box-shadow:var(--shadow-sm); padding:1.2rem; }
-    .post h3{ margin:.1rem 0 .35rem; font-size:1.25rem; }
-    .meta{ font-size:.92rem; color:var(--muted); margin-bottom:.6rem; }
-    .excerpt{ color:#374151; line-height:1.55; margin:.4rem 0 .8rem; }
-    .readmore{ display:inline-block; font-weight:600; text-decoration:none; color:#fff; background:var(--brand); padding:.5rem .9rem; border-radius:var(--radius-sm); }
-    .readmore:hover{ background:var(--brand-hover); }
+    /* POSTS grid (expandable) */
+    .posts{ margin-top:.6rem; display:grid; grid-template-columns:repeat(12,1fr); gap:1.0rem; }
+    .post{ grid-column:span 12; background:var(--card-bg); border-radius:var(--radius); box-shadow:var(--shadow-sm); padding:1.0rem; }
+    .post header{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:.6rem; }
+    .post h4{ margin:0; font-size:1.15rem; }
+    .meta{ font-size:.9rem; color:var(--muted); }
+    .toggle{
+      border:0; background:var(--brand); color:#fff; border-radius:8px; padding:.4rem .7rem; cursor:pointer; font-weight:600;
+    }
+    .toggle:hover{ background:var(--brand-hover); }
+    .content{ margin-top:.7rem; display:none; line-height:1.55; color:#374151; }
+    .content[aria-hidden="false"]{ display:block; }
+    .anchor{ color:var(--brand); text-decoration:none; font-size:.9rem; }
 
     /* AUTO-NEWS */
-    .news-block{ margin-top:2rem; background:#fff; border:1px solid #e5e7eb; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
-    .news-header{ display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1rem 1.2rem; border-bottom:1px solid #e5e7eb; }
-    .news-header h3{ margin:0; font-size:1.25rem; }
-    .tabs{ display:flex; gap:.5rem; flex-wrap:wrap; }
-    .tab-btn{ background:#fff; border:1px solid #d1d5db; border-radius:999px; padding:.4rem .8rem; font-weight:700; cursor:pointer; }
-    .tab-btn[aria-selected="true"]{ background:var(--brand); color:#fff; border-color:var(--brand); }
+    .news-list{ display:grid; grid-template-columns:repeat(12,1fr); gap:.9rem; margin-top:.8rem; }
+    .news{ grid-column:span 12; background:#fff; border:1px solid #e5e7eb; border-radius:10px; padding:.9rem; }
+    .news h5{ margin:.1rem 0 .35rem; font-size:1.05rem; }
+    .news .src{ font-size:.86rem; color:#64748b; }
+    .btn{ display:inline-block; text-decoration:none; font-weight:700; border-radius:8px; padding:.45rem .8rem; background:var(--brand); color:#fff; }
+    .btn:hover{ background:var(--brand-hover); }
 
-    .news-body{ padding:1rem 1.2rem; }
-    .news-grid{ display:grid; grid-template-columns:repeat(12,1fr); gap:1rem; }
-    .news-card{ grid-column:span 12; background:#ffffff; border:1px solid #e5e7eb; border-radius:10px; padding:1rem; }
-    .news-card h4{ margin:.1rem 0 .35rem; font-size:1.05rem; }
-    .news-meta{ font-size:.9rem; color:#64748b; margin-bottom:.45rem; }
-    .chips{ display:flex; flex-wrap:wrap; gap:.3rem; margin-top:.35rem; }
-    .chip{ background:var(--chip); border:1px solid #c7d2fe; padding:.2rem .45rem; border-radius:999px; font-size:.8rem; }
-    .extlink{ display:inline-block; margin-top:.5rem; text-decoration:none; font-weight:600; color:#fff; background:var(--brand); padding:.4rem .75rem; border-radius:8px; }
-    .extlink:hover{ background:var(--brand-hover); }
+    footer.site{ text-align:center; padding:1rem; margin:2rem 0; font-size:.95rem; color:#4a4a4a; background:#ffffffdd; border-top-left-radius:var(--radius); border-top-right-radius:var(--radius); }
 
-    .news-empty, .news-error, .news-loading{
-      margin:1rem 0; padding:1rem; border-radius:10px;
-    }
-    .news-empty{ border:1px dashed #cbd5e1; background:#f8fafc; color:#475569; }
-    .news-error{ border:1px solid #f5c2c2; background:#fff0f0; color:#9b1c1c; }
-    .news-loading{ border:1px solid #e5e7eb; background:#fff; color:#374151; }
-
-    footer.site{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:#ffffffdd; border-top-left-radius:var(--radius); border-top-right-radius:var(--radius); }
-
-    @media (min-width:680px){ .post{ grid-column:span 6; } .news-card{ grid-column:span 6; } }
-    @media (min-width:1000px){ .post{ grid-column:span 4; } .news-card{ grid-column:span 4; } }
-    @media (max-width:880px){ nav.primary{ display:none; } .burger{ display:inline-flex; } }
+    @media (min-width:700px){ .post{ grid-column:span 6; } .news{ grid-column:span 6; } }
+    @media (min-width:1000px){ .post{ grid-column:span 4; } .news{ grid-column:span 4; } }
   </style>
 </head>
 <body>
   <div class="overlay">
-    <!-- NAVIGATION -->
+    <!-- NAV -->
     <header class="navbar" role="navigation" aria-label="Navigation principale">
       <a class="brand" href="index.html">
         <img src="Logo_sophira.png" alt="Logo Sophira" />
@@ -144,290 +116,401 @@
         <a href="blog.html" aria-current="page">Blog</a>
         <a href="contact.html">Contact</a>
       </nav>
-      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-controls="menu-mobile" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
     </header>
 
-    <!-- MENU MOBILE -->
-    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Menu mobile">
-      <div class="mobile-links">
-        <a href="index.html">Accueil</a>
-        <a href="team.html">Équipe</a>
-        <a href="project.html">Projet social</a>
-        <a href="dashboard.html">Tableau de bord</a>
-        <a href="blog.html" aria-current="page">Blog</a>
-        <a href="contact.html">Contact</a>
-      </div>
-    </div>
-
-    <!-- FIL D’ARIANE -->
-    <nav class="breadcrumbs container" aria-label="Fil d’Ariane">
-      <ol>
-        <li><a href="index.html">Accueil</a></li>
-        <li>›</li>
-        <li>Blog</li>
-      </ol>
-    </nav>
-
-    <!-- CONTENU -->
     <main class="container">
       <section class="hero">
-        <h2>Le blog Sophira</h2>
-        <p class="subtitle">Actualités, analyses et coulisses de notre mission : créer des ponts vers les métiers d’avenir.</p>
+        <h2>Le blog Sophira · Der Sophira-Blog</h2>
+        <p class="subtitle">Actualités et analyses FR/DE — Un seul endroit pour tout lire.</p>
+        <div class="lang-tabs" role="tablist" aria-label="Langue / Sprache">
+          <button id="tab-fr" role="tab" aria-controls="panel-fr" aria-selected="true">FR</button>
+          <button id="tab-de" role="tab" aria-controls="panel-de" aria-selected="false">DE</button>
+        </div>
       </section>
 
-      <!-- Articles internes -->
-      <section class="posts" aria-label="Articles du blog">
-        <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
-          <h3 itemprop="headline">Lancement de l’initiative Sophira</h3>
-          <p class="meta">Publié le <time datetime="2025-08-02" itemprop="datePublished">2 août 2025</time></p>
-          <p class="excerpt" itemprop="description">Sophira voit le jour pour accompagner les adultes dans leur reconversion professionnelle, en réponse aux pénuries de talents en Suisse et aux transitions numérique et écologique.</p>
-          <a class="readmore" href="article6.html" itemprop="url">Lire la suite</a>
-        </article>
+      <!-- ===== FR PANEL ===== -->
+      <section id="panel-fr" class="section" role="tabpanel" aria-labelledby="tab-fr">
+        <h3>Articles (FR)</h3>
+        <div class="posts" id="posts-fr">
 
-        <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
-          <h3 itemprop="headline">Pourquoi les métiers de la data pour des adultes en transition professionnelle&nbsp;?</h3>
-          <p class="meta">Publié le <time datetime="2025-07-25" itemprop="datePublished">25 juillet 2025</time></p>
-          <p class="excerpt" itemprop="description">Les compétences en data science sont très demandées dans la santé, la finance et les énergies renouvelables. Elles ouvrent aux adultes en reconversion des emplois attractifs et facilitent leur adaptation au monde numérique.</p>
-          <a class="readmore" href="article7.html" itemprop="url">Lire la suite</a>
-        </article>
+          <!-- Article 1 -->
+          <article class="post" id="article-1" itemscope itemtype="https://schema.org/BlogPosting">
+            <header>
+              <div>
+                <h4 itemprop="headline">Pourquoi la reconversion professionnelle est essentielle en Suisse</h4>
+                <div class="meta">Publié le <time datetime="2025-08-30" itemprop="datePublished">30 août 2025</time></div>
+              </div>
+              <div>
+                <a class="anchor" href="#article-1">#</a>
+                <button class="toggle" data-target="content-1">Lire</button>
+              </div>
+            </header>
+            <div id="content-1" class="content" aria-hidden="true" itemprop="articleBody">
+              <p>Les carrières ne sont plus linéaires. Avec l’évolution rapide des technologies, le vieillissement démographique et les crises économiques, de nombreuses personnes en Suisse se voient dans l’obligation ou le désir de changer de métier. Comprendre ces mouvements et accompagner les personnes en transition est au cœur de l’action de notre association.</p>
+              <h5>Le paysage de la reconversion en Suisse</h5>
+              <p>La reconversion est souvent perçue comme un choix individuel. Pourtant, elle est avant tout un phénomène social qui exige l’acquisition de nouvelles compétences. Elle peut être volontaire ou forcée par un événement critique (perte d’emploi, maladie, diplôme non reconnu). Le marché suisse reste favorable grâce à l’apprentissage dual et la formation continue.</p>
+              <h5>Les motivations de la reconversion</h5>
+              <p>Sens au travail, obsolescence sectorielle, digitalisation généralisée, montée de l’hybride/ligne. Les secteurs porteurs (informatique, santé, énergies) attirent particulièrement.</p>
+              <h5>Défis et besoins</h5>
+              <p>La reconversion mobilise la famille, les réseaux et les institutions. Elle nécessite bilan de compétences, soutien financier, formation flexible et réseau.</p>
+              <h5>Comment nous agissons</h5>
+              <ul>
+                <li><strong>Bilan et orientation</strong> personnalisés</li>
+                <li><strong>Formations modulaires</strong> en ligne/hybride</li>
+                <li><strong>Accompagnement humain</strong> (pairs, réseautage)</li>
+              </ul>
+              <p><strong>Conclusion :</strong> un passage devenu courant, qui demande un soutien durable et pertinent.</p>
+            </div>
+          </article>
 
-        <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
-          <h3 itemprop="headline">Pourquoi la reconversion professionnelle est essentielle en Suisse</h3>
-          <p class="meta">Publié le <time datetime="2025-08-30" itemprop="datePublished">30 août 2025</time></p>
-          <p class="excerpt" itemprop="description">La reconversion professionnelle est devenue incontournable en Suisse : elle s’inscrit dans des carrières non linéaires et requiert un accompagnement durable…</p>
-          <a class="readmore" href="article1.html" itemprop="url">Lire la suite</a>
-        </article>
+          <!-- Article 2 -->
+          <article class="post" id="article-2" itemscope itemtype="https://schema.org/BlogPosting">
+            <header>
+              <div>
+                <h4 itemprop="headline">Secteurs porteurs et métiers d’avenir en Suisse en 2025</h4>
+                <div class="meta">Publié le <time datetime="2025-08-30" itemprop="datePublished">30 août 2025</time></div>
+              </div>
+              <div>
+                <a class="anchor" href="#article-2">#</a>
+                <button class="toggle" data-target="content-2">Lire</button>
+              </div>
+            </header>
+            <div id="content-2" class="content" aria-hidden="true" itemprop="articleBody">
+              <p>La Suisse affiche un chômage bas mais des pénuries sectorielles. Pour une reconversion durable, viser les secteurs offrant perspectives et salaires attractifs est clé.</p>
+              <h5>Marché sous tension</h5>
+              <p>Digitalisation, démographie et transition écologique créent des besoins. La formation professionnelle reste un pilier.</p>
+              <h5>Santé</h5>
+              <p>Fortes demandes (infirmier·ère·s, auxiliaires…), spécialisations en gériatrie, soins palliatifs, santé communautaire.</p>
+              <h5>Technologies de l’information</h5>
+              <p>Développeur·euse·s, cybersécurité, data — télétravail/hybride courant.</p>
+              <h5>Énergies renouvelables & environnement</h5>
+              <p>Ingénierie, technicien·ne·s solaires, efficacité énergétique, gestion de projets.</p>
+              <h5>Construction & infrastructure</h5>
+              <p>Métiers en tension (maçon, électricien, charpentier), éco-construction.</p>
+              <h5>Finance & services</h5>
+              <p>Patrimoine, compliance, fiscalité — attentes accrues en durabilité.</p>
+              <h5>Compétences recherchées</h5>
+              <p>Techniques + transversales (adaptabilité, gestion de projet, travail d’équipe, leadership, apprentissage continu).</p>
+              <h5>Top 10 (exemples)</h5>
+              <ol>
+                <li>Développeur·euse full-stack</li><li>Infirmier·ère spécialisé·e</li><li>Spécialiste cybersécurité</li>
+                <li>Ingénieur·e énergies renouvelables</li><li>Gestionnaire de patrimoine</li>
+                <li>Technicien·ne solaire</li><li>Data scientist</li><li>Chef·fe de projet construction</li>
+                <li>Médecin généraliste</li><li>Spécialiste compliance</li>
+              </ol>
+              <h5>Se préparer</h5>
+              <p>Formations certifiantes, brevets fédéraux, cours énergie/compliance, formats hybrides.</p>
+            </div>
+          </article>
 
-        <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
-          <h3 itemprop="headline">Secteurs porteurs et métiers d’avenir en Suisse en 2025</h3>
-          <p class="meta">Publié le <time datetime="2025-08-30" itemprop="datePublished">30 août 2025</time></p>
-          <p class="excerpt" itemprop="description">Le marché du travail suisse connaît une pénurie de talents dans la santé, l’IT et l’énergie ; découvrez les opportunités et salaires de ces métiers d’avenir…</p>
-          <a class="readmore" href="article2.html" itemprop="url">Lire la suite</a>
-        </article>
+          <!-- Article 3 -->
+          <article class="post" id="article-3" itemscope itemtype="https://schema.org/BlogPosting">
+            <header>
+              <div>
+                <h4 itemprop="headline">Formations et programmes pour se reconvertir dans l’IT et l’innovation</h4>
+                <div class="meta">Publié le <time datetime="2025-08-30" itemprop="datePublished">30 août 2025</time></div>
+              </div>
+              <div>
+                <a class="anchor" href="#article-3">#</a>
+                <button class="toggle" data-target="content-3">Lire</button>
+              </div>
+            </header>
+            <div id="content-3" class="content" aria-hidden="true" itemprop="articleBody">
+              <p>Les métiers de l’IT, du numérique et de la cybersécurité offrent des perspectives stables. Des parcours existent pour débutants et profils expérimentés.</p>
+              <h5>Pourquoi l’IT ?</h5>
+              <p>Diversité de métiers (dev, cybersécurité, data, gestion de projet), évolutions rapides, formats adaptés aux adultes.</p>
+              <h5>Parcours concrets</h5>
+              <ul>
+                <li><strong>Assistant·e ICT</strong> : ~800 h sur 3–4 semestres, bases réseaux/dev/sécurité/support.</li>
+                <li><strong>Digital Collaboration Specialist</strong> : 2–3 semestres, collaboration numérique, conduite du changement, innovation (brevet fédéral).</li>
+                <li><strong>Cyber 4 Switzerland</strong> : évaluation + e-learning + bootcamp + stage, préparation examen fédéral cybersécurité.</li>
+                <li><strong>Swissmem (industrie)</strong> : reconversion modulaire vers maintenance, montage, mise en service.</li>
+              </ul>
+              <h5>Contexte formation continue</h5>
+              <p>Forte diffusion, formats hybrides, certifications recherchées.</p>
+              <p><strong>Conclusion :</strong> des passerelles concrètes et reconnues pour entrer dans l’IT.</p>
+            </div>
+          </article>
 
-        <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
-          <h3 itemprop="headline">Formations et programmes pour se reconvertir dans l’IT et l’innovation</h3>
-          <p class="meta">Publié le <time datetime="2025-08-30" itemprop="datePublished">30 août 2025</time></p>
-          <p class="excerpt" itemprop="description">Devenez Assistant·e ICT, Digital Collaboration Specialist ou spécialiste en cybersécurité grâce à des programmes accessibles aux adultes en reconversion…</p>
-          <a class="readmore" href="article3.html" itemprop="url">Lire la suite</a>
-        </article>
-      </section>
+          <!-- Article 6 -->
+          <article class="post" id="article-6" itemscope itemtype="https://schema.org/BlogPosting">
+            <header>
+              <div>
+                <h4 itemprop="headline">Lancement de l’initiative Sophira</h4>
+                <div class="meta">Publié le <time datetime="2025-08-02" itemprop="datePublished">2 août 2025</time></div>
+              </div>
+              <div>
+                <a class="anchor" href="#article-6">#</a>
+                <button class="toggle" data-target="content-6">Lire</button>
+              </div>
+            </header>
+            <div id="content-6" class="content" aria-hidden="true" itemprop="articleBody">
+              <p>Sophira est née d’une conviction : chaque adulte doit pouvoir accéder aux métiers d’avenir. Le marché suisse est solide mais connaît des tensions de recrutement (santé, numérique, énergie). Nous voulons agir comme catalyseur d’inclusion et faciliter la reconversion.</p>
+              <h5>Un marché en mutation</h5>
+              <p>Chômage bas mais pénuries fortes dans certains métiers ; besoin de montée en compétences plutôt que d’emplois vacants.</p>
+              <h5>La force de la formation</h5>
+              <p>Formation duale exemplaire, formation continue très répandue ; montée de l’hybride/ligne.</p>
+              <h5>Notre mission</h5>
+              <p>Accompagnement humain, communauté, passerelles avec des entreprises et partenaires de formation.</p>
+              <h5>Participer</h5>
+              <p>Don, bénévolat, mentorat, stages — bâtissons des trajectoires durables.</p>
+            </div>
+          </article>
 
-      <!-- ACTUALITÉS AUTOMATIQUES -->
-      <section class="news-block" aria-labelledby="news-title">
-        <div class="news-header">
-          <h3 id="news-title">Actualités sélectionnées (FR/DE)</h3>
-          <div class="tabs" role="tablist" aria-label="Langue des actualités">
-            <button class="tab-btn" id="tab-fr" role="tab" aria-controls="panel-fr" aria-selected="true">FR</button>
-            <button class="tab-btn" id="tab-de" role="tab" aria-controls="panel-de" aria-selected="false">DE</button>
-          </div>
+          <!-- Article 7 -->
+          <article class="post" id="article-7" itemscope itemtype="https://schema.org/BlogPosting">
+            <header>
+              <div>
+                <h4 itemprop="headline">Pourquoi la science des données pour les adultes en transition ?</h4>
+                <div class="meta">Publié le <time datetime="2025-07-25" itemprop="datePublished">25 juillet 2025</time></div>
+              </div>
+              <div>
+                <a class="anchor" href="#article-7">#</a>
+                <button class="toggle" data-target="content-7">Lire</button>
+              </div>
+            </header>
+            <div id="content-7" class="content" aria-hidden="true" itemprop="articleBody">
+              <p>Dans une économie pilotée par les données et l’IA, les compétences data deviennent essentielles (santé, finance, énergie, administration, commerce, culture). Pour une reconversion, elles ouvrent des métiers porteurs.</p>
+              <h5>Métiers en demande</h5>
+              <p>Développeurs, cybersécurité, data — salaires attractifs ; pénurie de talents.</p>
+              <h5>Apprentissage accessible</h5>
+              <p>Parcours modulaires, certificats reconnus, formats en ligne/hybrides.</p>
+              <h5>Programmes sur mesure</h5>
+              <ul>
+                <li><strong>ICT-Assistant</strong> : ~800 h, entrée pratique dans l’IT.</li>
+                <li><strong>Digital Collaboration Specialist</strong> : conduite du changement (brevet fédéral).</li>
+                <li><strong>Cyber 4 Switzerland</strong> : préparation examen fédéral de cybersécurité.</li>
+                <li><strong>Swissmem</strong> : reconversion pour profils techniques vers l’industrie.</li>
+              </ul>
+              <h5>Pourquoi c’est important</h5>
+              <p>Raisonnement analytique, compétences transférables, contribution à des secteurs utiles socialement.</p>
+              <h5>Se lancer</h5>
+              <p>Commencer par des modules d’introduction ; Sophira peut guider, mettre en relation et conseiller.</p>
+            </div>
+          </article>
+
         </div>
 
-        <div class="news-body">
-          <!-- FR panel -->
-          <div id="panel-fr" role="tabpanel" aria-labelledby="tab-fr">
-            <div id="news-loading-fr" class="news-loading" role="status" aria-live="polite">Chargement des actualités…</div>
-            <div id="news-error-fr" class="news-error" role="alert" hidden>Impossible de charger les actualités pour le moment.</div>
-            <div id="news-empty-fr" class="news-empty" hidden>Aucune actualité récente ne correspond à nos critères.</div>
-            <div id="news-grid-fr" class="news-grid" aria-live="polite"></div>
-          </div>
+        <!-- Auto-news (FR/DE mélangées, triées par date) -->
+        <h3 style="margin-top:1.2rem">Auto-news (FR/DE)</h3>
+        <div id="news" class="news-list" aria-live="polite"></div>
+        <p class="meta">Astuce : créez <code>/jobs/news-feed.json</code> pour alimenter cette section.</p>
+      </section>
 
-          <!-- DE panel -->
-          <div id="panel-de" role="tabpanel" aria-labelledby="tab-de" hidden>
-            <div id="news-loading-de" class="news-loading" role="status" aria-live="polite">Lade Nachrichten…</div>
-            <div id="news-error-de" class="news-error" role="alert" hidden>Nachrichten konnten nicht geladen werden.</div>
-            <div id="news-empty-de" class="news-empty" hidden>Keine passenden aktuellen Meldungen.</div>
-            <div id="news-grid-de" class="news-grid" aria-live="polite"></div>
-          </div>
+      <!-- ===== DE PANEL ===== -->
+      <section id="panel-de" class="section" role="tabpanel" aria-labelledby="tab-de" hidden>
+        <h3>Artikel (DE)</h3>
+        <div class="posts" id="posts-de">
+
+          <!-- Artikel 1 (DE) -->
+          <article class="post" id="artikel-1" itemscope itemtype="https://schema.org/BlogPosting">
+            <header>
+              <div>
+                <h4 itemprop="headline">Warum berufliche Neuorientierung in der Schweiz wichtig ist</h4>
+                <div class="meta">Veröffentlicht am <time datetime="2025-08-30" itemprop="datePublished">30. August 2025</time></div>
+              </div>
+              <div>
+                <a class="anchor" href="#artikel-1">#</a>
+                <button class="toggle" data-target="inhalt-1">Lesen</button>
+              </div>
+            </header>
+            <div id="inhalt-1" class="content" aria-hidden="true" itemprop="articleBody">
+              <p>Laufbahnen sind nicht mehr linear. Technologiewandel, Demografie und Krisen führen dazu, dass viele Menschen den Beruf wechseln wollen oder müssen. Unser Verein begleitet diese Übergänge.</p>
+              <h5>Neuorientierung in der Schweiz</h5>
+              <p>Sie ist ein gesellschaftliches Phänomen: freiwillig oder erzwungen (Jobverlust, Krankheit, nicht anerkannte Diplome). Das duale System und Weiterbildung helfen.</p>
+              <h5>Motivationen</h5>
+              <p>Sinnsuche, Branchenwandel, Digitalisierung; boomende Bereiche: IT, Gesundheit, Energie.</p>
+              <h5>Herausforderungen</h5>
+              <p>Familie, Netzwerke und Institutionen spielen mit. Nötig: Kompetenzbilanz, flexible Ausbildung, Unterstützung, Netzwerk.</p>
+              <h5>Unser Ansatz</h5>
+              <ul>
+                <li><strong>Individuelle Standortbestimmung</strong></li>
+                <li><strong>Modulare Weiterbildungen</strong> online/hybrid</li>
+                <li><strong>Begleitung & Community</strong> (Peers, Networking)</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Artikel 2 (DE) -->
+          <article class="post" id="artikel-2" itemscope itemtype="https://schema.org/BlogPosting">
+            <header>
+              <div>
+                <h4 itemprop="headline">Tragende Sektoren & Zukunftsberufe in der Schweiz 2025</h4>
+                <div class="meta">Veröffentlicht am <time datetime="2025-08-30" itemprop="datePublished">30. August 2025</time></div>
+              </div>
+              <div>
+                <a class="anchor" href="#artikel-2">#</a>
+                <button class="toggle" data-target="inhalt-2">Lesen</button>
+              </div>
+            </header>
+            <div id="inhalt-2" class="content" aria-hidden="true" itemprop="articleBody">
+              <p>Trotz tiefen Arbeitslosenquoten bestehen Engpässe. Für nachhaltige Wechsel sollte man wachsende Sektoren mit guten Perspektiven anpeilen.</p>
+              <h5>Arbeitsmarkt</h5>
+              <p>Digitalisierung, Demografie, Energiewende → neue Bedarfe. Berufliche Bildung bleibt zentral.</p>
+              <h5>Gesundheit</h5>
+              <p>Hoher Bedarf (Pflege, Assistenz), Spezialisierungen (Geriatrie, Palliative Care).</p>
+              <h5>IT</h5>
+              <p>Entwicklung, Cybersecurity, Data — oft Remote/Hybrid.</p>
+              <h5>Erneuerbare & Umwelt</h5>
+              <p>PV-Technik, Effizienz, Projektmanagement.</p>
+              <h5>Bau & Infrastruktur</h5>
+              <p>Maurer, Elektriker, Zimmerer; nachhaltiges Bauen.</p>
+              <h5>Finanzen & Services</h5>
+              <p>Vermögensverwaltung, Compliance, Steuern.</p>
+              <h5>Gefragte Kompetenzen</h5>
+              <p>Technisch + überfachlich (Anpassung, Projekte, Team, Leadership, Lernen).</p>
+            </div>
+          </article>
+
+          <!-- Artikel 3 (DE) -->
+          <article class="post" id="artikel-3" itemscope itemtype="https://schema.org/BlogPosting">
+            <header>
+              <div>
+                <h4 itemprop="headline">Weiterbildungen für den Einstieg in IT & Innovation</h4>
+                <div class="meta">Veröffentlicht am <time datetime="2025-08-30" itemprop="datePublished">30. August 2025</time></div>
+              </div>
+              <div>
+                <a class="anchor" href="#artikel-3">#</a>
+                <button class="toggle" data-target="inhalt-3">Lesen</button>
+              </div>
+            </header>
+            <div id="inhalt-3" class="content" aria-hidden="true" itemprop="articleBody">
+              <p>IT, Digital und Cyber bieten stabile Perspektiven – mit Wegen für Einsteiger:innen und Umsteiger:innen.</p>
+              <h5>Warum IT?</h5>
+              <p>Breites Spektrum (Dev, Cyber, Data, PM), schnelle Entwicklung, erwachsenengerechte Formate.</p>
+              <h5>Programme</h5>
+              <ul>
+                <li><strong>ICT-Assistant</strong>: ~800 Std., Basis in Netzwerken/Entwicklung/Sicherheit/Support.</li>
+                <li><strong>Digital Collaboration Specialist</strong>: 2–3 Semester, digitale Zusammenarbeit & Change (eidg. Abschluss).</li>
+                <li><strong>Cyber 4 Switzerland</strong>: Assessment + E-Learning + Bootcamp + Praktikum, Vorbereitung eidg. Prüfung.</li>
+                <li><strong>Swissmem</strong>: modulare Umschulung für Industrietätigkeiten.</li>
+              </ul>
+              <h5>Weiterbildungskontext</h5>
+              <p>Hohe Teilnahmequote, Hybridformate, anerkannte Zertifikate.</p>
+            </div>
+          </article>
+
+          <!-- Artikel 6 (DE) -->
+          <article class="post" id="artikel-6" itemscope itemtype="https://schema.org/BlogPosting">
+            <header>
+              <div>
+                <h4 itemprop="headline">Start der Sophira-Initiative</h4>
+                <div class="meta">Veröffentlicht am <time datetime="2025-08-02" itemprop="datePublished">2. August 2025</time></div>
+              </div>
+              <div>
+                <a class="anchor" href="#artikel-6">#</a>
+                <button class="toggle" data-target="inhalt-6">Lesen</button>
+              </div>
+            </header>
+            <div id="inhalt-6" class="content" aria-hidden="true" itemprop="articleBody">
+              <p>Sophira verbindet Menschen mit Zukunftsberufen. Schweiz: starker Markt, aber Engpässe in Gesundheit, IT, Energie. Wir fördern inklusive Umschulungen.</p>
+              <h5>Arbeitsmarkt im Wandel</h5>
+              <p>Niedrige Arbeitslosigkeit, dennoch Fachkräftemangel → Fokus auf Kompetenzausbau.</p>
+              <h5>Stärken des Bildungssystems</h5>
+              <p>Duale Bildung, verbreitete Weiterbildung, Zuwachs von Hybrid/Online.</p>
+              <h5>Unsere Mission</h5>
+              <p>Begleitung, Community, Brücken zu Unternehmen & Bildungspartnern.</p>
+              <h5>Machen Sie mit</h5>
+              <p>Spenden, Freiwilligenarbeit, Mentoring, Praktika.</p>
+            </div>
+          </article>
+
+          <!-- Artikel 7 (DE) -->
+          <article class="post" id="artikel-7" itemscope itemtype="https://schema.org/BlogPosting">
+            <header>
+              <div>
+                <h4 itemprop="headline">Warum Data Science für Erwachsene in der Neuorientierung?</h4>
+                <div class="meta">Veröffentlicht am <time datetime="2025-07-25" itemprop="datePublished">25. Juli 2025</time></div>
+              </div>
+              <div>
+                <a class="anchor" href="#artikel-7">#</a>
+                <button class="toggle" data-target="inhalt-7">Lesen</button>
+              </div>
+            </header>
+            <div id="inhalt-7" class="content" aria-hidden="true" itemprop="articleBody">
+              <p>Daten & KI prägen alle Branchen (Gesundheit, Finanzen, Energie, Verwaltung, Handel, Kultur). Data-Kompetenzen eröffnen zukunftsfähige Jobs.</p>
+              <h5>Gefragte Profile</h5>
+              <p>Entwicklung, Cybersecurity, Data – attraktive Löhne, Talentknappheit.</p>
+              <h5>Zugang & Lernen</h5>
+              <p>Modulare Wege, anerkannte Zertifikate, Online/Hybrid.</p>
+              <h5>Programme</h5>
+              <ul>
+                <li><strong>ICT-Assistant</strong> (Basis), <strong>Digital Collaboration Specialist</strong> (Change), <strong>Cyber 4 Switzerland</strong> (eidg. Prüfung), <strong>Swissmem</strong> (Industrie).</li>
+              </ul>
+              <h5>Warum es zählt</h5>
+              <p>Analytisches Denken, übertragbare Skills, gesellschaftlich sinnvolle Anwendungen.</p>
+              <h5>Starten</h5>
+              <p>Mit Einstiegsmodulen beginnen; Sophira berät und vernetzt.</p>
+            </div>
+          </article>
+
         </div>
       </section>
     </main>
 
     <footer class="site">
-      <p>&copy; 2025 Sophira Association | Basel, Suisse · <a href="/jobs/privacy-data-processing.html">Confidentialité</a> · <a href="/jobs/privacy-data-processing-de.html">Datenschutz</a></p>
+      <p>&copy; 2025 Sophira Association | Basel, Suisse</p>
     </footer>
   </div>
 
-  <!-- JSON-LD (Blog) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Blog",
-    "name": "Sophira - Blog",
-    "url": "https://sophira.ch/blog.html",
-    "publisher": {"@type":"Organization","name":"Sophira","logo":{"@type":"ImageObject","url":"https://sophira.ch/Logo_sophira.png"}}
-  }
-  </script>
-
-  <!-- JS menu mobile + Auto-news loader -->
   <script>
-    // ===== Mobile menu
+    // Language tabs
+    const tabFR = document.getElementById('tab-fr');
+    const tabDE = document.getElementById('tab-de');
+    const panelFR = document.getElementById('panel-fr');
+    const panelDE = document.getElementById('panel-de');
+    function selectLang(lang){
+      const fr = lang === 'fr';
+      tabFR.setAttribute('aria-selected', fr ? 'true' : 'false');
+      tabDE.setAttribute('aria-selected', fr ? 'false' : 'true');
+      panelFR.hidden = !fr;
+      panelDE.hidden = fr;
+      localStorage.setItem('sophira_blog_lang', fr ? 'fr' : 'de');
+    }
+    tabFR.addEventListener('click', ()=>selectLang('fr'));
+    tabDE.addEventListener('click', ()=>selectLang('de'));
     (function(){
-      const burger = document.getElementById('burger');
-      const panel  = document.getElementById('menu-mobile');
-      if(!burger || !panel) return;
-      function toggleMenu(){
-        const open = panel.classList.toggle('hidden') === false;
-        burger.setAttribute('aria-expanded', String(open));
-      }
-      burger.addEventListener('click', toggleMenu);
-      document.addEventListener('click', (e)=>{ if(!panel.classList.contains('hidden') && !panel.contains(e.target) && !burger.contains(e.target)){ toggleMenu(); }});
-      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && !panel.classList.contains('hidden')) toggleMenu(); });
+      const saved = localStorage.getItem('sophira_blog_lang');
+      if(saved === 'de') selectLang('de');
     })();
 
-    // ===== Tabs for news
-    (function(){
-      const tabFR = document.getElementById('tab-fr');
-      const tabDE = document.getElementById('tab-de');
-      const panFR = document.getElementById('panel-fr');
-      const panDE = document.getElementById('panel-de');
-      function select(which){
-        const fr = which === 'fr';
-        tabFR.setAttribute('aria-selected', fr ? 'true' : 'false');
-        tabDE.setAttribute('aria-selected', fr ? 'false' : 'true');
-        panFR.hidden = !fr; panDE.hidden = fr;
-      }
-      tabFR.addEventListener('click', ()=>select('fr'));
-      tabDE.addEventListener('click', ()=>select('de'));
-    })();
+    // Expand/collapse
+    document.addEventListener('click', (e)=>{
+      const btn = e.target.closest('.toggle');
+      if(!btn) return;
+      const id = btn.getAttribute('data-target');
+      const el = document.getElementById(id);
+      if(!el) return;
+      const open = el.getAttribute('aria-hidden') === 'false';
+      el.setAttribute('aria-hidden', open ? 'true' : 'false');
+      // Button label stays language-appropriate
+      const isFR = document.getElementById('panel-fr').hidden === false;
+      btn.textContent = open ? (isFR ? 'Lire' : 'Lesen') : (isFR ? 'Fermer' : 'Schliessen');
+    });
 
-    // ===== Auto-news loader
-    (function(){
-      // You can serve your feed at either endpoint; code tries both.
-      const ENDPOINTS = [
-        '/.netlify/functions/news',       // Netlify Function (recommended)
-        '/jobs/news-feed.json'            // Static fallback if you prebuild JSON
-      ];
-
-      const CACHE_KEY = 'sophira_news_cache_v1';
-      const CACHE_TTL_MS = 60 * 60 * 1000; // 1 hour
-
-      const el = {
-        fr: {
-          grid: document.getElementById('news-grid-fr'),
-          load: document.getElementById('news-loading-fr'),
-          err:  document.getElementById('news-error-fr'),
-          empty:document.getElementById('news-empty-fr')
-        },
-        de: {
-          grid: document.getElementById('news-grid-de'),
-          load: document.getElementById('news-loading-de'),
-          err:  document.getElementById('news-error-de'),
-          empty:document.getElementById('news-empty-de')
-        }
-      };
-
-      function readCache(){
-        try{
-          const raw = localStorage.getItem(CACHE_KEY);
-          if(!raw) return null;
-          const obj = JSON.parse(raw);
-          if(Date.now() - (obj.ts || 0) > CACHE_TTL_MS) return null;
-          return obj.data;
-        } catch { return null; }
-      }
-      function writeCache(data){
-        try{
-          localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
-        } catch {}
-      }
-
-      function normalizeItem(it){
-        // Expected fields from function: title, url, published_at, source, lang, matched_keywords, excerpt
-        return {
-          title: it.title || 'Sans titre',
-          url: it.url || '#',
-          published_at: it.published_at || '',
-          source: it.source || '',
-          lang: (it.lang || '').toLowerCase(),
-          matched: Array.isArray(it.matched_keywords) ? it.matched_keywords : [],
-          excerpt: it.excerpt || ''
-        };
-      }
-
-      function render(list, lang){
-        const ref = el[lang];
-        ref.grid.innerHTML = '';
-        ref.load.hidden = true;
-        ref.err.hidden = true;
-
-        const items = list.filter(x => (x.lang||'').toLowerCase() === lang);
-        if(!items.length){
-          ref.empty.hidden = false;
-          return;
-        }
-        ref.empty.hidden = true;
-
-        items.forEach(x => {
-          const card = document.createElement('article');
-          card.className = 'news-card';
-          const dateTxt = x.published_at ? new Date(x.published_at).toLocaleDateString(lang === 'fr' ? 'fr-CH':'de-CH', { year:'numeric', month:'short', day:'numeric' }) : '';
-          const chips = (x.matched||[]).map(k => `<span class="chip">${k}</span>`).join('');
-
-          card.innerHTML = `
-            <h4>${x.title}</h4>
-            <div class="news-meta">${x.source ? x.source+' · ' : ''}${dateTxt}</div>
-            <p class="excerpt">${x.excerpt || ''}</p>
-            <div class="chips" aria-label="Mots-clés">${chips}</div>
-            <a class="extlink" href="${x.url}" target="_blank" rel="noopener noreferrer">Lire l’article</a>
-          `;
-          ref.grid.appendChild(card);
-        });
-      }
-
-      async function fetchFirstWorking(){
-        for(const url of ENDPOINTS){
-          try{
-            const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
-            if(res.ok){
-              const data = await res.json();
-              return Array.isArray(data) ? data.map(normalizeItem) : [];
-            }
-          } catch(e){ /* try next */ }
-        }
-        throw new Error('No endpoint responded');
-      }
-
-      async function init(){
-        // show loaders
-        el.fr.load.hidden = false; el.fr.err.hidden = true; el.fr.empty.hidden = true; el.fr.grid.innerHTML = '';
-        el.de.load.hidden = false; el.de.err.hidden = true; el.de.empty.hidden = true; el.de.grid.innerHTML = '';
-
-        const cached = readCache();
-        if(cached){
-          render(cached, 'fr');
-          render(cached, 'de');
-          // also refresh in background (no blocking)
-          try{
-            const fresh = await fetchFirstWorking();
-            writeCache(fresh);
-            render(fresh, 'fr');
-            render(fresh, 'de');
-          } catch {}
-          return;
-        }
-
-        try{
-          const items = await fetchFirstWorking();
-          writeCache(items);
-          render(items, 'fr');
-          render(items, 'de');
-        } catch(err){
-          el.fr.load.hidden = true; el.de.load.hidden = true;
-          el.fr.err.hidden = false; el.de.err.hidden = false;
-        }
-      }
-
-      init();
-    })();
+    // Auto-news loader (optional): expects /jobs/news-feed.json
+    async function loadNews(){
+      const target = document.getElementById('news');
+      if(!target) return;
+      try{
+        const res = await fetch('/jobs/news-feed.json', { headers: { 'Accept':'application/json' } });
+        if(!res.ok) return; // silently ignore if file absent
+        const data = await res.json();
+        const items = Array.isArray(data) ? data : [];
+        items.sort((a,b)=> new Date(b.published_at) - new Date(a.published_at));
+        target.innerHTML = items.map(item => `
+          <article class="news">
+            <h5>${item.title}</h5>
+            <div class="src">${item.source || ''} · <time datetime="${item.published_at}">${new Date(item.published_at).toLocaleDateString('fr-CH')}</time></div>
+            <p>${item.excerpt || ''}</p>
+            <a class="btn" href="${item.url}" rel="noopener noreferrer nofollow" target="_blank">
+              ${item.lang === 'de' ? 'Artikel lesen' : 'Lire l’article'}
+            </a>
+          </article>
+        `).join('');
+      }catch(e){/* no-op */}
+    }
+    loadNews();
   </script>
-
-  <noscript>
-    <div class="container" style="margin-top:1rem">
-      <div class="news-empty">Activez JavaScript pour afficher les actualités automatiques.</div>
-    </div>
-  </noscript>
 </body>
 </html>
