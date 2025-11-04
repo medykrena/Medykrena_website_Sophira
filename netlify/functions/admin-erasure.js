@@ -1,13 +1,15 @@
 // netlify/functions/admin-erasure.js
-// Effacement (LPD/RGPD): soft-delete un candidat ou supprime ses PII.
-// Auth: ADMIN_TOKEN (header X-Admin-Token ou query ?token=)
+// Erasure (LPD/RGPD): soft-delete a candidate OR wipe PII (mode 'hard').
+// Auth: ADMIN_TOKEN (header X-Admin-Token or query ?token=)
+// POST JSON { id:<uuid>, mode:'soft'|'hard' }
 
 'use strict';
 
 const { neon, neonConfig } = require('@neondatabase/serverless');
 neonConfig.fetchConnectionCache = true;
 
-const connectionString = process.env.NETLIFY_DATABASE_URL || process.env.DATABASE_URL;
+const connectionString =
+  process.env.NETLIFY_DATABASE_URL || process.env.DATABASE_URL || '';
 
 const json = (statusCode, data) => ({
   statusCode,
@@ -23,7 +25,11 @@ const json = (statusCode, data) => ({
 exports.handler = async (event) => {
   try {
     if (event.httpMethod === 'OPTIONS') return json(200, { ok: true });
-    if (event.httpMethod !== 'POST')   return json(405, { error: 'Method Not Allowed' });
+    if (event.httpMethod !== 'POST')    return json(405, { error: 'Method Not Allowed' });
+
+    if (!connectionString) {
+      return json(500, { error: 'Missing NETLIFY_DATABASE_URL (or DATABASE_URL)' });
+    }
 
     const tokenHeader = event.headers['x-admin-token'] || event.headers['X-Admin-Token'];
     const tokenQuery  = event.queryStringParameters?.token || null;
@@ -46,7 +52,7 @@ exports.handler = async (event) => {
 
     let res;
     if (mode === 'hard') {
-      // suppression PII basique + marquage supprimé
+      // Wipe PII + mark deleted
       res = await sql/*sql*/`
         UPDATE public.candidats
            SET nom = NULL,
@@ -62,7 +68,7 @@ exports.handler = async (event) => {
          RETURNING id
       `;
     } else {
-      // soft delete: marque uniquement deleted_at (les listings filtrent dessus)
+      // Soft delete (listings exclude deleted_at IS NOT NULL)
       res = await sql/*sql*/`
         UPDATE public.candidats
            SET deleted_at = NOW()
