@@ -34,6 +34,7 @@
       --muted: #4a5568;
       --brand: #1a73e8;
       --brand-hover: #155ab6;
+      --chip: #eef2ff;
       --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
       --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
       --radius: 12px;
@@ -55,7 +56,7 @@
       padding:.8rem 1rem;
       background:#ffffffdd; box-shadow:var(--shadow-sm); backdrop-filter:blur(6px);
     }
-    .brand{ display:flex; align-items:center; gap:.6rem; }
+    .brand{ display:flex; align-items:center; gap:.6rem; text-decoration:none; }
     .brand img{ height:55px; }
     .brand h1{ margin:0; font-size:1.7rem; font-weight:600; color:#1a202c; }
 
@@ -94,10 +95,35 @@
     .readmore{ display:inline-block; font-weight:600; text-decoration:none; color:#fff; background:var(--brand); padding:.5rem .9rem; border-radius:var(--radius-sm); }
     .readmore:hover{ background:var(--brand-hover); }
 
+    /* AUTO-NEWS */
+    .news-block{ margin-top:2rem; background:#fff; border:1px solid #e5e7eb; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
+    .news-header{ display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1rem 1.2rem; border-bottom:1px solid #e5e7eb; }
+    .news-header h3{ margin:0; font-size:1.25rem; }
+    .tabs{ display:flex; gap:.5rem; flex-wrap:wrap; }
+    .tab-btn{ background:#fff; border:1px solid #d1d5db; border-radius:999px; padding:.4rem .8rem; font-weight:700; cursor:pointer; }
+    .tab-btn[aria-selected="true"]{ background:var(--brand); color:#fff; border-color:var(--brand); }
+
+    .news-body{ padding:1rem 1.2rem; }
+    .news-grid{ display:grid; grid-template-columns:repeat(12,1fr); gap:1rem; }
+    .news-card{ grid-column:span 12; background:#ffffff; border:1px solid #e5e7eb; border-radius:10px; padding:1rem; }
+    .news-card h4{ margin:.1rem 0 .35rem; font-size:1.05rem; }
+    .news-meta{ font-size:.9rem; color:#64748b; margin-bottom:.45rem; }
+    .chips{ display:flex; flex-wrap:wrap; gap:.3rem; margin-top:.35rem; }
+    .chip{ background:var(--chip); border:1px solid #c7d2fe; padding:.2rem .45rem; border-radius:999px; font-size:.8rem; }
+    .extlink{ display:inline-block; margin-top:.5rem; text-decoration:none; font-weight:600; color:#fff; background:var(--brand); padding:.4rem .75rem; border-radius:8px; }
+    .extlink:hover{ background:var(--brand-hover); }
+
+    .news-empty, .news-error, .news-loading{
+      margin:1rem 0; padding:1rem; border-radius:10px;
+    }
+    .news-empty{ border:1px dashed #cbd5e1; background:#f8fafc; color:#475569; }
+    .news-error{ border:1px solid #f5c2c2; background:#fff0f0; color:#9b1c1c; }
+    .news-loading{ border:1px solid #e5e7eb; background:#fff; color:#374151; }
+
     footer.site{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:#ffffffdd; border-top-left-radius:var(--radius); border-top-right-radius:var(--radius); }
 
-    @media (min-width:680px){ .post{ grid-column:span 6; } }
-    @media (min-width:1000px){ .post{ grid-column:span 4; } }
+    @media (min-width:680px){ .post{ grid-column:span 6; } .news-card{ grid-column:span 6; } }
+    @media (min-width:1000px){ .post{ grid-column:span 4; } .news-card{ grid-column:span 4; } }
     @media (max-width:880px){ nav.primary{ display:none; } .burger{ display:inline-flex; } }
   </style>
 </head>
@@ -151,7 +177,7 @@
         <p class="subtitle">Actualités, analyses et coulisses de notre mission : créer des ponts vers les métiers d’avenir.</p>
       </section>
 
-      <!-- Grille d'articles -->
+      <!-- Articles internes -->
       <section class="posts" aria-label="Articles du blog">
         <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
           <h3 itemprop="headline">Lancement de l’initiative Sophira</h3>
@@ -188,15 +214,56 @@
           <a class="readmore" href="article3.html" itemprop="url">Lire la suite</a>
         </article>
       </section>
+
+      <!-- ACTUALITÉS AUTOMATIQUES -->
+      <section class="news-block" aria-labelledby="news-title">
+        <div class="news-header">
+          <h3 id="news-title">Actualités sélectionnées (FR/DE)</h3>
+          <div class="tabs" role="tablist" aria-label="Langue des actualités">
+            <button class="tab-btn" id="tab-fr" role="tab" aria-controls="panel-fr" aria-selected="true">FR</button>
+            <button class="tab-btn" id="tab-de" role="tab" aria-controls="panel-de" aria-selected="false">DE</button>
+          </div>
+        </div>
+
+        <div class="news-body">
+          <!-- FR panel -->
+          <div id="panel-fr" role="tabpanel" aria-labelledby="tab-fr">
+            <div id="news-loading-fr" class="news-loading" role="status" aria-live="polite">Chargement des actualités…</div>
+            <div id="news-error-fr" class="news-error" role="alert" hidden>Impossible de charger les actualités pour le moment.</div>
+            <div id="news-empty-fr" class="news-empty" hidden>Aucune actualité récente ne correspond à nos critères.</div>
+            <div id="news-grid-fr" class="news-grid" aria-live="polite"></div>
+          </div>
+
+          <!-- DE panel -->
+          <div id="panel-de" role="tabpanel" aria-labelledby="tab-de" hidden>
+            <div id="news-loading-de" class="news-loading" role="status" aria-live="polite">Lade Nachrichten…</div>
+            <div id="news-error-de" class="news-error" role="alert" hidden>Nachrichten konnten nicht geladen werden.</div>
+            <div id="news-empty-de" class="news-empty" hidden>Keine passenden aktuellen Meldungen.</div>
+            <div id="news-grid-de" class="news-grid" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="site">
-      <p>&copy; 2025 Sophira Association | Basel, Suisse</p>
+      <p>&copy; 2025 Sophira Association | Basel, Suisse · <a href="/jobs/privacy-data-processing.html">Confidentialité</a> · <a href="/jobs/privacy-data-processing-de.html">Datenschutz</a></p>
     </footer>
   </div>
 
-  <!-- JS menu mobile -->
+  <!-- JSON-LD (Blog) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Sophira - Blog",
+    "url": "https://sophira.ch/blog.html",
+    "publisher": {"@type":"Organization","name":"Sophira","logo":{"@type":"ImageObject","url":"https://sophira.ch/Logo_sophira.png"}}
+  }
+  </script>
+
+  <!-- JS menu mobile + Auto-news loader -->
   <script>
+    // ===== Mobile menu
     (function(){
       const burger = document.getElementById('burger');
       const panel  = document.getElementById('menu-mobile');
@@ -209,6 +276,158 @@
       document.addEventListener('click', (e)=>{ if(!panel.classList.contains('hidden') && !panel.contains(e.target) && !burger.contains(e.target)){ toggleMenu(); }});
       document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && !panel.classList.contains('hidden')) toggleMenu(); });
     })();
+
+    // ===== Tabs for news
+    (function(){
+      const tabFR = document.getElementById('tab-fr');
+      const tabDE = document.getElementById('tab-de');
+      const panFR = document.getElementById('panel-fr');
+      const panDE = document.getElementById('panel-de');
+      function select(which){
+        const fr = which === 'fr';
+        tabFR.setAttribute('aria-selected', fr ? 'true' : 'false');
+        tabDE.setAttribute('aria-selected', fr ? 'false' : 'true');
+        panFR.hidden = !fr; panDE.hidden = fr;
+      }
+      tabFR.addEventListener('click', ()=>select('fr'));
+      tabDE.addEventListener('click', ()=>select('de'));
+    })();
+
+    // ===== Auto-news loader
+    (function(){
+      // You can serve your feed at either endpoint; code tries both.
+      const ENDPOINTS = [
+        '/.netlify/functions/news',       // Netlify Function (recommended)
+        '/jobs/news-feed.json'            // Static fallback if you prebuild JSON
+      ];
+
+      const CACHE_KEY = 'sophira_news_cache_v1';
+      const CACHE_TTL_MS = 60 * 60 * 1000; // 1 hour
+
+      const el = {
+        fr: {
+          grid: document.getElementById('news-grid-fr'),
+          load: document.getElementById('news-loading-fr'),
+          err:  document.getElementById('news-error-fr'),
+          empty:document.getElementById('news-empty-fr')
+        },
+        de: {
+          grid: document.getElementById('news-grid-de'),
+          load: document.getElementById('news-loading-de'),
+          err:  document.getElementById('news-error-de'),
+          empty:document.getElementById('news-empty-de')
+        }
+      };
+
+      function readCache(){
+        try{
+          const raw = localStorage.getItem(CACHE_KEY);
+          if(!raw) return null;
+          const obj = JSON.parse(raw);
+          if(Date.now() - (obj.ts || 0) > CACHE_TTL_MS) return null;
+          return obj.data;
+        } catch { return null; }
+      }
+      function writeCache(data){
+        try{
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
+        } catch {}
+      }
+
+      function normalizeItem(it){
+        // Expected fields from function: title, url, published_at, source, lang, matched_keywords, excerpt
+        return {
+          title: it.title || 'Sans titre',
+          url: it.url || '#',
+          published_at: it.published_at || '',
+          source: it.source || '',
+          lang: (it.lang || '').toLowerCase(),
+          matched: Array.isArray(it.matched_keywords) ? it.matched_keywords : [],
+          excerpt: it.excerpt || ''
+        };
+      }
+
+      function render(list, lang){
+        const ref = el[lang];
+        ref.grid.innerHTML = '';
+        ref.load.hidden = true;
+        ref.err.hidden = true;
+
+        const items = list.filter(x => (x.lang||'').toLowerCase() === lang);
+        if(!items.length){
+          ref.empty.hidden = false;
+          return;
+        }
+        ref.empty.hidden = true;
+
+        items.forEach(x => {
+          const card = document.createElement('article');
+          card.className = 'news-card';
+          const dateTxt = x.published_at ? new Date(x.published_at).toLocaleDateString(lang === 'fr' ? 'fr-CH':'de-CH', { year:'numeric', month:'short', day:'numeric' }) : '';
+          const chips = (x.matched||[]).map(k => `<span class="chip">${k}</span>`).join('');
+
+          card.innerHTML = `
+            <h4>${x.title}</h4>
+            <div class="news-meta">${x.source ? x.source+' · ' : ''}${dateTxt}</div>
+            <p class="excerpt">${x.excerpt || ''}</p>
+            <div class="chips" aria-label="Mots-clés">${chips}</div>
+            <a class="extlink" href="${x.url}" target="_blank" rel="noopener noreferrer">Lire l’article</a>
+          `;
+          ref.grid.appendChild(card);
+        });
+      }
+
+      async function fetchFirstWorking(){
+        for(const url of ENDPOINTS){
+          try{
+            const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+            if(res.ok){
+              const data = await res.json();
+              return Array.isArray(data) ? data.map(normalizeItem) : [];
+            }
+          } catch(e){ /* try next */ }
+        }
+        throw new Error('No endpoint responded');
+      }
+
+      async function init(){
+        // show loaders
+        el.fr.load.hidden = false; el.fr.err.hidden = true; el.fr.empty.hidden = true; el.fr.grid.innerHTML = '';
+        el.de.load.hidden = false; el.de.err.hidden = true; el.de.empty.hidden = true; el.de.grid.innerHTML = '';
+
+        const cached = readCache();
+        if(cached){
+          render(cached, 'fr');
+          render(cached, 'de');
+          // also refresh in background (no blocking)
+          try{
+            const fresh = await fetchFirstWorking();
+            writeCache(fresh);
+            render(fresh, 'fr');
+            render(fresh, 'de');
+          } catch {}
+          return;
+        }
+
+        try{
+          const items = await fetchFirstWorking();
+          writeCache(items);
+          render(items, 'fr');
+          render(items, 'de');
+        } catch(err){
+          el.fr.load.hidden = true; el.de.load.hidden = true;
+          el.fr.err.hidden = false; el.de.err.hidden = false;
+        }
+      }
+
+      init();
+    })();
   </script>
+
+  <noscript>
+    <div class="container" style="margin-top:1rem">
+      <div class="news-empty">Activez JavaScript pour afficher les actualités automatiques.</div>
+    </div>
+  </noscript>
 </body>
 </html>
