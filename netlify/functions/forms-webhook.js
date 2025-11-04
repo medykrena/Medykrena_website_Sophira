@@ -5,7 +5,8 @@
 
 'use strict';
 
-const { neon } = require('@neondatabase/serverless');
+const { neon, neonConfig } = require('@neondatabase/serverless');
+neonConfig.fetchConnectionCache = true;
 
 function responseJSON(statusCode, data) {
   return {
@@ -21,44 +22,36 @@ exports.handler = async (event) => {
       return responseJSON(405, { error: 'Method Not Allowed' });
     }
 
-    // --- 0) DB connection string (must exist)
+    // 0) DB connection string
     const connectionString =
       process.env.NETLIFY_DATABASE_URL || process.env.DATABASE_URL || '';
-
     if (!connectionString) {
       return responseJSON(500, {
         error: 'Missing NETLIFY_DATABASE_URL (or DATABASE_URL)',
       });
     }
 
-    // --- 1) Optional token (header X-Webhook-Token or ?token=)
+    // 1) Token (optional)
     const hdrs = event.headers || {};
-    // Netlify lower-cases headers; we still check both just in case.
     const providedHeader = hdrs['x-webhook-token'] || hdrs['X-Webhook-Token'];
-    const providedQuery =
-      (event.queryStringParameters && event.queryStringParameters.token) || null;
-
+    const providedQuery  = (event.queryStringParameters && event.queryStringParameters.token) || null;
     const EXPECTED = process.env.WEBHOOK_TOKEN || '';
     const provided = providedHeader || providedQuery || '';
-
     if (EXPECTED && provided !== EXPECTED) {
       return responseJSON(401, { error: 'Unauthorized' });
     }
 
-    // --- 2) Parse body (Netlify usually sends { payload: {...} })
+    // 2) Parse body
     let raw;
-    try {
-      raw = JSON.parse(event.body || '{}');
-    } catch {
-      return responseJSON(400, { error: 'Invalid JSON body' });
-    }
+    try { raw = JSON.parse(event.body || '{}'); }
+    catch { return responseJSON(400, { error: 'Invalid JSON body' }); }
 
     const submission = (raw && (raw.payload || raw)) || {};
     const data = submission.data || submission;
     const formName = submission.form_name || data.form_name || '';
     const netlifyId = submission.id || submission.uuid || null;
 
-    // --- 3) File URL extraction (if any)
+    // 3) File URL (if any)
     let fileUrl = null;
     let fileKey = null;
 
@@ -76,17 +69,17 @@ exports.handler = async (event) => {
       }
     }
 
-    // --- 4) DB client
+    // 4) DB
     const sql = neon(connectionString);
 
-    // --- 5) Route by form name
+    // 5) Route
     if (formName === 'sophira-candidat') {
-      const nom = data.nom || null;
-      const email = data.email || null;
-      const ville = data.ville || null;
-      const domaine = data.domaine || null;
+      const nom         = data.nom || null;
+      const email       = data.email || null;
+      const ville       = data.ville || null;
+      const domaine     = data.domaine || null;
       const competences = data.competences || null;
-      const bio = data.bio || null;
+      const bio         = data.bio || null;
 
       await sql/*sql*/`
         INSERT INTO public.candidats
@@ -113,8 +106,8 @@ exports.handler = async (event) => {
     if (formName === 'sophira-employeur') {
       const societe = data.societe || null;
       const contact = data.contact || null;
-      const email = data.email || null;
-      const ville = data.ville || null;
+      const email   = data.email   || null;
+      const ville   = data.ville   || null;
       const besoins = data.besoins || null;
       const message = data.message || null;
 
@@ -133,7 +126,7 @@ exports.handler = async (event) => {
       return responseJSON(200, { ok: true, type: 'employeur', netlifyId });
     }
 
-    // --- 6) Unknown form -> warn log but 200
+    // 6) Unknown form -> warn but 200
     await sql/*sql*/`
       INSERT INTO public.audit_logs (source, level, message, context)
       VALUES ('netlify_forms_webhook','warn','unknown_form', ${sql.json({ formName, keys: Object.keys(data || {}) })})
@@ -141,6 +134,7 @@ exports.handler = async (event) => {
 
     return responseJSON(200, { ok: true, ignored: true, formName });
   } catch (err) {
+    // Best-effort logging
     try {
       const connectionString =
         process.env.NETLIFY_DATABASE_URL || process.env.DATABASE_URL || '';
