@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="de" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anmeldung – Sophira Job-Portal</title>
+
+  <!-- GA4 + Consent -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('consent','default',{
+      ad_storage:'denied', analytics_storage:'denied',
+      functionality_storage:'granted', security_storage:'granted',
+      ad_user_data:'denied', ad_personalization:'denied'
+    });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FL1S0MJWB1"></script>
+  <script> gtag('js', new Date()); gtag('config', 'G-FL1S0MJWB1'); </script>
+
+  <!-- SEO -->
+  <link rel="canonical" href="https://sophira.ch/jobs/inscription-de.html" />
+  <link rel="alternate" hreflang="de" href="https://sophira.ch/jobs/inscription-de.html" />
+  <link rel="alternate" hreflang="fr" href="https://sophira.ch/jobs/inscription.html" />
+  <link rel="alternate" hreflang="x-default" href="https://sophira.ch/jobs/inscription.html" />
+  <meta name="robots" content="noindex,follow" />
+  <meta name="description" content="Anmeldung für das Sophira Job-Portal: Kandidat/innen und Arbeitgeber. Sichere Übermittlung der Angaben und Lebensläufe." />
+
+  <!-- Icons -->
+  <meta name="theme-color" content="#1a73e8" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{ --text:#2c3e50; --muted:#4a5568; --brand:#1a73e8; --brand-hover:#155ab6; --white:#fff; --panel:#edf2f7cc; --radius:12px; --shadow-sm:0 2px 8px rgba(0,0,0,.05); --shadow-md:0 4px 12px rgba(0,0,0,.08); --container:980px; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Inter',sans-serif;background:url('../mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center/cover fixed;color:var(--text)}
+    .overlay{min-height:100vh;background:rgba(255,255,255,.9);display:flex;flex-direction:column}
+    header.navbar{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;background:#ffffffdd;box-shadow:var(--shadow-sm)}
+    .brand{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+    .brand img{height:48px}
+    .brand strong{font-size:1.2rem;color:#1a202c}
+    nav a{color:#1a202c;text-decoration:none;font-weight:600}
+    nav a:hover{color:#1a73e8}
+
+    .container{flex:1;max-width:var(--container);margin:2rem auto;padding:0 1rem}
+    .tabs{display:flex;gap:.6rem;flex-wrap:wrap}
+    .tab-btn{background:#fff;border:1px solid #e5e7eb;border-radius:999px;padding:.5rem .9rem;font-weight:700;cursor:pointer}
+    .tab-btn[aria-selected="true"]{background:var(--brand);color:#fff;border-color:var(--brand)}
+    .panel{margin-top:1rem;background:var(--panel);padding:1.2rem;border-radius:12px;box-shadow:var(--shadow-md)}
+    form{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin-top:.8rem}
+    label{display:block;margin:.6rem 0 .25rem;font-weight:600}
+    input, select, textarea{width:100%;padding:.6rem .7rem;border:1px solid #d1d5db;border-radius:8px}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+    .row .full{grid-column:1 / -1}
+    .hint{font-size:.95rem;color:#374151}
+    .actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
+    .btn{background:var(--brand);color:#fff;border:none;border-radius:10px;padding:.6rem 1rem;font-weight:700;cursor:pointer}
+    .btn:hover{background:var(--brand-hover)}
+    .btn.outline{background:transparent;color:var(--brand);border:2px solid var(--brand)}
+    footer{text-align:center;padding:1rem;margin-top:3rem;background:#ffffffdd}
+    @media (max-width:780px){.row{grid-template-columns:1fr}}
+    .error{color:#b00020; font-size:.95rem; margin-top:.25rem;}
+    .sr-only{position:absolute!important; height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px); white-space:nowrap;}
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <header class="navbar" role="navigation" aria-label="Hauptnavigation">
+      <a class="brand" href="../index-de.html">
+        <img src="../Logo_sophira.png" alt="Sophira Logo" />
+        <strong>Sophira</strong>
+      </a>
+      <nav aria-label="Sekundäre Links">
+        <a href="index-de.html">Job-Portal</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      <h1>Anmeldung – Job-Portal</h1>
+      <p class="hint">Wählen Sie Ihre Rolle und füllen Sie das entsprechende Formular aus. Wir prüfen die Angaben, bevor wir etwas veröffentlichen.</p>
+
+      <div class="tabs" role="tablist" aria-label="Rollenwahl">
+        <button class="tab-btn" role="tab" id="tab-c" aria-controls="panel-c" aria-selected="true">Kandidat/in</button>
+        <button class="tab-btn" role="tab" id="tab-e" aria-controls="panel-e" aria-selected="false">Arbeitgeber</button>
+      </div>
+
+      <!-- PANEL KANDIDAT -->
+      <section id="panel-c" class="panel" role="tabpanel" aria-labelledby="tab-c">
+        <h2>Kandidat/in</h2>
+        <p class="hint">Senden Sie Ihre Angaben und Ihren Lebenslauf. Wir erstellen ein <strong>anonymisiertes Profil</strong>, das Arbeitgeber sehen können. Der vollständige CV wird nur mit Ihrer Zustimmung weitergegeben.</p>
+
+        <form name="sophira-candidat"
+              id="sophira-candidat"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              enctype="multipart/form-data"
+              action="/jobs/danke.html"
+              aria-describedby="c-help">
+          <input type="hidden" name="form-name" value="sophira-candidat" />
+          <input type="hidden" name="subject" value="KANDIDAT – Sophira Job-Portal" />
+          <p style="display:none" aria-hidden="true">
+            <label>Nicht ausfüllen: <input name="bot-field" autocomplete="off"></label>
+          </p>
+
+          <div class="row">
+            <div>
+              <label for="c-nom">Name und Vorname</label>
+              <input id="c-nom" name="nom" required maxlength="120" />
+            </div>
+            <div>
+              <label for="c-email">E-Mail</label>
+              <input id="c-email" name="email" type="email" autocomplete="email" required maxlength="160" />
+              <div id="c-email-error" class="error" aria-live="polite"></div>
+            </div>
+            <div>
+              <label for="c-ville">Kanton / Stadt</label>
+              <input id="c-ville" name="ville" placeholder="z. B. Basel-Stadt" maxlength="120" />
+            </div>
+            <div>
+              <label for="c-domaine">Bereich</label>
+              <select id="c-domaine" name="domaine">
+                <option>Data / IA</option>
+                <option>Énergie verte</option>
+                <option>Santé digitale</option>
+                <option>Tech / Développement</option>
+                <option>Marketing / Communication</option>
+                <option>Administration / Opérations</option>
+                <option>Autre</option>
+              </select>
+            </div>
+            <div class="full">
+              <label for="c-competences">Kernkompetenzen</label>
+              <input id="c-competences" name="competences" placeholder="Stichwörter, mit Komma trennen" maxlength="300" />
+            </div>
+            <div class="full">
+              <label for="c-bio">Kurzprofil</label>
+              <textarea id="c-bio" name="bio" rows="4" placeholder="Ein paar Zeilen zu Ihrem Profil und Ziel." maxlength="1200"></textarea>
+            </div>
+            <div class="full">
+              <label for="c-cv">Lebenslauf (PDF bevorzugt)</label>
+              <input id="c-cv" name="cv" type="file" accept=".pdf,.doc,.docx,.odt" required />
+              <div id="c-cv-error" class="error" aria-live="polite"></div>
+              <p id="c-help" class="hint">Akzeptierte Formate: PDF, DOC, DOCX, ODT. Max. 5&nbsp;MB.</p>
+            </div>
+          </div>
+
+          <label><input type="checkbox" name="consent" required /> Ich bin einverstanden, dass meine Daten für die Arbeitsvermittlung verwendet werden (LPD/RGPD).</label>
+
+          <div class="actions">
+            <button class="btn" type="submit" id="c-submit">Anmeldung senden</button>
+            <a class="btn outline" href="index-de.html">Abbrechen</a>
+          </div>
+        </form>
+      </section>
+
+      <!-- PANEL ARBEITGEBER -->
+      <section id="panel-e" class="panel" role="tabpanel" aria-labelledby="tab-e" hidden>
+        <h2>Arbeitgeber</h2>
+        <p class="hint">Melden Sie Ihre Organisation an. Sie erhalten Zugang zu <strong>anonymisierten Profilen</strong>. Für vollständige CVs kontaktieren Sie uns bitte über die Profilkarte.</p>
+
+        <form name="sophira-employeur"
+              id="sophira-employeur"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              action="/jobs/danke.html"
+              aria-describedby="e-help">
+          <input type="hidden" name="form-name" value="sophira-employeur" />
+          <input type="hidden" name="subject" value="ARBEITGEBER – Sophira Job-Portal" />
+          <p style="display:none" aria-hidden="true"><label>Nicht ausfüllen: <input name="bot-field" autocomplete="off"></label></p>
+
+          <div class="row">
+            <div>
+              <label for="e-societe">Organisation / Firma</label>
+              <input id="e-societe" name="societe" required maxlength="160" />
+            </div>
+            <div>
+              <label for="e-contact">Ansprechperson</label>
+              <input id="e-contact" name="contact" required maxlength="120" />
+            </div>
+            <div>
+              <label for="e-email">E-Mail</label>
+              <input id="e-email" name="email" type="email" autocomplete="email" required maxlength="160" />
+              <div id="e-email-error" class="error" aria-live="polite"></div>
+            </div>
+            <div>
+              <label for="e-ville">Kanton / Stadt</label>
+              <input id="e-ville" name="ville" maxlength="120" />
+            </div>
+            <div class="full">
+              <label for="e-besoins">Gesuchte Profile (Stichwörter)</label>
+              <input id="e-besoins" name="besoins" placeholder="z. B. Admin Assistenz, Data Junior, Helpdesk N1…" maxlength="300" />
+            </div>
+            <div class="full">
+              <label for="e-message">Nachricht / Hinweise</label>
+              <textarea id="e-message" name="message" rows="3" maxlength="1200"></textarea>
+            </div>
+          </div>
+
+          <p id="e-help" class="hint sr-only">Nach dem Absenden werden Sie zur Bestätigungsseite weitergeleitet.</p>
+
+          <label><input type="checkbox" name="consent" required /> Ich bin einverstanden, dass meine Daten genutzt werden, um auf den Arbeitgeberbereich zuzugreifen und Kandidat/innen zu kontaktieren.</label>
+
+          <div class="actions">
+            <button class="btn" type="submit" id="e-submit">Anmeldung senden</button>
+            <a class="btn outline" href="index-de.html">Abbrechen</a>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Sophira Verein | Basel, Schweiz</p>
+    </footer>
+  </div>
+
+  <script>
+    // Tabs
+    const tabC = document.getElementById('tab-c');
+    const tabE = document.getElementById('tab-e');
+    const panC = document.getElementById('panel-c');
+    const panE = document.getElementById('panel-e');
+    function selectTab(which){
+      if(which==='c'){ tabC.setAttribute('aria-selected','true'); tabE.setAttribute('aria-selected','false'); panC.hidden=false; panE.hidden=true; }
+      else { tabC.setAttribute('aria-selected','false'); tabE.setAttribute('aria-selected','true'); panC.hidden=true; panE.hidden=false; }
+    }
+    tabC.addEventListener('click', ()=>selectTab('c'));
+    tabE.addEventListener('click', ()=>selectTab('e'));
+
+    // Local keys (keep French role tokens for consistency)
+    const KEY_REG='sophira_job_reg';
+    const KEY_ROLE='sophira_job_role';
+
+    // Markers
+    document.getElementById('c-submit')?.addEventListener('click', ()=>{
+      const email = document.getElementById('c-email')?.value || '';
+      localStorage.setItem(KEY_REG, JSON.stringify({email, role:'candidat', ts:Date.now()}));
+      localStorage.setItem(KEY_ROLE,'candidat');
+    });
+    document.getElementById('e-submit')?.addEventListener('click', ()=>{
+      const email = document.getElementById('e-email')?.value || '';
+      localStorage.setItem(KEY_REG, JSON.stringify({email, role:'employeur', ts:Date.now()}));
+      localStorage.setItem(KEY_ROLE,'employeur');
+    });
+
+    // CV validation
+    const cvInput = document.getElementById('c-cv');
+    const cvError = document.getElementById('c-cv-error');
+    if (cvInput){
+      cvInput.addEventListener('change', ()=>{
+        cvError.textContent = '';
+        const f = cvInput.files && cvInput.files[0];
+        if (!f) return;
+        const max = 5 * 1024 * 1024; // 5 MB
+        const okTypes = ['application/pdf','application/msword',
+                         'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                         'application/vnd.oasis.opendocument.text'];
+        if (f.size > max){
+          cvError.textContent = 'Datei zu gross (max. 5 MB).';
+          cvInput.value = '';
+          return;
+        }
+        if (!okTypes.includes(f.type)){
+          const name = f.name.toLowerCase();
+          const extOk = name.endsWith('.pdf') || name.endsWith('.doc') || name.endsWith('.docx') || name.endsWith('.odt');
+          if (!extOk){
+            cvError.textContent = 'Unbekanntes Format. Bitte PDF, DOC, DOCX oder ODT verwenden.';
+            cvInput.value = '';
+          }
+        }
+      });
+    }
+
+    // ===== Client-side 10-min throttle per email & role =====
+    const THROTTLE_MS = 10 * 60 * 1000;
+    function now(){ return Date.now(); }
+    function loadThrottle(){ try { return JSON.parse(localStorage.getItem('sophira_email_throttle') || '{}'); } catch { return {}; } }
+    function saveThrottle(obj){ localStorage.setItem('sophira_email_throttle', JSON.stringify(obj)); }
+    function canSubmit(role, email){
+      if(!email) return true;
+      const key = role + '::' + email.trim().toLowerCase();
+      const map = loadThrottle();
+      const last = map[key] || 0;
+      return (now() - last) > THROTTLE_MS;
+    }
+    function markSubmitted(role, email){
+      const key = role + '::' + (email||'').trim().toLowerCase();
+      const map = loadThrottle();
+      map[key] = now();
+      saveThrottle(map);
+    }
+
+    function wireForm(role, formId, emailId, errorId, submitBtnId){
+      const form = document.getElementById(formId);
+      if(!form) return;
+      const emailInput = document.getElementById(emailId);
+      const errorBox = document.getElementById(errorId);
+      const submitBtn = document.getElementById(submitBtnId);
+
+      form.addEventListener('submit', (e)=>{
+        errorBox.textContent = '';
+        const email = (emailInput?.value || '').trim().toLowerCase();
+        if(!canSubmit(role, email)){
+          e.preventDefault();
+          errorBox.textContent = "Diese E-Mail wurde kuerzlich verwendet. Bitte in etwa 10 Minuten erneut versuchen.";
+          emailInput?.focus();
+          return;
+        }
+        submitBtn?.setAttribute('disabled','true');
+        markSubmitted(role, email);
+      });
+    }
+
+    wireForm('candidat', 'sophira-candidat', 'c-email', 'c-email-error', 'c-submit');
+    wireForm('employeur', 'sophira-employeur', 'e-email', 'e-email-error', 'e-submit');
+  </script>
+
+  <!-- ====== SHADOW FORMS for Netlify detection ====== -->
+  <form name="sophira-candidat" netlify netlify-honeypot="bot-field" hidden enctype="multipart/form-data" action="/jobs/danke.html">
+    <input type="hidden" name="form-name" value="sophira-candidat" />
+    <input type="text" name="nom" />
+    <input type="email" name="email" />
+    <input type="text" name="ville" />
+    <input type="text" name="domaine" />
+    <input type="text" name="competences" />
+    <textarea name="bio"></textarea>
+    <input type="file" name="cv" />
+    <button type="submit">Send</button>
+  </form>
+
+  <form name="sophira-employeur" netlify netlify-honeypot="bot-field" hidden action="/jobs/danke.html">
+    <input type="hidden" name="form-name" value="sophira-employeur" />
+    <input type="text" name="societe" />
+    <input type="text" name="contact" />
+    <input type="email" name="email" />
+    <input type="text" name="ville" />
+    <input type="text" name="besoins" />
+    <textarea name="message"></textarea>
+    <button type="submit">Send</button>
+  </form>
+</body>
+</html>
