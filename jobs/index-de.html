@@ -7,8 +7,11 @@
 
   <!-- SEO -->
   <link rel="canonical" href="https://sophira.ch/jobs/index-de.html" />
+  <link rel="alternate" hreflang="de" href="https://sophira.ch/jobs/index-de.html" />
+  <link rel="alternate" hreflang="fr" href="https://sophira.ch/jobs/index.html" />
+  <link rel="alternate" hreflang="x-default" href="https://sophira.ch/jobs/index-de.html" />
   <meta name="robots" content="index,follow" />
-  <meta name="description" content="Sophira Job-Portal: Bereich für Kandidat:innen und Arbeitgeber. Eine Anmeldung ist erforderlich." />
+  <meta name="description" content="Sophira Job-Portal: Bereich für Kandidat:innen und Arbeitgeber. Die Anmeldung ist erforderlich." />
 
   <!-- Icons & Fonts -->
   <link rel="icon" href="/favicon.ico" />
@@ -82,7 +85,7 @@
         <strong>Sophira</strong>
       </a>
       <nav>
-        <a class="btn outline" href="inscription.html">Anmeldung</a>
+        <a class="btn outline" href="inscription-de.html">Anmeldung</a>
       </nav>
     </header>
 
@@ -97,7 +100,7 @@
         <h2>Eingeschränkter Zugang</h2>
         <p class="muted">Sie müssen angemeldet sein, um diesen Bereich zu nutzen.</p>
         <div class="actions">
-          <a class="btn" href="inscription.html">Jetzt anmelden</a>
+          <a class="btn" href="inscription-de.html">Jetzt anmelden</a>
           <a class="btn outline" href="../contact-de.html">Hilfe benötigt?</a>
         </div>
       </section>
@@ -111,15 +114,14 @@
           <!-- Kandidat -->
           <article class="card" id="block-candidat" hidden>
             <h3>Kandidat:innen-Bereich</h3>
-            <p>Stöbern Sie in passenden Stellen und sehen Sie Ihr Profil ein.</p>
-            <a class="btn" href="offres-de.html">Stellen ansehen</a>
+            <p>Pflegen Sie Ihr Profil.</p>
             <a class="btn outline" href="profil-de.html">Mein Profil</a>
           </article>
 
           <!-- Arbeitgeber -->
           <article class="card" id="block-employeur" hidden>
             <h3>Arbeitgeber-Bereich</h3>
-            <p>Anonymisierte Kandidatenprofile für Vorauswahl. Vollständiger CV nur auf Anfrage.</p>
+            <p>Anonymisierte Kandidatenprofile zur Vorauswahl. Vollständiger CV nur auf Anfrage.</p>
             <a class="btn" href="talents-de.html">Talente ansehen</a>
             <a class="btn outline" href="../contact-de.html">Sophira kontaktieren</a>
           </article>
@@ -168,11 +170,11 @@
       dashboard.hidden = false;
 
       if(role === 'candidat'){
-        roleText.textContent = "Als Kandidat angemeldet. Sie können Stellen und Ihr Profil ansehen.";
+        roleText.textContent = "Als Kandidat angemeldet. Profil ansehen.";
         blockC.hidden = false;
         blockE.hidden = true;
       } else if(role === 'employeur'){
-        roleText.textContent = "Als Arbeitgeber angemeldet. Sie können anonymisierte Talente ansehen.";
+        roleText.textContent = "Als Arbeitgeber angemeldet. Anonymisierte Talente ansehen.";
         blockC.hidden = true;
         blockE.hidden = false;
       } else {
