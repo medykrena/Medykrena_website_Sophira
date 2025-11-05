@@ -1,0 +1,25 @@
+{
+  "items": [
+    {
+      "title": "KI bedroht oder beflügelt Jobs? – Der Bund",
+      "url": "https://www.derbund.ch/ai-bedrohung-oder-chance-fuer-arbeitsplaetze-554966491616",
+      "published_at": "2025-10-28T08:00:00+01:00",
+      "source": "derbund.ch",
+      "lang": "de"
+    },
+    {
+      "title": "Le chômage grimpe aux États-Unis, l’emploi ralentit – RTS",
+      "url": "https://www.rts.ch/info/economie/2025/article/le-chomage-grimpe-aux-etats-unis-la-creation-d-emplois-ralentit-28989927.html",
+      "published_at": "2025-10-31T12:10:00+01:00",
+      "source": "rts.ch",
+      "lang": "fr"
+    },
+    {
+      "title": "IA générative: emplois féminins 3x plus menacés – RTS",
+      "url": "https://www.rts.ch/info/sciences-tech/2025/article/ia-generative-les-emplois-feminins-3-fois-plus-menaces-que-les-masculins-28895927.html",
+      "published_at": "2025-10-20T09:00:00+02:00",
+      "source": "rts.ch",
+      "lang": "fr"
+    }
+  ]
+}
