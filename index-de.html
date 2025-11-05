@@ -100,8 +100,8 @@
       --focus:#0d6efd;
       --focus-bg:#e8f0fe;
       --z-header:20;
-      --z-lang:60;   /* über dem Burger */
-      --z-cookie:70; /* ganz oben */
+      --z-lang:60;
+      --z-cookie:70;
     }
     *{box-sizing:border-box}
     html:focus-within{ scroll-behavior:smooth; }
@@ -112,7 +112,6 @@
     }
     body.no-scroll{ overflow:hidden; }
 
-    /* Skip-Link */
     .skip-link{
       position:absolute; left:1rem; top:.5rem;
       transform:translateY(-200%);
@@ -123,40 +122,36 @@
 
     .overlay{ min-height:100vh; background:rgba(255,255,255,.9); display:flex; flex-direction:column; }
 
-    /* NAVBAR */
     header.navbar{
       position:sticky; top:0; z-index:var(--z-header);
       display:flex; align-items:center; justify-content:space-between; gap:.75rem;
       padding:.8rem 1rem; background:var(--whiteglass); box-shadow:var(--shadow-sm); backdrop-filter: blur(6px);
     }
     .brand{ display:flex; align-items:center; gap:.6rem; min-width:0; text-decoration:none; }
-    .brand img{ height:48px; width:auto; } /* leicht verkleinert */
+    .brand img{ height:48px; width:auto; }
     .brand h1{
       margin:0; font-size:1.55rem; font-weight:600; color:#1a202c; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     }
     @media (max-width:480px){
       .brand img{ height:44px; }
-      .brand h1{ font-size:1.35rem; } /* kleiner auf Mobile */
+      .brand h1{ font-size:1.35rem; }
     }
 
     nav.primary{ display:flex; gap:1.1rem; align-items:center; }
     nav.primary a{ text-decoration:none; color:var(--text); font-weight:500; }
     nav.primary a:hover, nav.primary a:focus{ color:#1e88e5; }
 
-    /* Globaler sichtbarer Fokus */
     a:focus-visible, button:focus-visible{
       outline:3px solid var(--focus);
       outline-offset:2px;
       background:linear-gradient(0deg, var(--focus-bg), var(--focus-bg)) no-repeat;
     }
 
-    /* Rechte Kontrollen (Lang + Burger) */
     .controls{ display:flex; align-items:center; gap:.5rem; position:relative; }
 
     .burger{ display:none; background:none; border:none; padding:.4rem .6rem; border-radius:8px; }
     .burger svg{ width:28px; height:28px; }
 
-    /* Sprachschalter (Button) */
     .lang-btn{
       display:inline-flex; align-items:center; gap:.35rem;
       background:#fff; border:1px solid #e5e7eb; border-radius:999px; padding:.35rem .6rem;
@@ -164,7 +159,6 @@
     }
     .lang-btn svg{ width:18px; height:18px; }
 
-    /* Sprachmenü, separat vom Burger */
     .lang-menu{
       position:absolute; right:0; top:calc(100% + 8px); z-index:var(--z-lang);
       background:#fff; border:1px solid #e5e7eb; border-radius:10px; box-shadow:var(--shadow-md);
@@ -177,9 +171,8 @@
     .lang-menu a:hover{ background:#f3f4f6; }
     .lang-menu a[aria-current="true"]{ color:#1a73e8; }
 
-    /* MOBILPANEL */
     .mobile-panel{
-      display:block; /* via [hidden] gesteuert */
+      display:block;
       position:fixed; inset:64px 0 0 0; background:var(--whiteglass);
       backdrop-filter: blur(6px); padding:1rem;
     }
@@ -190,12 +183,10 @@
 
     .container{ flex:1; max-width:var(--container); margin:2rem auto; padding:0 1rem; }
 
-    /* HERO */
     .hero{ background:var(--panel); padding:2.4rem 1.4rem; border-radius:var(--radius); text-align:center; box-shadow:var(--shadow-md); }
     .hero h2{ font-size:2.1rem; margin:.2rem 0 .7rem; }
     .subtitle{ font-size:1.08rem; color:var(--muted); margin:0 auto; max-width:800px; }
 
-    /* AUF EINEN BLICK */
     .glance{ margin-top:1rem; display:grid; grid-template-columns:repeat(12,1fr); gap:.8rem; }
     .glance .item{
       grid-column:span 12; background:#fff; border-radius:10px; box-shadow:var(--shadow-sm);
@@ -203,7 +194,6 @@
     }
     .glance .item strong{ display:block; margin-bottom:.25rem; }
 
-    /* SCHNELLE LINKS */
     .quick{ margin-top:1rem; display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap; }
     .btn{
       display:inline-block; background:var(--brand); color:#fff; text-decoration:none;
@@ -214,28 +204,25 @@
     .btn.outline{ background:transparent; color:var(--brand); border:2px solid var(--brand); }
     .btn.outline:hover{ background:#e8f0fe; }
 
-    /* TEXTSECTION */
     .content{ margin-top:2rem; background:var(--whiteglass); padding:2rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
     .content h3{ font-size:1.55rem; margin:.2rem 0 .6rem; }
 
-    /* BLOG-TEASER */
+    /* Teaser (wird für News wiederverwendet) */
     .teaser{ margin-top:2rem; background:var(--whiteglass); padding:1.2rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
     .teaser h3{ margin:.1rem 0 .6rem; font-size:1.3rem; text-align:center; }
     .posts{ display:grid; grid-template-columns:repeat(12,1fr); gap:.8rem; }
     .post{ grid-column:span 12; background:#fff; border-radius:10px; padding:.9rem 1rem; box-shadow:var(--shadow-sm); }
-    .post h4{ margin:.2rem 0 .2rem; font-size:1.05rem; }
-    .post p{ margin:.1rem 0 .4rem; color:#374151; }
-    .post a{ font-weight:600; color:#fff; background:var(--brand); padding:.4rem .7rem; border-radius:8px; text-decoration:none; }
-    .post a:hover{ background:var(--brand-hover); }
+    .post h4{ margin:.2rem 0 .25rem; font-size:1.05rem; }
+    .post .meta{ font-size:.9rem; color:#6b7280; margin:.1rem 0 .2rem; }
+    .post a.cta{ font-weight:600; color:#fff; background:var(--brand); padding:.4rem .7rem; border-radius:8px; text-decoration:none; display:inline-block; }
+    .post a.cta:hover{ background:var(--brand-hover); }
 
-    /* CTA */
     .cta{ margin-top:2rem; background:#f7fafc; padding:2rem; text-align:center; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
     .cta a{ display:inline-block; margin-top:1rem; background:var(--brand); color:#fff; text-decoration:none; padding:.7rem 1.4rem; border-radius:10px; font-weight:700; }
     .cta a:hover{ background:var(--brand-hover); }
 
     footer{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:var(--whiteglass); border-top-left-radius:var(--radius); border-top-right-radius:var(--radius); }
 
-    /* GPT-FAB */
     .chat-fab{
       position:fixed; right:18px; bottom:18px; z-index:30;
       display:inline-flex; align-items:center; gap:.5rem;
@@ -244,7 +231,6 @@
     }
     .chat-fab:hover{ background:var(--brand-hover); }
 
-    /* Cookie-Banner */
     .cookie-banner{
       position:fixed; z-index:var(--z-cookie); inset:auto 12px 12px 12px;
       background:#ffffff; border:1px solid #e5e7eb; border-radius:12px; box-shadow:var(--shadow-md);
@@ -254,7 +240,6 @@
     .cookie-banner .btn{ padding:.55rem 1rem; }
     .cookie-banner .btn.minor{ background:#eef2ff; color:#1f2a66; border:1px solid #c7d2fe; }
 
-    /* Responsive */
     @media (min-width: 680px){
       .glance .item{ grid-column:span 4; }
       .post{ grid-column:span 4; }
@@ -316,7 +301,7 @@
       </div>
     </header>
 
-    <!-- MOBILES MENÜ (getrennt vom Sprachmenü) -->
+    <!-- MOBILES MENÜ -->
     <div id="menu-mobile" class="mobile-panel" role="dialog" aria-modal="true" aria-label="Mobiles Menü" aria-hidden="true" hidden>
       <div class="mobile-links">
         <a href="index-de.html" aria-current="page">Startseite</a>
@@ -374,26 +359,18 @@
           in sinnstiftende Berufe, vermittelt die nötigen digitalen und analytischen Kompetenzen und bietet finanzielle sowie menschliche Unterstützung.</p>
       </section>
 
-      <!-- Blog-Teaser -->
-      <section class="teaser" aria-label="Neueste Artikel">
-        <h3>Lesenswert im Blog</h3>
-        <div class="posts">
-          <article class="post">
-            <h4>Start der Sophira-Initiative</h4>
-            <p>Unsere Vision und wie man mitmachen kann.</p>
-            <a href="article6-de.html">Lesen</a>
-          </article>
-          <article class="post">
-            <h4>Daten & Neuorientierung</h4>
-            <p>Gefragte und zugängliche Kompetenzen.</p>
-            <a href="article7-de.html">Lesen</a>
-          </article>
-          <article class="post">
-            <h4>Zukunftsbranchen 2025</h4>
-            <p>Wo sich Chancen in der Schweiz eröffnen.</p>
-            <a href="article2-de.html">Lesen</a>
-          </article>
+      <!-- *** NEWS-TEASER: ersetzt "Lesenswert im Blog" *** -->
+      <section class="teaser" aria-label="Aktuelle Nachrichten aus dem Blog">
+        <h3>Aktuelle Nachrichten (aus dem Blog)</h3>
+        <div id="news-list" class="posts" role="list">
+          <!-- Wird per JS aus /news-config.json befüllt -->
         </div>
+        <p style="text-align:center; margin-top:.8rem;">
+          <a class="btn outline" href="blog.html#news">Mehr Nachrichten im Blog</a>
+        </p>
+        <noscript>
+          <p style="text-align:center">Bitte JavaScript aktivieren. Besuchen Sie unsere <a href="blog.html#news">News-Sektion</a>.</p>
+        </noscript>
       </section>
 
       <!-- CTA FINAL -->
@@ -425,7 +402,7 @@
     </div>
   </div>
 
-  <!-- JS: Menüs + Consent -->
+  <!-- JS: Menüs + Consent + NEWS FEED -->
   <script>
     // ===== Consent (localStorage) =====
     const CONSENT_KEY = 'sophira_consent_v1';
@@ -476,7 +453,7 @@
       if(btnL) btnL.addEventListener('click', hideCookieBanner);
     })();
 
-    // ===== Navigation: Burger & Sprachmenü getrennt =====
+    // ===== Navigation: Burger & Sprachmenü =====
     (function(){
       const burger = document.getElementById('burger');
       const panel  = document.getElementById('menu-mobile');
@@ -518,7 +495,6 @@
       if(burger && panel){ burger.addEventListener('click', toggleMobile); }
       if(langBtn && langMenu){ langBtn.addEventListener('click', toggleLang); }
 
-      // Klick ausserhalb
       document.addEventListener('click', (e)=>{
         if(langMenu && langMenu.classList.contains('open')){
           const insideLang = langMenu.contains(e.target) || langBtn.contains(e.target);
@@ -529,13 +505,89 @@
           if(!insideMob) closeMobile();
         }
       });
-      // ESC
       document.addEventListener('keydown', (e)=>{
-        if(e.key==='Escape'){
-          closeLang();
-          closeMobile();
-        }
+        if(e.key==='Escape'){ closeLang(); closeMobile(); }
       });
+    })();
+
+    // ===== NEWS TEASER (aus /news-config.json) =====
+    (function(){
+      const target = document.getElementById('news-list');
+      if(!target) return;
+
+      // Utility: format date YYYY-MM-DD or ISO to CH style
+      function fmt(d){
+        try{
+          const dt = new Date(d);
+          if (!isNaN(dt)) {
+            return dt.toLocaleDateString('de-CH', { year:'numeric', month:'short', day:'2-digit' });
+          }
+        }catch(e){}
+        return '';
+      }
+      // Extract domain as source label
+      function domain(u){
+        try{ return new URL(u).hostname.replace('www.',''); }catch(e){ return ''; }
+      }
+
+      function normalizeItems(json){
+        // Accept multiple shapes: {items:[...]}, {news:[...]}, or top-level array
+        const raw = Array.isArray(json) ? json
+                     : Array.isArray(json?.items) ? json.items
+                     : Array.isArray(json?.news) ? json.news
+                     : [];
+        return raw.map(x=>({
+          title: x.title || x.headline || '',
+          url: x.url || x.link || '#',
+          lang: (x.lang || x.language || '').toLowerCase(),
+          date: x.date || x.published || x.pubDate || '',
+          source: x.source || x.site || domain(x.url || x.link || ''),
+          pinned: !!x.pinned,
+          shown: x.shown !== false && x.published !== false // treat as visible by default
+        }));
+      }
+
+      function pickTop3(items){
+        const de = items.filter(i=>i.lang==='de' && i.shown);
+        const others = items.filter(i=>i.lang!=='de' && i.shown);
+        const byDate = (a,b)=> (b.pinned - a.pinned) || (new Date(b.date) - new Date(a.date));
+        de.sort(byDate); others.sort(byDate);
+        const out = [...de.slice(0,3)];
+        if(out.length<3) out.push(...others.slice(0, 3 - out.length));
+        return out.slice(0,3);
+      }
+
+      function render(items){
+        target.innerHTML = '';
+        if(items.length===0){
+          target.innerHTML = `<article class="post"><p>Keine News gefunden. Besuchen Sie die <a href="blog.html#news">News-Sektion</a>.</p></article>`;
+          return;
+        }
+        items.forEach(i=>{
+          const card = document.createElement('article');
+          card.className = 'post';
+          card.setAttribute('role','listitem');
+          card.innerHTML = `
+            <h4>${i.title}</h4>
+            <p class="meta">${i.source || ''} ${i.date ? '· ' + fmt(i.date) : ''}</p>
+            <a class="cta" href="${i.url}" target="_blank" rel="noopener">Zur Meldung</a>
+          `;
+          target.appendChild(card);
+        });
+      }
+
+      fetch('/news-config.json', {cache:'no-store'})
+        .then(r=> r.ok ? r.json() : Promise.reject(r.status))
+        .then(json => render(pickTop3(normalizeItems(json))))
+        .catch(()=>{
+          // graceful fallback: link to blog news section
+          target.innerHTML = `
+            <article class="post">
+              <h4>News-Feed derzeit nicht verfügbar</h4>
+              <p class="meta">Bitte besuchen Sie unsere News-Sektion im Blog.</p>
+              <a class="cta" href="blog.html#news">Zum Blog</a>
+            </article>`;
+        });
     })();
   </script>
 </body>
