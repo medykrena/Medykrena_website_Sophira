@@ -363,7 +363,7 @@
       <section class="teaser" aria-label="Aktuelle Nachrichten aus dem Blog">
         <h3>Aktuelle Nachrichten (aus dem Blog)</h3>
         <div id="news-list" class="posts" role="list">
-          <!-- Wird per JS aus /news-config.json befüllt -->
+          <!-- Wird per JS aus /news-feed.json oder /news-config.json befüllt -->
         </div>
         <p style="text-align:center; margin-top:.8rem;">
           <a class="btn outline" href="blog.html#news">Mehr Nachrichten im Blog</a>
@@ -510,57 +510,69 @@
       });
     })();
 
-    // ===== NEWS TEASER (aus /news-config.json) =====
+    /* ===== NEWS TEASER: try /news-feed.json, fallback to /news-config.json seed_urls ===== */
     (function(){
       const target = document.getElementById('news-list');
       if(!target) return;
 
-      // Utility: format date YYYY-MM-DD or ISO to CH style
+      const MAX = 3;
+
       function fmt(d){
         try{
           const dt = new Date(d);
-          if (!isNaN(dt)) {
-            return dt.toLocaleDateString('de-CH', { year:'numeric', month:'short', day:'2-digit' });
-          }
+          if(!isNaN(dt)) return dt.toLocaleDateString('de-CH',{year:'numeric',month:'short',day:'2-digit'});
         }catch(e){}
         return '';
       }
-      // Extract domain as source label
       function domain(u){
-        try{ return new URL(u).hostname.replace('www.',''); }catch(e){ return ''; }
+        try{ return new URL(u).hostname.replace(/^www\./,''); }catch(e){ return ''; }
       }
 
-      function normalizeItems(json){
-        // Accept multiple shapes: {items:[...]}, {news:[...]}, or top-level array
+      function normalizeFeed(json){
         const raw = Array.isArray(json) ? json
-                     : Array.isArray(json?.items) ? json.items
-                     : Array.isArray(json?.news) ? json.news
-                     : [];
+                   : Array.isArray(json?.items) ? json.items
+                   : Array.isArray(json?.news) ? json.news
+                   : [];
         return raw.map(x=>({
-          title: x.title || x.headline || '',
-          url: x.url || x.link || '#',
-          lang: (x.lang || x.language || '').toLowerCase(),
-          date: x.date || x.published || x.pubDate || '',
+          title:  x.title || x.headline || '',
+          url:    x.url || x.link || '#',
+          lang:  (x.lang || x.language || '').toLowerCase(),
+          date:   x.published_at || x.date || x.published || x.pubDate || '',
           source: x.source || x.site || domain(x.url || x.link || ''),
           pinned: !!x.pinned,
-          shown: x.shown !== false && x.published !== false // treat as visible by default
+          shown:  x.shown !== false && x.published !== false
         }));
       }
 
+      function fromConfigSeeds(cfg){
+        const deSeeds = (cfg?.languages?.de?.seed_urls || []).map(u=>({
+          title:'', url:u, lang:'de', date:'', source:domain(u), pinned:false, shown:true
+        }));
+        const frSeeds = (cfg?.languages?.fr?.seed_urls || []).map(u=>({
+          title:'', url:u, lang:'fr', date:'', source:domain(u), pinned:false, shown:true
+        }));
+        return [...deSeeds, ...frSeeds];
+      }
+
       function pickTop3(items){
-        const de = items.filter(i=>i.lang==='de' && i.shown);
-        const others = items.filter(i=>i.lang!=='de' && i.shown);
+        const vis = items.filter(i=>i.shown);
         const byDate = (a,b)=> (b.pinned - a.pinned) || (new Date(b.date) - new Date(a.date));
-        de.sort(byDate); others.sort(byDate);
-        const out = [...de.slice(0,3)];
-        if(out.length<3) out.push(...others.slice(0, 3 - out.length));
-        return out.slice(0,3);
+        const de = vis.filter(i=>i.lang==='de').sort(byDate);
+        const others = vis.filter(i=>i.lang!=='de').sort(byDate);
+        const out = [...de.slice(0,MAX)];
+        if(out.length<MAX) out.push(...others.slice(0, MAX - out.length));
+        return out.slice(0,MAX);
       }
 
       function render(items){
         target.innerHTML = '';
-        if(items.length===0){
-          target.innerHTML = `<article class="post"><p>Keine News gefunden. Besuchen Sie die <a href="blog.html#news">News-Sektion</a>.</p></article>`;
+        if(!items.length){
+          target.innerHTML = `
+            <article class="post">
+              <h4>News-Feed derzeit nicht verfügbar</h4>
+              <p class="meta">Bitte besuchen Sie unsere News-Sektion im Blog.</p>
+              <a class="cta" href="blog.html#news">Zum Blog</a>
+            </article>`;
           return;
         }
         items.forEach(i=>{
@@ -568,25 +580,22 @@
           card.className = 'post';
           card.setAttribute('role','listitem');
           card.innerHTML = `
-            <h4>${i.title}</h4>
-            <p class="meta">${i.source || ''} ${i.date ? '· ' + fmt(i.date) : ''}</p>
+            <h4>${i.title || i.url}</h4>
+            <p class="meta">${i.source || ''}${i.date ? ' · ' + fmt(i.date) : ''}</p>
             <a class="cta" href="${i.url}" target="_blank" rel="noopener">Zur Meldung</a>
           `;
           target.appendChild(card);
         });
       }
 
-      fetch('/news-config.json', {cache:'no-store'})
-        .then(r=> r.ok ? r.json() : Promise.reject(r.status))
-        .then(json => render(pickTop3(normalizeItems(json))))
-        .catch(()=>{
-          // graceful fallback: link to blog news section
-          target.innerHTML = `
-            <article class="post">
-              <h4>News-Feed derzeit nicht verfügbar</h4>
-              <p class="meta">Bitte besuchen Sie unsere News-Sektion im Blog.</p>
-              <a class="cta" href="blog.html#news">Zum Blog</a>
-            </article>`;
+      fetch('/news-feed.json', {cache:'no-store'})
+        .then(r => r.ok ? r.json() : Promise.reject(r.status))
+        .then(json => render(pickTop3(normalizeFeed(json))))
+        .catch(() => {
+          fetch('/news-config.json', {cache:'no-store'})
+            .then(r => r.ok ? r.json() : Promise.reject(r.status))
+            .then(cfg => render(pickTop3(fromConfigSeeds(cfg))))
+            .catch(() => render([]));
         });
     })();
   </script>
