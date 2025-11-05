@@ -32,6 +32,7 @@
       --bg-overlay:rgba(255,255,255,0.95); --whiteglass:#ffffffdd; --radius:12px;
       --shadow-sm:0 2px 8px rgba(0,0,0,0.05); --shadow-md:0 4px 12px rgba(0,0,0,0.08);
       --container:960px; --ok:#065f46; --warn:#92400e; --panel:#f8fafc;
+      --info:#0f172a; --border:#e5e7eb;
     }
     body{
       margin:0; font-family:'Inter',sans-serif; background:url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center/cover fixed; color:var(--text);
@@ -64,18 +65,28 @@
     .content h2{ text-align:center; margin-top:0; }
     .contact-info{ margin-top:1.5rem; font-size:1rem; }
 
-    /* Bandeau contexte (référence depuis le portail) */
+    /* Bandeau contexte */
     .context{
       margin:1rem 0 0; padding:.9rem 1rem; border-radius:10px; border:1px solid #cbd5e1; background:#f1f5f9; color:#0f172a;
       display:none;
     }
-    .context strong{ color:#0f172a; }
     .context.ok{ border-color:#a7f3d0; background:#ecfdf5; color:#064e3b; }
     .context.warn{ border-color:#fed7aa; background:#fff7ed; color:#7c2d12; }
 
+    /* Bloc téléphone protégé */
+    .phone-box{
+      margin:.4rem 0 0;
+      padding:.8rem 1rem;
+      border:1px dashed var(--border);
+      border-radius:10px;
+      background:#fff;
+    }
+    .phone-note{ color:var(--muted); font-size:.95rem; margin:.5rem 0 0; }
+    .small{ font-size:.92rem; color:var(--muted); }
+
     iframe{ width:100%; height:350px; border:none; border-radius:var(--radius); margin-top:2rem; }
 
-    /* Formulaire Netlify */
+    /* Formulaires */
     .form-card{ margin-top:1.2rem; background:#fff; border:1px solid #e5e7eb; border-radius:12px; box-shadow:var(--shadow-sm); padding:1rem; }
     form label{ display:block; margin:.6rem 0 .25rem; font-weight:600; }
     input, textarea{ width:100%; padding:.6rem .7rem; border:1px solid #d1d5db; border-radius:8px; }
@@ -84,6 +95,11 @@
     .btn:hover{ background:var(--brand-hover); }
     .btn.outline{ background:transparent; color:var(--brand); border:2px solid var(--brand); }
     .btn.outline:hover{ background:#e8f0fe; }
+
+    /* Petit formulaire de demande de numéro */
+    .phone-form{ margin-top:.6rem; display:grid; grid-template-columns:1fr 1fr; gap:.6rem; align-items:end; }
+    .phone-form .wide{ grid-column:span 2; }
+    @media(max-width:640px){ .phone-form{ grid-template-columns:1fr; } .phone-form .wide{ grid-column:auto; } }
 
     /* Bloc “Suivez-nous” */
     .social{ margin-top:2rem; background:var(--panel); border:1px solid #e5e7eb; border-radius:12px; padding:1rem; }
@@ -141,7 +157,38 @@
         <div class="contact-info">
           <p><strong>Adresse :</strong> Sandgrubenstrasse, 4058 Bâle, Suisse</p>
           <p><strong>Email :</strong> association_sophira@protonmail.com</p>
-          <p><strong>Téléphone :</strong> +41 79 123 45 67</p>
+
+          <!-- Téléphone protégé -->
+          <div class="phone-box" aria-live="polite">
+            <p style="margin:0;"><strong>Téléphone :</strong>
+              <span id="phone-mask">+41 ••• ••• •• ••</span>
+              <button id="btn-reveal" class="btn outline" type="button" aria-controls="phone-request">Obtenir le numéro</button>
+            </p>
+            <p class="phone-note">Par mesure anti-spam, le numéro s’affiche <strong>après envoi</strong> de votre nom et e-mail via le formulaire ci-dessous. Une fois validé, il restera visible sur cet appareil pendant 30 jours.</p>
+
+            <!-- Mini-formulaire Netlify (AJAX) -->
+            <form id="phone-request" name="sophira-phone-request" class="phone-form" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+              <input type="hidden" name="form-name" value="sophira-phone-request" />
+              <p style="display:none"><label>Ne pas remplir: <input name="bot-field" /></label></p>
+
+              <div>
+                <label for="pr-name">Nom et prénom</label>
+                <input id="pr-name" name="name" autocomplete="name" required />
+              </div>
+              <div>
+                <label for="pr-email">E-mail</label>
+                <input id="pr-email" type="email" name="email" autocomplete="email" required />
+              </div>
+              <div class="wide">
+                <label><input type="checkbox" id="pr-consent" name="consent" required /> J’accepte d’être contacté par Sophira concernant ma demande.</label>
+              </div>
+              <div class="wide actions">
+                <button class="btn" type="submit">Envoyer et afficher le numéro</button>
+                <button class="btn outline" type="button" id="pr-cancel">Annuler</button>
+                <span id="pr-status" class="small" role="status" aria-live="polite"></span>
+              </div>
+            </form>
+          </div>
         </div>
 
         <!-- Google Maps -->
@@ -155,7 +202,7 @@
         <h3>Envoyer un message</h3>
         <p class="muted">Si vous venez du Portail Emplois, la référence est transmise automatiquement.</p>
 
-        <form name="sophira-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/merci.html">
+        <form id="main-form" name="sophira-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/merci.html">
           <input type="hidden" name="form-name" value="sophira-contact" />
           <p style="display:none"><label>Ne pas remplir: <input name="bot-field" /></label></p>
 
@@ -195,9 +242,9 @@
     </footer>
   </div>
 
-  <!-- JS : menu mobile + bandeau contexte + préremplissage -->
+  <!-- JS : menu mobile + bandeau contexte + préremplissage + dévoilement téléphone -->
   <script>
-    // Menu mobile
+    // Mobile menu
     (function(){
       const burger=document.getElementById('burger');
       const panel=document.getElementById('menu-mobile');
@@ -211,18 +258,16 @@
       document.addEventListener('keydown',(e)=>{ if(e.key==='Escape' && !panel.classList.contains('hidden')) toggleMenu(); });
     })();
 
-    // Lecture des paramètres d’URL (ref, type, from)
+    // URL params (ref, type, from)
     (function(){
       const params = new URLSearchParams(window.location.search);
       const ref = params.get('ref');
-      const type = params.get('type'); // "offer" | "candidate" (depuis le portail)
+      const type = params.get('type');
       const from = params.get('from');
 
-      // Remplit les champs cachés du formulaire
       if(ref) document.getElementById('f-ref').value = ref;
       if(type) document.getElementById('f-type').value = type;
 
-      // Affiche un bandeau contexte
       const ctx = document.getElementById('ctx');
       if(!ctx) return;
 
@@ -236,6 +281,87 @@
         ctx.innerHTML = `Vous contactez Sophira depuis votre espace profil. N’oubliez pas d’indiquer l’objet de votre demande.`;
         ctx.style.display = 'block';
       }
+    })();
+
+    // Téléphone protégé (mini-formulaire)
+    (function(){
+      const PHONE_NUMBER = '+41 79 123 45 67';
+      const KEY = 'sophira_phone_ok_until';
+      const DAYS = 30;
+
+      const mask = document.getElementById('phone-mask');
+      const btn = document.getElementById('btn-reveal');
+      const form = document.getElementById('phone-request');
+      const cancel = document.getElementById('pr-cancel');
+      const statusEl = document.getElementById('pr-status');
+
+      function now(){ return new Date().getTime(); }
+      function inDays(d){ return d*24*60*60*1000; }
+      function markOk(){
+        localStorage.setItem(KEY, String(now()+inDays(DAYS)));
+      }
+      function hasOk(){
+        const until = Number(localStorage.getItem(KEY)||0);
+        return until && now()<until;
+      }
+      function reveal(){
+        if(mask) mask.textContent = PHONE_NUMBER;
+        if(btn) btn.style.display='none';
+        if(form) form.style.display='none';
+      }
+
+      // Initial state
+      if(hasOk()) reveal();
+
+      if(btn){
+        btn.addEventListener('click', ()=> {
+          form.style.display='grid';
+          btn.style.display='none';
+          const name = document.getElementById('pr-name'); if(name) name.focus();
+        });
+      }
+      if(cancel){
+        cancel.addEventListener('click', ()=>{
+          form.style.display='none';
+          btn.style.display='inline-block';
+          statusEl.textContent='';
+        });
+      }
+
+      if(form){
+        form.addEventListener('submit', async (e)=>{
+          e.preventDefault();
+          statusEl.textContent = 'Envoi…';
+
+          // Build Netlify-compatible payload
+          const data = new FormData(form);
+          // Netlify requires a URL-encoded body for AJAX
+          const body = new URLSearchParams();
+          for (const [k,v] of data.entries()){ body.append(k, v); }
+
+          try{
+            const res = await fetch('/', {
+              method:'POST',
+              headers:{ 'Content-Type':'application/x-www-form-urlencoded' },
+              body: body.toString()
+            });
+            if(res.ok){
+              markOk();
+              reveal();
+              statusEl.textContent = 'Merci, le numéro est affiché.';
+            }else{
+              statusEl.textContent = 'Erreur lors de l’envoi. Veuillez réessayer.';
+              btn.style.display='inline-block';
+            }
+          }catch(err){
+            statusEl.textContent = 'Connexion impossible. Réessayez plus tard.';
+            btn.style.display='inline-block';
+          }
+        });
+      }
+
+      // If the main contact form is successfully submitted and the user returns,
+      // the localStorage flag will keep the number visible for 30 days.
     })();
   </script>
 </body>
