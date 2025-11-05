@@ -1,29 +1,29 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contact – Sophira</title>
+  <title>Kontakt – Sophira</title>
 
   <!-- SEO -->
-  <link rel="canonical" href="https://sophira.ch/contact.html" />
+  <link rel="canonical" href="https://sophira.ch/contact-de.html" />
   <meta name="robots" content="index,follow" />
-  <meta name="description" content="Contactez l'association Sophira : adresse, email, téléphone et plan d'accès à Bâle, Suisse. Formulaire de contact disponible." />
+  <meta name="description" content="Kontaktieren Sie den Verein Sophira: Adresse, E-Mail, Telefon und Anfahrtsplan in Basel, Schweiz. Kontaktformular verfügbar." />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Contact – Sophira" />
-  <meta property="og:description" content="Coordonnées et plan d'accès pour contacter Sophira, association pour la reconversion en Suisse." />
+  <meta property="og:title" content="Kontakt – Sophira" />
+  <meta property="og:description" content="Kontaktangaben und Anfahrt, Verein Sophira für berufliche Neuorientierung in der Schweiz." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://sophira.ch/contact.html" />
+  <meta property="og:url" content="https://sophira.ch/contact-de.html" />
   <meta property="og:image" content="https://sophira.ch/Logo_sophira.png" />
 
-  <!-- TikTok / Social -->
+  <!-- Social metas -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Contact – Sophira" />
-  <meta name="twitter:description" content="Adresse, email et téléphone de Sophira, association pour la reconversion en Suisse." />
+  <meta name="twitter:title" content="Kontakt – Sophira" />
+  <meta name="twitter:description" content="Adresse, E-Mail und Telefon des Vereins Sophira." />
   <meta name="twitter:image" content="https://sophira.ch/Logo_sophira.png" />
 
-  <!-- Police -->
+  <!-- Schrift -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -32,14 +32,13 @@
       --bg-overlay:rgba(255,255,255,0.95); --whiteglass:#ffffffdd; --radius:12px;
       --shadow-sm:0 2px 8px rgba(0,0,0,0.05); --shadow-md:0 4px 12px rgba(0,0,0,0.08);
       --container:960px; --ok:#065f46; --warn:#92400e; --panel:#f8fafc;
-      --info:#0f172a; --border:#e5e7eb;
+      --border:#e5e7eb;
     }
     body{
       margin:0; font-family:'Inter',sans-serif; background:url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center/cover fixed; color:var(--text);
     }
     .overlay{ background-color:var(--bg-overlay); min-height:100vh; display:flex; flex-direction:column; }
 
-    /* NAVBAR (même style que le site) */
     header.navbar{
       position:sticky; top:0; z-index:20; display:flex; align-items:center; justify-content:space-between; gap:.75rem;
       padding:.8rem 1rem; background:var(--whiteglass); box-shadow:var(--shadow-sm); backdrop-filter:blur(6px);
@@ -47,9 +46,11 @@
     .brand{ display:flex; align-items:center; gap:.6rem; text-decoration:none; }
     .brand img{ height:55px; }
     .brand h1{ margin:0; font-size:1.7rem; font-weight:600; color:#1a202c; }
+
     nav.primary{ display:flex; gap:1.1rem; }
     nav.primary a{ text-decoration:none; color:var(--text); font-weight:500; }
     nav.primary a:hover{ color:#1e88e5; }
+
     .burger{ display:none; background:none; border:none; padding:.4rem .6rem; }
     .burger svg{ width:28px; height:28px; }
     .mobile-panel{ display:none; position:fixed; inset:64px 0 0 0; background:#ffffffdd; backdrop-filter:blur(6px); padding:1rem; }
@@ -59,13 +60,11 @@
     .hidden{ display:none !important; }
     @media(max-width:880px){ nav.primary{ display:none; } .burger{ display:inline-flex; } }
 
-    /* LAYOUT */
     .container{ flex:1; max-width:var(--container); margin:2rem auto; padding:0 1rem; }
     .content{ background:#ffffffdd; padding:2rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
     .content h2{ text-align:center; margin-top:0; }
     .contact-info{ margin-top:1.5rem; font-size:1rem; }
 
-    /* Bandeau contexte */
     .context{
       margin:1rem 0 0; padding:.9rem 1rem; border-radius:10px; border:1px solid #cbd5e1; background:#f1f5f9; color:#0f172a;
       display:none;
@@ -73,7 +72,7 @@
     .context.ok{ border-color:#a7f3d0; background:#ecfdf5; color:#064e3b; }
     .context.warn{ border-color:#fed7aa; background:#fff7ed; color:#7c2d12; }
 
-    /* Bloc téléphone protégé */
+    /* Geschütztes Telefon */
     .phone-box{
       margin:.4rem 0 0;
       padding:.8rem 1rem;
@@ -82,11 +81,10 @@
       background:#fff;
     }
     .phone-note{ color:var(--muted); font-size:.95rem; margin:.5rem 0 0; }
-    .small{ font-size:.92rem; color:var(--muted); }
+    .small{ font-size:.92rem; color:#4b5563; }
 
     iframe{ width:100%; height:350px; border:none; border-radius:var(--radius); margin-top:2rem; }
 
-    /* Formulaires */
     .form-card{ margin-top:1.2rem; background:#fff; border:1px solid #e5e7eb; border-radius:12px; box-shadow:var(--shadow-sm); padding:1rem; }
     form label{ display:block; margin:.6rem 0 .25rem; font-weight:600; }
     input, textarea{ width:100%; padding:.6rem .7rem; border:1px solid #d1d5db; border-radius:8px; }
@@ -96,12 +94,10 @@
     .btn.outline{ background:transparent; color:var(--brand); border:2px solid var(--brand); }
     .btn.outline:hover{ background:#e8f0fe; }
 
-    /* Petit formulaire de demande de numéro */
     .phone-form{ margin-top:.6rem; display:grid; grid-template-columns:1fr 1fr; gap:.6rem; align-items:end; }
     .phone-form .wide{ grid-column:span 2; }
     @media(max-width:640px){ .phone-form{ grid-template-columns:1fr; } .phone-form .wide{ grid-column:auto; } }
 
-    /* Bloc “Suivez-nous” */
     .social{ margin-top:2rem; background:var(--panel); border:1px solid #e5e7eb; border-radius:12px; padding:1rem; }
     .social h3{ margin:.2rem 0 .6rem; }
     .social a{ display:inline-block; margin-right:.6rem; text-decoration:none; font-weight:700; }
@@ -113,138 +109,130 @@
 </head>
 <body>
   <div class="overlay">
-    <!-- NAVIGATION -->
     <header class="navbar">
-      <a class="brand" href="index.html">
-        <img src="Logo_sophira.png" alt="Logo Sophira" />
+      <a class="brand" href="index-de.html">
+        <img src="Logo_sophira.png" alt="Sophira Logo" />
         <h1>Sophira</h1>
       </a>
-      <nav class="primary" aria-label="Liens principaux">
-        <a href="index.html">Accueil</a>
-        <a href="team.html">Équipe</a>
-        <a href="project.html">Projet social</a>
-        <a href="dashboard.html">Tableau de bord</a>
+      <nav class="primary" aria-label="Hauptlinks">
+        <a href="index-de.html">Startseite</a>
+        <a href="team-de.html">Team</a>
+        <a href="project-de.html">Soziales Projekt</a>
+        <a href="dashboard-de.html">Dashboard</a>
         <a href="blog.html">Blog</a>
-        <a href="jobs/index.html">Portail Emplois</a>
-        <a href="contact.html" aria-current="page">Contact</a>
+        <a href="jobs/index-de.html">Job-Portal</a>
+        <a href="contact-de.html" aria-current="page">Kontakt</a>
       </nav>
-      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-controls="menu-mobile" aria-expanded="false">
+      <button class="burger" id="burger" aria-label="Menü öffnen" aria-controls="menu-mobile" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
     </header>
 
-    <!-- MENU MOBILE -->
     <div id="menu-mobile" class="mobile-panel hidden">
       <div class="mobile-links">
-        <a href="index.html">Accueil</a>
-        <a href="team.html">Équipe</a>
-        <a href="project.html">Projet social</a>
-        <a href="dashboard.html">Tableau de bord</a>
+        <a href="index-de.html">Startseite</a>
+        <a href="team-de.html">Team</a>
+        <a href="project-de.html">Soziales Projekt</a>
+        <a href="dashboard-de.html">Dashboard</a>
         <a href="blog.html">Blog</a>
-        <a href="jobs/index.html">Portail Emplois</a>
-        <a href="contact.html" aria-current="page">Contact</a>
+        <a href="jobs/index-de.html">Job-Portal</a>
+        <a href="contact-de.html" aria-current="page">Kontakt</a>
       </div>
     </div>
 
-    <!-- CONTENU -->
     <main class="container">
       <div class="content">
-        <h2>Contactez-nous</h2>
+        <h2>Kontakt</h2>
 
-        <!-- Bandeau contextuel (si ?ref= / ?type=) -->
+        <!-- Kontextbanner -->
         <div id="ctx" class="context" role="status" aria-live="polite"></div>
 
         <div class="contact-info">
-          <p><strong>Adresse :</strong> Sandgrubenstrasse, 4058 Bâle, Suisse</p>
-          <p><strong>Email :</strong> association_sophira@protonmail.com</p>
+          <p><strong>Adresse:</strong> Sandgrubenstrasse, 4058 Basel, Schweiz</p>
+          <p><strong>E-Mail:</strong> association_sophira@protonmail.com</p>
 
-          <!-- Téléphone protégé -->
+          <!-- Geschütztes Telefon -->
           <div class="phone-box" aria-live="polite">
-            <p style="margin:0;"><strong>Téléphone :</strong>
+            <p style="margin:0;"><strong>Telefon:</strong>
               <span id="phone-mask">+41 ••• ••• •• ••</span>
-              <button id="btn-reveal" class="btn outline" type="button" aria-controls="phone-request">Obtenir le numéro</button>
+              <button id="btn-reveal" class="btn outline" type="button" aria-controls="phone-request">Nummer anzeigen</button>
             </p>
-            <p class="phone-note">Par mesure anti-spam, le numéro s’affiche <strong>après envoi</strong> de votre nom et e-mail via le formulaire ci-dessous. Une fois validé, il restera visible sur cet appareil pendant 30 jours.</p>
+            <p class="phone-note">Aus Anti-Spam-Gründen wird die Nummer <strong>nach dem Senden</strong> Ihres Namens und Ihrer E-Mail über das Formular unten angezeigt. Die Anzeige bleibt 30 Tage auf diesem Gerät aktiv.</p>
 
-            <!-- Mini-formulaire Netlify (AJAX) -->
+            <!-- Mini-Formular Netlify (AJAX) -->
             <form id="phone-request" name="sophira-phone-request" class="phone-form" method="POST" data-netlify="true" netlify-honeypot="bot-field">
               <input type="hidden" name="form-name" value="sophira-phone-request" />
-              <p style="display:none"><label>Ne pas remplir: <input name="bot-field" /></label></p>
+              <p style="display:none"><label>Nicht ausfüllen: <input name="bot-field" /></label></p>
 
               <div>
-                <label for="pr-name">Nom et prénom</label>
+                <label for="pr-name">Name und Vorname</label>
                 <input id="pr-name" name="name" autocomplete="name" required />
               </div>
               <div>
-                <label for="pr-email">E-mail</label>
+                <label for="pr-email">E-Mail</label>
                 <input id="pr-email" type="email" name="email" autocomplete="email" required />
               </div>
               <div class="wide">
-                <label><input type="checkbox" id="pr-consent" name="consent" required /> J’accepte d’être contacté par Sophira concernant ma demande.</label>
+                <label><input type="checkbox" id="pr-consent" name="consent" required /> Ich bin einverstanden, dass Sophira mich zu meiner Anfrage kontaktiert.</label>
               </div>
               <div class="wide actions">
-                <button class="btn" type="submit">Envoyer et afficher le numéro</button>
-                <button class="btn outline" type="button" id="pr-cancel">Annuler</button>
+                <button class="btn" type="submit">Senden & Nummer anzeigen</button>
+                <button class="btn outline" type="button" id="pr-cancel">Abbrechen</button>
                 <span id="pr-status" class="small" role="status" aria-live="polite"></span>
               </div>
             </form>
           </div>
         </div>
 
-        <!-- Google Maps -->
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2752.415159526313!2d7.588576115595142!3d47.55959817918171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4791b9a6f3e10ff7%3A0xdea0a2f76e49767f!2sBasel%2C%20Switzerland!5e0!3m2!1sfr!2sch!4v1691010100000"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2752.415159526313!2d7.588576115595142!3d47.55959817918171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4791b9a6f3e10ff7%3A0xdea0a2f76e49767f!2sBasel%2C%20Switzerland!5e0!3m2!1sde!2sch!4v1691010100000"
           allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
 
-      <!-- Formulaire Netlify (contact + référence d’offre/profil) -->
-      <section class="form-card" aria-label="Formulaire de contact">
-        <h3>Envoyer un message</h3>
-        <p class="muted">Si vous venez du Portail Emplois, la référence est transmise automatiquement.</p>
+      <section class="form-card" aria-label="Kontaktformular">
+        <h3>Nachricht senden</h3>
+        <p class="muted">Wenn Sie vom Job-Portal kommen, wird die Referenz automatisch übermittelt.</p>
 
-        <form id="main-form" name="sophira-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/merci.html">
-          <input type="hidden" name="form-name" value="sophira-contact" />
-          <p style="display:none"><label>Ne pas remplir: <input name="bot-field" /></label></p>
+        <form id="main-form" name="sophira-kontakt" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/danke.html">
+          <input type="hidden" name="form-name" value="sophira-kontakt" />
+          <p style="display:none"><label>Nicht ausfüllen: <input name="bot-field" /></label></p>
 
-          <!-- Champ caché alimenté par l’URL -->
           <input type="hidden" id="f-ref" name="ref" />
           <input type="hidden" id="f-type" name="type" />
 
-          <label for="f-nom">Nom et prénom</label>
-          <input id="f-nom" name="nom" autocomplete="name" required />
+          <label for="f-name">Name und Vorname</label>
+          <input id="f-name" name="name" autocomplete="name" required />
 
-          <label for="f-email">E-mail</label>
+          <label for="f-email">E-Mail</label>
           <input id="f-email" type="email" name="email" autocomplete="email" required />
 
-          <label for="f-msg">Message</label>
-          <textarea id="f-msg" name="message" rows="5" placeholder="Votre demande..."></textarea>
+          <label for="f-msg">Nachricht</label>
+          <textarea id="f-msg" name="message" rows="5" placeholder="Ihre Anfrage..."></textarea>
 
-          <label><input type="checkbox" name="consent" required /> J’accepte que mes données soient utilisées pour me recontacter.</label>
+          <label><input type="checkbox" name="consent" required /> Ich bin einverstanden, dass meine Daten zur Kontaktaufnahme verwendet werden.</label>
 
           <div class="actions">
-            <button class="btn" type="submit">Envoyer</button>
-            <a class="btn outline" href="jobs/index.html">Aller au Portail Emplois</a>
+            <button class="btn" type="submit">Senden</button>
+            <a class="btn outline" href="jobs/index-de.html">Zum Job-Portal</a>
           </div>
         </form>
       </section>
 
-      <!-- Bloc “Suivez-nous” -->
-      <section class="social" aria-label="Réseaux sociaux">
-        <h3>Suivez-nous</h3>
-        <p class="muted">Restez informé·e des actions, événements et nouvelles opportunités.</p>
+      <section class="social" aria-label="Soziale Netzwerke">
+        <h3>Folgen Sie uns</h3>
+        <p class="muted">Bleiben Sie über Aktionen, Events und neue Möglichkeiten informiert.</p>
         <a class="tiktok" href="https://www.tiktok.com/@sophira" target="_blank" rel="noopener">TikTok</a>
         <a class="linkedin" href="https://www.linkedin.com/company/sophira" target="_blank" rel="noopener">LinkedIn</a>
       </section>
     </main>
 
     <footer>
-      <p>&copy; 2025 Sophira Association | Basel, Suisse</p>
+      <p>&copy; 2025 Sophira Verein | Basel, Schweiz</p>
     </footer>
   </div>
 
-  <!-- JS : menu mobile + bandeau contexte + préremplissage + dévoilement téléphone -->
   <script>
-    // Mobile menu
+    // Mobile-Menü
     (function(){
       const burger=document.getElementById('burger');
       const panel=document.getElementById('menu-mobile');
@@ -258,7 +246,7 @@
       document.addEventListener('keydown',(e)=>{ if(e.key==='Escape' && !panel.classList.contains('hidden')) toggleMenu(); });
     })();
 
-    // URL params (ref, type, from)
+    // URL-Parameter (ref, type, from)
     (function(){
       const params = new URLSearchParams(window.location.search);
       const ref = params.get('ref');
@@ -273,17 +261,17 @@
 
       if(ref && type){
         ctx.classList.add('ok');
-        const label = (type === 'offer') ? "offre" : (type === 'candidate' ? "profil candidat" : "référence");
-        ctx.innerHTML = `Référence transmise : <strong>${ref}</strong> (${label}). Nous relierons votre message à ce dossier.`;
+        const label = (type === 'offer') ? "Stelle" : (type === 'candidate' ? "Kandidat:innenprofil" : "Referenz");
+        ctx.innerHTML = `Übermittelte Referenz: <strong>${ref}</strong> (${label}). Wir verknüpfen Ihre Nachricht mit diesem Dossier.`;
         ctx.style.display = 'block';
       } else if (from === 'profil') {
         ctx.classList.add('warn');
-        ctx.innerHTML = `Vous contactez Sophira depuis votre espace profil. N’oubliez pas d’indiquer l’objet de votre demande.`;
+        ctx.innerHTML = `Sie kontaktieren Sophira aus Ihrem Profilbereich. Bitte geben Sie den Zweck Ihrer Anfrage an.`;
         ctx.style.display = 'block';
       }
     })();
 
-    // Téléphone protégé (mini-formulaire)
+    // Geschütztes Telefon (Mini-Formular)
     (function(){
       const PHONE_NUMBER = '+41 78 624 89 79';
       const KEY = 'sophira_phone_ok_until';
@@ -297,27 +285,21 @@
 
       function now(){ return new Date().getTime(); }
       function inDays(d){ return d*24*60*60*1000; }
-      function markOk(){
-        localStorage.setItem(KEY, String(now()+inDays(DAYS)));
-      }
-      function hasOk(){
-        const until = Number(localStorage.getItem(KEY)||0);
-        return until && now()<until;
-      }
+      function markOk(){ localStorage.setItem(KEY, String(now()+inDays(DAYS))); }
+      function hasOk(){ const until = Number(localStorage.getItem(KEY)||0); return until && now()<until; }
       function reveal(){
         if(mask) mask.textContent = PHONE_NUMBER;
         if(btn) btn.style.display='none';
         if(form) form.style.display='none';
       }
 
-      // Initial state
       if(hasOk()) reveal();
 
       if(btn){
-        btn.addEventListener('click', ()=> {
+        btn.addEventListener('click', ()=>{
           form.style.display='grid';
           btn.style.display='none';
-          const name = document.getElementById('pr-name'); if(name) name.focus();
+          const n=document.getElementById('pr-name'); if(n) n.focus();
         });
       }
       if(cancel){
@@ -331,11 +313,9 @@
       if(form){
         form.addEventListener('submit', async (e)=>{
           e.preventDefault();
-          statusEl.textContent = 'Envoi…';
+          statusEl.textContent = 'Senden…';
 
-          // Build Netlify-compatible payload
           const data = new FormData(form);
-          // Netlify requires a URL-encoded body for AJAX
           const body = new URLSearchParams();
           for (const [k,v] of data.entries()){ body.append(k, v); }
 
@@ -348,20 +328,17 @@
             if(res.ok){
               markOk();
               reveal();
-              statusEl.textContent = 'Merci, le numéro est affiché.';
+              statusEl.textContent = 'Danke, die Nummer ist sichtbar.';
             }else{
-              statusEl.textContent = 'Erreur lors de l’envoi. Veuillez réessayer.';
+              statusEl.textContent = 'Fehler beim Senden. Bitte erneut versuchen.';
               btn.style.display='inline-block';
             }
           }catch(err){
-            statusEl.textContent = 'Connexion impossible. Réessayez plus tard.';
+            statusEl.textContent = 'Keine Verbindung. Bitte später erneut versuchen.';
             btn.style.display='inline-block';
           }
         });
       }
-
-      // If the main contact form is successfully submitted and the user returns,
-      // the localStorage flag will keep the number visible for 30 days.
     })();
   </script>
 </body>
