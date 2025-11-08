@@ -3,349 +3,266 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sophira – Association pour la reconversion professionnelle</title>
+  <title>Faire un don – Sophira</title>
 
-  <!-- SEO de base -->
-  <link rel="canonical" href="https://sophira.ch/index.html" />
+  <!-- SEO -->
+  <link rel="canonical" href="https://sophira.ch/donate.html" />
   <meta name="robots" content="index,follow" />
-  <meta name="description" content="Sophira accompagne les adultes en difficulté financière dans leur reconversion vers les métiers d’avenir (data, technologies vertes, santé digitale, IA) en Suisse." />
+  <meta name="description" content="Soutenez l’association Sophira par un don. Votre contribution permet d’accompagner des adultes en Suisse dans leur reconversion vers des métiers d’avenir." />
 
-  <!-- Hreflang -->
-  <link rel="alternate" hreflang="fr" href="https://sophira.ch/index.html" />
-  <link rel="alternate" hreflang="de" href="https://sophira.ch/index-de.html" />
-  <link rel="alternate" hreflang="x-default" href="https://sophira.ch/index.html" />
-
-  <!-- Open Graph / Social -->
-  <meta property="og:title" content="Sophira – Association pour la reconversion professionnelle" />
-  <meta property="og:description" content="Lutter contre le chômage lié à l’automatisation et ouvrir des opportunités dans les métiers d’avenir." />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Faire un don – Sophira" />
+  <meta property="og:description" content="Faites un don au profit de Sophira, association qui accompagne la reconversion professionnelle d’adultes vers les métiers d’avenir en Suisse." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://sophira.ch/index.html" />
+  <meta property="og:url" content="https://sophira.ch/donate.html" />
   <meta property="og:image" content="https://sophira.ch/Logo_sophira.png" />
-  <meta property="og:site_name" content="Sophira" />
-  <meta property="og:locale" content="fr_CH" />
-  <meta property="og:locale:alternate" content="de_CH" />
 
-  <!-- Twitter -->
+  <!-- Social metas -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Sophira – Association pour la reconversion professionnelle" />
-  <meta name="twitter:description" content="Sophira aide les adultes à se reconvertir vers les métiers d’avenir en Suisse." />
+  <meta name="twitter:title" content="Faire un don – Sophira" />
+  <meta name="twitter:description" content="Soutenez l’association Sophira par un don. Chaque contribution aide des adultes à se reconvertir vers des métiers d’avenir." />
   <meta name="twitter:image" content="https://sophira.ch/Logo_sophira.png" />
 
-  <!-- Couleur navigateur & icônes -->
-  <meta name="theme-color" content="#1a73e8" />
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-
   <!-- Police -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- Données structurées (Organisation) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "NonprofitOrganization",
-    "name": "Sophira",
-    "url": "https://sophira.ch/",
-    "logo": "https://sophira.ch/Logo_sophira.png",
-    "foundingLocation": "Bâle, Suisse",
-    "areaServed": "CH",
-    "sameAs": [],
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Bâle",
-      "addressCountry": "CH"
-    }
-  }
+  <!-- PayPal SDK (Hosted Buttons) -->
+  <script 
+    src="https://www.paypal.com/sdk/js?client-id=BAAGxn8h3EeDctBRmrD3icvmvjwmWp-VYeWEr8D4OWJjvlgkqjMzsz4ZDr6WrdTtfMOxYDElsbG9NGJ4CA&components=hosted-buttons&disable-funding=venmo&currency=CHF">
   </script>
 
   <style>
     :root{
-      --text:#2c3e50;
-      --muted:#4a5568;
-      --brand:#1a73e8;
-      --brand-hover:#155ab6;
-      --whiteglass:#ffffffdd;
-      --panel:#edf2f7cc;
-      --radius:12px;
-      --shadow-sm:0 2px 8px rgba(0,0,0,.05);
-      --shadow-md:0 4px 12px rgba(0,0,0,.08);
-      --container:980px;
-      --focus:#0d6efd;
-      --focus-bg:#e8f0fe;
+      --text:#2c3e50; --muted:#4a5568; --brand:#1a73e8; --brand-hover:#155ab6;
+      --bg-overlay:rgba(255,255,255,0.95); --whiteglass:#ffffffdd; --radius:12px;
+      --shadow-sm:0 2px 8px rgba(0,0,0,0.05); --shadow-md:0 4px 12px rgba(0,0,0,0.08);
+      --container:960px; --ok:#065f46; --warn:#92400e; --panel:#f8fafc;
+      --border:#e5e7eb;
     }
-    *{box-sizing:border-box}
-    html:focus-within{ scroll-behavior:smooth; }
     body{
-      margin:0; font-family:'Inter',sans-serif;
-      background:url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center center fixed;
-      background-size:cover; color:var(--text);
+      margin:0; font-family:'Inter',sans-serif; background:url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center/cover fixed; color:var(--text);
     }
-    body.no-scroll{ overflow:hidden; }
+    .overlay{ background-color:var(--bg-overlay); min-height:100vh; display:flex; flex-direction:column; }
 
-    /* Skip link (accessibilité) */
-    .skip-link{
-      position:absolute; left:1rem; top:.5rem;
-      transform:translateY(-200%);
-      background:#000; color:#fff; padding:.6rem .9rem; border-radius:8px;
-      text-decoration:none; z-index:1000; box-shadow:var(--shadow-sm);
-    }
-    .skip-link:focus, .skip-link:focus-visible{ transform:translateY(0); outline:2px solid #fff; }
-
-    .overlay{ min-height:100vh; background:rgba(255,255,255,.9); display:flex; flex-direction:column; }
-
-    /* NAVBAR */
     header.navbar{
-      position:sticky; top:0; z-index:20;
-      display:flex; align-items:center; justify-content:space-between; gap:.5rem;
-      padding:.7rem 1rem; background:var(--whiteglass); box-shadow:var(--shadow-sm); backdrop-filter: blur(6px);
+      position:sticky; top:0; z-index:20; display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+      padding:.8rem 1rem; background:var(--whiteglass); box-shadow:var(--shadow-sm); backdrop-filter:blur(6px);
     }
-    .brand{ display:flex; align-items:center; gap:.6rem; min-width:0; text-decoration:none; }
-    .brand img{ height:55px; width:auto; }
-    .brand h1{
-      margin:0; font-size:1.55rem; font-weight:600; color:#1a202c;
-      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-    }
+    .brand{ display:flex; align-items:center; gap:.6rem; text-decoration:none; }
+    .brand img{ height:55px; }
+    .brand h1{ margin:0; font-size:1.7rem; font-weight:600; color:#1a202c; }
 
-    nav.primary{ display:flex; gap:1rem; align-items:center; }
+    nav.primary{ display:flex; gap:1.1rem; }
     nav.primary a{ text-decoration:none; color:var(--text); font-weight:500; }
-    nav.primary a:hover, nav.primary a:focus{ color:#1e88e5; }
+    nav.primary a:hover{ color:#1e88e5; }
 
-    /* Liens de langue (desktop) */
-    .lang{ display:inline-flex; gap:.4rem; margin-left:.4rem; font-size:.95rem; }
-    .lang a{ color:#5b6b7a; text-decoration:none; }
-    .lang a[aria-current="true"]{ font-weight:700; color:#1a202c; }
-
-    /* Boutons mobile */
-    .burger{ display:none; background:none; border:none; padding:.35rem .55rem; }
-    .burger svg{ width:26px; height:26px; }
-    .lang-toggle{
-      display:none;
-      margin-left:.2rem;
-      background:#fff; border:1px solid #cbd5e1; border-radius:999px;
-      padding:.25rem .6rem; font-weight:700; cursor:pointer;
-    }
-    .lang-menu{
-      position:absolute; right:1rem; top:64px; background:#ffffffdd; backdrop-filter:blur(6px);
-      border:1px solid #e5e7eb; border-radius:10px; box-shadow:var(--shadow-sm);
-      display:flex; flex-direction:column; padding:.4rem; gap:.2rem;
-    }
-    .lang-menu a{ text-decoration:none; color:#1f2937; font-weight:600; padding:.4rem .6rem; border-radius:8px; }
-    .lang-menu a[aria-current="true"]{ background:#e8f0fe; color:#174ea6; }
-
-    /* Menu mobile */
-    .mobile-panel{ display:none; position:fixed; inset:64px 0 0 0; background:var(--whiteglass); backdrop-filter:blur(6px); padding:1rem; }
+    .burger{ display:none; background:none; border:none; padding:.4rem .6rem; }
+    .burger svg{ width:28px; height:28px; }
+    .mobile-panel{ display:none; position:fixed; inset:64px 0 0 0; background:#ffffffdd; backdrop-filter:blur(6px); padding:1rem; }
     .mobile-links{ display:flex; flex-direction:column; gap:.8rem; }
     .mobile-links a{ text-decoration:none; color:var(--text); font-weight:600; padding:.7rem 0; border-bottom:1px solid #ddd; }
     .mobile-links a:last-child{ border-bottom:none; }
     .hidden{ display:none !important; }
+    @media(max-width:880px){ nav.primary{ display:none; } .burger{ display:inline-flex; } }
 
     .container{ flex:1; max-width:var(--container); margin:2rem auto; padding:0 1rem; }
+    .content{ background:#ffffffdd; padding:2rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
+    .content h2{ text-align:center; margin-top:0; }
+    .contact-info{ margin-top:1.5rem; font-size:1rem; }
 
-    /* HERO */
-    .hero{ background:var(--panel); padding:2.4rem 1.4rem; border-radius:var(--radius); text-align:center; box-shadow:var(--shadow-md); }
-    .hero h2{ font-size:2.05rem; margin:.2rem 0 .7rem; }
-    .subtitle{ font-size:1.08rem; color:var(--muted); margin:0 auto; max-width:800px; }
-
-    /* EN UN COUP D’ŒIL */
-    .glance{ margin-top:1rem; display:grid; grid-template-columns:repeat(12,1fr); gap:.8rem; }
-    .glance .item{
-      grid-column:span 12; background:#fff; border-radius:10px; box-shadow:var(--shadow-sm);
-      padding:.9rem 1rem; text-align:left;
+    .context{
+      margin:1rem 0 0; padding:.9rem 1rem; border-radius:10px; border:1px solid #cbd5e1; background:#f1f5f9; color:#0f172a;
+      display:none;
     }
-    .glance .item strong{ display:block; margin-bottom:.25rem; }
+    .context.ok{ border-color:#a7f3d0; background:#ecfdf5; color:#064e3b; }
+    .context.warn{ border-color:#fed7aa; background:#fff7ed; color:#7c2d12; }
 
-    /* LIENS RAPIDES */
-    .quick{ margin-top:1rem; display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap; }
-    .btn{
-      display:inline-block; background:var(--brand); color:#fff; text-decoration:none;
-      padding:.6rem 1rem; border-radius:10px; font-weight:700; transition:transform .06s ease;
+    /* Bloc don (PayPal) */
+    .donate-box{
+      margin:1rem 0 0;
+      padding:1rem 1.2rem;
+      border-radius:10px;
+      border:1px solid var(--border);
+      background:#fff;
     }
-    .btn:hover{ background:var(--brand-hover); transform:translateY(-1px); }
-    .btn:active{ transform:translateY(0); }
+    .donate-box p{
+      margin:.3rem 0 .8rem;
+      font-size:.95rem;
+      color:var(--muted);
+    }
+    .donate-box small{
+      display:block;
+      font-size:.85rem;
+      color:#6b7280;
+      margin-top:.4rem;
+    }
+
+    /* Téléphone protégé */
+    .phone-box{
+      margin:1.4rem 0 0;
+      padding:.8rem 1rem;
+      border:1px dashed var(--border);
+      border-radius:10px;
+      background:#fff;
+    }
+    .phone-note{ color:var(--muted); font-size:.95rem; margin:.5rem 0 0; }
+    .small{ font-size:.92rem; color:#4b5563; }
+
+    iframe{ width:100%; height:350px; border:none; border-radius:var(--radius); margin-top:2rem; }
+
+    .form-card{ margin-top:1.2rem; background:#fff; border:1px solid #e5e7eb; border-radius:12px; box-shadow:var(--shadow-sm); padding:1rem; }
+    form label{ display:block; margin:.6rem 0 .25rem; font-weight:600; }
+    input, textarea{ width:100%; padding:.6rem .7rem; border:1px solid #d1d5db; border-radius:8px; }
+    .actions{ display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.8rem; }
+    .btn{ display:inline-block; background:var(--brand); color:#fff; text-decoration:none; padding:.6rem 1.1rem; border-radius:8px; font-weight:700; border:none; cursor:pointer; }
+    .btn:hover{ background:var(--brand-hover); }
     .btn.outline{ background:transparent; color:var(--brand); border:2px solid var(--brand); }
     .btn.outline:hover{ background:#e8f0fe; }
 
-    /* SECTION TEXTE */
-    .content{ margin-top:2rem; background:var(--whiteglass); padding:2rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
-    .content h3{ font-size:1.55rem; margin:.2rem 0 .6rem; }
+    .phone-form{ margin-top:.6rem; display:grid; grid-template-columns:1fr 1fr; gap:.6rem; align-items:end; }
+    .phone-form .wide{ grid-column:span 2; }
+    @media(max-width:640px){ .phone-form{ grid-template-columns:1fr; } .phone-form .wide{ grid-column:auto; } }
 
-    /* TEASER BLOG */
-    .teaser{ margin-top:2rem; background:var(--whiteglass); padding:1.2rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
-    .teaser h3{ margin:.1rem 0 .6rem; font-size:1.3rem; text-align:center; }
-    .posts{ display:grid; grid-template-columns:repeat(12,1fr); gap:.8rem; }
-    .post{ grid-column:span 12; background:#fff; border-radius:10px; padding:.9rem 1rem; box-shadow:var(--shadow-sm); }
-    .post h4{ margin:.2rem 0 .2rem; font-size:1.05rem; }
-    .post p{ margin:.1rem 0 .4rem; color:#374151; }
-    .post a{ font-weight:600; color:#fff; background:var(--brand); padding:.4rem .7rem; border-radius:8px; text-decoration:none; }
-    .post a:hover{ background:var(--brand-hover); }
-
-    /* CTA final */
-    .cta{ margin-top:2rem; background:#f7fafc; padding:2rem; text-align:center; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
-    .cta a{ display:inline-block; margin-top:1rem; background:var(--brand); color:#fff; text-decoration:none; padding:.7rem 1.4rem; border-radius:10px; font-weight:700; }
-    .cta a:hover{ background:var(--brand-hover); }
+    .social{ margin-top:2rem; background:var(--panel); border:1px solid #e5e7eb; border-radius:12px; padding:1rem; }
+    .social h3{ margin:.2rem 0 .6rem; }
+    .social a{ display:inline-block; margin-right:.6rem; text-decoration:none; font-weight:700; }
+    .tiktok{ color:#000; }
+    .linkedin{ color:#0a66c2; }
 
     footer{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:var(--whiteglass); border-top-left-radius:var(--radius); border-top-right-radius:var(--radius); }
-
-    /* Bouton flottant GPT */
-    .chat-fab{
-      position:fixed; right:18px; bottom:18px; z-index:30;
-      display:inline-flex; align-items:center; gap:.5rem;
-      padding:.8rem 1rem; border-radius:999px; background:var(--brand); color:#fff; text-decoration:none;
-      box-shadow:var(--shadow-md);
-    }
-    .chat-fab:hover{ background:var(--brand-hover); }
-
-    /* Responsive */
-    @media (min-width: 680px){
-      .glance .item{ grid-column:span 4; }
-      .post{ grid-column:span 4; }
-    }
-    @media (max-width: 880px){
-      nav.primary{ display:none; }
-      .burger{ display:inline-flex; }
-      .lang-toggle{ display:inline-flex; align-items:center; }
-      .lang{ display:none; } /* cache FR | DE texte sur mobile */
-    }
-    @media (prefers-reduced-motion: reduce){
-      *{ scroll-behavior:auto; transition:none !important; }
-    }
   </style>
 </head>
 <body>
-  <!-- Lien d’évitement -->
-  <a class="skip-link" href="#main">Aller au contenu principal</a>
-
   <div class="overlay">
-    <!-- NAVIGATION -->
-    <header class="navbar" role="navigation" aria-label="Navigation principale">
+    <header class="navbar">
       <a class="brand" href="index.html">
-        <img src="Logo_sophira.png" alt="Logo Sophira" loading="eager" fetchpriority="high" />
+        <img src="Logo_sophira.png" alt="Logo Sophira" />
         <h1>Sophira</h1>
       </a>
-
       <nav class="primary" aria-label="Liens principaux">
-        <a href="index.html" aria-current="page">Accueil</a>
+        <a href="index.html">Accueil</a>
         <a href="team.html">Équipe</a>
         <a href="project.html">Projet social</a>
         <a href="dashboard.html">Tableau de bord</a>
         <a href="blog.html">Blog</a>
+        <a href="jobs/index.html">Portail Emplois</a>
         <a href="contact.html">Contact</a>
-        <!-- Lien GPT dans la navigation principale -->
-        <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Ouvrir l’assistant Sophira dans un nouvel onglet">Assistant Sophira</a>
-        <!-- Sélecteur de langue (desktop) -->
-        <span class="lang" aria-label="Changer de langue">
-          <a href="index.html" lang="fr" aria-current="true">FR</a> |
-          <a href="index-de.html" lang="de">DE</a>
-        </span>
       </nav>
-
-      <!-- Contrôles mobiles : bouton langue compact + burger -->
-      <div style="display:flex; align-items:center; gap:.4rem;">
-        <button class="lang-toggle" id="lang-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Changer de langue">FR</button>
-        <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-controls="menu-mobile" aria-expanded="false">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-            <path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </button>
-      </div>
-
-      <!-- Menu langue (mobile) -->
-      <div class="lang-menu" id="lang-menu" hidden role="menu" aria-label="Sélection de langue">
-        <a role="menuitem" href="index.html" lang="fr" aria-current="true">FR</a>
-        <a role="menuitem" href="index-de.html" lang="de">DE</a>
-      </div>
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-controls="menu-mobile" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
     </header>
 
-    <!-- MENU MOBILE -->
-    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Menu mobile">
+    <div id="menu-mobile" class="mobile-panel hidden">
       <div class="mobile-links">
-        <a href="index.html" aria-current="page">Accueil</a>
+        <a href="index.html">Accueil</a>
         <a href="team.html">Équipe</a>
         <a href="project.html">Projet social</a>
         <a href="dashboard.html">Tableau de bord</a>
         <a href="blog.html">Blog</a>
+        <a href="jobs/index.html">Portail Emplois</a>
         <a href="contact.html">Contact</a>
-        <!-- Lien GPT aussi dans le menu mobile -->
-        <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener">Assistant Sophira</a>
       </div>
     </div>
 
-    <!-- CONTENU -->
-    <main id="main" class="container">
-      <!-- HERO -->
-      <section class="hero">
-        <h2>Révéler les talents de demain</h2>
-        <p class="subtitle">
-          Sophira est une association suisse à but non lucratif qui accompagne les adultes confrontés à des obstacles
-          dans leur reconversion vers les métiers d’avenir, de la data aux technologies vertes.
-        </p>
+    <main class="container">
+      <div class="content">
+        <h2>Faire un don</h2>
 
-        <!-- En un coup d'œil -->
-        <div class="glance" aria-label="En un coup d’œil">
-          <div class="item">
-            <strong>Une bourse ciblée</strong>
-            Couvre une partie des frais de formation et d’équipement essentiels.
-          </div>
-          <div class="item">
-            <strong>Mentorat & réseau</strong>
-            Mise en relation, coaching et retours concrets d’experts.
-          </div>
-          <div class="item">
-            <strong>Projets réels</strong>
-            Cas à impact social pour bâtir un portfolio crédible rapidement.
+        <!-- Bandeau contexte (si URL param) -->
+        <div id="ctx" class="context" role="status" aria-live="polite"></div>
+
+        <!-- Bloc don principal avec PayPal -->
+        <section class="donate-box" aria-label="Don en ligne">
+          <p>Votre don permet à Sophira d’accompagner des adultes en Suisse dans leur reconversion vers des métiers d’avenir (data, technologies vertes, santé digitale, IA, etc.). Merci pour votre soutien&nbsp;!</p>
+
+          <!-- Bouton PayPal hébergé -->
+          <div id="paypal-container-LYWSHNWSRDXYW"></div>
+          <script>
+            paypal.HostedButtons({
+              hostedButtonId: "LYWSHNWSRDXYW",
+            }).render("#paypal-container-LYWSHNWSRDXYW");
+          </script>
+
+          <small>Vous serez redirigé·e vers PayPal pour finaliser votre don de manière sécurisée.</small>
+        </section>
+
+        <div class="contact-info">
+          <p><strong>Adresse :</strong> Sandgrubenstrasse, 4058 Bâle, Suisse</p>
+          <p><strong>E-mail :</strong> association_sophira@protonmail.com</p>
+
+          <!-- Téléphone protégé -->
+          <div class="phone-box" aria-live="polite">
+            <p style="margin:0;"><strong>Téléphone :</strong>
+              <span id="phone-mask">+41 ••• ••• •• ••</span>
+              <button id="btn-reveal" class="btn outline" type="button" aria-controls="phone-request">Afficher le numéro</button>
+            </p>
+            <p class="phone-note">Pour des raisons anti-spam, le numéro s’affiche <strong>après l’envoi</strong> de votre nom et de votre e-mail via le petit formulaire ci-dessous. L’affichage reste actif 30 jours sur cet appareil.</p>
+
+            <!-- Mini-formulaire Netlify (AJAX) -->
+            <form id="phone-request" name="sophira-phone-request" class="phone-form" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+              <input type="hidden" name="form-name" value="sophira-phone-request" />
+              <p style="display:none"><label>Ne pas remplir : <input name="bot-field" /></label></p>
+
+              <div>
+                <label for="pr-name">Nom et prénom</label>
+                <input id="pr-name" name="name" autocomplete="name" required />
+              </div>
+              <div>
+                <label for="pr-email">E-mail</label>
+                <input id="pr-email" type="email" name="email" autocomplete="email" required />
+              </div>
+              <div class="wide">
+                <label><input type="checkbox" id="pr-consent" name="consent" required /> J’accepte que Sophira me contacte au sujet de ma demande.</label>
+              </div>
+              <div class="wide actions">
+                <button class="btn" type="submit">Envoyer & afficher le numéro</button>
+                <button class="btn outline" type="button" id="pr-cancel">Annuler</button>
+                <span id="pr-status" class="small" role="status" aria-live="polite"></span>
+              </div>
+            </form>
           </div>
         </div>
 
-        <!-- Liens rapides -->
-        <div class="quick" role="group" aria-label="Liens rapides">
-          <a class="btn" href="project.html">Comprendre le projet</a>
-          <a class="btn outline" href="contact.html">Être recontacté·e</a>
-          <a class="btn" href="donate.html">Faire un don</a>
-        </div>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2752.415159526313!2d7.588576115595142!3d47.55959817918171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4791b9a6f3e10ff7%3A0xdea0a2f76e49767f!2sBasel%2C%20Switzerland!5e0!3m2!1sfr!2sch!4v1691010100000"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+
+      <section class="form-card" aria-label="Questions sur les dons">
+        <h3>Poser une question ou préciser votre don</h3>
+        <p class="muted">Si vous venez du Portail Emplois, la référence est transmise automatiquement.</p>
+
+        <form id="main-form" name="sophira-don" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/merci.html">
+          <input type="hidden" name="form-name" value="sophira-don" />
+          <p style="display:none"><label>Ne pas remplir : <input name="bot-field" /></label></p>
+
+          <input type="hidden" id="f-ref" name="ref" />
+          <input type="hidden" id="f-type" name="type" />
+
+          <label for="f-name">Nom et prénom</label>
+          <input id="f-name" name="name" autocomplete="name" required />
+
+          <label for="f-email">E-mail</label>
+          <input id="f-email" type="email" name="email" autocomplete="email" required />
+
+          <label for="f-msg">Message</label>
+          <textarea id="f-msg" name="message" rows="5" placeholder="Précisez votre demande ou votre intention de don (montant, type, fréquence, etc.)."></textarea>
+
+          <label><input type="checkbox" name="consent" required /> J’accepte que mes données soient utilisées pour me recontacter au sujet de mon don.</label>
+
+          <div class="actions">
+            <button class="btn" type="submit">Envoyer</button>
+            <a class="btn outline" href="jobs/index.html">Aller au Portail Emplois</a>
+          </div>
+        </form>
       </section>
 
-      <!-- SECTION INFO -->
-      <section class="content">
-        <h3>Pourquoi Sophira&nbsp;?</h3>
-        <p>Sophira est née d'une conviction : les transitions numérique et écologique transforment le marché du travail,
-          excluant souvent les adultes en situation de précarité. Pourtant, la Suisse a un besoin croissant de
-          professionnels qualifiés dans ces secteurs.</p>
-        <p>Nous agissons pour briser les barrières et offrir des opportunités concrètes. Sophira accompagne les adultes en reconversion
-          vers des métiers porteurs de sens, en leur donnant les compétences numériques et analytiques nécessaires pour réussir,
-          grâce à un soutien financier et humain.</p>
-      </section>
-
-      <!-- Teaser blog (3 cartes) -->
-      <section class="teaser" aria-label="Derniers articles">
-        <h3>À lire sur le blog</h3>
-        <div class="posts">
-          <article class="post">
-            <h4>Lancement de l’initiative Sophira</h4>
-            <p>Notre vision et comment participer.</p>
-            <a href="article6.html">Lire</a>
-          </article>
-          <article class="post">
-            <h4>Data & reconversion</h4>
-            <p>Des compétences demandées et accessibles.</p>
-            <a href="article7.html">Lire</a>
-          </article>
-          <article class="post">
-            <h4>Secteurs porteurs 2025</h4>
-            <p>Où se situent les opportunités en Suisse.</p>
-            <a href="article2.html">Lire</a>
-          </article>
-        </div>
-      </section>
-
-      <!-- CTA FINAL -->
-      <section class="cta" aria-label="Soutenir">
-        <h3>Soutenez notre vision</h3>
-        <p>Construisons ensemble un avenir plus juste en révélant de nouveaux talents grâce à la solidarité et l'apprentissage continu.</p>
-        <a href="donate.html">Faire un don</a>
+      <section class="social" aria-label="Réseaux sociaux">
+        <h3>Suivez-nous</h3>
+        <p class="muted">Restez informé·e des actions, événements et nouvelles opportunités.</p>
+        <a class="tiktok" href="https://www.tiktok.com/@sophira" target="_blank" rel="noopener">TikTok</a>
+        <a class="linkedin" href="https://www.linkedin.com/company/sophira" target="_blank" rel="noopener">LinkedIn</a>
       </section>
     </main>
 
@@ -354,54 +271,111 @@
     </footer>
   </div>
 
-  <!-- Bouton flottant pour ouvrir le GPT -->
-  <a class="chat-fab" href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Parler avec l’assistant Sophira (ouvre un nouvel onglet)">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-      <path d="M21 15a4 4 0 0 1-4 4H8l-5 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <span>Assistant Sophira</span>
-  </a>
-
-  <!-- JS menu mobile + sélecteur langue -->
   <script>
+    // Menu mobile
     (function(){
-      const burger   = document.getElementById('burger');
-      const panel    = document.getElementById('menu-mobile');
-      const langBtn  = document.getElementById('lang-toggle');
-      const langMenu = document.getElementById('lang-menu');
+      const burger=document.getElementById('burger');
+      const panel=document.getElementById('menu-mobile');
+      if(!burger||!panel) return;
+      function toggleMenu(){
+        const open=panel.classList.toggle('hidden')===false;
+        burger.setAttribute('aria-expanded',String(open));
+      }
+      burger.addEventListener('click',toggleMenu);
+      document.addEventListener('click',(e)=>{ if(!panel.classList.contains('hidden') && !panel.contains(e.target) && !burger.contains(e.target)) toggleMenu(); });
+      document.addEventListener('keydown',(e)=>{ if(e.key==='Escape' && !panel.classList.contains('hidden')) toggleMenu(); });
+    })();
 
-      // Menu mobile
-      if(burger && panel){
-        function toggleMenu(){
-          const open = panel.classList.toggle('hidden') === false;
-          burger.setAttribute('aria-expanded', String(open));
-          burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
-        }
-        burger.addEventListener('click', toggleMenu);
-        document.addEventListener('click', (e)=>{
-          if(panel.classList.contains('hidden')) return;
-          const within = panel.contains(e.target) || burger.contains(e.target);
-          if(!within) toggleMenu();
-        });
-        document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && !panel.classList.contains('hidden')) toggleMenu(); });
+    // Paramètres d’URL (ref, type, from)
+    (function(){
+      const params = new URLSearchParams(window.location.search);
+      const ref = params.get('ref');
+      const type = params.get('type');
+      const from = params.get('from');
+
+      if(ref) document.getElementById('f-ref').value = ref;
+      if(type) document.getElementById('f-type').value = type;
+
+      const ctx = document.getElementById('ctx');
+      if(!ctx) return;
+
+      if(ref && type){
+        ctx.classList.add('ok');
+        const label = (type === 'offer') ? "offre" : (type === 'candidate' ? "profil candidat" : "référence");
+        ctx.innerHTML = `Référence transmise : <strong>${ref}</strong> (${label}). Nous relierons votre message à ce dossier.`;
+        ctx.style.display = 'block';
+      } else if (from === 'profil') {
+        ctx.classList.add('warn');
+        ctx.innerHTML = `Vous contactez Sophira depuis votre espace profil. N’oubliez pas de préciser l’objet de votre demande.`;
+        ctx.style.display = 'block';
+      }
+    })();
+
+    // Téléphone protégé (mini-formulaire)
+    (function(){
+      const PHONE_NUMBER = '+41 79 123 45 67';
+      const KEY = 'sophira_phone_ok_until';
+      const DAYS = 30;
+
+      const mask = document.getElementById('phone-mask');
+      const btn = document.getElementById('btn-reveal');
+      const form = document.getElementById('phone-request');
+      const cancel = document.getElementById('pr-cancel');
+      const statusEl = document.getElementById('pr-status');
+
+      function now(){ return new Date().getTime(); }
+      function inDays(d){ return d*24*60*60*1000; }
+      function markOk(){ localStorage.setItem(KEY, String(now()+inDays(DAYS))); }
+      function hasOk(){ const until = Number(localStorage.getItem(KEY)||0); return until && now()<until; }
+      function reveal(){
+        if(mask) mask.textContent = PHONE_NUMBER;
+        if(btn) btn.style.display='none';
+        if(form) form.style.display='none';
       }
 
-      // Sélecteur langue (mobile)
-      if(langBtn && langMenu){
-        langBtn.addEventListener('click', ()=>{
-          const open = langMenu.hasAttribute('hidden');
-          if(open){ langMenu.removeAttribute('hidden'); }
-          else { langMenu.setAttribute('hidden',''); }
-          langBtn.setAttribute('aria-expanded', String(open));
+      if(hasOk()) reveal();
+
+      if(btn){
+        btn.addEventListener('click', ()=>{
+          form.style.display='grid';
+          btn.style.display='none';
+          const n=document.getElementById('pr-name'); if(n) n.focus();
         });
-        document.addEventListener('click', (e)=>{
-          if(!langMenu || langMenu.hasAttribute('hidden')) return;
-          const within = langMenu.contains(e.target) || langBtn.contains(e.target);
-          if(!within){ langMenu.setAttribute('hidden',''); langBtn.setAttribute('aria-expanded','false'); }
+      }
+      if(cancel){
+        cancel.addEventListener('click', ()=>{
+          form.style.display='none';
+          btn.style.display='inline-block';
+          statusEl.textContent='';
         });
-        document.addEventListener('keydown', (e)=>{
-          if(e.key==='Escape' && !langMenu.hasAttribute('hidden')){
-            langMenu.setAttribute('hidden',''); langBtn.setAttribute('aria-expanded','false');
+      }
+
+      if(form){
+        form.addEventListener('submit', async (e)=>{
+          e.preventDefault();
+          statusEl.textContent = 'Envoi…';
+
+          const data = new FormData(form);
+          const body = new URLSearchParams();
+          for (const [k,v] of data.entries()){ body.append(k, v); }
+
+          try{
+            const res = await fetch('/', {
+              method:'POST',
+              headers:{ 'Content-Type':'application/x-www-form-urlencoded' },
+              body: body.toString()
+            });
+            if(res.ok){
+              markOk();
+              reveal();
+              statusEl.textContent = 'Merci, le numéro est maintenant visible.';
+            }else{
+              statusEl.textContent = 'Erreur lors de l’envoi. Merci de réessayer.';
+              btn.style.display='inline-block';
+            }
+          }catch(err){
+            statusEl.textContent = 'Pas de connexion. Merci de réessayer plus tard.';
+            btn.style.display='inline-block';
           }
         });
       }
