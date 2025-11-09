@@ -10,12 +10,19 @@
   <meta name="robots" content="index,follow" />
   <meta name="description" content="Soutenez l’association Sophira par un don. Votre contribution permet d’accompagner des adultes en Suisse dans leur reconversion vers des métiers d’avenir." />
 
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="fr" href="https://sophira.ch/donate.html" />
+  <link rel="alternate" hreflang="de" href="https://sophira.ch/donate-de.html" />
+  <link rel="alternate" hreflang="x-default" href="https://sophira.ch/donate.html" />
+
   <!-- Open Graph -->
   <meta property="og:title" content="Faire un don – Sophira" />
   <meta property="og:description" content="Faites un don au profit de Sophira, association qui accompagne la reconversion professionnelle d’adultes vers les métiers d’avenir en Suisse." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sophira.ch/donate.html" />
   <meta property="og:image" content="https://sophira.ch/Logo_sophira.png" />
+  <meta property="og:site_name" content="Sophira" />
+  <meta property="og:locale" content="fr_CH" />
 
   <!-- Social metas -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -33,57 +40,212 @@
 
   <style>
     :root{
-      --text:#2c3e50; --muted:#4a5568; --brand:#1a73e8; --brand-hover:#155ab6;
-      --bg-overlay:rgba(255,255,255,0.95); --whiteglass:#ffffffdd; --radius:12px;
-      --shadow-sm:0 2px 8px rgba(0,0,0,0.05); --shadow-md:0 4px 12px rgba(0,0,0,0.08);
-      --container:960px; --ok:#065f46; --warn:#92400e; --panel:#f8fafc;
+      --text:#2c3e50;
+      --muted:#4a5568;
+      --brand:#1a73e8;
+      --brand-hover:#155ab6;
+      --bg-overlay:rgba(255,255,255,0.95);
+      --whiteglass:#ffffffdd;
+      --radius:12px;
+      --shadow-sm:0 2px 8px rgba(0,0,0,0.05);
+      --shadow-md:0 4px 12px rgba(0,0,0,0.08);
+      --container:960px;
+      --ok:#065f46;
+      --warn:#92400e;
+      --panel:#f8fafc;
       --border:#e5e7eb;
     }
+    *{ box-sizing:border-box; }
+
     body{
-      margin:0; font-family:'Inter',sans-serif; background:url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center/cover fixed; color:var(--text);
+      margin:0;
+      font-family:'Inter',sans-serif;
+      background:url('mathew-schwartz-91ryOVMlBJc-unsplash.jpg') no-repeat center/cover fixed;
+      color:var(--text);
     }
-    .overlay{ background-color:var(--bg-overlay); min-height:100vh; display:flex; flex-direction:column; }
+
+    .overlay{
+      background-color:var(--bg-overlay);
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    /* Skip link */
+    .skip-link{
+      position:absolute;
+      left:1rem;
+      top:.5rem;
+      transform:translateY(-200%);
+      background:#000;
+      color:#fff;
+      padding:.6rem .9rem;
+      border-radius:8px;
+      text-decoration:none;
+      z-index:1000;
+      box-shadow:var(--shadow-sm);
+    }
+    .skip-link:focus,
+    .skip-link:focus-visible{
+      transform:translateY(0);
+      outline:2px solid #fff;
+    }
 
     header.navbar{
-      position:sticky; top:0; z-index:20; display:flex; align-items:center; justify-content:space-between; gap:.75rem;
-      padding:.8rem 1rem; background:var(--whiteglass); box-shadow:var(--shadow-sm); backdrop-filter:blur(6px);
+      position:sticky;
+      top:0;
+      z-index:20;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:.75rem;
+      padding:.8rem 1rem;
+      background:var(--whiteglass);
+      box-shadow:var(--shadow-sm);
+      backdrop-filter:blur(6px);
     }
-    .brand{ display:flex; align-items:center; gap:.6rem; text-decoration:none; }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:.6rem;
+      text-decoration:none;
+    }
     .brand img{ height:55px; }
-    .brand h1{ margin:0; font-size:1.7rem; font-weight:600; color:#1a202c; }
+    .brand h1{
+      margin:0;
+      font-size:1.7rem;
+      font-weight:600;
+      color:#1a202c;
+    }
 
-    nav.primary{ display:flex; gap:1.1rem; }
-    nav.primary a{ text-decoration:none; color:var(--text); font-weight:500; }
-    nav.primary a:hover{ color:#1e88e5; }
+    nav.primary{
+      display:flex;
+      gap:1.1rem;
+    }
+    nav.primary a{
+      text-decoration:none;
+      color:var(--text);
+      font-weight:500;
+    }
+    nav.primary a:hover,
+    nav.primary a:focus{
+      color:#1e88e5;
+    }
 
-    .burger{ display:none; background:none; border:none; padding:.4rem .6rem; }
+    a:focus-visible,
+    button:focus-visible{
+      outline:3px solid #0d6efd;
+      outline-offset:2px;
+    }
+
+    .burger{
+      display:none;
+      background:none;
+      border:none;
+      padding:.4rem .6rem;
+    }
     .burger svg{ width:28px; height:28px; }
-    .mobile-panel{ display:none; position:fixed; inset:64px 0 0 0; background:#ffffffdd; backdrop-filter:blur(6px); padding:1rem; }
-    .mobile-links{ display:flex; flex-direction:column; gap:.8rem; }
-    .mobile-links a{ text-decoration:none; color:var(--text); font-weight:600; padding:.7rem 0; border-bottom:1px solid #ddd; }
-    .mobile-links a:last-child{ border-bottom:none; }
-    .hidden{ display:none !important; }
-    @media(max-width:880px){ nav.primary{ display:none; } .burger{ display:inline-flex; } }
 
-    .container{ flex:1; max-width:var(--container); margin:2rem auto; padding:0 1rem; }
-    .content{ background:#ffffffdd; padding:2rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
-    .content h2{ text-align:center; margin-top:0; }
-    .contact-info{ margin-top:1.5rem; font-size:1rem; }
+    .mobile-panel{
+      display:none;
+      position:fixed;
+      inset:64px 0 0 0;
+      background:#ffffffdd;
+      backdrop-filter:blur(6px);
+      padding:1rem;
+    }
+    .mobile-links{
+      display:flex;
+      flex-direction:column;
+      gap:.8rem;
+    }
+    .mobile-links a{
+      text-decoration:none;
+      color:var(--text);
+      font-weight:600;
+      padding:.7rem 0;
+      border-bottom:1px solid #ddd;
+    }
+    .mobile-links a:last-child{ border-bottom:none; }
+
+    .hidden{ display:none !important; }
+
+    @media(max-width:880px){
+      nav.primary{ display:none; }
+      .burger{ display:inline-flex; }
+    }
+
+    .container{
+      flex:1;
+      max-width:var(--container);
+      margin:2rem auto;
+      padding:0 1rem;
+    }
+
+    .content{
+      background:#ffffffdd;
+      padding:2rem;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-sm);
+    }
+    .content h2{
+      text-align:center;
+      margin-top:0;
+      margin-bottom:.6rem;
+    }
+
+    .intro{
+      text-align:center;
+      max-width:720px;
+      margin:0 auto 1.2rem;
+      color:var(--muted);
+      font-size:1rem;
+    }
+
+    .muted{ color:var(--muted); }
+
+    .impact-list{
+      margin:1.2rem auto 1.4rem;
+      max-width:720px;
+      padding-left:1.1rem;
+      font-size:.98rem;
+      color:var(--muted);
+    }
+    .impact-list li{ margin-bottom:.35rem; }
+
+    .contact-info{
+      margin-top:1.5rem;
+      font-size:1rem;
+    }
 
     .context{
-      margin:1rem 0 0; padding:.9rem 1rem; border-radius:10px; border:1px solid #cbd5e1; background:#f1f5f9; color:#0f172a;
+      margin:1rem 0 0;
+      padding:.9rem 1rem;
+      border-radius:10px;
+      border:1px solid #cbd5e1;
+      background:#f1f5f9;
+      color:#0f172a;
       display:none;
     }
-    .context.ok{ border-color:#a7f3d0; background:#ecfdf5; color:#064e3b; }
-    .context.warn{ border-color:#fed7aa; background:#fff7ed; color:#7c2d12; }
+    .context.ok{
+      border-color:#a7f3d0;
+      background:#ecfdf5;
+      color:#064e3b;
+    }
+    .context.warn{
+      border-color:#fed7aa;
+      background:#fff7ed;
+      color:#7c2d12;
+    }
 
     /* Bloc don (PayPal) */
     .donate-box{
-      margin:1rem 0 0;
-      padding:1rem 1.2rem;
+      margin:1.4rem 0 0;
+      padding:1.2rem 1.4rem;
       border-radius:10px;
       border:1px solid var(--border);
       background:#fff;
+      text-align:center;
     }
     .donate-box p{
       margin:.3rem 0 .8rem;
@@ -94,7 +256,23 @@
       display:block;
       font-size:.85rem;
       color:#6b7280;
-      margin-top:.4rem;
+      margin-top:.6rem;
+    }
+    .donate-amounts{
+      margin:.6rem 0 1rem;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:.4rem;
+      font-size:.9rem;
+    }
+    .donate-pill{
+      padding:.25rem .7rem;
+      border-radius:999px;
+      border:1px solid #e5e7eb;
+      background:#f9fafb;
+      color:#374151;
+      white-space:nowrap;
     }
 
     /* Téléphone protégé */
@@ -105,34 +283,119 @@
       border-radius:10px;
       background:#fff;
     }
-    .phone-note{ color:var(--muted); font-size:.95rem; margin:.5rem 0 0; }
-    .small{ font-size:.92rem; color:#4b5563; }
+    .phone-note{
+      color:var(--muted);
+      font-size:.95rem;
+      margin:.5rem 0 0;
+    }
+    .small{
+      font-size:.92rem;
+      color:#4b5563;
+    }
 
-    iframe{ width:100%; height:350px; border:none; border-radius:var(--radius); margin-top:2rem; }
+    iframe{
+      width:100%;
+      height:350px;
+      border:none;
+      border-radius:var(--radius);
+      margin-top:2rem;
+    }
 
-    .form-card{ margin-top:1.2rem; background:#fff; border:1px solid #e5e7eb; border-radius:12px; box-shadow:var(--shadow-sm); padding:1rem; }
-    form label{ display:block; margin:.6rem 0 .25rem; font-weight:600; }
-    input, textarea{ width:100%; padding:.6rem .7rem; border:1px solid #d1d5db; border-radius:8px; }
-    .actions{ display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.8rem; }
-    .btn{ display:inline-block; background:var(--brand); color:#fff; text-decoration:none; padding:.6rem 1.1rem; border-radius:8px; font-weight:700; border:none; cursor:pointer; }
+    .form-card{
+      margin-top:1.2rem;
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius:12px;
+      box-shadow:var(--shadow-sm);
+      padding:1rem;
+    }
+    form label{
+      display:block;
+      margin:.6rem 0 .25rem;
+      font-weight:600;
+    }
+    input,
+    textarea{
+      width:100%;
+      padding:.6rem .7rem;
+      border:1px solid #d1d5db;
+      border-radius:8px;
+      font-family:inherit;
+      font-size:1rem;
+    }
+    .actions{
+      display:flex;
+      gap:.6rem;
+      flex-wrap:wrap;
+      margin-top:.8rem;
+    }
+    .btn{
+      display:inline-block;
+      background:var(--brand);
+      color:#fff;
+      text-decoration:none;
+      padding:.6rem 1.1rem;
+      border-radius:8px;
+      font-weight:700;
+      border:none;
+      cursor:pointer;
+    }
     .btn:hover{ background:var(--brand-hover); }
-    .btn.outline{ background:transparent; color:var(--brand); border:2px solid var(--brand); }
+    .btn.outline{
+      background:transparent;
+      color:var(--brand);
+      border:2px solid var(--brand);
+    }
     .btn.outline:hover{ background:#e8f0fe; }
 
-    .phone-form{ margin-top:.6rem; display:grid; grid-template-columns:1fr 1fr; gap:.6rem; align-items:end; }
+    .phone-form{
+      margin-top:.6rem;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:.6rem;
+      align-items:end;
+    }
     .phone-form .wide{ grid-column:span 2; }
-    @media(max-width:640px){ .phone-form{ grid-template-columns:1fr; } .phone-form .wide{ grid-column:auto; } }
+    @media(max-width:640px){
+      .phone-form{
+        grid-template-columns:1fr;
+      }
+      .phone-form .wide{ grid-column:auto; }
+    }
 
-    .social{ margin-top:2rem; background:var(--panel); border:1px solid #e5e7eb; border-radius:12px; padding:1rem; }
+    .social{
+      margin-top:2rem;
+      background:var(--panel);
+      border:1px solid #e5e7eb;
+      border-radius:12px;
+      padding:1rem;
+    }
     .social h3{ margin:.2rem 0 .6rem; }
-    .social a{ display:inline-block; margin-right:.6rem; text-decoration:none; font-weight:700; }
+    .social a{
+      display:inline-block;
+      margin-right:.6rem;
+      text-decoration:none;
+      font-weight:700;
+    }
     .tiktok{ color:#000; }
     .linkedin{ color:#0a66c2; }
 
-    footer{ text-align:center; padding:1rem; margin-top:3rem; font-size:.95rem; color:#4a4a4a; background:var(--whiteglass); border-top-left-radius:var(--radius); border-top-right-radius:var(--radius); }
+    footer{
+      text-align:center;
+      padding:1rem;
+      margin-top:3rem;
+      font-size:.95rem;
+      color:#4a4a4a;
+      background:var(--whiteglass);
+      border-top-left-radius:var(--radius);
+      border-top-right-radius:var(--radius);
+    }
   </style>
 </head>
 <body>
+  <!-- Lien d’évitement -->
+  <a class="skip-link" href="#main">Aller au contenu principal</a>
+
   <div class="overlay">
     <header class="navbar">
       <a class="brand" href="index.html">
@@ -149,11 +412,13 @@
         <a href="contact.html">Contact</a>
       </nav>
       <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-controls="menu-mobile" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/>
+        </svg>
       </button>
     </header>
 
-    <div id="menu-mobile" class="mobile-panel hidden">
+    <div id="menu-mobile" class="mobile-panel hidden" role="dialog" aria-modal="true" aria-label="Menu mobile">
       <div class="mobile-links">
         <a href="index.html">Accueil</a>
         <a href="team.html">Équipe</a>
@@ -165,16 +430,37 @@
       </div>
     </div>
 
-    <main class="container">
+    <main id="main" class="container">
       <div class="content">
         <h2>Faire un don</h2>
+
+        <p class="intro">
+          Votre don permet à Sophira d’accompagner des adultes en Suisse dans leur reconversion vers les métiers d’avenir
+          (data, technologies vertes, santé digitale, IA, etc.). Merci pour votre confiance et votre soutien.
+        </p>
+
+        <ul class="impact-list" aria-label="Impact de votre don">
+          <li>Financer une partie des frais de formation et de certification.</li>
+          <li>Contribuer à l’équipement de base (ordinateur, casque, logiciel, connexion).</li>
+          <li>Permettre un accompagnement humain : mentorat, coaching, suivi personnalisé.</li>
+        </ul>
 
         <!-- Bandeau contexte (si URL param) -->
         <div id="ctx" class="context" role="status" aria-live="polite"></div>
 
         <!-- Bloc don principal avec PayPal -->
         <section class="donate-box" aria-label="Don en ligne">
-          <p>Votre don permet à Sophira d’accompagner des adultes en Suisse dans leur reconversion vers des métiers d’avenir (data, technologies vertes, santé digitale, IA, etc.). Merci pour votre soutien&nbsp;!</p>
+          <h3>Faire un don en ligne</h3>
+          <p>
+            Le paiement s’effectue en CHF via PayPal. Vous pouvez utiliser votre carte de crédit ou votre compte PayPal.
+          </p>
+
+          <div class="donate-amounts" aria-hidden="true">
+            <span class="donate-pill">CHF 20</span>
+            <span class="donate-pill">CHF 50</span>
+            <span class="donate-pill">CHF 100</span>
+            <span class="donate-pill">Autre montant</span>
+          </div>
 
           <!-- Bouton PayPal hébergé -->
           <div id="paypal-container-LYWSHNWSRDXYW"></div>
@@ -184,20 +470,56 @@
             }).render("#paypal-container-LYWSHNWSRDXYW");
           </script>
 
-          <small>Vous serez redirigé·e vers PayPal pour finaliser votre don de manière sécurisée.</small>
+          <small>
+            Vous serez redirigé·e vers PayPal pour finaliser votre don de manière sécurisée.
+            Si le bouton n’apparaît pas, vous pouvez aussi
+            <a href="https://www.paypal.com/ncp/payment/LYWSHNWSRDXYW" target="_blank" rel="noopener">effectuer votre don directement sur PayPal</a>.
+          </small>
+
+          <noscript>
+            <p style="margin-top:0.8rem;font-size:0.9rem;">
+              JavaScript est désactivé dans votre navigateur. Pour faire un don, veuillez ouvrir
+              <a href="https://www.paypal.com/ncp/payment/LYWSHNWSRDXYW" target="_blank" rel="noopener">cette page PayPal</a>.
+            </p>
+          </noscript>
         </section>
 
-        <div class="contact-info">
-          <p><strong>Adresse :</strong> Sandgrubenstrasse, 4058 Bâle, Suisse</p>
-          <p><strong>E-mail :</strong> association_sophira@protonmail.com</p>
+        <!-- Pourquoi & utilisation du don -->
+        <section aria-label="Utilisation des dons" style="margin-top:1.8rem;">
+          <h3>Comment votre don est utilisé</h3>
+          <p class="muted">
+            Sophira est une association à but non lucratif basée à Bâle. Les dons servent exclusivement à soutenir
+            des adultes en reconversion professionnelle vers des métiers d’avenir en Suisse.
+          </p>
+          <ul class="impact-list">
+            <li><strong>Bourses ciblées :</strong> participation aux frais de formation et d’examens.</li>
+            <li><strong>Matériel et accès :</strong> soutien pour l’équipement numérique et les ressources pédagogiques.</li>
+            <li><strong>Accompagnement :</strong> mentorat, relecture de candidatures, préparation aux entretiens.</li>
+          </ul>
+          <p class="muted">
+            Pour mieux comprendre notre action, vous pouvez consulter la page
+            <a href="project.html">Projet social</a> et découvrir qui nous sommes sur la page
+            <a href="team.html">Équipe</a>.
+          </p>
+        </section>
+
+        <div class="contact-info" aria-label="Coordonnées de l’association">
+          <p><strong>Adresse&nbsp;:</strong> Sandgrubenstrasse, 4058 Bâle, Suisse</p>
+          <p><strong>E-mail&nbsp;:</strong> association_sophira@protonmail.com</p>
 
           <!-- Téléphone protégé -->
           <div class="phone-box" aria-live="polite">
-            <p style="margin:0;"><strong>Téléphone :</strong>
+            <p style="margin:0;">
+              <strong>Téléphone&nbsp;:</strong>
               <span id="phone-mask">+41 ••• ••• •• ••</span>
-              <button id="btn-reveal" class="btn outline" type="button" aria-controls="phone-request">Afficher le numéro</button>
+              <button id="btn-reveal" class="btn outline" type="button" aria-controls="phone-request">
+                Afficher le numéro
+              </button>
             </p>
-            <p class="phone-note">Pour des raisons anti-spam, le numéro s’affiche <strong>après l’envoi</strong> de votre nom et de votre e-mail via le petit formulaire ci-dessous. L’affichage reste actif 30 jours sur cet appareil.</p>
+            <p class="phone-note">
+              Pour des raisons anti-spam, le numéro s’affiche <strong>après l’envoi</strong> de votre nom et de votre e-mail
+              via le petit formulaire ci-dessous. L’affichage reste actif 30 jours sur cet appareil.
+            </p>
 
             <!-- Mini-formulaire Netlify (AJAX) -->
             <form id="phone-request" name="sophira-phone-request" class="phone-form" method="POST" data-netlify="true" netlify-honeypot="bot-field">
@@ -213,7 +535,10 @@
                 <input id="pr-email" type="email" name="email" autocomplete="email" required />
               </div>
               <div class="wide">
-                <label><input type="checkbox" id="pr-consent" name="consent" required /> J’accepte que Sophira me contacte au sujet de ma demande.</label>
+                <label>
+                  <input type="checkbox" id="pr-consent" name="consent" required />
+                  J’accepte que Sophira me contacte au sujet de ma demande.
+                </label>
               </div>
               <div class="wide actions">
                 <button class="btn" type="submit">Envoyer & afficher le numéro</button>
@@ -226,17 +551,23 @@
 
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2752.415159526313!2d7.588576115595142!3d47.55959817918171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4791b9a6f3e10ff7%3A0xdea0a2f76e49767f!2sBasel%2C%20Switzerland!5e0!3m2!1sfr!2sch!4v1691010100000"
-          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
 
+      <!-- Formulaire de contact spécifique aux dons -->
       <section class="form-card" aria-label="Questions sur les dons">
         <h3>Poser une question ou préciser votre don</h3>
-        <p class="muted">Si vous venez du Portail Emplois, la référence est transmise automatiquement.</p>
+        <p class="muted">
+          Si vous venez du Portail Emplois, la référence est transmise automatiquement.
+        </p>
 
         <form id="main-form" name="sophira-don" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/merci.html">
           <input type="hidden" name="form-name" value="sophira-don" />
           <p style="display:none"><label>Ne pas remplir : <input name="bot-field" /></label></p>
 
+          <!-- Champs cachés alimentés par l’URL -->
           <input type="hidden" id="f-ref" name="ref" />
           <input type="hidden" id="f-type" name="type" />
 
@@ -249,13 +580,32 @@
           <label for="f-msg">Message</label>
           <textarea id="f-msg" name="message" rows="5" placeholder="Précisez votre demande ou votre intention de don (montant, type, fréquence, etc.)."></textarea>
 
-          <label><input type="checkbox" name="consent" required /> J’accepte que mes données soient utilisées pour me recontacter au sujet de mon don.</label>
+          <label>
+            <input type="checkbox" name="consent" required />
+            J’accepte que mes données soient utilisées pour me recontacter au sujet de mon don.
+          </label>
 
           <div class="actions">
             <button class="btn" type="submit">Envoyer</button>
             <a class="btn outline" href="jobs/index.html">Aller au Portail Emplois</a>
           </div>
         </form>
+      </section>
+
+      <!-- Mini FAQ -->
+      <section class="form-card" aria-label="Questions fréquentes sur les dons">
+        <h3>Questions fréquentes</h3>
+        <p class="muted"><strong>Puis-je faire un don sans compte PayPal&nbsp;?</strong><br>
+          Oui, vous pouvez utiliser une carte de crédit directement sur l’interface PayPal, sans créer de compte.
+        </p>
+        <p class="muted"><strong>Les dons sont-ils déductibles des impôts&nbsp;?</strong><br>
+          Selon votre canton et la forme de votre don, certaines contributions peuvent être déductibles. N’hésitez pas à nous écrire
+          via le formulaire ci-dessus pour en savoir plus.
+        </p>
+        <p class="muted"><strong>Puis-je soutenir autrement que par un don&nbsp;?</strong><br>
+          Oui, vous pouvez également contribuer par du mentorat, du partage d’opportunités ou du mécénat de compétences.
+          Contactez-nous pour en discuter.
+        </p>
       </section>
 
       <section class="social" aria-label="Réseaux sociaux">
@@ -274,34 +624,56 @@
   <script>
     // Menu mobile
     (function(){
-      const burger=document.getElementById('burger');
-      const panel=document.getElementById('menu-mobile');
-      if(!burger||!panel) return;
+      const burger = document.getElementById('burger');
+      const panel  = document.getElementById('menu-mobile');
+      if(!burger || !panel) return;
+
       function toggleMenu(){
-        const open=panel.classList.toggle('hidden')===false;
-        burger.setAttribute('aria-expanded',String(open));
+        const open = panel.classList.toggle('hidden') === false;
+        burger.setAttribute('aria-expanded', String(open));
       }
-      burger.addEventListener('click',toggleMenu);
-      document.addEventListener('click',(e)=>{ if(!panel.classList.contains('hidden') && !panel.contains(e.target) && !burger.contains(e.target)) toggleMenu(); });
-      document.addEventListener('keydown',(e)=>{ if(e.key==='Escape' && !panel.classList.contains('hidden')) toggleMenu(); });
+
+      burger.addEventListener('click', toggleMenu);
+
+      document.addEventListener('click', (e)=>{
+        if(!panel.classList.contains('hidden') &&
+           !panel.contains(e.target) &&
+           !burger.contains(e.target)){
+          toggleMenu();
+        }
+      });
+
+      document.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape' && !panel.classList.contains('hidden')){
+          toggleMenu();
+        }
+      });
     })();
 
     // Paramètres d’URL (ref, type, from)
     (function(){
       const params = new URLSearchParams(window.location.search);
-      const ref = params.get('ref');
-      const type = params.get('type');
-      const from = params.get('from');
+      const ref   = params.get('ref');
+      const type  = params.get('type');
+      const from  = params.get('from');
 
-      if(ref) document.getElementById('f-ref').value = ref;
-      if(type) document.getElementById('f-type').value = type;
+      if(ref){
+        const fRef = document.getElementById('f-ref');
+        if(fRef) fRef.value = ref;
+      }
+      if(type){
+        const fType = document.getElementById('f-type');
+        if(fType) fType.value = type;
+      }
 
       const ctx = document.getElementById('ctx');
       if(!ctx) return;
 
       if(ref && type){
         ctx.classList.add('ok');
-        const label = (type === 'offer') ? "offre" : (type === 'candidate' ? "profil candidat" : "référence");
+        const label = (type === 'offer')
+          ? 'offre'
+          : (type === 'candidate' ? 'profil candidat' : 'référence');
         ctx.innerHTML = `Référence transmise : <strong>${ref}</strong> (${label}). Nous relierons votre message à ce dossier.`;
         ctx.style.display = 'block';
       } else if (from === 'profil') {
@@ -314,50 +686,57 @@
     // Téléphone protégé (mini-formulaire)
     (function(){
       const PHONE_NUMBER = '+41 79 123 45 67';
-      const KEY = 'sophira_phone_ok_until';
+      const KEY  = 'sophira_phone_ok_until';
       const DAYS = 30;
 
-      const mask = document.getElementById('phone-mask');
-      const btn = document.getElementById('btn-reveal');
-      const form = document.getElementById('phone-request');
-      const cancel = document.getElementById('pr-cancel');
-      const statusEl = document.getElementById('pr-status');
+      const mask    = document.getElementById('phone-mask');
+      const btn     = document.getElementById('btn-reveal');
+      const form    = document.getElementById('phone-request');
+      const cancel  = document.getElementById('pr-cancel');
+      const statusEl= document.getElementById('pr-status');
 
       function now(){ return new Date().getTime(); }
       function inDays(d){ return d*24*60*60*1000; }
       function markOk(){ localStorage.setItem(KEY, String(now()+inDays(DAYS))); }
-      function hasOk(){ const until = Number(localStorage.getItem(KEY)||0); return until && now()<until; }
+      function hasOk(){
+        const until = Number(localStorage.getItem(KEY) || 0);
+        return until && now() < until;
+      }
       function reveal(){
         if(mask) mask.textContent = PHONE_NUMBER;
-        if(btn) btn.style.display='none';
-        if(form) form.style.display='none';
+        if(btn) btn.style.display = 'none';
+        if(form) form.style.display = 'none';
       }
 
       if(hasOk()) reveal();
 
       if(btn){
         btn.addEventListener('click', ()=>{
-          form.style.display='grid';
-          btn.style.display='none';
-          const n=document.getElementById('pr-name'); if(n) n.focus();
+          if(form) form.style.display = 'grid';
+          btn.style.display = 'none';
+          const n = document.getElementById('pr-name');
+          if(n) n.focus();
         });
       }
+
       if(cancel){
         cancel.addEventListener('click', ()=>{
-          form.style.display='none';
-          btn.style.display='inline-block';
-          statusEl.textContent='';
+          if(form) form.style.display = 'none';
+          if(btn) btn.style.display = 'inline-block';
+          if(statusEl) statusEl.textContent = '';
         });
       }
 
       if(form){
         form.addEventListener('submit', async (e)=>{
           e.preventDefault();
-          statusEl.textContent = 'Envoi…';
+          if(statusEl) statusEl.textContent = 'Envoi…';
 
           const data = new FormData(form);
           const body = new URLSearchParams();
-          for (const [k,v] of data.entries()){ body.append(k, v); }
+          for (const [k,v] of data.entries()){
+            body.append(k, v);
+          }
 
           try{
             const res = await fetch('/', {
@@ -368,14 +747,14 @@
             if(res.ok){
               markOk();
               reveal();
-              statusEl.textContent = 'Merci, le numéro est maintenant visible.';
+              if(statusEl) statusEl.textContent = 'Merci, le numéro est maintenant visible.';
             }else{
-              statusEl.textContent = 'Erreur lors de l’envoi. Merci de réessayer.';
-              btn.style.display='inline-block';
+              if(statusEl) statusEl.textContent = 'Erreur lors de l’envoi. Merci de réessayer.';
+              if(btn) btn.style.display = 'inline-block';
             }
           }catch(err){
-            statusEl.textContent = 'Pas de connexion. Merci de réessayer plus tard.';
-            btn.style.display='inline-block';
+            if(statusEl) statusEl.textContent = 'Pas de connexion. Merci de réessayer plus tard.';
+            if(btn) btn.style.display = 'inline-block';
           }
         });
       }
