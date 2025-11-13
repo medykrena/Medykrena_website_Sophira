@@ -282,6 +282,42 @@
       white-space:nowrap;
     }
 
+    /* TWINT */
+    .twint-box{
+      margin:1.6rem auto 0;
+      padding:1.4rem 1.6rem;
+      border-radius:10px;
+      border:1px solid var(--border);
+      background:#fff;
+      max-width:520px;
+      text-align:center;
+      box-shadow:var(--shadow-sm);
+    }
+    .twint-box h3{
+      margin-top:0;
+      margin-bottom:.5rem;
+    }
+    .twint-box p{
+      margin:.2rem 0 .7rem;
+      font-size:.95rem;
+      color:var(--muted);
+    }
+    .twint-qr{
+      display:block;
+      margin:0.3rem auto 0.6rem;
+      max-width:220px;
+      width:60%;
+      height:auto;
+      border-radius:8px;
+      border:1px solid #e5e7eb;
+      background:#fff;
+    }
+    .twint-note{
+      font-size:.85rem;
+      color:#6b7280;
+      line-height:1.4;
+    }
+
     /* Téléphone protégé */
     .phone-box{
       margin:1.4rem 0 0;
@@ -493,6 +529,18 @@
           </noscript>
         </section>
 
+        <!-- TWINT -->
+        <section class="twint-box" aria-label="Don via TWINT">
+          <h3>Donner avec TWINT</h3>
+          <p>
+            Vous pouvez également soutenir Sophira en scannant ce code QR TWINT avec votre application bancaire ou TWINT.
+          </p>
+          <img src="twint_QR.png" alt="Code QR TWINT pour faire un don à Sophira" class="twint-qr" />
+          <p class="twint-note">
+            Après le scan, vous pouvez choisir le montant de votre don directement dans l’application.
+          </p>
+        </section>
+
         <!-- Utilisation des dons -->
         <section aria-label="Utilisation des dons" style="margin-top:1.8rem;">
           <h3>Comment votre don est utilisé</h3>
@@ -509,6 +557,39 @@
             Pour mieux comprendre notre action, vous pouvez consulter la page
             <a href="project.html">Projet social</a> et découvrir qui nous sommes sur la page
             <a href="team.html">Équipe</a>.
+          </p>
+        </section>
+
+        <!-- Cercles de soutien (niveaux) -->
+        <section class="form-card" aria-label="Cercles de soutien">
+          <h3>Nos cercles de soutien</h3>
+          <p class="muted">
+            Chaque contribution soutient directement la reconversion professionnelle d’adultes en Suisse.
+            Voici les avantages offerts à nos membres, ambassadeurs et grands mécènes.
+          </p>
+
+          <ul class="impact-list">
+            <li>
+              <strong>🌱 Partenaire solidaire – 20 CHF / mois</strong><br>
+              Message de remerciement personnalisé, inscription en tant que membre, accès au Portail Emplois
+              et invitation aux événements (en ligne ou locaux lorsque disponibles).
+            </li>
+            <li>
+              <strong>💛 Ambassadeur Sophira – dès 50 CHF / mois ou 250 CHF en une fois</strong><br>
+              Bénéficie de tous les avantages du Partenaire solidaire, plus : nom (ou pseudonyme) affiché sur la page
+              <em>Nos Ambassadeurs</em>, accès à une infographie annuelle <em>Impact de votre don</em> et
+              invitation à un événement en ligne de présentation des projets.
+            </li>
+            <li>
+              <strong>🎖 Grand mécène – dès 100 CHF / mois ou 1&nbsp;000 CHF en une fois</strong><br>
+              Inclut tous les avantages de l’Ambassadeur, avec en plus : mention spéciale comme grand mécène dans
+              notre rapport d’activité simplifié, possibilité de co-financer une bourse nommée (selon les projets en cours)
+              et invitation à un échange dédié pour discuter de l’orientation future du projet.
+            </li>
+          </ul>
+
+          <p class="muted">
+            Ces statuts sont facultatifs : vous pouvez également faire un don anonyme si vous le préférez.
           </p>
         </section>
 
