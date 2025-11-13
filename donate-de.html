@@ -238,15 +238,15 @@
       color:#7c2d12;
     }
 
-    /* Spenden-Block (PayPal) – bewusst zentriert & grösser */
+    /* Spenden-Block (PayPal) – zentriert & breiter */
     .donate-box{
-      margin:2rem auto 0;              /* zentriert im Content-Container */
-      padding:1.8rem 2.2rem;           /* etwas mehr Platz für den Button */
+      margin:2rem auto 0;
+      padding:1.8rem 2.2rem;
       border-radius:10px;
       border:1px solid var(--border);
       background:#fff;
       text-align:center;
-      max-width:520px;                 /* begrenzte Breite für ein schönes, zentriertes Panel */
+      max-width:520px;
       box-shadow:var(--shadow-sm);
     }
     .donate-box h3{
@@ -280,6 +280,42 @@
       background:#f9fafb;
       color:#374151;
       white-space:nowrap;
+    }
+
+    /* TWINT */
+    .twint-box{
+      margin:1.6rem auto 0;
+      padding:1.4rem 1.6rem;
+      border-radius:10px;
+      border:1px solid var(--border);
+      background:#fff;
+      max-width:520px;
+      text-align:center;
+      box-shadow:var(--shadow-sm);
+    }
+    .twint-box h3{
+      margin-top:0;
+      margin-bottom:.5rem;
+    }
+    .twint-box p{
+      margin:.2rem 0 .7rem;
+      font-size:.95rem;
+      color:var(--muted);
+    }
+    .twint-qr{
+      display:block;
+      margin:0.3rem auto 0.6rem;
+      max-width:220px;
+      width:60%;
+      height:auto;
+      border-radius:8px;
+      border:1px solid #e5e7eb;
+      background:#fff;
+    }
+    .twint-note{
+      font-size:.85rem;
+      color:#6b7280;
+      line-height:1.4;
     }
 
     /* Geschütztes Telefon */
@@ -442,8 +478,8 @@
         <h2>Spenden</h2>
 
         <p class="intro">
-          Mit Ihrer Spende ermöglichen Sie es Sophira, Erwachsene in der Schweiz bei der beruflichen Neuorientierung
-          in zukunftsfähige Berufe (Daten, grüne Technologien, digitale Gesundheit, KI usw.) zu begleiten.
+          Mit Ihrer Spende ermöglichen Sie es Sophira, Erwachsene in der Schweiz bei ihrer Neuorientierung in
+          zukunftsfähige Berufe zu begleiten (Daten, grüne Technologien, digitale Gesundheit, KI usw.).
           Vielen Dank für Ihr Vertrauen und Ihre Unterstützung.
         </p>
 
@@ -482,7 +518,9 @@
             Sie werden für die sichere Zahlungsabwicklung zu PayPal weitergeleitet.
             Falls der Button nicht angezeigt wird, können Sie Ihre Spende auch
             direkt über
-            <a href="https://www.paypal.com/ncp/payment/LYWSHNWSRDXYW" target="_blank" rel="noopener">diese PayPal-Seite</a>
+            <a href="https://www.paypal.com/ncp/payment/LYWSHNWSRDXYW" target="_blank" rel="noopener">
+              diese PayPal-Seite
+            </a>
             tätigen.
           </small>
 
@@ -494,6 +532,18 @@
           </noscript>
         </section>
 
+        <!-- TWINT -->
+        <section class="twint-box" aria-label="Spende via TWINT">
+          <h3>Mit TWINT spenden</h3>
+          <p>
+            Sie können Sophira auch unterstützen, indem Sie diesen TWINT-QR-Code mit Ihrer Bank-App oder der TWINT-App scannen.
+          </p>
+          <img src="twint_QR.png" alt="TWINT-QR-Code für eine Spende an Sophira" class="twint-qr" />
+          <p class="twint-note">
+            Nach dem Scan können Sie den Spendenbetrag direkt in der App auswählen.
+          </p>
+        </section>
+
         <!-- Verwendung der Spenden -->
         <section aria-label="Verwendung der Spenden" style="margin-top:1.8rem;">
           <h3>Wie Ihre Spende eingesetzt wird</h3>
@@ -502,14 +552,48 @@
             Erwachsene in der Schweiz bei einer nachhaltigen beruflichen Neuorientierung zu unterstützen.
           </p>
           <ul class="impact-list">
-            <li><strong>Gezielte Stipendien:</strong> Beteiligung an Kurs- und Prüfungsgebühren.</li>
-            <li><strong>Material & Zugang:</strong> Unterstützung bei digitaler Ausstattung und Lernressourcen.</li>
+            <li><strong>Zielgerichtete Stipendien:</strong> Beteiligung an Kurs- und Prüfungsgebühren.</li>
+            <li><strong>Material und Zugang:</strong> Unterstützung bei digitaler Ausstattung und Lernressourcen.</li>
             <li><strong>Begleitung:</strong> Mentoring, Feedback zu Bewerbungen, Vorbereitung auf Interviews.</li>
           </ul>
           <p class="muted">
             Mehr über unsere Arbeit erfahren Sie auf der Seite
             <a href="project-de.html">Soziales Projekt</a> und darüber, wer wir sind, auf der Seite
             <a href="team-de.html">Team</a>.
+          </p>
+        </section>
+
+        <!-- Unterstützerkreise -->
+        <section class="form-card" aria-label="Unterstützerkreise">
+          <h3>Unsere Unterstützerkreise</h3>
+          <p class="muted">
+            Jeder Beitrag stärkt direkt die berufliche Neuorientierung von Erwachsenen in der Schweiz.
+            Hier sehen Sie die Vorteile für unsere Mitglieder, Botschafter:innen und grossen Gönner:innen.
+          </p>
+
+          <ul class="impact-list">
+            <li>
+              <strong>🌱 Solidarpartner:in – 20 CHF pro Monat</strong><br>
+              Persönliche Dankesnachricht, Eintrag als Mitglied, Zugang zum Job-Portal
+              und Einladung zu Veranstaltungen (online oder lokal, wenn vorhanden).
+            </li>
+            <li>
+              <strong>💛 Sophira-Botschafter:in – ab 50 CHF pro Monat oder 250 CHF einmalig</strong><br>
+              Enthält alle Vorteile als Solidarpartner:in, plus: Name (oder Pseudonym) auf der Seite
+              <em>Unsere Botschafter:innen</em>, Zugang zu einer jährlichen Infografik
+              <em>Wirkung Ihrer Spende</em> und Einladung zu einem Online-Event mit Projektvorstellung.
+            </li>
+            <li>
+              <strong>🎖 Grosse Gönnerin / grosser Gönner – ab 100 CHF pro Monat oder 1&nbsp;000 CHF einmalig</strong><br>
+              Beinhaltet alle Vorteile der Botschafter:innen, zusätzlich: besondere Erwähnung als grosse Gönnerin
+              bzw. grosser Gönner in unserem vereinfachten Tätigkeitsbericht, Möglichkeit zur Mitfinanzierung
+              eines benannten Stipendiums (je nach laufenden Projekten) und Einladung zu einem eigenen Austausch
+              über die zukünftige Ausrichtung des Projekts.
+            </li>
+          </ul>
+
+          <p class="muted">
+            Diese Status sind freiwillig. Sie können selbstverständlich auch anonym spenden, wenn Sie das wünschen.
           </p>
         </section>
 
@@ -551,7 +635,7 @@
                 </label>
               </div>
               <div class="wide actions">
-                <button class="btn" type="submit">Senden & Nummer anzeigen</button>
+                <button class="btn" type="submit">Senden und Nummer anzeigen</button>
                 <button class="btn outline" type="button" id="pr-cancel">Abbrechen</button>
                 <span id="pr-status" class="small" role="status" aria-live="polite"></span>
               </div>
