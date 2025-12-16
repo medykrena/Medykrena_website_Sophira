@@ -5,4 +5,4 @@ Allow: /
 Disallow: /jobs/admin
 Disallow: /_admin
 
-Sitemap: https://sophira.ch/sitemap.xml
+Sitemap: https://sophira.ch/sitemap_main.xml
