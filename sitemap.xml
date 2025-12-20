@@ -71,7 +71,7 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/jobs/index-de" />
   </url>
 
-  <!-- Blog (FR only for now) -->
+  <!-- Blog -->
   <url>
     <loc>https://sophira.ch/blog</loc>
     <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/blog" />
