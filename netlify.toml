@@ -1,9 +1,6 @@
 [build]
   publish = "."
-  command = ""
   functions = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "20"
-
-# (No headers yet; we’ll re-add after the deploy succeeds)
