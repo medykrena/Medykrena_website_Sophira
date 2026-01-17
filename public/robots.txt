@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Évite l’indexation des pages d’admin (si tu en ajoutes plus tard)
+Disallow: /jobs/admin
+Disallow: /_admin
+
+Sitemap: https://sophira.ch/sitemap.xml
