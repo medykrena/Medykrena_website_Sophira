@@ -5,10 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sophira – Association pour la reconversion professionnelle</title>
 
-  <link rel="alternate" hreflang="fr" href="https://sophira.ch/jobs/index.html" />
-  <link rel="alternate" hreflang="de" href="https://sophira.ch/jobs/index-de.html" />
-  <link rel="alternate" hreflang="x-default" href="https://sophira.ch/jobs/index.html" />
-
   <!-- GA4 + Consent Mode v2 (par défaut: refusé) -->
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -30,20 +26,22 @@
   </script>
 
   <!-- SEO de base -->
+  <!-- CORRECTION 3 : canonical pointe vers / et non /index.html -->
   <link rel="canonical" href="https://sophira.ch/" />
   <meta name="robots" content="index,follow" />
-  <meta name="description" content="Sophira accompagne les adultes en difficulté financière dans leur reconversion vers les métiers d’avenir (data, technologies vertes, santé digitale, IA) en Suisse." />
+  <meta name="description" content="Sophira accompagne les adultes en difficulté financière dans leur reconversion vers les métiers d'avenir (data, technologies vertes, santé digitale, IA) en Suisse." />
 
-  <!-- Hreflang -->
-  <link rel="alternate" hreflang="fr" href="https://sophira.ch/index.html" />
+  <!-- CORRECTION 2 : hreflang définis une seule fois, correctement, pour la page d'accueil -->
+  <link rel="alternate" hreflang="fr" href="https://sophira.ch/" />
   <link rel="alternate" hreflang="de" href="https://sophira.ch/index-de.html" />
-  <link rel="alternate" hreflang="x-default" href="https://sophira.ch/index.html" />
+  <link rel="alternate" hreflang="x-default" href="https://sophira.ch/" />
 
   <!-- Open Graph / Social -->
   <meta property="og:title" content="Sophira – Association pour la reconversion professionnelle" />
-  <meta property="og:description" content="Lutter contre le chômage lié à l’automatisation et ouvrir des opportunités dans les métiers d’avenir." />
+  <meta property="og:description" content="Lutter contre le chômage lié à l'automatisation et ouvrir des opportunités dans les métiers d'avenir." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://sophira.ch/index.html" />
+  <!-- CORRECTION 3 : og:url pointe vers / et non /index.html -->
+  <meta property="og:url" content="https://sophira.ch/" />
   <meta property="og:image" content="https://sophira.ch/Logo_sophira.png" />
   <meta property="og:site_name" content="Sophira" />
   <meta property="og:locale" content="fr_CH" />
@@ -51,7 +49,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Sophira – Association pour la reconversion professionnelle" />
-  <meta name="twitter:description" content="Sophira aide les adultes à se reconvertir vers les métiers d’avenir en Suisse." />
+  <meta name="twitter:description" content="Sophira aide les adultes à se reconvertir vers les métiers d'avenir en Suisse." />
   <meta name="twitter:image" content="https://sophira.ch/Logo_sophira.png" />
 
   <!-- Couleur navigateur & icônes -->
@@ -61,10 +59,17 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
-  <!-- Police -->
+  <!-- CORRECTION 4 : Google Fonts optimisé -->
+  <!-- preconnect établit la connexion en avance pour gagner du temps -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <!-- font-display=swap : le texte s'affiche immédiatement avec une police système,
+       puis est remplacé par Inter une fois chargée. Plus de blocage du rendu. -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap&font-display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <!-- Fallback si JavaScript est désactivé -->
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  </noscript>
 
   <!-- Données structurées (Organisation) -->
   <script type="application/ld+json">
@@ -100,8 +105,8 @@
       --focus:#0d6efd;
       --focus-bg:#e8f0fe;
       --z-header:20;
-      --z-lang:60;     /* au-dessus du burger */
-      --z-cookie:70;   /* au-dessus de tout */
+      --z-lang:60;
+      --z-cookie:70;
     }
     *{box-sizing:border-box}
     html:focus-within{ scroll-behavior:smooth; }
@@ -130,13 +135,15 @@
       padding:.8rem 1rem; background:var(--whiteglass); box-shadow:var(--shadow-sm); backdrop-filter: blur(6px);
     }
     .brand{ display:flex; align-items:center; gap:.6rem; min-width:0; text-decoration:none; }
-    .brand img{ height:48px; width:auto; } /* légerement réduit */
-    .brand h1{
+    .brand img{ height:48px; width:auto; }
+    /* CORRECTION 6 (mineur) : le nom de l'asso dans la navbar passe en <span> stylé,
+       le vrai <h1> sera dans le contenu principal */
+    .brand .brand-name{
       margin:0; font-size:1.55rem; font-weight:600; color:#1a202c; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     }
     @media (max-width:480px){
       .brand img{ height:44px; }
-      .brand h1{ font-size:1.35rem; } /* + petit sur mobile */
+      .brand .brand-name{ font-size:1.35rem; }
     }
 
     nav.primary{ display:flex; gap:1.1rem; align-items:center; }
@@ -164,7 +171,7 @@
     }
     .lang-btn svg{ width:18px; height:18px; }
 
-    /* Menu langue, séparé du burger, avec z-index > */
+    /* Menu langue */
     .lang-menu{
       position:absolute; right:0; top:calc(100% + 8px); z-index:var(--z-lang);
       background:#fff; border:1px solid #e5e7eb; border-radius:10px; box-shadow:var(--shadow-md);
@@ -179,7 +186,7 @@
 
     /* PANNEAU MOBILE */
     .mobile-panel{
-      display:block; /* contrôle via [hidden] */
+      display:block;
       position:fixed; inset:64px 0 0 0; background:var(--whiteglass);
       backdrop-filter: blur(6px); padding:1rem;
     }
@@ -192,10 +199,11 @@
 
     /* HERO */
     .hero{ background:var(--panel); padding:2.4rem 1.4rem; border-radius:var(--radius); text-align:center; box-shadow:var(--shadow-md); }
-    .hero h2{ font-size:2.1rem; margin:.2rem 0 .7rem; }
+    /* CORRECTION 6 (mineur) : h1 dans le contenu principal pour le SEO */
+    .hero h1{ font-size:2.1rem; margin:.2rem 0 .7rem; }
     .subtitle{ font-size:1.08rem; color:var(--muted); margin:0 auto; max-width:800px; }
 
-    /* EN UN COUP D’ŒIL */
+    /* EN UN COUP D'ŒIL */
     .glance{ margin-top:1rem; display:grid; grid-template-columns:repeat(12,1fr); gap:.8rem; }
     .glance .item{
       grid-column:span 12; background:#fff; border-radius:10px; box-shadow:var(--shadow-sm);
@@ -216,14 +224,14 @@
 
     /* SECTION TEXTE */
     .content{ margin-top:2rem; background:var(--whiteglass); padding:2rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
-    .content h3{ font-size:1.55rem; margin:.2rem 0 .6rem; }
+    .content h2{ font-size:1.55rem; margin:.2rem 0 .6rem; }
 
     /* TEASER BLOG */
     .teaser{ margin-top:2rem; background:var(--whiteglass); padding:1.2rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
-    .teaser h3{ margin:.1rem 0 .6rem; font-size:1.3rem; text-align:center; }
+    .teaser h2{ margin:.1rem 0 .6rem; font-size:1.3rem; text-align:center; }
     .posts{ display:grid; grid-template-columns:repeat(12,1fr); gap:.8rem; }
     .post{ grid-column:span 12; background:#fff; border-radius:10px; padding:.9rem 1rem; box-shadow:var(--shadow-sm); }
-    .post h4{ margin:.2rem 0 .2rem; font-size:1.05rem; }
+    .post h3{ margin:.2rem 0 .2rem; font-size:1.05rem; }
     .post p{ margin:.1rem 0 .4rem; color:#374151; }
     .post a{ font-weight:600; color:#fff; background:var(--brand); padding:.4rem .7rem; border-radius:8px; text-decoration:none; }
     .post a:hover{ background:var(--brand-hover); }
@@ -269,28 +277,29 @@
   </style>
 </head>
 <body>
-  <!-- Lien d’évitement -->
+  <!-- Lien d'évitement -->
   <a class="skip-link" href="#main">Aller au contenu principal</a>
 
   <div class="overlay">
     <!-- NAVIGATION -->
-    <header class="navbar" role="navigation" aria-label="Navigation principale">
-      <a class="brand" href="index.html">
+    <header class="navbar" role="banner">
+      <!-- CORRECTION 6 : <h1> remplacé par <span> dans la navbar -->
+      <a class="brand" href="/" aria-label="Sophira - Retour à l'accueil">
         <img src="Logo_sophira.png" alt="Logo Sophira" loading="eager" fetchpriority="high" />
-        <h1>Sophira</h1>
+        <span class="brand-name">Sophira</span>
       </a>
 
-      <nav class="primary" aria-label="Liens principaux">
-        <a href="index.html" aria-current="page">Accueil</a>
+      <nav class="primary" aria-label="Navigation principale">
+        <a href="/" aria-current="page">Accueil</a>
         <a href="team.html">Équipe</a>
         <a href="project.html">Projet social</a>
         <a href="dashboard.html">Tableau de bord</a>
         <a href="jobs/index.html">Portail Emplois</a>
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
-        <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Ouvrir l’assistant Sophira dans un nouvel onglet">Assistant Sophira</a>
+        <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Ouvrir l'assistant Sophira dans un nouvel onglet">Assistant Sophira</a>
         <span class="lang desktop" aria-label="Changer de langue">
-          <a href="index.html" lang="fr" aria-current="true">FR</a> |
+          <a href="/" lang="fr" aria-current="true">FR</a> |
           <a href="index-de.html" lang="de">DE</a>
         </span>
       </nav>
@@ -303,7 +312,7 @@
           FR
         </button>
         <div id="lang-menu" class="lang-menu" role="menu" aria-label="Sélection de langue" aria-hidden="true">
-          <a href="index.html" lang="fr" aria-current="true" role="menuitem">Français</a>
+          <a href="/" lang="fr" aria-current="true" role="menuitem">Français</a>
           <a href="index-de.html" lang="de" role="menuitem">Deutsch</a>
         </div>
 
@@ -316,10 +325,10 @@
       </div>
     </header>
 
-    <!-- MENU MOBILE (séparé du menu langue) -->
+    <!-- MENU MOBILE -->
     <div id="menu-mobile" class="mobile-panel" role="dialog" aria-modal="true" aria-label="Menu mobile" aria-hidden="true" hidden>
       <div class="mobile-links">
-        <a href="index.html" aria-current="page">Accueil</a>
+        <a href="/" aria-current="page">Accueil</a>
         <a href="team.html">Équipe</a>
         <a href="project.html">Projet social</a>
         <a href="dashboard.html">Tableau de bord</a>
@@ -330,25 +339,26 @@
       </div>
     </div>
 
-    <!-- CONTENU -->
+    <!-- CONTENU PRINCIPAL -->
     <main id="main" class="container">
       <!-- HERO -->
       <section class="hero">
-        <h2>Révéler les talents de demain</h2>
+        <!-- CORRECTION 6 : h1 dans le contenu principal = meilleur pour le SEO -->
+        <h1>Révéler les talents de demain</h1>
         <p class="subtitle">
           Sophira est une association suisse à but non lucratif qui accompagne les adultes confrontés à des obstacles
-          dans leur reconversion vers les métiers d’avenir, de la data aux technologies vertes.
+          dans leur reconversion vers les métiers d'avenir, de la data aux technologies vertes.
         </p>
 
-        <!-- En un coup d’œil -->
-        <div class="glance" aria-label="En un coup d’œil">
+        <!-- En un coup d'œil -->
+        <div class="glance" aria-label="En un coup d'œil">
           <div class="item">
             <strong>Une bourse ciblée</strong>
-            Couvre une partie des frais de formation et d’équipement essentiels.
+            Couvre une partie des frais de formation et d'équipement essentiels.
           </div>
           <div class="item">
             <strong>Mentorat & réseau</strong>
-            Mise en relation, coaching et retours concrets d’experts.
+            Mise en relation, coaching et retours concrets d'experts.
           </div>
           <div class="item">
             <strong>Projets réels</strong>
@@ -366,7 +376,7 @@
 
       <!-- SECTION INFO -->
       <section class="content">
-        <h3>Pourquoi Sophira&nbsp;?</h3>
+        <h2>Pourquoi Sophira&nbsp;?</h2>
         <p>Sophira est née d'une conviction : les transitions numérique et écologique transforment le marché du travail,
           excluant souvent les adultes en situation de précarité. Pourtant, la Suisse a un besoin croissant de
           professionnels qualifiés dans ces secteurs.</p>
@@ -377,20 +387,20 @@
 
       <!-- Teaser blog -->
       <section class="teaser" aria-label="Derniers articles">
-        <h3>À lire sur le blog</h3>
+        <h2>À lire sur le blog</h2>
         <div class="posts">
           <article class="post">
-            <h4>Lancement de l’initiative Sophira</h4>
+            <h3>Lancement de l'initiative Sophira</h3>
             <p>Notre vision et comment participer.</p>
             <a href="article6.html">Lire</a>
           </article>
           <article class="post">
-            <h4>Data & reconversion</h4>
+            <h3>Data & reconversion</h3>
             <p>Des compétences demandées et accessibles.</p>
             <a href="article7.html">Lire</a>
           </article>
           <article class="post">
-            <h4>Secteurs porteurs 2025</h4>
+            <h3>Secteurs porteurs 2025</h3>
             <p>Où se situent les opportunités en Suisse.</p>
             <a href="article2.html">Lire</a>
           </article>
@@ -399,7 +409,7 @@
 
       <!-- CTA FINAL -->
       <section class="cta" aria-label="Soutenir">
-        <h3>Soutenez notre vision</h3>
+        <h2>Soutenez notre vision</h2>
         <p>Construisons ensemble un avenir plus juste en révélant de nouveaux talents grâce à la solidarité et l'apprentissage continu.</p>
         <a href="donate.html">Soutenir le projet</a>
       </section>
@@ -411,17 +421,17 @@
   </div>
 
   <!-- Bouton flottant pour ouvrir le GPT -->
-  <a class="chat-fab" href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Parler avec l’assistant Sophira (ouvre un nouvel onglet)">
+  <a class="chat-fab" href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Parler avec l'assistant Sophira (ouvre un nouvel onglet)">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     <span>Assistant Sophira</span>
   </a>
 
   <!-- Bandeau cookies (Consent) -->
   <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Préférences de confidentialité" aria-modal="true">
-    <p><strong>Cookies & confidentialité.</strong> Nous utilisons des cookies essentiels au fonctionnement du site et, avec votre accord, des mesures d’audience (Google Analytics). Vous pouvez accepter ou refuser l’analyse à tout moment.</p>
+    <p><strong>Cookies & confidentialité.</strong> Nous utilisons des cookies essentiels au fonctionnement du site et, avec votre accord, des mesures d'audience (Google Analytics). Vous pouvez accepter ou refuser l'analyse à tout moment.</p>
     <div class="cookie-actions">
-      <button class="btn minor" id="cookie-refuse">Refuser l’analyse</button>
-      <button class="btn" id="cookie-accept">Accepter l’analyse</button>
+      <button class="btn minor" id="cookie-refuse">Refuser l'analyse</button>
+      <button class="btn" id="cookie-accept">Accepter l'analyse</button>
       <button class="btn outline" id="cookie-later" aria-label="Décider plus tard">Plus tard</button>
     </div>
   </div>
@@ -521,12 +531,10 @@
 
       // clic extérieur
       document.addEventListener('click', (e)=>{
-        // fermer le menu langue si clic hors des contrôles langue
         if(langMenu && langMenu.classList.contains('open')){
           const insideLang = langMenu.contains(e.target) || langBtn.contains(e.target);
           if(!insideLang) closeLang();
         }
-        // fermer le menu mobile si clic hors du panneau et du burger
         if(panel && !panel.hasAttribute('hidden')){
           const insideMob = panel.contains(e.target) || (burger && burger.contains(e.target));
           if(!insideMob) closeMobile();
