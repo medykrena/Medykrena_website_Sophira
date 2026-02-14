@@ -1,0 +1,8 @@
+{
+  "name": "sophira-functions",
+  "private": true,
+  "type": "commonjs",
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4"
+  }
+}
