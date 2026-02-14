@@ -3,104 +3,161 @@
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!-- Homepage -->
+  <!-- ===== HOMEPAGE ===== -->
   <url>
     <loc>https://sophira.ch/</loc>
     <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/index-de" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/index-de.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://sophira.ch/" />
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://sophira.ch/index-de</loc>
+    <loc>https://sophira.ch/index-de.html</loc>
     <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/index-de" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/index-de.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://sophira.ch/" />
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
   </url>
 
-  <!-- Team -->
+  <!-- ===== TEAM ===== -->
   <url>
-    <loc>https://sophira.ch/team</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/team" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/team-de" />
-  </url>
-
-  <url>
-    <loc>https://sophira.ch/team-de</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/team" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/team-de" />
-  </url>
-
-  <!-- Project -->
-  <url>
-    <loc>https://sophira.ch/project</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/project" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/project-de" />
+    <loc>https://sophira.ch/team.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/team.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/team-de.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sophira.ch/team.html" />
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://sophira.ch/project-de</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/project" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/project-de" />
+    <loc>https://sophira.ch/team-de.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/team.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/team-de.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sophira.ch/team.html" />
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
-  <!-- Dashboard -->
+  <!-- ===== PROJET SOCIAL ===== -->
   <url>
-    <loc>https://sophira.ch/dashboard</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/dashboard" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/dashboard-de" />
-  </url>
-
-  <url>
-    <loc>https://sophira.ch/dashboard-de</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/dashboard" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/dashboard-de" />
-  </url>
-
-  <!-- Jobs -->
-  <url>
-    <loc>https://sophira.ch/jobs/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/jobs/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/jobs/index-de" />
+    <loc>https://sophira.ch/project.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/project.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/project-de.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sophira.ch/project.html" />
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://sophira.ch/jobs/index-de</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/jobs/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/jobs/index-de" />
+    <loc>https://sophira.ch/project-de.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/project.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/project-de.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sophira.ch/project.html" />
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
-  <!-- Blog -->
+  <!-- ===== DASHBOARD ===== -->
   <url>
-    <loc>https://sophira.ch/blog</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/blog" />
-  </url>
-
-  <!-- Contact -->
-  <url>
-    <loc>https://sophira.ch/contact</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/contact" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/contact-de" />
-  </url>
-
-  <url>
-    <loc>https://sophira.ch/contact-de</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/contact" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/contact-de" />
-  </url>
-
-  <!-- Donate -->
-  <url>
-    <loc>https://sophira.ch/donate</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/donate" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/donate-de" />
+    <loc>https://sophira.ch/dashboard.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/dashboard.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/dashboard-de.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sophira.ch/dashboard.html" />
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://sophira.ch/donate-de</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/donate" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/donate-de" />
+    <loc>https://sophira.ch/dashboard-de.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/dashboard.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/dashboard-de.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sophira.ch/dashboard.html" />
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- ===== PORTAIL EMPLOIS ===== -->
+  <url>
+    <loc>https://sophira.ch/jobs/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/jobs/index.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/jobs/index-de.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sophira.ch/jobs/index.html" />
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://sophira.ch/jobs/index-de.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/jobs/index.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/jobs/index-de.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sophira.ch/jobs/index.html" />
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- ===== BLOG ===== -->
+  <url>
+    <loc>https://sophira.ch/blog.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/blog.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sophira.ch/blog.html" />
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- ===== CONTACT ===== -->
+  <url>
+    <loc>https://sophira.ch/contact.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/contact.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/contact-de.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sophira.ch/contact.html" />
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://sophira.ch/contact-de.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/contact.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/contact-de.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sophira.ch/contact.html" />
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- ===== DONATE ===== -->
+  <url>
+    <loc>https://sophira.ch/donate.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/donate.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/donate-de.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sophira.ch/donate.html" />
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://sophira.ch/donate-de.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sophira.ch/donate.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://sophira.ch/donate-de.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sophira.ch/donate.html" />
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
 </urlset>
