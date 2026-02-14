@@ -5,10 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sophira – Verein für berufliche Neuorientierung</title>
 
-  <link rel="alternate" hreflang="fr" href="https://sophira.ch/jobs/index.html" />
-  <link rel="alternate" hreflang="de" href="https://sophira.ch/jobs/index-de.html" />
-  <link rel="alternate" hreflang="x-default" href="https://sophira.ch/jobs/index.html" />
-
   <!-- GA4 + Consent Mode v2 (Standard: abgelehnt) -->
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -30,19 +26,22 @@
   </script>
 
   <!-- SEO Basis -->
+  <!-- CORRECTION 3 : canonical pointe vers /index-de.html (correct pour cette page) -->
   <link rel="canonical" href="https://sophira.ch/index-de.html" />
   <meta name="robots" content="index,follow" />
   <meta name="description" content="Sophira unterstützt Erwachsene in finanziellen Schwierigkeiten bei ihrer beruflichen Neuorientierung in Zukunftsberufe (Daten, grüne Technologien, digitale Gesundheit, KI) in der Schweiz." />
 
-  <!-- Hreflang -->
-  <link rel="alternate" hreflang="fr" href="https://sophira.ch/index.html" />
+  <!-- CORRECTION 2 : hreflang définis une seule fois, correctement -->
+  <!-- fr pointe vers / (racine), de pointe vers /index-de.html, x-default vers / -->
+  <link rel="alternate" hreflang="fr" href="https://sophira.ch/" />
   <link rel="alternate" hreflang="de" href="https://sophira.ch/index-de.html" />
-  <link rel="alternate" hreflang="x-default" href="https://sophira.ch/index.html" />
+  <link rel="alternate" hreflang="x-default" href="https://sophira.ch/" />
 
   <!-- Open Graph / Social -->
   <meta property="og:title" content="Sophira – Verein für berufliche Neuorientierung" />
   <meta property="og:description" content="Arbeitslosigkeit durch Automatisierung bekämpfen und Chancen in Zukunftsberufen eröffnen." />
   <meta property="og:type" content="website" />
+  <!-- CORRECTION 3 : og:url pointe vers la bonne URL de cette page -->
   <meta property="og:url" content="https://sophira.ch/index-de.html" />
   <meta property="og:image" content="https://sophira.ch/Logo_sophira.png" />
   <meta property="og:site_name" content="Sophira" />
@@ -61,10 +60,13 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
-  <!-- Schrift -->
+  <!-- CORRECTION 4 : Google Fonts optimisé — chargement non bloquant -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap&font-display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  </noscript>
 
   <!-- Strukturierte Daten (Organisation) -->
   <script type="application/ld+json">
@@ -125,16 +127,17 @@
     header.navbar{
       position:sticky; top:0; z-index:var(--z-header);
       display:flex; align-items:center; justify-content:space-between; gap:.75rem;
-      padding:.8rem 1rem; background:var(--whiteglass); box-shadow:var(--shadow-sm); backdrop-filter: blur(6px);
+      padding:.8rem 1rem; background:var(--whiteglass); box-shadow:var(--shadow-sm); backdrop-filter:blur(6px);
     }
     .brand{ display:flex; align-items:center; gap:.6rem; min-width:0; text-decoration:none; }
     .brand img{ height:48px; width:auto; }
-    .brand h1{
+    /* CORRECTION 6 : <span> au lieu de <h1> dans la navbar */
+    .brand .brand-name{
       margin:0; font-size:1.55rem; font-weight:600; color:#1a202c; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     }
     @media (max-width:480px){
       .brand img{ height:44px; }
-      .brand h1{ font-size:1.35rem; }
+      .brand .brand-name{ font-size:1.35rem; }
     }
 
     nav.primary{ display:flex; gap:1.1rem; align-items:center; }
@@ -148,7 +151,6 @@
     }
 
     .controls{ display:flex; align-items:center; gap:.5rem; position:relative; }
-
     .burger{ display:none; background:none; border:none; padding:.4rem .6rem; border-radius:8px; }
     .burger svg{ width:28px; height:28px; }
 
@@ -174,7 +176,7 @@
     .mobile-panel{
       display:block;
       position:fixed; inset:64px 0 0 0; background:var(--whiteglass);
-      backdrop-filter: blur(6px); padding:1rem;
+      backdrop-filter:blur(6px); padding:1rem;
     }
     [hidden]{ display:none !important; }
     .mobile-links{ display:flex; flex-direction:column; gap:.8rem; }
@@ -184,7 +186,8 @@
     .container{ flex:1; max-width:var(--container); margin:2rem auto; padding:0 1rem; }
 
     .hero{ background:var(--panel); padding:2.4rem 1.4rem; border-radius:var(--radius); text-align:center; box-shadow:var(--shadow-md); }
-    .hero h2{ font-size:2.1rem; margin:.2rem 0 .7rem; }
+    /* CORRECTION 6 : h1 dans le contenu principal */
+    .hero h1{ font-size:2.1rem; margin:.2rem 0 .7rem; }
     .subtitle{ font-size:1.08rem; color:var(--muted); margin:0 auto; max-width:800px; }
 
     .glance{ margin-top:1rem; display:grid; grid-template-columns:repeat(12,1fr); gap:.8rem; }
@@ -205,19 +208,21 @@
     .btn.outline:hover{ background:#e8f0fe; }
 
     .content{ margin-top:2rem; background:var(--whiteglass); padding:2rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
-    .content h3{ font-size:1.55rem; margin:.2rem 0 .6rem; }
+    /* CORRECTION 6 : h2 pour les sous-titres de section */
+    .content h2{ font-size:1.55rem; margin:.2rem 0 .6rem; }
 
-    /* Teaser (wird für News wiederverwendet) */
     .teaser{ margin-top:2rem; background:var(--whiteglass); padding:1.2rem; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
-    .teaser h3{ margin:.1rem 0 .6rem; font-size:1.3rem; text-align:center; }
+    .teaser h2{ margin:.1rem 0 .6rem; font-size:1.3rem; text-align:center; }
     .posts{ display:grid; grid-template-columns:repeat(12,1fr); gap:.8rem; }
     .post{ grid-column:span 12; background:#fff; border-radius:10px; padding:.9rem 1rem; box-shadow:var(--shadow-sm); }
-    .post h4{ margin:.2rem 0 .25rem; font-size:1.05rem; }
+    /* CORRECTION 6 : h3 pour les titres d'articles (hiérarchie h1>h2>h3) */
+    .post h3{ margin:.2rem 0 .25rem; font-size:1.05rem; }
     .post .meta{ font-size:.9rem; color:#6b7280; margin:.1rem 0 .2rem; }
     .post a.cta{ font-weight:600; color:#fff; background:var(--brand); padding:.4rem .7rem; border-radius:8px; text-decoration:none; display:inline-block; }
     .post a.cta:hover{ background:var(--brand-hover); }
 
     .cta{ margin-top:2rem; background:#f7fafc; padding:2rem; text-align:center; border-radius:var(--radius); box-shadow:var(--shadow-sm); }
+    .cta h2{ font-size:1.4rem; margin:.2rem 0 .6rem; }
     .cta a{ display:inline-block; margin-top:1rem; background:var(--brand); color:#fff; text-decoration:none; padding:.7rem 1.4rem; border-radius:10px; font-weight:700; }
     .cta a:hover{ background:var(--brand-hover); }
 
@@ -259,14 +264,15 @@
 
   <div class="overlay">
     <!-- NAVIGATION -->
-    <header class="navbar" role="navigation" aria-label="Hauptnavigation">
-      <a class="brand" href="index-de.html">
+    <header class="navbar" role="banner">
+      <!-- CORRECTION 6 : <span> au lieu de <h1> dans la navbar -->
+      <a class="brand" href="/index-de.html" aria-label="Sophira – Zurück zur Startseite">
         <img src="Logo_sophira.png" alt="Logo Sophira" loading="eager" fetchpriority="high" />
-        <h1>Sophira</h1>
+        <span class="brand-name">Sophira</span>
       </a>
 
-      <nav class="primary" aria-label="Hauptlinks">
-        <a href="index-de.html" aria-current="page">Startseite</a>
+      <nav class="primary" aria-label="Hauptnavigation">
+        <a href="/index-de.html" aria-current="page">Startseite</a>
         <a href="team-de.html">Team</a>
         <a href="project-de.html">Soziales Projekt</a>
         <a href="dashboard-de.html">Dashboard</a>
@@ -275,24 +281,22 @@
         <a href="contact-de.html">Kontakt</a>
         <a href="https://chatgpt.com/g/g-68d273dcee0081918dc19a72db072503-sophira-ai-assistant" target="_blank" rel="noopener" aria-label="Sophira Assistent in neuem Tab öffnen">Sophira Assistent</a>
         <span class="lang desktop" aria-label="Sprache wechseln">
-          <a href="index.html" lang="fr">FR</a> |
-          <a href="index-de.html" lang="de" aria-current="true">DE</a>
+          <a href="/" lang="fr">FR</a> |
+          <a href="/index-de.html" lang="de" aria-current="true">DE</a>
         </span>
       </nav>
 
-      <!-- Rechte Steuerleiste (Mobile) -->
+      <!-- Rechte Steuerleiste -->
       <div class="controls">
-        <!-- Sprachen-Button -->
         <button class="lang-btn" id="lang-btn" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu" aria-label="Sprache wechseln">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke-width="2"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" stroke-width="2" stroke-linecap="round"/></svg>
           DE
         </button>
         <div id="lang-menu" class="lang-menu" role="menu" aria-label="Sprachauswahl" aria-hidden="true">
-          <a href="index.html" lang="fr" role="menuitem">Français</a>
-          <a href="index-de.html" lang="de" aria-current="true" role="menuitem">Deutsch</a>
+          <a href="/" lang="fr" role="menuitem">Français</a>
+          <a href="/index-de.html" lang="de" aria-current="true" role="menuitem">Deutsch</a>
         </div>
 
-        <!-- Burger -->
         <button class="burger" id="burger" aria-label="Menü öffnen" aria-controls="menu-mobile" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
             <path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/>
@@ -304,7 +308,7 @@
     <!-- MOBILES MENÜ -->
     <div id="menu-mobile" class="mobile-panel" role="dialog" aria-modal="true" aria-label="Mobiles Menü" aria-hidden="true" hidden>
       <div class="mobile-links">
-        <a href="index-de.html" aria-current="page">Startseite</a>
+        <a href="/index-de.html" aria-current="page">Startseite</a>
         <a href="team-de.html">Team</a>
         <a href="project-de.html">Soziales Projekt</a>
         <a href="dashboard-de.html">Dashboard</a>
@@ -319,13 +323,13 @@
     <main id="main" class="container">
       <!-- HERO -->
       <section class="hero">
-        <h2>Talente von morgen fördern</h2>
+        <!-- CORRECTION 6 : vrai h1 SEO dans le contenu -->
+        <h1>Talente von morgen fördern</h1>
         <p class="subtitle">
           Sophira ist ein gemeinnütziger Schweizer Verein, der Erwachsene unterstützt,
           die bei ihrer beruflichen Neuorientierung in Zukunftsberufe – von Daten bis zu grünen Technologien – auf Hindernisse stossen.
         </p>
 
-        <!-- Auf einen Blick -->
         <div class="glance" aria-label="Auf einen Blick">
           <div class="item">
             <strong>Zielgerichtetes Stipendium</strong>
@@ -341,7 +345,6 @@
           </div>
         </div>
 
-        <!-- Schnelle Links -->
         <div class="quick" role="group" aria-label="Schnelle Links">
           <a class="btn" href="project-de.html">Projekt verstehen</a>
           <a class="btn outline" href="contact-de.html">Kontaktiert werden</a>
@@ -351,7 +354,8 @@
 
       <!-- INFO -->
       <section class="content">
-        <h3>Warum Sophira?</h3>
+        <!-- CORRECTION 6 : h2 pour les sections -->
+        <h2>Warum Sophira?</h2>
         <p>Sophira entstand aus der Überzeugung, dass die digitalen und ökologischen Transformationen den Arbeitsmarkt verändern
           und dabei oft Erwachsene in prekären Situationen ausschliessen. Gleichzeitig steigt in der Schweiz der Bedarf
           an qualifizierten Fachkräften in diesen Bereichen.</p>
@@ -359,11 +363,11 @@
           in sinnstiftende Berufe, vermittelt die nötigen digitalen und analytischen Kompetenzen und bietet finanzielle sowie menschliche Unterstützung.</p>
       </section>
 
-      <!-- *** NEWS-TEASER: ersetzt "Lesenswert im Blog" *** -->
+      <!-- NEWS-TEASER -->
       <section class="teaser" aria-label="Aktuelle Nachrichten aus dem Blog">
-        <h3>Aktuelle Nachrichten (aus dem Blog)</h3>
+        <h2>Aktuelle Nachrichten</h2>
         <div id="news-list" class="posts" role="list">
-          <!-- Wird per JS aus /news-feed.json oder /news-config.json befüllt -->
+          <!-- Wird per JS aus /news-feed.json befüllt -->
         </div>
         <p style="text-align:center; margin-top:.8rem;">
           <a class="btn outline" href="blog.html#news">Mehr Nachrichten im Blog</a>
@@ -375,7 +379,7 @@
 
       <!-- CTA FINAL -->
       <section class="cta" aria-label="Unterstützen">
-        <h3>Unterstützen Sie unsere Vision</h3>
+        <h2>Unterstützen Sie unsere Vision</h2>
         <p>Gestalten wir gemeinsam eine gerechtere Zukunft, indem wir neue Talente durch Solidarität und lebenslanges Lernen fördern.</p>
         <a href="donate-de.html">Projekt unterstützen</a>
       </section>
@@ -392,7 +396,7 @@
     <span>Sophira Assistent</span>
   </a>
 
-  <!-- Cookie-Banner (Consent) -->
+  <!-- Cookie-Banner -->
   <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Datenschutzeinstellungen" aria-modal="true">
     <p><strong>Cookies & Datenschutz.</strong> Wir verwenden funktionale Cookies für den Betrieb der Website und – mit Ihrer Einwilligung – Reichweitenmessung (Google Analytics). Sie können die Analyse jederzeit annehmen oder ablehnen.</p>
     <div class="cookie-actions">
@@ -404,7 +408,7 @@
 
   <!-- JS: Menüs + Consent + NEWS FEED -->
   <script>
-    // ===== Consent (localStorage) =====
+    // ===== Consent =====
     const CONSENT_KEY = 'sophira_consent_v1';
     function readConsent(){
       try { return JSON.parse(localStorage.getItem(CONSENT_KEY)) || null; } catch(e){ return null; }
@@ -436,15 +440,10 @@
       const b = document.getElementById('cookie-banner');
       if(b) b.style.display = 'none';
     }
-
     (function initConsent(){
       const prefs = readConsent();
-      if (prefs) {
-        applyConsentToGtag(prefs);
-        hideCookieBanner();
-      } else {
-        showCookieBanner();
-      }
+      if (prefs) { applyConsentToGtag(prefs); hideCookieBanner(); }
+      else { showCookieBanner(); }
       const btnA = document.getElementById('cookie-accept');
       const btnR = document.getElementById('cookie-refuse');
       const btnL = document.getElementById('cookie-later');
@@ -453,149 +452,90 @@
       if(btnL) btnL.addEventListener('click', hideCookieBanner);
     })();
 
-    // ===== Navigation: Burger & Sprachmenü =====
+    // ===== Navigation =====
     (function(){
-      const burger = document.getElementById('burger');
-      const panel  = document.getElementById('menu-mobile');
+      const burger  = document.getElementById('burger');
+      const panel   = document.getElementById('menu-mobile');
       const langBtn = document.getElementById('lang-btn');
-      const langMenu = document.getElementById('lang-menu');
+      const langMenu= document.getElementById('lang-menu');
 
-      function openMobile(){
-        panel.removeAttribute('hidden');
-        panel.setAttribute('aria-hidden','false');
-        burger.setAttribute('aria-expanded','true');
-        document.body.classList.add('no-scroll');
-      }
-      function closeMobile(){
-        panel.setAttribute('hidden','');
-        panel.setAttribute('aria-hidden','true');
-        burger.setAttribute('aria-expanded','false');
-        document.body.classList.remove('no-scroll');
-      }
-      function toggleMobile(){
-        if(panel.hasAttribute('hidden')){ closeLang(); openMobile(); } else { closeMobile(); }
-      }
+      function openMobile(){ panel.removeAttribute('hidden'); panel.setAttribute('aria-hidden','false'); burger.setAttribute('aria-expanded','true'); document.body.classList.add('no-scroll'); }
+      function closeMobile(){ panel.setAttribute('hidden',''); panel.setAttribute('aria-hidden','true'); burger.setAttribute('aria-expanded','false'); document.body.classList.remove('no-scroll'); }
+      function toggleMobile(){ if(panel.hasAttribute('hidden')){ closeLang(); openMobile(); } else { closeMobile(); } }
 
-      function openLang(){
-        langMenu.classList.add('open');
-        langMenu.setAttribute('aria-hidden','false');
-        langBtn.setAttribute('aria-expanded','true');
-      }
-      function closeLang(){
-        langMenu.classList.remove('open');
-        langMenu.setAttribute('aria-hidden','true');
-        langBtn.setAttribute('aria-expanded','false');
-      }
-      function toggleLang(e){
-        e.stopPropagation();
-        if(langMenu.classList.contains('open')){ closeLang(); }
-        else { closeMobile(); openLang(); }
-      }
+      function openLang(){ langMenu.classList.add('open'); langMenu.setAttribute('aria-hidden','false'); langBtn.setAttribute('aria-expanded','true'); }
+      function closeLang(){ langMenu.classList.remove('open'); langMenu.setAttribute('aria-hidden','true'); langBtn.setAttribute('aria-expanded','false'); }
+      function toggleLang(e){ e.stopPropagation(); if(langMenu.classList.contains('open')){ closeLang(); } else { closeMobile(); openLang(); } }
 
       if(burger && panel){ burger.addEventListener('click', toggleMobile); }
       if(langBtn && langMenu){ langBtn.addEventListener('click', toggleLang); }
 
       document.addEventListener('click', (e)=>{
         if(langMenu && langMenu.classList.contains('open')){
-          const insideLang = langMenu.contains(e.target) || langBtn.contains(e.target);
-          if(!insideLang) closeLang();
+          if(!langMenu.contains(e.target) && !langBtn.contains(e.target)) closeLang();
         }
         if(panel && !panel.hasAttribute('hidden')){
-          const insideMob = panel.contains(e.target) || (burger && burger.contains(e.target));
-          if(!insideMob) closeMobile();
+          if(!panel.contains(e.target) && !(burger && burger.contains(e.target))) closeMobile();
         }
       });
-      document.addEventListener('keydown', (e)=>{
-        if(e.key==='Escape'){ closeLang(); closeMobile(); }
-      });
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeLang(); closeMobile(); } });
     })();
 
-    /* ===== NEWS TEASER: try /news-feed.json, fallback to /news-config.json seed_urls ===== */
+    // ===== NEWS FEED =====
     (function(){
       const target = document.getElementById('news-list');
       if(!target) return;
-
       const MAX = 3;
 
       function fmt(d){
-        try{
-          const dt = new Date(d);
-          if(!isNaN(dt)) return dt.toLocaleDateString('de-CH',{year:'numeric',month:'short',day:'2-digit'});
-        }catch(e){}
+        try{ const dt=new Date(d); if(!isNaN(dt)) return dt.toLocaleDateString('de-CH',{year:'numeric',month:'short',day:'2-digit'}); }catch(e){}
         return '';
       }
-      function domain(u){
-        try{ return new URL(u).hostname.replace(/^www\./,''); }catch(e){ return ''; }
-      }
+      function domain(u){ try{ return new URL(u).hostname.replace(/^www\./,''); }catch(e){ return ''; } }
 
       function normalizeFeed(json){
-        const raw = Array.isArray(json) ? json
-                   : Array.isArray(json?.items) ? json.items
-                   : Array.isArray(json?.news) ? json.news
-                   : [];
-        return raw.map(x=>({
-          title:  x.title || x.headline || '',
-          url:    x.url || x.link || '#',
-          lang:  (x.lang || x.language || '').toLowerCase(),
-          date:   x.published_at || x.date || x.published || x.pubDate || '',
-          source: x.source || x.site || domain(x.url || x.link || ''),
-          pinned: !!x.pinned,
-          shown:  x.shown !== false && x.published !== false
-        }));
+        const raw = Array.isArray(json) ? json : Array.isArray(json?.items) ? json.items : Array.isArray(json?.news) ? json.news : [];
+        return raw.map(x=>({ title:x.title||x.headline||'', url:x.url||x.link||'#', lang:(x.lang||x.language||'').toLowerCase(), date:x.published_at||x.date||x.published||x.pubDate||'', source:x.source||x.site||domain(x.url||x.link||''), pinned:!!x.pinned, shown:x.shown!==false&&x.published!==false }));
       }
 
       function fromConfigSeeds(cfg){
-        const deSeeds = (cfg?.languages?.de?.seed_urls || []).map(u=>({
-          title:'', url:u, lang:'de', date:'', source:domain(u), pinned:false, shown:true
-        }));
-        const frSeeds = (cfg?.languages?.fr?.seed_urls || []).map(u=>({
-          title:'', url:u, lang:'fr', date:'', source:domain(u), pinned:false, shown:true
-        }));
-        return [...deSeeds, ...frSeeds];
+        const deSeeds=(cfg?.languages?.de?.seed_urls||[]).map(u=>({title:'',url:u,lang:'de',date:'',source:domain(u),pinned:false,shown:true}));
+        const frSeeds=(cfg?.languages?.fr?.seed_urls||[]).map(u=>({title:'',url:u,lang:'fr',date:'',source:domain(u),pinned:false,shown:true}));
+        return [...deSeeds,...frSeeds];
       }
 
       function pickTop3(items){
-        const vis = items.filter(i=>i.shown);
-        const byDate = (a,b)=> (b.pinned - a.pinned) || (new Date(b.date) - new Date(a.date));
-        const de = vis.filter(i=>i.lang==='de').sort(byDate);
-        const others = vis.filter(i=>i.lang!=='de').sort(byDate);
-        const out = [...de.slice(0,MAX)];
-        if(out.length<MAX) out.push(...others.slice(0, MAX - out.length));
+        const vis=items.filter(i=>i.shown);
+        const byDate=(a,b)=>(b.pinned-a.pinned)||(new Date(b.date)-new Date(a.date));
+        const de=vis.filter(i=>i.lang==='de').sort(byDate);
+        const others=vis.filter(i=>i.lang!=='de').sort(byDate);
+        const out=[...de.slice(0,MAX)];
+        if(out.length<MAX) out.push(...others.slice(0,MAX-out.length));
         return out.slice(0,MAX);
       }
 
       function render(items){
-        target.innerHTML = '';
+        target.innerHTML='';
         if(!items.length){
-          target.innerHTML = `
-            <article class="post">
-              <h4>News-Feed derzeit nicht verfügbar</h4>
-              <p class="meta">Bitte besuchen Sie unsere News-Sektion im Blog.</p>
-              <a class="cta" href="blog.html#news">Zum Blog</a>
-            </article>`;
+          target.innerHTML=`<article class="post"><h3>News-Feed derzeit nicht verfügbar</h3><p class="meta">Bitte besuchen Sie unsere News-Sektion im Blog.</p><a class="cta" href="blog.html#news">Zum Blog</a></article>`;
           return;
         }
         items.forEach(i=>{
-          const card = document.createElement('article');
-          card.className = 'post';
-          card.setAttribute('role','listitem');
-          card.innerHTML = `
-            <h4>${i.title || i.url}</h4>
-            <p class="meta">${i.source || ''}${i.date ? ' · ' + fmt(i.date) : ''}</p>
-            <a class="cta" href="${i.url}" target="_blank" rel="noopener">Zur Meldung</a>
-          `;
+          const card=document.createElement('article');
+          card.className='post'; card.setAttribute('role','listitem');
+          card.innerHTML=`<h3>${i.title||i.url}</h3><p class="meta">${i.source||''}${i.date?' · '+fmt(i.date):''}</p><a class="cta" href="${i.url}" target="_blank" rel="noopener">Zur Meldung</a>`;
           target.appendChild(card);
         });
       }
 
-      fetch('/news-feed.json', {cache:'no-store'})
-        .then(r => r.ok ? r.json() : Promise.reject(r.status))
-        .then(json => render(pickTop3(normalizeFeed(json))))
-        .catch(() => {
-          fetch('/news-config.json', {cache:'no-store'})
-            .then(r => r.ok ? r.json() : Promise.reject(r.status))
-            .then(cfg => render(pickTop3(fromConfigSeeds(cfg))))
-            .catch(() => render([]));
+      fetch('/news-feed.json',{cache:'no-store'})
+        .then(r=>r.ok?r.json():Promise.reject(r.status))
+        .then(json=>render(pickTop3(normalizeFeed(json))))
+        .catch(()=>{
+          fetch('/news-config.json',{cache:'no-store'})
+            .then(r=>r.ok?r.json():Promise.reject(r.status))
+            .then(cfg=>render(pickTop3(fromConfigSeeds(cfg))))
+            .catch(()=>render([]));
         });
     })();
   </script>
