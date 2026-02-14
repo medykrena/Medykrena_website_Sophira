@@ -1,0 +1,8 @@
+# Redirige sophira.ch/index.html → sophira.ch/ (évite le contenu dupliqué)
+/index.html   /   301
+
+# Redirige la version www vers sans-www (bonne pratique SEO)
+https://www.sophira.ch/*  https://sophira.ch/:splat  301!
+
+# Page 404 personnalisée (optionnel, crée un fichier 404.html si tu veux)
+# /*   /404.html   404
