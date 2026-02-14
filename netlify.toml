@@ -1,6 +1,15 @@
 [build]
+  # Pas de commande de build : le site est en HTML pur, rien à compiler
+  command = ""
+  # Publier directement depuis la racine du repo
   publish = "."
+  # Dossier des fonctions Netlify (inchangé)
   functions = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "20"
+  # Désactive la détection automatique de framework
+  # (évite que Netlify confonde le package.json des fonctions
+  #  avec un projet React/Next.js à compiler)
+  NETLIFY_USE_YARN = "false"
+  CI = "false"
