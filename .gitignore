@@ -1,0 +1,11 @@
+# Dépendances Node — jamais dans le repo
+node_modules/
+netlify/functions/node_modules/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
