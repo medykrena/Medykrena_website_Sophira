@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Administration Blog – Sophira</title>
+  <!-- Page privée : jamais indexée par Google -->
+  <meta name="robots" content="noindex, nofollow" />
+
+  <style>
+    :root {
+      --brand: #1a73e8;
+      --brand-hover: #155ab6;
+      --danger: #dc2626;
+      --success: #16a34a;
+      --warning: #d97706;
+      --radius: 12px;
+      --shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f1f5f9;
+      color: #1e293b;
+    }
+
+    /* ── ÉCRAN DE CONNEXION ── */
+    #login-screen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+    .login-card {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    .login-card img { height: 60px; margin-bottom: 1rem; }
+    .login-card h1 { font-size: 1.4rem; margin: 0 0 .5rem; }
+    .login-card p  { color: #64748b; font-size: .95rem; margin: 0 0 1.5rem; }
+
+    /* ── APPLI PRINCIPALE ── */
+    #app { display: none; min-height: 100vh; }
+
+    .topbar {
+      background: #fff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: .8rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .topbar-left { display: flex; align-items: center; gap: .8rem; }
+    .topbar-left img { height: 40px; }
+    .topbar-left span { font-weight: 700; font-size: 1.1rem; }
+    .topbar-right { display: flex; gap: .6rem; align-items: center; }
+
+    .main-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    @media (max-width: 768px) {
+      .main-layout { grid-template-columns: 1fr; }
+    }
+
+    /* ── FORMULAIRE ── */
+    .card {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+    }
+    .card h2 { margin: 0 0 1.2rem; font-size: 1.1rem; color: #334155; border-bottom: 2px solid #e2e8f0; padding-bottom: .6rem; }
+
+    label { display: block; font-weight: 600; font-size: .9rem; margin-bottom: .3rem; color: #475569; }
+    input[type="text"],
+    input[type="date"],
+    input[type="password"],
+    select,
+    textarea {
+      width: 100%;
+      padding: .6rem .8rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: .95rem;
+      font-family: inherit;
+      margin-bottom: 1rem;
+      color: #1e293b;
+      background: #f8fafc;
+      transition: border-color .2s;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--brand);
+      background: #fff;
+    }
+    textarea { min-height: 220px; resize: vertical; font-family: monospace; font-size: .88rem; }
+
+    .hint { font-size: .82rem; color: #64748b; margin-top: -.7rem; margin-bottom: .8rem; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .6rem 1.1rem;
+      border-radius: 8px;
+      border: none;
+      font-weight: 700;
+      font-size: .9rem;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .btn-primary  { background: var(--brand);   color: #fff; }
+    .btn-primary:hover  { background: var(--brand-hover); }
+    .btn-danger   { background: var(--danger);   color: #fff; }
+    .btn-danger:hover   { background: #b91c1c; }
+    .btn-ghost    { background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
+    .btn-ghost:hover    { background: #e2e8f0; }
+    .btn-success  { background: var(--success);  color: #fff; }
+    .btn-sm { padding: .35rem .7rem; font-size: .82rem; }
+
+    .btn-row { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .5rem; }
+
+    /* ── LISTE DES ARTICLES ── */
+    #article-list { display: flex; flex-direction: column; gap: .7rem; }
+    .article-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: .8rem 1rem;
+      cursor: pointer;
+      transition: border-color .15s, background .15s;
+    }
+    .article-item:hover { border-color: var(--brand); background: #eff6ff; }
+    .article-item.selected { border-color: var(--brand); background: #dbeafe; }
+    .article-item .ai-title { font-weight: 600; font-size: .95rem; margin-bottom: .2rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .article-item .ai-meta  { font-size: .8rem; color: #64748b; }
+    .badge {
+      display: inline-block;
+      padding: .15rem .45rem;
+      border-radius: 999px;
+      font-size: .75rem;
+      font-weight: 700;
+    }
+    .badge-fr { background: #dbeafe; color: #1e40af; }
+    .badge-de { background: #dcfce7; color: #166534; }
+    .badge-draft { background: #fef3c7; color: #92400e; }
+
+    /* ── MESSAGES ── */
+    #message-box {
+      position: fixed;
+      bottom: 1.2rem;
+      right: 1.2rem;
+      max-width: 340px;
+      padding: .9rem 1.1rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: .9rem;
+      box-shadow: var(--shadow);
+      display: none;
+      z-index: 100;
+    }
+    .msg-success { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+    .msg-error   { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+
+    /* ── CONTENU HTML (aide) ── */
+    .html-help {
+      font-size: .8rem;
+      color: #64748b;
+      background: #f1f5f9;
+      border-radius: 8px;
+      padding: .6rem .8rem;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    .html-help code { background: #e2e8f0; padding: .1rem .3rem; border-radius: 4px; font-size: .78rem; }
+
+    /* ── SÉPARATEUR ── */
+    hr { border: none; border-top: 1px solid #e2e8f0; margin: 1rem 0; }
+
+    #no-articles { color: #94a3b8; font-size: .9rem; text-align: center; padding: 1rem 0; }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════ ÉCRAN DE CONNEXION ══════════════ -->
+  <div id="login-screen">
+    <div class="login-card">
+      <img src="/Logo_sophira.png" alt="Logo Sophira" />
+      <h1>Administration du blog</h1>
+      <p>Entrez le mot de passe pour accéder au panneau.</p>
+      <label for="pwd-input">Mot de passe</label>
+      <input type="password" id="pwd-input" placeholder="••••••••••" autocomplete="current-password" />
+      <div class="btn-row" style="justify-content:center">
+        <button class="btn btn-primary" onclick="login()">Se connecter</button>
+      </div>
+      <p id="login-error" style="color:#dc2626;font-size:.88rem;margin-top:.8rem;display:none">
+        Mot de passe incorrect.
+      </p>
+    </div>
+  </div>
+
+  <!-- ══════════════ APPLI PRINCIPALE ══════════════ -->
+  <div id="app">
+    <header class="topbar">
+      <div class="topbar-left">
+        <img src="/Logo_sophira.png" alt="Sophira" />
+        <span>Blog — Administration</span>
+      </div>
+      <div class="topbar-right">
+        <a href="/blog.html" class="btn btn-ghost btn-sm" target="_blank">Voir le blog ↗</a>
+        <button class="btn btn-ghost btn-sm" onclick="logout()">Déconnexion</button>
+      </div>
+    </header>
+
+    <div class="main-layout">
+
+      <!-- ── COLONNE GAUCHE : liste des articles ── -->
+      <aside>
+        <div class="card">
+          <h2>📋 Articles existants</h2>
+          <button class="btn btn-primary" style="width:100%;margin-bottom:1rem" onclick="nouveauArticle()">
+            + Nouvel article
+          </button>
+          <div id="article-list">
+            <p id="no-articles">Chargement…</p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ── COLONNE DROITE : formulaire ── -->
+      <section>
+        <div class="card">
+          <h2 id="form-title">✏️ Nouvel article</h2>
+
+          <label for="f-langue">Langue</label>
+          <select id="f-langue">
+            <option value="fr">Français (FR)</option>
+            <option value="de">Deutsch (DE)</option>
+          </select>
+
+          <label for="f-titre">Titre</label>
+          <input type="text" id="f-titre" placeholder="Ex : Pourquoi la reconversion est essentielle en Suisse" />
+
+          <label for="f-resume">Résumé court (1-2 phrases)</label>
+          <input type="text" id="f-resume" placeholder="Affiché dans les aperçus et l'auto-news." />
+
+          <label for="f-date">Date de publication</label>
+          <input type="date" id="f-date" />
+
+          <label for="f-publie">Statut</label>
+          <select id="f-publie">
+            <option value="true">✅ Publié (visible sur le site)</option>
+            <option value="false">📝 Brouillon (caché)</option>
+          </select>
+
+          <label for="f-contenu">Contenu de l'article</label>
+          <div class="html-help">
+            Tu peux utiliser du HTML simple : <code>&lt;p&gt;</code> paragraphe,
+            <code>&lt;h4&gt;</code> sous-titre, <code>&lt;strong&gt;</code> gras,
+            <code>&lt;ul&gt;&lt;li&gt;</code> liste, <code>&lt;em&gt;</code> italique.
+          </div>
+          <textarea id="f-contenu" placeholder="<p>Écris ton article ici...</p>&#10;<h4>Sous-titre</h4>&#10;<p>Suite du texte...</p>"></textarea>
+
+          <hr />
+
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="publierArticle()">
+              💾 Enregistrer
+            </button>
+            <button class="btn btn-ghost" onclick="nouveauArticle()">
+              ✖ Annuler
+            </button>
+            <button class="btn btn-danger btn-sm" id="btn-supprimer" onclick="supprimerArticle()" style="display:none;margin-left:auto">
+              🗑 Supprimer
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Message flottant -->
+  <div id="message-box"></div>
+
+  <script>
+    // ── CONFIGURATION ────────────────────────────────────────────────────────
+    const API_BASE = "/.netlify/functions/blog-admin";
+    const API_GET  = "/.netlify/functions/blog-get";
+
+    // ── ÉTAT ─────────────────────────────────────────────────────────────────
+    let motDePasse = "";
+    let articleEnCours = null; // null = nouveau, nombre = id de l'article édité
+
+    // ── CONNEXION ─────────────────────────────────────────────────────────────
+    function login() {
+      const pwd = document.getElementById("pwd-input").value.trim();
+      if (!pwd) return;
+      motDePasse = pwd;
+      // On teste le mot de passe en chargeant les articles
+      chargerArticles(true);
+    }
+
+    document.getElementById("pwd-input").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") login();
+    });
+
+    function logout() {
+      motDePasse = "";
+      document.getElementById("app").style.display = "none";
+      document.getElementById("login-screen").style.display = "flex";
+      document.getElementById("pwd-input").value = "";
+    }
+
+    // ── CHARGER LES ARTICLES ─────────────────────────────────────────────────
+    async function chargerArticles(estLogin = false) {
+      try {
+        const res = await fetch(`${API_BASE}?action=lister`, { headers: { "Authorization": `Bearer ${motDePasse}` } });
+        const articles = await res.json();
+
+        if (!res.ok) throw new Error("Erreur serveur");
+
+        // Connexion réussie
+        if (estLogin) {
+          document.getElementById("login-screen").style.display = "none";
+          document.getElementById("app").style.display = "block";
+          document.getElementById("login-error").style.display = "none";
+          // Date du jour par défaut dans le formulaire
+          document.getElementById("f-date").value = new Date().toISOString().split("T")[0];
+        }
+
+        afficherListeArticles(articles);
+      } catch (err) {
+        if (estLogin) {
+          document.getElementById("login-error").style.display = "block";
+          motDePasse = "";
+        } else {
+          afficherMessage("Impossible de charger les articles.", "error");
+        }
+      }
+    }
+
+    // ── AFFICHER LA LISTE ─────────────────────────────────────────────────────
+    function afficherListeArticles(articles) {
+      const liste = document.getElementById("article-list");
+      const vide  = document.getElementById("no-articles");
+
+      if (!articles || articles.length === 0) {
+        liste.innerHTML = "";
+        vide.style.display = "block";
+        vide.textContent = "Aucun article pour l'instant.";
+        return;
+      }
+      vide.style.display = "none";
+
+      liste.innerHTML = articles.map(a => `
+        <div class="article-item ${articleEnCours === a.id ? "selected" : ""}"
+             onclick="editerArticle(${a.id})"
+             data-id="${a.id}">
+          <div class="ai-title">${a.titre}</div>
+          <div class="ai-meta">
+            <span class="badge badge-${a.langue}">${a.langue.toUpperCase()}</span>
+            ${!a.publie ? '<span class="badge badge-draft">Brouillon</span>' : ''}
+            ${new Date(a.date_publication).toLocaleDateString("fr-CH")}
+          </div>
+        </div>
+      `).join("");
+    }
+
+    // ── NOUVEAU ARTICLE ───────────────────────────────────────────────────────
+    function nouveauArticle() {
+      articleEnCours = null;
+      document.getElementById("form-title").textContent = "✏️ Nouvel article";
+      document.getElementById("f-titre").value   = "";
+      document.getElementById("f-resume").value  = "";
+      document.getElementById("f-contenu").value = "";
+      document.getElementById("f-langue").value  = "fr";
+      document.getElementById("f-publie").value  = "true";
+      document.getElementById("f-date").value    = new Date().toISOString().split("T")[0];
+      document.getElementById("btn-supprimer").style.display = "none";
+      // Désélectionner dans la liste
+      document.querySelectorAll(".article-item").forEach(el => el.classList.remove("selected"));
+    }
+
+    // ── ÉDITER UN ARTICLE EXISTANT ────────────────────────────────────────────
+    async function editerArticle(id) {
+      try {
+        const res  = await fetch(API_GET);
+        const articles = await res.json();
+        const a    = articles.find(x => x.id === id);
+        if (!a) return afficherMessage("Article introuvable.", "error");
+
+        articleEnCours = id;
+        document.getElementById("form-title").textContent = "✏️ Modifier l'article";
+        document.getElementById("f-titre").value   = a.titre;
+        document.getElementById("f-resume").value  = a.resume  || "";
+        document.getElementById("f-contenu").value = a.contenu;
+        document.getElementById("f-langue").value  = a.langue;
+        document.getElementById("f-publie").value  = String(a.publie);
+        document.getElementById("f-date").value    = a.date_publication?.split("T")[0] || "";
+        document.getElementById("btn-supprimer").style.display = "inline-flex";
+
+        // Sélectionner visuellement dans la liste
+        document.querySelectorAll(".article-item").forEach(el => {
+          el.classList.toggle("selected", parseInt(el.dataset.id) === id);
+        });
+      } catch (err) {
+        afficherMessage("Impossible de charger l'article.", "error");
+      }
+    }
+
+    // ── PUBLIER / MODIFIER ────────────────────────────────────────────────────
+    async function publierArticle() {
+      const titre   = document.getElementById("f-titre").value.trim();
+      const contenu = document.getElementById("f-contenu").value.trim();
+      const langue  = document.getElementById("f-langue").value;
+      const resume  = document.getElementById("f-resume").value.trim();
+      const date    = document.getElementById("f-date").value;
+      const publie  = document.getElementById("f-publie").value === "true";
+
+      if (!titre)   return afficherMessage("Le titre est obligatoire.", "error");
+      if (!contenu) return afficherMessage("Le contenu est obligatoire.", "error");
+
+      const action = articleEnCours ? "modifier" : "creer";
+      const body   = articleEnCours
+        ? { id: articleEnCours, titre, contenu, langue, resume, date_publication: date, publie }
+        : { titre, contenu, langue, resume, date_publication: date, publie };
+
+      try {
+        const res  = await fetch(`${API_BASE}?action=${action}`, {
+          method:  "POST",
+          headers: {
+            "Content-Type":  "application/json",
+            "Authorization": `Bearer ${motDePasse}`,
+          },
+          body: JSON.stringify(body),
+        });
+        const data = await res.json();
+
+        if (!res.ok) return afficherMessage(data.erreur || "Erreur inconnue.", "error");
+
+        afficherMessage(data.message, "success");
+        nouveauArticle();
+        chargerArticles();
+      } catch (err) {
+        afficherMessage("Impossible de contacter le serveur.", "error");
+      }
+    }
+
+    // ── SUPPRIMER ─────────────────────────────────────────────────────────────
+    async function supprimerArticle() {
+      if (!articleEnCours) return;
+      if (!confirm("Supprimer définitivement cet article ? Cette action est irréversible.")) return;
+
+      try {
+        const res  = await fetch(`${API_BASE}?action=supprimer`, {
+          method:  "POST",
+          headers: {
+            "Content-Type":  "application/json",
+            "Authorization": `Bearer ${motDePasse}`,
+          },
+          body: JSON.stringify({ id: articleEnCours }),
+        });
+        const data = await res.json();
+
+        if (!res.ok) return afficherMessage(data.erreur || "Erreur.", "error");
+
+        afficherMessage(data.message, "success");
+        nouveauArticle();
+        chargerArticles();
+      } catch (err) {
+        afficherMessage("Impossible de contacter le serveur.", "error");
+      }
+    }
+
+    // ── MESSAGES ─────────────────────────────────────────────────────────────
+    function afficherMessage(texte, type) {
+      const box = document.getElementById("message-box");
+      box.textContent = texte;
+      box.className   = type === "success" ? "msg-success" : "msg-error";
+      box.style.display = "block";
+      setTimeout(() => { box.style.display = "none"; }, 4000);
+    }
+  </script>
+</body>
+</html>
