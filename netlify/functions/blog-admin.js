@@ -1,6 +1,6 @@
 // netlify/functions/blog-admin.js
 // API protégée — créer, modifier, supprimer des articles du blog
-// Protégée par mot de passe via variable BLOG_ADMIN_PASSWORD
+// Protégée par token via variable ADMIN_TOKEN
 'use strict';
 
 const { neon, neonConfig } = require('@neondatabase/serverless');
@@ -29,10 +29,10 @@ exports.handler = async (event) => {
     // ── Vérification du mot de passe ──────────────────────────────────────
     const authHeader = event.headers['authorization'] || '';
     const token = authHeader.replace('Bearer ', '').trim();
-    const adminPassword = process.env.BLOG_ADMIN_PASSWORD || '';
+    const adminPassword = process.env.ADMIN_TOKEN || '';
 
     if (!adminPassword) {
-      return json(500, { error: 'Variable BLOG_ADMIN_PASSWORD non configurée.' });
+      return json(500, { error: 'Variable ADMIN_TOKEN non configurée.' });
     }
     if (!token || token !== adminPassword) {
       return json(401, { error: 'Accès refusé.' });
